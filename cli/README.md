@@ -1,9 +1,9 @@
-# `@cynco/ai-accounting` CLI
+# `@cynco/accounting-skills` CLI
 
 Thin Node wrapper around the Python scripts in this repo. Built for **DX** and **agents**.
 
 ```bash
-npx @cynco/ai-accounting demo
+npx @cynco/accounting-skills demo
 ```
 
 ## Commands
@@ -40,4 +40,4 @@ From repo root:
 npm publish --access public
 ```
 
-Package name: `@cynco/ai-accounting` · bin: `ai-accounting`
+Package name: `@cynco/accounting-skills` · bin: `ai-accounting`

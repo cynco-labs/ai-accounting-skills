@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/v0.0.1-release-0d6efd?style=for-the-badge" alt="version" />
+  <img src="https://img.shields.io/badge/v2.0.0-release-0d6efd?style=for-the-badge" alt="version" />
   <img src="https://img.shields.io/badge/Claude%20Code-Plugins-f97316?style=for-the-badge" alt="Claude Code" />
   <img src="https://img.shields.io/badge/Beancount-SoR-111827?style=for-the-badge" alt="Beancount" />
   <img src="https://img.shields.io/badge/License-Apache%202.0-10b981?style=for-the-badge" alt="License" />
@@ -48,20 +48,20 @@ Built for [Claude Code](https://claude.com/product/claude-code) / Cowork as a **
 
 ```bash
 # Instant demo — golden ledger in Fava
-npx @cynco/ai-accounting demo
+npx @cynco/accounting-skills demo
 
 # Bank PDFs → Excel
-npx @cynco/ai-accounting extract ./statements --out ./bank.xlsx
+npx @cynco/accounting-skills extract ./statements --out ./bank.xlsx
 
 # Client journals → Beancount + Fava
-npx @cynco/ai-accounting ledger ./clients/acme --fava
+npx @cynco/accounting-skills ledger ./clients/acme --fava
 
 # Scaffold workspace
-npx @cynco/ai-accounting init acme-sdn-bhd
+npx @cynco/accounting-skills init acme-sdn-bhd
 
 # Doctor / CI
-npx @cynco/ai-accounting doctor
-npx @cynco/ai-accounting check
+npx @cynco/accounting-skills doctor
+npx @cynco/accounting-skills check
 ```
 
 Requires **Python 3** + `pip install -r requirements.txt` (or deps the CLI prints).

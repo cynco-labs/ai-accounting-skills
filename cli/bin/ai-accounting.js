@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * @cynco/ai-accounting — thin CLI over the Python scripts in this repo.
- * Works via: npx @cynco/ai-accounting <cmd>
+ * @cynco/accounting-skills — thin CLI over the Python scripts in this repo.
+ * Works via: npx @cynco/accounting-skills <cmd>
  */
 import { spawn, spawnSync } from "node:child_process";
 import {
@@ -61,7 +61,7 @@ function banner() {
 function usage(code = 0) {
   banner();
   log(`${c.bold}Usage${c.reset}
-  npx @cynco/ai-accounting <command> [options]
+  npx @cynco/accounting-skills <command> [options]
 
 ${c.bold}Commands${c.reset}
   ${c.green}demo${c.reset}              Golden mini ledger + Fava (instant wow)
@@ -74,10 +74,10 @@ ${c.bold}Commands${c.reset}
   ${c.green}version${c.reset}           Print version
 
 ${c.bold}Examples${c.reset}
-  npx @cynco/ai-accounting demo
-  npx @cynco/ai-accounting extract ~/Downloads/CJT-BS-2026
-  npx @cynco/ai-accounting ledger ./clients/acme --fava
-  npx @cynco/ai-accounting init acme-sdn-bhd
+  npx @cynco/accounting-skills demo
+  npx @cynco/accounting-skills extract ~/Downloads/CJT-BS-2026
+  npx @cynco/accounting-skills ledger ./clients/acme --fava
+  npx @cynco/accounting-skills init acme-sdn-bhd
 
 ${c.bold}Claude Code plugins${c.reset}
   /plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
@@ -232,7 +232,7 @@ function cmdInit(name) {
     open_queries: [],
     provisional: true,
     updated_at: new Date().toISOString(),
-    notes: "Scaffolded by npx @cynco/ai-accounting init",
+    notes: "Scaffolded by npx @cynco/accounting-skills init",
   };
   writeFileSync(join(root, "engagement_state.json"), JSON.stringify(state, null, 2) + "\n");
   writeFileSync(
@@ -244,9 +244,9 @@ Scaffolded engagement workspace.
 ## Next
 
 1. Drop bank PDFs/CSVs into \`source/bank/\`
-2. \`npx @cynco/ai-accounting extract ${root}/source/bank --out ${root}/outputs/bank.xlsx --json ${root}/workpapers/transactions.json\`
+2. \`npx @cynco/accounting-skills extract ${root}/source/bank --out ${root}/outputs/bank.xlsx --json ${root}/workpapers/transactions.json\`
 3. Use Claude Code + accounting-engagement skills for classify → YE → FS
-4. \`npx @cynco/ai-accounting ledger ${root} --fava\`
+4. \`npx @cynco/accounting-skills ledger ${root} --fava\`
 
 See https://github.com/cynco-labs/ai-accounting-skills
 `,
@@ -342,7 +342,7 @@ function cmdLedger(clientDir, opts) {
   if (code !== 0) return code;
   ok(`Ledger: ${out}`);
   if (opts.fava) return cmdFava(out, {});
-  info(`Open UI: npx @cynco/ai-accounting fava ${out}`);
+  info(`Open UI: npx @cynco/accounting-skills fava ${out}`);
   return 0;
 }
 
@@ -437,7 +437,7 @@ function cmdDemo(opts) {
   if (!fava) {
     warn("fava not installed — showing ledger path only");
     info("pip install fava beancount");
-    info(`Then: npx @cynco/ai-accounting fava ${ledger}`);
+    info(`Then: npx @cynco/accounting-skills fava ${ledger}`);
     // still print a taste of the file
     const head = readFileSync(ledger, "utf8").split("\n").slice(0, 24).join("\n");
     log("");

@@ -5,9 +5,9 @@
 ## 0. Try the CLI first (optional)
 
 ```bash
-npx @cynco/ai-accounting demo          # Fava on golden ledger
-npx @cynco/ai-accounting doctor        # check Python deps
-npx @cynco/ai-accounting extract ./banks --out ./bank.xlsx
+npx @cynco/accounting-skills demo          # Fava on golden ledger
+npx @cynco/accounting-skills doctor        # check Python deps
+npx @cynco/accounting-skills extract ./banks --out ./bank.xlsx
 ```
 
 ## 1. Install marketplace + umbrella
