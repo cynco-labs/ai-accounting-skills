@@ -16,7 +16,7 @@ Firm setup, engagement intake, source-document collection, client workspaces, an
 
 Firm-wide: `/engagement-accounting:cold-start-interview`
 
-Runtime config: `~/.claude/plugins/config/cynco-accounting-skills/engagement-accounting/CLAUDE.md`
+Runtime config: `~/.claude/plugins/config/claude-for-accounting/engagement-accounting/CLAUDE.md`
 
 ## Guardrails
 

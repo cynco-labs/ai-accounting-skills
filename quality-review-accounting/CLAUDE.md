@@ -3,11 +3,11 @@ CONFIGURATION LOCATION
 
 User-specific configuration for this plugin lives at:
 
-  ~/.claude/plugins/config/cynco-accounting-skills/quality-review-accounting/CLAUDE.md
+  ~/.claude/plugins/config/claude-for-accounting/quality-review-accounting/CLAUDE.md
 
 Rules for every skill in this plugin:
 1. READ configuration from that path (not this template).
-2. Also read shared firm profile: ~/.claude/plugins/config/cynco-accounting-skills/firm-profile.md
+2. Also read shared firm profile: ~/.claude/plugins/config/claude-for-accounting/firm-profile.md
 3. Read shared guardrails: ${CLAUDE_PLUGIN_ROOT}/../shared/guardrails.md or repo shared/guardrails.md
 4. If firm profile is missing, offer /engagement-accounting:cold-start-interview (or provisional mode).
 5. This file is the TEMPLATE. Never write live client data here.
@@ -21,8 +21,8 @@ Rules for every skill in this plugin:
 
 ## Who we are
 
-**Firm:** [PLACEHOLDER — e.g. Hazli Johar & Co.]
-**Registration:** [PLACEHOLDER — e.g. Chartered Accountants (NF1932)]
+**Firm:** [PLACEHOLDER]
+**Registration:** [PLACEHOLDER]
 **Contact:** [PLACEHOLDER]
 
 **Role of user:** [PLACEHOLDER — Partner | Manager | Senior | Associate | Bookkeeper]

@@ -1,0 +1,36 @@
+{
+  "industry": "food_and_beverage",
+  "description": "F&B outlets \u2014 food cost, wastage, cash sales density.",
+  "base_coa": "coa_sdn_bhd.json",
+  "overlay_accounts": {
+    "1500": {
+      "name": "Inventory \u2014 Food & Beverage",
+      "type": "Asset",
+      "normal": "DR"
+    },
+    "4000": {
+      "name": "Food & Beverage Sales",
+      "type": "Revenue",
+      "normal": "CR"
+    },
+    "4500": {
+      "name": "Cost of Sales \u2014 Food",
+      "type": "Expense",
+      "normal": "DR"
+    },
+    "5215": {
+      "name": "Kitchen Utilities & Gas",
+      "type": "Expense",
+      "normal": "DR"
+    },
+    "5250": {
+      "name": "Wastage / Spoilage",
+      "type": "Expense",
+      "normal": "DR"
+    }
+  },
+  "classification_hints": [
+    "Daily cash/card settlement \u2192 sales clearing then bank",
+    "Marketplace delivery commissions \u2192 selling expense or contra-revenue per policy"
+  ]
+}

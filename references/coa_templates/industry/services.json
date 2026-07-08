@@ -1,0 +1,36 @@
+{
+  "industry": "professional_services",
+  "description": "Consulting, agencies, professional firms \u2014 WIP/unbilled revenue, subcontractors.",
+  "base_coa": "coa_sdn_bhd.json",
+  "overlay_accounts": {
+    "1150": {
+      "name": "Unbilled Revenue / Contract Assets",
+      "type": "Asset",
+      "normal": "DR"
+    },
+    "2250": {
+      "name": "Deferred Revenue / Contract Liabilities",
+      "type": "Liability",
+      "normal": "CR"
+    },
+    "4000": {
+      "name": "Professional Fee Income",
+      "type": "Revenue",
+      "normal": "CR"
+    },
+    "5030": {
+      "name": "Subcontractor / Freelance Costs",
+      "type": "Expense",
+      "normal": "DR"
+    },
+    "5400": {
+      "name": "Software & SaaS Tools",
+      "type": "Expense",
+      "normal": "DR"
+    }
+  },
+  "classification_hints": [
+    "Retainer receipts may be deferred revenue until earned",
+    "Platform tools (Adobe, Google, Microsoft) \u2192 software subscriptions"
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "name": "quality-review-accounting",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Mathematical integrity, cross-ties, comparative opening balances, note-to-primary consistency, and MPERS disclosure QC.",
   "author": {
-    "name": "Hazli Johar & Co."
+    "name": "claude-for-accounting contributors"
   }
 }

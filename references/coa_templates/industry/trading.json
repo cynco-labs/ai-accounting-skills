@@ -1,0 +1,52 @@
+{
+  "industry": "trading_wholesale_retail",
+  "description": "Overlay for merchandising businesses \u2014 inventory, COGS, carriage emphasis.",
+  "base_coa": "coa_sdn_bhd.json",
+  "overlay_accounts": {
+    "1500": {
+      "name": "Inventory \u2014 Trading Stock",
+      "type": "Asset",
+      "normal": "DR"
+    },
+    "1510": {
+      "name": "Inventory \u2014 Goods in Transit",
+      "type": "Asset",
+      "normal": "DR"
+    },
+    "4000": {
+      "name": "Sales \u2014 Merchandise",
+      "type": "Revenue",
+      "normal": "CR"
+    },
+    "4010": {
+      "name": "Sales Returns",
+      "type": "Revenue",
+      "normal": "DR"
+    },
+    "4500": {
+      "name": "Cost of Goods Sold",
+      "type": "Expense",
+      "normal": "DR"
+    },
+    "4510": {
+      "name": "Purchases",
+      "type": "Expense",
+      "normal": "DR"
+    },
+    "4520": {
+      "name": "Carriage Inwards",
+      "type": "Expense",
+      "normal": "DR"
+    },
+    "4530": {
+      "name": "Purchase Returns",
+      "type": "Expense",
+      "normal": "CR"
+    }
+  },
+  "classification_hints": [
+    "Supplier payments \u2192 Purchases or AP clearing",
+    "Customer receipts \u2192 AR / Sales",
+    "Stock take variance \u2192 COGS or inventory write-down at YE"
+  ]
+}

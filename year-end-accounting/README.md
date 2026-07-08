@@ -13,7 +13,7 @@ Year-end adjustments — depreciation, accruals, prepayments, inventory, ECL, ta
 
 Firm-wide: `/engagement-accounting:cold-start-interview`
 
-Runtime config: `~/.claude/plugins/config/cynco-accounting-skills/year-end-accounting/CLAUDE.md`
+Runtime config: `~/.claude/plugins/config/claude-for-accounting/year-end-accounting/CLAUDE.md`
 
 ## Guardrails
 

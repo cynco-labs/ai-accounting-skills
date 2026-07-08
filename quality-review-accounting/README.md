@@ -13,7 +13,7 @@ Mathematical integrity, cross-ties, comparative opening balances, note-to-primar
 
 Firm-wide: `/engagement-accounting:cold-start-interview`
 
-Runtime config: `~/.claude/plugins/config/cynco-accounting-skills/quality-review-accounting/CLAUDE.md`
+Runtime config: `~/.claude/plugins/config/claude-for-accounting/quality-review-accounting/CLAUDE.md`
 
 ## Guardrails
 

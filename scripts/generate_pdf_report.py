@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Hazli Johar & Co. — Standardised PDF Financial Statements Generator
+[Your Firm Name] — Standardised PDF Financial Statements Generator
 
 Usage:
     python generate_pdf_report.py <input_xlsx> <output_pdf> [--entity-type sdn_bhd|sole_prop|partnership]
@@ -36,8 +36,8 @@ MARGIN_T = 18 * mm
 MARGIN_B = 18 * mm
 CONTENT_W = PAGE_W - MARGIN_L - MARGIN_R
 
-FIRM = "Hazli Johar & Co."
-FIRM_SUB = "Chartered Accountants (NF1932)"
+FIRM = "[Your Firm Name]"
+FIRM_SUB = "[Professional registration]"
 
 BLACK = colors.Color(0, 0, 0)
 DARK_GREY = colors.Color(0.2, 0.2, 0.2)

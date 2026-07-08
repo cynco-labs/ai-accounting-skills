@@ -26,7 +26,7 @@ Keep client work isolated and path-addressable.
   queries.md
 ```
 
-Config path alternative: `~/.claude/plugins/config/cynco-accounting-skills/clients/<slug>/`
+Config path alternative: `~/.claude/plugins/config/claude-for-accounting/clients/<slug>/`
 
 ## Commands (natural language)
 

@@ -1,8 +1,8 @@
 {
   "name": "financial-statements-accounting",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Prepare primary statements, notes to the financial statements, compilation reports, and Excel working-paper workbooks.",
   "author": {
-    "name": "Hazli Johar & Co."
+    "name": "claude-for-accounting contributors"
   }
 }

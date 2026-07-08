@@ -1,19 +1,25 @@
 ---
 name: cold-start-interview
 description: >
-  Run the firm cold-start interview to write firm-profile.md and the engagement practice profile. Use on first install, when config has [PLACEHOLDER], or when the user says set up the firm, configure accounting plugins, or onboard me.
+  Run the firm cold-start interview to write firm-profile.md and the engagement
+  practice profile. Use on first install, when config has [PLACEHOLDER], or when
+  the user says set up the firm, configure accounting plugins, or onboard me.
+argument-hint: "[--redo] [--check-integrations] [--full]"
 ---
 
 # /cold-start-interview
 
-Configures the firm so every accounting plugin produces firm-specific output.
+Configures the firm so every accounting plugin produces **firm-specific, white-label** output.
 
 ## Purpose
 
 Interview the accountant/partner and write:
 
-1. `~/.claude/plugins/config/cynco-accounting-skills/firm-profile.md` — firm facts shared by all plugins
-2. `~/.claude/plugins/config/cynco-accounting-skills/engagement-accounting/CLAUDE.md` — engagement defaults
+1. `~/.claude/plugins/config/claude-for-accounting/firm-profile.md` — firm facts shared by all plugins  
+2. `~/.claude/plugins/config/claude-for-accounting/engagement-accounting/CLAUDE.md` — engagement defaults  
+
+Scaffold: `shared/firm-profile-template.md`.  
+**Never invent a firm name** if the user skips — leave `[PLACEHOLDER]` and tag later outputs `[PROVISIONAL]`.
 
 ## Check current state
 
@@ -21,23 +27,32 @@ Interview the accountant/partner and write:
 - If paused (`<!-- SETUP PAUSED AT: -->`) → resume
 - Else run interview
 
-## Interview (quick ~2 min or full ~15 min)
+## Preamble (show first)
+
+> **claude-for-accounting** helps accountants run engagements from source documents through financial statements, QC, and tax handoff.  
+> **Every output is a draft for professional review** — not signed FS, not an audit opinion, not tax advice.  
+> **2 minutes** captures firm identity, jurisdiction pack, and role. **15 minutes** adds policies, escalation, and house style.
 
 Offer **quick** or **full**.
 
-### Part 0 — Firm identity
-- Firm legal name, registration (MIA/CA number), contact email/phone
+## Interview
+
+### Part 0 — Firm identity & jurisdiction
+- Firm legal name, professional registration, contact
 - Who uses this day-to-day (partner / manager / associate / bookkeeper)
 - Who signs off final FS and tax
+- **Jurisdiction pack** (`malaysia` shipped; others via `/accounting-builder-hub:jurisdiction-scaffold`)
+- Reporting currency
 
 ### Part 1 — Practice mix
-- Entity mix (Sdn Bhd / sole prop / PLT / Bhd / other)
-- Default framework (usually MPERS for private companies)
+- Entity mix (vocabulary from the jurisdiction pack)
+- Default financial reporting framework
 - Engagement types (compilation / bookkeeping only / full YE + tax / audit support)
 - Typical volume per month
+- Common industries (for COA overlay defaults)
 
 ### Part 2 — Accounting policies (defaults)
-- Capitalisation threshold (default RM2,000)
+- Capitalisation threshold
 - Depreciation method and standard rates by class
 - Bank recon: monthly vs YE-only
 - Inventory valuation (FIFO / weighted average / other)
@@ -50,31 +65,25 @@ Offer **quick** or **full**.
 - Client query communication style
 
 ### Part 4 — Seed materials (full only)
-Ask for 1–2 sample completed working papers or signed FS (redacted ok) to learn house format.
+Ask for 1–2 sample completed working papers or signed FS. Keep seeds **local** — do not commit client data to git.
 
 ## Write firm-profile.md
 
-```markdown
-# Firm Profile — Cynco Accounting Skills
+Follow `shared/firm-profile-template.md`. Include jurisdiction pack id, default framework, currency, sign-off rules, and `Updated: [date]`.
 
-**Firm name:** ...
-**Registration:** ...
-**Contact:** ...
-**Default framework:** MPERS
-**Currency:** MYR
-**Capitalisation threshold:** RM2,000
-**Partner sign-off:** ...
-**Updated:** [date]
-```
+Also write engagement-accounting CLAUDE.md from `${CLAUDE_PLUGIN_ROOT}/CLAUDE.md`.
 
-Also write the engagement-accounting CLAUDE.md from the template at `${CLAUDE_PLUGIN_ROOT}/CLAUDE.md`.
+## `--check-integrations`
+
+Probe connectors per `CONNECTORS.md`. Report ✓ only when a live tool call succeeds. Configured-but-untested → ⚪.
 
 ## Close
 
 Summarise what was written. Propose:
-1. `/engagement-accounting:engagement-setup` for a live client
-2. Or `/engagement-accounting:full-engagement-pipeline` when documents are ready
+
+1. `/engagement-accounting:engagement-setup` for a live client  
+2. Or `/engagement-accounting:full-engagement-pipeline` when documents are ready  
 
 ## Tone
 
-Professional colleague onboarding a senior associate — precise, not chatty.
+Professional colleague onboarding a senior associate — precise, firm-neutral, not salesy.

@@ -13,7 +13,7 @@ Malaysian tax computations (Form B/C/P/PT/TF/TP), capital allowances, and statut
 
 Firm-wide: `/engagement-accounting:cold-start-interview`
 
-Runtime config: `~/.claude/plugins/config/cynco-accounting-skills/tax-accounting/CLAUDE.md`
+Runtime config: `~/.claude/plugins/config/claude-for-accounting/tax-accounting/CLAUDE.md`
 
 ## Guardrails
 

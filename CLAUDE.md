@@ -1,68 +1,63 @@
-# Cynco Accounting Skills — Repo Guide
+# Claude for Accounting — Repo Guide for Agents
 
-This repository is a **Claude Code / Cowork plugin marketplace** for Malaysian accounting engagements, structured like [claude-for-legal](https://github.com/anthropics/claude-for-legal): practice-area plugins, granular skills, firm practice profiles, and shared references.
+This repository is an **open-source Claude Code / Cowork plugin marketplace** for accounting engagements, structured like [claude-for-legal](https://github.com/anthropics/claude-for-legal): stage plugins, granular skills, firm practice profiles, jurisdiction packs, and shared guardrails.
 
-## Design principles
+## When working in this repo
 
-1. **Pipeline fidelity** — skills map to real engagement flow (source docs → FS → QC → finalise → tax).
-2. **Traceability** — every number has a source; no fabrication.
-3. **Firm-specific** — cold-start interview writes a practice profile every skill reads.
-4. **Progressive disclosure** — load only the reference files the current stage needs.
-5. **Gates** — mathematical blockers stop the pipeline; overrides are explicit and logged.
+1. Read `shared/guardrails.md` before changing skills that produce numbers.
+2. Read `CONTRIBUTING.md` and `shared/skill-design-framework.md` before new skills.
+3. Prefer jurisdiction packs over hard-coding country rules into stage skills.
+4. Never commit client data, secrets, or hard-coded firm branding.
+5. Run `python3 scripts/validate_marketplace.py` after structural edits.
 
 ## Plugin map → engagement pipeline
 
-| Stage | Plugin | Key skills |
-|---|---|---|
-| Firm + engagement setup | `engagement-accounting` | cold-start-interview, engagement-setup, source-documents, client-workspace, full-engagement-pipeline |
-| Record & classify | `bookkeeping-accounting` | record-transactions, classify-transactions, chart-of-accounts, journal-entries |
-| Reconcile + TB | `reconciliation-accounting` | bank-reconciliation, subledger-reconciliations, preliminary-trial-balance |
-| Year-end | `year-end-accounting` | year-end-adjustments, adjusted-trial-balance |
-| Standards | `mpers-accounting` | mpers-technical-review, disclosure-checklist |
-| Statements | `financial-statements-accounting` | prepare-primary-statements, prepare-notes, compilation-report, generate-workbook |
-| QC | `quality-review-accounting` | quality-review, cross-tie-check |
-| Finalise | `finalisation-accounting` | finalise-accounts, management-approval, auditor-pack, statutory-handoff |
-| Tax | `tax-accounting` | tax-computation, capital-allowances |
+| Stage | Plugin |
+|---|---|
+| Firm + engagement setup | `engagement-accounting` |
+| Record & classify | `bookkeeping-accounting` |
+| Reconcile + preliminary TB | `reconciliation-accounting` |
+| Year-end + ATB | `year-end-accounting` |
+| Standards review | `mpers-accounting` (name historical; content is standards pack + review) |
+| Statements + notes | `financial-statements-accounting` |
+| QC | `quality-review-accounting` |
+| Finalise | `finalisation-accounting` |
+| Tax | `tax-accounting` |
+| Contributor tooling | `accounting-builder-hub` |
 
 ## Layout
 
 ```
-cynco-accounting-skills/
+claude-for-accounting/
   .claude-plugin/marketplace.json
-  shared/guardrails.md
-  references/                 # shared MPERS, tax, COA, QC, etc.
-  scripts/                    # workbook + PDF generators
-  <plugin>/
-    .claude-plugin/plugin.json
-    CLAUDE.md                 # firm/engagement profile TEMPLATE
-    README.md
-    skills/<skill>/SKILL.md
-    references/               # plugin-local deep refs
+  shared/                 # guardrails, design framework, jurisdiction guide
+  references/
+    jurisdictions/        # country packs (malaysia first)
+    notes-templates/      # disclosure scaffolds
+    coa_templates/        # entity + industry
+  scripts/                # validate + workbook/PDF generators
+  managed-agent-cookbooks/
+  <plugin>/skills/<skill>/SKILL.md
 ```
 
-## Config (runtime, not in git)
+## Runtime config (not in git)
 
 ```
-~/.claude/plugins/config/cynco-accounting-skills/
+~/.claude/plugins/config/claude-for-accounting/
   firm-profile.md
-  engagement-accounting/CLAUDE.md
-  <other-plugins>/CLAUDE.md   # if they write plugin-specific prefs
-  clients/<client-slug>/      # engagement working papers (optional path)
+  <plugin>/CLAUDE.md
+  clients/<slug>/          # optional
 ```
 
-## Non-negotiables for contributors
+## Design principles
 
-- Read `shared/guardrails.md` before editing skills.
-- Skills that produce numbers must restate source provenance.
-- Do not collapse the pipeline into one opaque skill without keeping stage skills invocable.
-- Keep SKILL.md frontmatter `name` and `description` accurate for auto-invocation.
+1. **Pipeline fidelity** — stages match real engagement flow.  
+2. **Traceability** — every number has a source.  
+3. **White-label** — firm identity from cold-start only.  
+4. **Jurisdiction as data** — packs under `references/jurisdictions/`.  
+5. **SKILL.md carries doctrine** — CLAUDE.md is the safety net.  
+6. **Validate in CI** — structural invariants before merge.
 
-## Default firm (template seed)
+## Default firm seed
 
-```yaml
-firm_name: "Hazli Johar & Co."
-registration: "Chartered Accountants (NF1932)"
-contact: "hazli@hazlijohar.my"
-```
-
-White-label by running cold-start-interview or editing the firm profile.
+There is **no** default firm. Cold-start writes placeholders until the user answers.

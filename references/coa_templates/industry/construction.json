@@ -1,0 +1,41 @@
+{
+  "industry": "construction_contracting",
+  "description": "Contractors \u2014 contract assets/liabilities, retention, progress billings.",
+  "base_coa": "coa_sdn_bhd.json",
+  "overlay_accounts": {
+    "1160": {
+      "name": "Amount Due from Customers for Contract Work",
+      "type": "Asset",
+      "normal": "DR"
+    },
+    "1170": {
+      "name": "Retention Receivables",
+      "type": "Asset",
+      "normal": "DR"
+    },
+    "2260": {
+      "name": "Amount Due to Customers for Contract Work",
+      "type": "Liability",
+      "normal": "CR"
+    },
+    "2270": {
+      "name": "Retention Payables",
+      "type": "Liability",
+      "normal": "CR"
+    },
+    "4000": {
+      "name": "Contract Revenue",
+      "type": "Revenue",
+      "normal": "CR"
+    },
+    "4500": {
+      "name": "Contract Costs",
+      "type": "Expense",
+      "normal": "DR"
+    }
+  },
+  "classification_hints": [
+    "Progress billings vs stage-of-completion \u2014 document method",
+    "Retention release timing affects AR and cash forecasts"
+  ]
+}

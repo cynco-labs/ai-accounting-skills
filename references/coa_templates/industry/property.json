@@ -1,0 +1,41 @@
+{
+  "industry": "property_investment_rental",
+  "description": "Investment property / rental owners.",
+  "base_coa": "coa_sdn_bhd.json",
+  "overlay_accounts": {
+    "1350": {
+      "name": "Investment Property",
+      "type": "Asset",
+      "normal": "DR"
+    },
+    "1395": {
+      "name": "Accumulated Depreciation \u2014 Investment Property",
+      "type": "Asset",
+      "normal": "CR"
+    },
+    "4500": {
+      "name": "Rental Income",
+      "type": "Revenue",
+      "normal": "CR"
+    },
+    "5200": {
+      "name": "Property Assessment & Quit Rent",
+      "type": "Expense",
+      "normal": "DR"
+    },
+    "5220": {
+      "name": "Property Maintenance",
+      "type": "Expense",
+      "normal": "DR"
+    },
+    "5600": {
+      "name": "Property Insurance",
+      "type": "Expense",
+      "normal": "DR"
+    }
+  },
+  "classification_hints": [
+    "Tenant deposits \u2192 liability until refund/forfeit",
+    "Classify IP vs owner-occupied PPE carefully (MPERS S16 vs S17)"
+  ]
+}

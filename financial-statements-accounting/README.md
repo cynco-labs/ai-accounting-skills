@@ -15,7 +15,7 @@ Prepare primary statements, notes to the financial statements, compilation repor
 
 Firm-wide: `/engagement-accounting:cold-start-interview`
 
-Runtime config: `~/.claude/plugins/config/cynco-accounting-skills/financial-statements-accounting/CLAUDE.md`
+Runtime config: `~/.claude/plugins/config/claude-for-accounting/financial-statements-accounting/CLAUDE.md`
 
 ## Guardrails
 

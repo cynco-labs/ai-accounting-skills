@@ -103,7 +103,7 @@ def write_company_info(wb, data):
     ws.cell(row=8, column=1, value="Tax Filing:").font = HEADER_FONT
     ws.cell(row=8, column=2, value=info.get('tax_form', '')).font = NORMAL_FONT
     ws.cell(row=10, column=1, value="Prepared by:").font = HEADER_FONT
-    ws.cell(row=10, column=2, value=info.get('prepared_by', 'Hazli Johar & Co. (NF1932)')).font = NORMAL_FONT
+    ws.cell(row=10, column=2, value=info.get('prepared_by', '[Your Firm Name]')).font = NORMAL_FONT
     ws.cell(row=11, column=1, value="Date Prepared:").font = HEADER_FONT
     ws.cell(row=11, column=2, value=datetime.now().strftime('%d/%m/%Y')).font = NORMAL_FONT
 

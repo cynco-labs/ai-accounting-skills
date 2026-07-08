@@ -1,3 +1,7 @@
+<!-- Compatibility shim: canonical pack lives in references/jurisdictions/malaysia/. Keep in sync when editing. -->
+
+> **Workflow summary — not official standards/tax text.** Verify rates and requirements against MASB / LHDN / MIA.
+
 # MPERS Framework Reference (Malaysian Private Entities Reporting Standards)
 
 Applies to: **Sdn Bhd (private limited companies)** and **PLT (limited liability partnerships)** that are not required to apply MFRS.

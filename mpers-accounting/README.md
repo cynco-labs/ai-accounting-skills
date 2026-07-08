@@ -13,7 +13,7 @@ MPERS (and MFRS) technical review of significant balances and a disclosure compl
 
 Firm-wide: `/engagement-accounting:cold-start-interview`
 
-Runtime config: `~/.claude/plugins/config/cynco-accounting-skills/mpers-accounting/CLAUDE.md`
+Runtime config: `~/.claude/plugins/config/claude-for-accounting/mpers-accounting/CLAUDE.md`
 
 ## Guardrails
 

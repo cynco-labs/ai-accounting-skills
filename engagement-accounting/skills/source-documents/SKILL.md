@@ -13,8 +13,8 @@ Build a complete source-document inventory and readiness score before recording 
 ## Preconditions
 
 1. Read shared guardrails (`shared/guardrails.md`).
-2. Load firm profile from `~/.claude/plugins/config/cynco-accounting-skills/firm-profile.md` if present.
-3. Load plugin config from `~/.claude/plugins/config/cynco-accounting-skills/{{plugin}}/CLAUDE.md` if present.
+2. Load firm profile from `~/.claude/plugins/config/claude-for-accounting/firm-profile.md` if present.
+3. Load plugin config from `~/.claude/plugins/config/claude-for-accounting/{{plugin}}/CLAUDE.md` if present.
 4. Load active client engagement README / workspace if one is open.
 5. **Never fabricate numbers.** Re-read source documents if figures are missing from context.
 

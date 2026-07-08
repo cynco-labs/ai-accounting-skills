@@ -15,7 +15,7 @@ Record sales, purchases, receipts, payments and journals; classify every transac
 
 Firm-wide: `/engagement-accounting:cold-start-interview`
 
-Runtime config: `~/.claude/plugins/config/cynco-accounting-skills/bookkeeping-accounting/CLAUDE.md`
+Runtime config: `~/.claude/plugins/config/claude-for-accounting/bookkeeping-accounting/CLAUDE.md`
 
 ## Guardrails
 

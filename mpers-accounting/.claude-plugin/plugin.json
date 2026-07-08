@@ -1,8 +1,8 @@
 {
   "name": "mpers-accounting",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MPERS (and MFRS) technical review of significant balances and a disclosure completeness checklist before financial statements are finalised.",
   "author": {
-    "name": "Hazli Johar & Co."
+    "name": "claude-for-accounting contributors"
   }
 }

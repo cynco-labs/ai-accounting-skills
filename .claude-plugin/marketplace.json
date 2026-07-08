@@ -1,9 +1,9 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "cynco-accounting-skills",
-  "description": "Malaysian accounting engagement plugins — source documents through bookkeeping, reconciliations, year-end adjustments, MPERS technical review, financial statements, quality review, tax, and finalisation. Built for compilation and year-end work under MPERS/MFRS and ITA 1967.",
+  "name": "claude-for-accounting",
+  "description": "Reference agents, skills, and workflows for accounting engagements \u2014 bookkeeping through reconciliations, year-end adjustments, standards review (MPERS/MFRS and extensible jurisdictions), financial statements, quality review, tax, and finalisation. Open-source foundation modelled after claude-for-legal.",
   "owner": {
-    "name": "Hazli Johar & Co. / Cynco"
+    "name": "claude-for-accounting maintainers"
   },
   "plugins": [
     {
@@ -11,63 +11,90 @@
       "displayName": "Engagement Accounting",
       "source": "./engagement-accounting",
       "description": "Firm setup, engagement intake, source-document collection, client workspaces, and the full end-to-end engagement pipeline orchestrator.",
-      "author": { "name": "Hazli Johar & Co." }
+      "author": {
+        "name": "claude-for-accounting contributors"
+      }
     },
     {
       "name": "bookkeeping-accounting",
       "displayName": "Bookkeeping Accounting",
       "source": "./bookkeeping-accounting",
       "description": "Record sales, purchases, receipts, payments and journals; classify every transaction against the chart of accounts; produce balancing journal entries.",
-      "author": { "name": "Hazli Johar & Co." }
+      "author": {
+        "name": "claude-for-accounting contributors"
+      }
     },
     {
       "name": "reconciliation-accounting",
       "displayName": "Reconciliation Accounting",
       "source": "./reconciliation-accounting",
       "description": "Bank reconciliations and subledger ties (AR, AP, inventory, fixed assets, loans, taxes) culminating in a preliminary trial balance.",
-      "author": { "name": "Hazli Johar & Co." }
+      "author": {
+        "name": "claude-for-accounting contributors"
+      }
     },
     {
       "name": "year-end-accounting",
       "displayName": "Year-End Accounting",
       "source": "./year-end-accounting",
-      "description": "Year-end adjustments — depreciation, accruals, prepayments, inventory, ECL, tax provision, FX — and the adjusted trial balance.",
-      "author": { "name": "Hazli Johar & Co." }
+      "description": "Year-end adjustments \u2014 depreciation, accruals, prepayments, inventory, ECL, tax provision, FX \u2014 and the adjusted trial balance.",
+      "author": {
+        "name": "claude-for-accounting contributors"
+      }
     },
     {
       "name": "mpers-accounting",
       "displayName": "MPERS / Standards Accounting",
       "source": "./mpers-accounting",
-      "description": "MPERS (and MFRS) technical review of significant balances and a disclosure completeness checklist before financial statements are finalised.",
-      "author": { "name": "Hazli Johar & Co." }
+      "description": "MPERS (and MFRS) technical review of significant balances and a disclosure completeness checklist. Default jurisdiction pack: Malaysia. Extend via accounting-builder-hub.",
+      "author": {
+        "name": "claude-for-accounting contributors"
+      }
     },
     {
       "name": "financial-statements-accounting",
       "displayName": "Financial Statements Accounting",
       "source": "./financial-statements-accounting",
       "description": "Prepare primary statements, notes to the financial statements, compilation reports, and Excel working-paper workbooks.",
-      "author": { "name": "Hazli Johar & Co." }
+      "author": {
+        "name": "claude-for-accounting contributors"
+      }
     },
     {
       "name": "quality-review-accounting",
       "displayName": "Quality Review Accounting",
       "source": "./quality-review-accounting",
-      "description": "Mathematical integrity, cross-ties, comparative opening balances, note-to-primary consistency, and MPERS disclosure QC.",
-      "author": { "name": "Hazli Johar & Co." }
+      "description": "Mathematical integrity, cross-ties, comparative opening balances, note-to-primary consistency, and disclosure QC.",
+      "author": {
+        "name": "claude-for-accounting contributors"
+      }
     },
     {
       "name": "finalisation-accounting",
       "displayName": "Finalisation Accounting",
       "source": "./finalisation-accounting",
       "description": "Lock accounts, management approval packs, auditor deliverables, and statutory/tax filing handoff from finalised figures.",
-      "author": { "name": "Hazli Johar & Co." }
+      "author": {
+        "name": "claude-for-accounting contributors"
+      }
     },
     {
       "name": "tax-accounting",
-      "displayName": "Tax Accounting (Malaysia)",
+      "displayName": "Tax Accounting",
       "source": "./tax-accounting",
-      "description": "Malaysian tax computations (Form B/C/P/PT/TF/TP), capital allowances, and statutory deduction checks (EPF/SOCSO/EIS/PCB).",
-      "author": { "name": "Hazli Johar & Co." }
+      "description": "Tax computations and capital allowances. Ships with a Malaysia (ITA 1967) reference pack; other jurisdictions are extension points.",
+      "author": {
+        "name": "claude-for-accounting contributors"
+      }
+    },
+    {
+      "name": "accounting-builder-hub",
+      "displayName": "Accounting Builder Hub",
+      "source": "./accounting-builder-hub",
+      "description": "Skill design QA, jurisdiction scaffolding, and community extension guidance for maintainers and contributors.",
+      "author": {
+        "name": "claude-for-accounting contributors"
+      }
     }
   ]
 }

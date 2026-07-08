@@ -1,3 +1,7 @@
+<!-- Compatibility shim: canonical pack lives in references/jurisdictions/malaysia/. Keep in sync when editing. -->
+
+> **Workflow summary — not official standards/tax text.** Verify rates and requirements against MASB / LHDN / MIA.
+
 # MFRS Framework Reference (Malaysian Financial Reporting Standards)
 
 Applies to: **Berhad (public-listed companies)** and entities that voluntarily adopt full MFRS.

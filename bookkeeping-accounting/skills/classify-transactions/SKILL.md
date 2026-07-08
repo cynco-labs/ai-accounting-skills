@@ -13,8 +13,8 @@ Assign account codes correctly. Accuracy over speed.
 ## Preconditions
 
 1. Read shared guardrails (`shared/guardrails.md`).
-2. Load firm profile from `~/.claude/plugins/config/cynco-accounting-skills/firm-profile.md` if present.
-3. Load plugin config from `~/.claude/plugins/config/cynco-accounting-skills/{{plugin}}/CLAUDE.md` if present.
+2. Load firm profile from `~/.claude/plugins/config/claude-for-accounting/firm-profile.md` if present.
+3. Load plugin config from `~/.claude/plugins/config/claude-for-accounting/{{plugin}}/CLAUDE.md` if present.
 4. Load active client engagement README / workspace if one is open.
 5. **Never fabricate numbers.** Re-read source documents if figures are missing from context.
 
@@ -43,6 +43,8 @@ Same payee → same account.
 | > RM2,000 asset-like | Consider PPE capitalisation |
 
 Load firm overrides from practice profile.
+
+If an industry overlay was selected at engagement setup, apply its `classification_hints` from `references/coa_templates/industry/*.json` **before** falling through to unclassified.
 
 ### 3. Invoice matching
 Match amount ± date window to purchase/sales invoices.

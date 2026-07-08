@@ -1,3 +1,7 @@
+<!-- Compatibility shim: canonical pack lives in references/jurisdictions/malaysia/. Keep in sync when editing. -->
+
+> **Workflow summary — not official standards/tax text.** Verify rates and requirements against MASB / LHDN / MIA.
+
 # Entity Types — Framework Selection & Requirements
 
 ## Quick Selection Guide

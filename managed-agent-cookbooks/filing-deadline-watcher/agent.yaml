@@ -1,0 +1,19 @@
+# Host-agnostic agent sketch — adapt to your orchestrator.
+name: filing-deadline-watcher
+version: "1.1.0"
+security_tier: read-only
+schedule: "0 8 * * 1"  # Mondays 08:00 local — example only
+system_prompt_refs:
+  - ../../shared/guardrails.md
+  - ../../finalisation-accounting/agents/filing-deadline-watcher.md
+tools_allow:
+  - read_file
+  - list_dir
+  - write_file  # digest only, under firm-configured output path
+tools_deny:
+  - send_email
+  - shell_network
+inputs:
+  clients_root: "${FIRM_CLIENTS_ROOT}"
+outputs:
+  digest_path: "${FIRM_OUTPUT_ROOT}/deadlines/"

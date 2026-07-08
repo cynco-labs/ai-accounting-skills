@@ -1,97 +1,103 @@
-# Quick Start — Cynco Accounting Skills
+# Quick Start
 
-Install in about 60 seconds, configure the firm in 2–15 minutes, run an engagement.
+**About 60 seconds to install. 2–15 minutes to configure your firm.**
 
-## 1. Install marketplace
+## Install in Claude Code
 
-### Claude Code
+1. **Open Claude Code.**
 
-```bash
-# From this repo path
-/plugin marketplace add /Applications/Apps-Hazli/cynco-accounting-skills
+2. **Add the marketplace.** Type `/plugin marketplace add ` (space at the end), then drag this repo folder onto the terminal, or pass a path / GitHub URL:
 
-# Install the plugins you need (engagement is required; others as needed)
-/plugin install engagement-accounting@cynco-accounting-skills
-/plugin install bookkeeping-accounting@cynco-accounting-skills
-/plugin install reconciliation-accounting@cynco-accounting-skills
-/plugin install year-end-accounting@cynco-accounting-skills
-/plugin install mpers-accounting@cynco-accounting-skills
-/plugin install financial-statements-accounting@cynco-accounting-skills
-/plugin install quality-review-accounting@cynco-accounting-skills
-/plugin install finalisation-accounting@cynco-accounting-skills
-/plugin install tax-accounting@cynco-accounting-skills
-```
+   ```text
+   /plugin marketplace add /path/to/claude-for-accounting
+   # or, once published:
+   # /plugin marketplace add https://github.com/<org>/claude-for-accounting
+   ```
 
-Or install only the orchestrator path first:
+3. **Install plugins** you need. Start with engagement + the stages you run:
 
-```bash
-/plugin install engagement-accounting@cynco-accounting-skills
-# install the rest when the pipeline reaches that stage
-```
+   ```text
+   /plugin install engagement-accounting@claude-for-accounting
+   /plugin install bookkeeping-accounting@claude-for-accounting
+   /plugin install reconciliation-accounting@claude-for-accounting
+   /plugin install year-end-accounting@claude-for-accounting
+   /plugin install mpers-accounting@claude-for-accounting
+   /plugin install financial-statements-accounting@claude-for-accounting
+   /plugin install quality-review-accounting@claude-for-accounting
+   /plugin install finalisation-accounting@claude-for-accounting
+   /plugin install tax-accounting@claude-for-accounting
+   ```
 
-### As a single legacy skill (optional)
+   Contributors / pack authors also install:
 
-The older monolithic skill still lives at `~/.claude/skills/accounting-skills/`. This marketplace **supersedes** it with stage plugins; keep the old skill only if you need the single-file workflow.
+   ```text
+   /plugin install accounting-builder-hub@claude-for-accounting
+   ```
 
-## 2. Firm cold-start (do this first)
+4. **Restart Claude Code** so slash commands load.
+
+5. **Run firm setup** (required for non-generic output):
+
+   ```text
+   /engagement-accounting:cold-start-interview
+   ```
+
+   Quick path ≈ 2 minutes (defaults + firm identity). Full path ≈ 10–15 minutes (policies, escalation, seed workpapers).
+
+6. **Open an engagement:**
+
+   ```text
+   /engagement-accounting:engagement-setup
+   ```
+
+7. **Run the pipeline** end-to-end or stage-by-stage:
+
+   ```text
+   /engagement-accounting:full-engagement-pipeline
+   ```
+
+## Install user-scoped, not project-scoped
+
+When `/plugin install` asks for scope, **prefer user scope**. Project scope cannot read client files outside the project folder (Downloads, DMS sync folders, etc.). User scope does not grant extra access to arbitrary files — you still point at paths — it only makes the plugin available from any working directory.
+
+## Which plugin is for me?
+
+| You need to… | Install… | First command |
+|---|---|---|
+| Configure the firm / start a client | `engagement-accounting` | `/engagement-accounting:cold-start-interview` |
+| Book from bank & invoices | `bookkeeping-accounting` | `/bookkeeping-accounting:record-transactions` |
+| Reconcile bank & ledgers | `reconciliation-accounting` | `/reconciliation-accounting:bank-reconciliation` |
+| Post year-end journals | `year-end-accounting` | `/year-end-accounting:year-end-adjustments` |
+| Review against MPERS/MFRS | `mpers-accounting` | `/mpers-accounting:mpers-technical-review` |
+| Draft FS & notes | `financial-statements-accounting` | `/financial-statements-accounting:prepare-primary-statements` |
+| QC before issue | `quality-review-accounting` | `/quality-review-accounting:quality-review` |
+| Lock / approve / auditor pack | `finalisation-accounting` | `/finalisation-accounting:finalise-accounts` |
+| Tax computation | `tax-accounting` | `/tax-accounting:tax-computation` |
+| Extend jurisdictions / QA skills | `accounting-builder-hub` | `/accounting-builder-hub:skills-qa` |
+
+## What you’re installing
+
+Each plugin can learn your firm through setup, writes a practice profile under:
 
 ```text
-/engagement-accounting:cold-start-interview
+~/.claude/plugins/config/claude-for-accounting/
 ```
 
-Writes:
+Every skill reads that profile before producing work product. Edit the profile in plain English anytime.
 
-- `~/.claude/plugins/config/cynco-accounting-skills/firm-profile.md`
-- `~/.claude/plugins/config/cynco-accounting-skills/engagement-accounting/CLAUDE.md`
+**Every output is a draft for accountant review.** Plugins flag uncertainty, gate irreversible steps, and refuse to invent numbers. A professional reviews, verifies, and takes responsibility.
 
-Without this, outputs are generic or tagged `[PROVISIONAL]`.
+## Stuck?
 
-## 3. Open an engagement
+| Symptom | Fix |
+|---|---|
+| Command not found after install | Restart Claude Code |
+| “Run setup first” / generic output | `/engagement-accounting:cold-start-interview` |
+| Numbers look invented / context lost | Re-read source documents — never reconstruct from memory |
+| “I can’t read [file]” | Reinstall user-scoped, or move the file into the working tree |
+| Unbalanced TB / bank | Treat as blocker — fix before FS (see `shared/guardrails.md`) |
+| Wrong country rules | Install/build a jurisdiction pack — `shared/jurisdiction-extension-guide.md` |
 
-```text
-/engagement-accounting:engagement-setup
-```
+## What’s in the box
 
-You will identify entity type, FY, framework (MPERS/MFRS/…), and document completeness.
-
-## 4. Run the full pipeline (or stage-by-stage)
-
-**Full pipeline:**
-
-```text
-/engagement-accounting:full-engagement-pipeline
-```
-
-**Stage-by-stage (recommended for first clients):**
-
-```text
-/engagement-accounting:source-documents
-/bookkeeping-accounting:record-transactions
-/bookkeeping-accounting:classify-transactions
-/reconciliation-accounting:bank-reconciliation
-/reconciliation-accounting:subledger-reconciliations
-/reconciliation-accounting:preliminary-trial-balance
-/year-end-accounting:year-end-adjustments
-/year-end-accounting:adjusted-trial-balance
-/mpers-accounting:mpers-technical-review
-/financial-statements-accounting:prepare-primary-statements
-/financial-statements-accounting:prepare-notes
-/quality-review-accounting:quality-review
-/finalisation-accounting:finalise-accounts
-/tax-accounting:tax-computation
-```
-
-## 5. What “done” looks like
-
-- Balanced adjusted trial balance (DR = CR)
-- Balance sheet balances
-- Bank recon to RM0.00
-- MPERS technical issues cleared or disclosed
-- Primary statements + notes consistent
-- QC checklist Section A all pass
-- Management approval recorded
-- Tax computation ties to final P&L (if in scope)
-
-## Guardrails in one line
-
-**Never invent numbers. Never ship an unbalanced TB. Always re-read sources if context is lost.**
+10 plugins, managed-agent cookbooks, Malaysia jurisdiction pack, MPERS note templates, industry COA overlays, validators. Full reference: [README.md](./README.md).

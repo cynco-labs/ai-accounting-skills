@@ -15,7 +15,7 @@ Lock accounts, management approval packs, auditor deliverables, and statutory/ta
 
 Firm-wide: `/engagement-accounting:cold-start-interview`
 
-Runtime config: `~/.claude/plugins/config/cynco-accounting-skills/finalisation-accounting/CLAUDE.md`
+Runtime config: `~/.claude/plugins/config/claude-for-accounting/finalisation-accounting/CLAUDE.md`
 
 ## Guardrails
 
