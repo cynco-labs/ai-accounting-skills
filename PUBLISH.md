@@ -4,12 +4,12 @@
 
 | Version | npm | Notes |
 |---|---|---|
-| **2.0.0** | ✅ Live (`latest` as of 2026-07-08) | Full CLI + marketplace identity |
-| **2.0.1** | ⏳ Publish after this repo push | Fixes `npx` multi-bin (`accounting-skills` bin name) |
+| **2.0.0** | ✅ Live | Full CLI + marketplace identity |
+| **2.0.1** | ✅ Live (`latest`) | Fixes `npx` multi-bin (`accounting-skills` bin name) |
 
 ```bash
 npm view @cynco/accounting-skills version
-# after 2.0.1 publish → 2.0.1
+# expect: 2.0.1
 ```
 
 ## Publish next version (on your Mac)
