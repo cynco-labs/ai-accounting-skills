@@ -38,7 +38,7 @@ When multiple skills could match, prefer in this order:
 1. **`resume-engagement`** — if `engagement_state.json` exists and the user is continuing / new session
 2. **`full-engagement-pipeline`** — full job / folder dump / “do the accounts” (starts with **smart-intake** when context is thin)
 3. **`smart-intake`** — explicit “I don’t know the company details, just this folder”
-4. **`extract-bank-statement`** — bank PDF/CSV parse before classify
+4. **`extract-bank-statement`** — bank PDF/CSV; Maybank Islamic → run `scripts/extract_maybank_islamic_pdf.py` (text+regex+balance proof, not vision-first)
 5. **The narrowest stage skill** for a *specific* ask (e.g. only bank recon)
 6. **Never** invent an ad-hoc workflow that skips gates or interrogates the user for facts already in the PDFs
 
