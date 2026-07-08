@@ -23,7 +23,7 @@ PLUGINS=(
 
 echo "Install these in Claude Code (user scope recommended):"
 echo
-echo "  /plugin marketplace add <path-or-url-to-this-repo>"
+echo "  /plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills"
 echo
 for p in "${PLUGINS[@]}"; do
   echo "  /plugin install ${p}@${MARKETPLACE}"

@@ -1,270 +1,249 @@
-# Claude for Accounting
+<p align="center">
+  <img src="https://img.shields.io/badge/v0.0.1-release-0d6efd?style=for-the-badge" alt="version" />
+  <img src="https://img.shields.io/badge/Claude%20Code-Plugins-f97316?style=for-the-badge" alt="Claude Code" />
+  <img src="https://img.shields.io/badge/Beancount-SoR-111827?style=for-the-badge" alt="Beancount" />
+  <img src="https://img.shields.io/badge/License-Apache%202.0-10b981?style=for-the-badge" alt="License" />
+</p>
 
-Reference **agents, skills, and workflows** for the accounting engagements we see most — bookkeeping, reconciliations, year-end adjustments, financial reporting standards review, financial statements and notes, quality control, finalisation, and tax computation.
+<h1 align="center">AI Accounting Skills</h1>
 
-> **New here?** Start with [QUICKSTART.md](./QUICKSTART.md) — install in about 60 seconds. This README is the full reference.
+<p align="center">
+  <strong>Agent-native accounting engagements — from a messy folder of banks & receipts<br/>to balanced books, MPERS financials, Beancount ledger, and Fava.</strong>
+</p>
 
-Everything here is available as [Claude Code](https://claude.com/product/claude-code) / [Claude Cowork](https://claude.com/product/cowork) plugins. Same skills whether you run one stage or the full engagement pipeline.
+<p align="center">
+  Drop files. Say “do the year end.” The agent runs a real pipeline — not a vibe.
+</p>
 
-This repository is **open source** and designed to scale across firms, jurisdictions, and industries. Malaysia (MPERS / MFRS / ITA 1967) ships as the first full reference pack; other jurisdictions extend the same stage architecture.
+<p align="center">
+  <a href="#-install-60-seconds"><strong>Install</strong></a> ·
+  <a href="#-what-you-get"><strong>What you get</strong></a> ·
+  <a href="#-pipeline"><strong>Pipeline</strong></a> ·
+  <a href="#-for-agents"><strong>For agents</strong></a> ·
+  <a href="./QUICKSTART.md"><strong>Quickstart</strong></a> ·
+  <a href="#-disclaimer"><strong>Disclaimer</strong></a>
+</p>
 
-## Important notice
+---
 
-**Every output from these plugins is a draft for professional accountant review — not signed financial statements, not an audit or review opinion, not tax advice, and not a substitute for a licensed professional.**
+## Why this exists
 
-Plugins are built with guardrails that reflect that:
+Coding agents are great at code — and lost at **where accounting numbers should live**.
 
-- Source provenance on load-bearing numbers
-- Zero-tolerance mathematical gates (trial balance, balance sheet, bank reconciliation)
-- Explicit gates before lock, management approval, auditor handoff, or tax filing
-- Framework and tax rules tagged for verification against authoritative sources
-
-The reviewing accountant verifies figures against source documents, applies professional judgment, and takes responsibility for anything issued to clients, auditors, companies registries, or tax authorities. These plugins make that review faster; they do not replace it.
-
-**These plugins do not represent any regulator’s, standard-setter’s, or professional body’s official positions.** Checklists and suggested treatments are aids to the reviewing professional’s own analysis.
-
-## What's in the repo
-
-| Area | What you get |
+| Without this | With this |
 |---|---|
-| **Stage plugins** | One plugin per engagement phase — install only what you need |
-| **Skills** | Domain methods + slash commands (`/plugin:skill`) |
-| **Firm practice profile** | Cold-start interview writes plain-English firm defaults every skill reads |
-| **Jurisdiction packs** | Malaysia first; scaffold for others via `accounting-builder-hub` |
-| **Note templates** | MPERS notes scaffolding for the time-consuming disclosure work |
-| **Industry COA packs** | Optional account overlays (trading, services, F&B, property, professional firms) |
-| **Connectors** | Documented MCP integration points (banks, DMS, ledgers) |
-| **Managed-agent cookbooks** | Scheduled workflows (filing deadlines, bank intake) |
-| **Builder hub** | Skill design QA + jurisdiction extension tooling for contributors |
+| Random Excel, no gates | JSON workpapers → **balanced TB** or stop |
+| Invented company context | **Smart intake** — read docs, ask ≤3 questions |
+| “Looks fine” books | Bank recon **RM 0.00**, line-balance proof |
+| No system of record | **Beancount** ledger + **Fava** UI |
+| One opaque prompt | **34 skills**, stage plugins, resume state |
 
-## Engagement pipeline
+Built for [Claude Code](https://claude.com/product/claude-code) / Cowork as a **plugin marketplace**. Malaysia (MPERS / MFRS / ITA) ships first; other jurisdictions plug in.
 
-```
-Source Documents
-      ↓
-Bookkeeping (sales · purchases · receipts · payments · journals)
-      ↓
-Bank & Ledger Reconciliations
-      ↓
-Preliminary Trial Balance
-      ↓
-Year-End Adjustments
-      ↓
-Adjusted Trial Balance
-      ↓
-Standards Technical Review (MPERS / MFRS / extension)
-      ↓
-Financial Statements + Notes
-      ↓
-Quality Review
-      ↓
-Final Signed Financial Statements
-      ↓
-Tax Computation & Statutory Filings
-```
+---
 
-Canonical routing: [`references/pipeline.md`](./references/pipeline.md).
-
-## Plugins
-
-| Plugin | What it adds |
-|---|---|
-| **[engagement-accounting](./engagement-accounting)** | Firm cold-start, engagement setup, source-doc inventory, client workspaces, full-pipeline orchestrator |
-| **[bookkeeping-accounting](./bookkeeping-accounting)** | Record & classify transactions; COA; journals |
-| **[reconciliation-accounting](./reconciliation-accounting)** | Bank + subledgers (AR/AP/inventory/FA/loans/tax); preliminary TB |
-| **[year-end-accounting](./year-end-accounting)** | YE adjustments; adjusted trial balance |
-| **[mpers-accounting](./mpers-accounting)** | MPERS/MFRS technical review + disclosure checklist |
-| **[financial-statements-accounting](./financial-statements-accounting)** | Primary statements, notes, compilation report, Excel workbook |
-| **[quality-review-accounting](./quality-review-accounting)** | QC blockers, cross-ties, note consistency |
-| **[finalisation-accounting](./finalisation-accounting)** | Lock, management approval, auditor pack, statutory handoff |
-| **[tax-accounting](./tax-accounting)** | Tax computation + capital allowances (Malaysia pack shipped) |
-| **[beancount-ledger](./beancount-ledger)** | Beancount system of record + Fava UI after finalisation |
-| **[accounting-builder-hub](./accounting-builder-hub)** | Skill QA, jurisdiction scaffold, contributor tooling |
-
-## Agents (common commands)
-
-| Agent | Plugin | Command |
-|---|---|---|
-| Firm cold-start | engagement | `/engagement-accounting:cold-start-interview` |
-| Engagement setup | engagement | `/engagement-accounting:engagement-setup` |
-| Full pipeline | engagement | `/engagement-accounting:full-engagement-pipeline` |
-| Classify transactions | bookkeeping | `/bookkeeping-accounting:classify-transactions` |
-| Bank reconciliation | reconciliation | `/reconciliation-accounting:bank-reconciliation` |
-| Year-end adjustments | year-end | `/year-end-accounting:year-end-adjustments` |
-| MPERS technical review | mpers | `/mpers-accounting:mpers-technical-review` |
-| Primary statements | FS | `/financial-statements-accounting:prepare-primary-statements` |
-| Notes to FS | FS | `/financial-statements-accounting:prepare-notes` |
-| Quality review | QC | `/quality-review-accounting:quality-review` |
-| Tax computation | tax | `/tax-accounting:tax-computation` |
-| Skill design QA | builder | `/accounting-builder-hub:skills-qa` |
-
-See each plugin `README.md` for the full skill list.
-
-## Repository layout
-
-```
-engagement-accounting/              # setup + orchestrator
-bookkeeping-accounting/
-reconciliation-accounting/
-year-end-accounting/
-mpers-accounting/
-financial-statements-accounting/
-quality-review-accounting/
-finalisation-accounting/
-tax-accounting/
-accounting-builder-hub/             # contributor / extension hub
-managed-agent-cookbooks/            # scheduled agent templates
-references/
-  jurisdictions/malaysia/           # first full pack (MPERS, tax, entity types…)
-  notes-templates/mpers/            # disclosure scaffolds
-  coa_templates/                    # entity COAs
-  coa_templates/industry/           # industry overlays
-  pipeline.md
-scripts/                            # validate.py, workbook/PDF generators
-shared/
-  guardrails.md
-  skill-design-framework.md
-  jurisdiction-extension-guide.md
-  firm-profile-template.md
-.claude-plugin/marketplace.json
-```
-
-Each stage plugin:
-
-```
-<plugin>/
-  .claude-plugin/plugin.json
-  CLAUDE.md                 # practice profile TEMPLATE (runtime config written elsewhere)
-  README.md
-  skills/<skill>/SKILL.md
-  references/               # optional deep refs
-  agents/                   # optional scheduled agents
-```
-
-## How it fits together
-
-| | What it is | Where it lives |
-|---|---|---|
-| **Plugins** | Self-contained stage bundles | `<plugin>/` |
-| **Skills** | Step-by-step methods + slash commands | `<plugin>/skills/<skill>/SKILL.md` |
-| **Firm profile** | Plain-English firm defaults every skill reads | `~/.claude/plugins/config/claude-for-accounting/firm-profile.md` |
-| **Practice profile** | Per-plugin preferences | `~/.claude/plugins/config/claude-for-accounting/<plugin>/CLAUDE.md` |
-| **Jurisdiction pack** | Standards + tax + entity rules for a country | `references/jurisdictions/<id>/` |
-| **Connectors** | MCP servers for banks, DMS, ledgers | [CONNECTORS.md](./CONNECTORS.md) |
-| **Cookbooks** | Headless / scheduled agent templates | `managed-agent-cookbooks/` |
-
-Everything is markdown and JSON (plus optional Python generators). No build step for skill content.
-
-## Agent-native by default
-
-Humans will not type slash commands. They will dump a client folder and say “do the year end.”
-
-| Mechanism | Why it exists |
-|---|---|
-| **`accounting-engagement` umbrella** | One install → all stage skills (synced from modular plugins) |
-| Fat-trigger descriptions on every skill | Host agents auto-select from natural language |
-| **`full-engagement-pipeline` as DEFAULT entry** | Full jobs route here unless the ask is clearly one stage |
-| **`smart-intake` + `shared/smart-intake.md`** | Folder dump with no company context: infer from docs, ≤3 smart questions |
-| `engagement_state.json` + SessionStart hook | Resume mid-job; banner when state is nearby |
-| JSON schemas + `validate_engagement_artifacts.py` | Machine-checkable transactions / journals / TB |
-| `extract-bank-statement` + Maybank PDF script | Proven text/regex/balance-proof extract (fast, not vision-first) |
-| `normalize_bank_csv.py` | CSV bank exports |
-| **Beancount + Fava** | Ledger SoR + interactive UI after final books |
-| `fixtures/golden-mini-sdn-bhd` | Golden path for regression |
-| `evals/utterance_routing.json` | Discoverability tests (top-K description match) |
-| `shared/agent-runtime.md` | Runtime contract for any agent host |
+## ⚡ Install (60 seconds)
 
 ```bash
-# Recommended install surface
+# Claude Code
+/plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
 /plugin install accounting-engagement@claude-for-accounting
-
-# Maintainers / CI
-python3 scripts/sync_umbrella.py --check
-python3 scripts/validate_engagement_artifacts.py fixtures/golden-mini-sdn-bhd
-python3 scripts/eval_utterance_routing.py
 ```
 
-Read: [shared/agent-runtime.md](./shared/agent-runtime.md).
-
-## Design principles (scalability & maintainability)
-
-1. **Stage plugins, not entity plugins** — entity and industry differences live in COA + jurisdiction refs; the pipeline stays universal.
-2. **SKILL.md carries doctrine; CLAUDE.md is the net** — see [CONTRIBUTING.md](./CONTRIBUTING.md) and `shared/skill-design-framework.md`.
-3. **Hard gates over soft hope** — unbalanced TB / bank / BS are blockers, not warnings.
-4. **Jurisdiction is data, not a fork** — add a pack; don’t clone the whole repo.
-5. **White-label by default** — firm name, registration, and house style come from cold-start, never hard-coded product branding in skill outputs.
-6. **Validate in CI** — `scripts/validate_marketplace.py` enforces structure before merge.
-7. **Agent-native first** — throw-work routing beats menu-driven UX.
-
-## Getting started
-
-See **[QUICKSTART.md](./QUICKSTART.md)**.
+Restart Claude Code, then:
 
 ```text
-/plugin marketplace add <path-or-url-to-this-repo>
-/plugin install engagement-accounting@claude-for-accounting
-/engagement-accounting:cold-start-interview
+/accounting-engagement:cold-start-interview   # firm defaults (2–15 min)
 ```
 
-## Default jurisdiction
+**Throw work at it:**
 
-| Entity (Malaysia) | Framework (typical) | Tax form |
-|---|---|---|
-| Berhad (public) | MFRS | Form C |
-| Sdn Bhd | MPERS | Form C |
-| PLT | MPERS | Form PT |
-| Sole prop | Accrual per S21A ITA | Form B |
-| Partnership | Accrual per S21A ITA | Form P |
-| Koperasi | MCA standards | Form TF |
-| Trust | MFRS/MPERS (varies) | Form TP |
+> Here are bank statements and receipts in this folder. Do the accounting.
 
-Other countries: read `shared/jurisdiction-extension-guide.md` and run `/accounting-builder-hub:jurisdiction-scaffold`.
+Default skill: `full-engagement-pipeline` → smart intake → extract → books → QC → **Beancount** → optional **Fava**.
 
-## Core principles
+Full detail: **[QUICKSTART.md](./QUICKSTART.md)**
 
-1. Every number traces to a source document.  
-2. Check documents before asking questions (smart intake — infer first).  
-3. Standards and tax compliance — no material shortcuts.  
-4. Zero tolerance for imbalance (TB, BS, bank).  
-5. Document decisions in working papers.  
-6. **Excel = working papers; Beancount = ledger system of record; Fava = UI.**
+---
 
-## Production checks (maintainers)
+## 📦 What you get
+
+```
+┌────────────────────────────────────────────────────────────┐
+│  accounting-engagement          one-install umbrella       │
+│  12 stage plugins               modular if you prefer      │
+│  34 pipeline skills             fat-trigger descriptions   │
+│  Smart intake                   infer first, ask last      │
+│  Maybank PDF extractor          pdfplumber + balance proof │
+│  JSON schemas + validators      machine-checkable books    │
+│  Beancount + Fava               ledger SoR + web UI        │
+│  MPERS notes + industry COAs    disclosure & overlays      │
+│  ci_check.sh                    OSS-grade gates            │
+└────────────────────────────────────────────────────────────┘
+```
+
+| Layer | Technology | Role |
+|:------|:-----------|:-----|
+| Intermediate truth | `workpapers/*.json` | What agents verify |
+| Human packs | **openpyxl** Excel | Review / client workpapers |
+| Ledger SoR | **Beancount** `.beancount` | Final double-entry |
+| Interactive UI | **Fava** `localhost:5000` | Browse P&L / BS / journals |
+
+---
+
+## 🔁 Pipeline
+
+```text
+  Folder dump
+       │
+       ▼
+  smart-intake  ── infer entity, MYR, period; ≤3 questions
+       │
+       ▼
+  extract banks ── CSV or Maybank PDF script (not vision-first)
+       │
+       ▼
+  classify → journals → bank recon (RM0) → TB
+       │
+       ▼
+  year-end AJEs → ATB → MPERS review → FS + notes
+       │
+       ▼
+  QC (Section A blockers) → finalise
+       │
+       ├──────────────► Beancount  ── system of record
+       │                      │
+       │                      └── Fava UI
+       └──────────────► tax computation (locked figures)
+```
+
+Resume anytime from `engagement_state.json` (SessionStart hook on umbrella).
+
+---
+
+## 🧠 For agents
+
+| Do | Don't |
+|---|---|
+| Read docs before interrogating | 20-field setup forms |
+| Run repo scripts when they exist | Reinvent Maybank parsers in chat |
+| Prove bank/TB balance | Invent lines to “make it work” |
+| Export Beancount after lock | Treat Excel as the only ledger |
+| Write disk artifacts every stage | Rely on chat memory |
+
+Doctrine: [`shared/agent-runtime.md`](./shared/agent-runtime.md) · [`shared/architecture.md`](./shared/architecture.md) · [`shared/guardrails.md`](./shared/guardrails.md)
 
 ```bash
+pip install -r requirements.txt
+bash scripts/ci_check.sh          # marketplace + golden + routing + bean-check
+```
+
+---
+
+## 🔌 Plugins
+
+<details>
+<summary><strong>Stage plugins (click to expand)</strong></summary>
+
+| Plugin | Job |
+|---|---|
+| [`accounting-engagement`](./accounting-engagement) | **Umbrella** — install this |
+| [`engagement-accounting`](./engagement-accounting) | Cold-start, smart-intake, pipeline |
+| [`bookkeeping-accounting`](./bookkeeping-accounting) | Extract, classify, journals |
+| [`reconciliation-accounting`](./reconciliation-accounting) | Bank + subledgers + TB |
+| [`year-end-accounting`](./year-end-accounting) | YE adjustments + ATB |
+| [`mpers-accounting`](./mpers-accounting) | Standards review + disclosures |
+| [`financial-statements-accounting`](./financial-statements-accounting) | Primaries, notes, workbook |
+| [`quality-review-accounting`](./quality-review-accounting) | QC gates |
+| [`finalisation-accounting`](./finalisation-accounting) | Lock, approval, auditor pack |
+| [`tax-accounting`](./tax-accounting) | MY tax + capital allowances |
+| [`beancount-ledger`](./beancount-ledger) | Export ledger + Fava |
+| [`accounting-builder-hub`](./accounting-builder-hub) | Skill QA + jurisdiction scaffold |
+
+</details>
+
+Marketplace id (for `/plugin install`): **`claude-for-accounting`**
+
+---
+
+## 🏦 Bank extract (fast path)
+
+Maybank Islamic e-statements (proven on real multi-month books):
+
+```bash
+python3 scripts/extract_maybank_islamic_pdf.py \
+  --input /path/to/statements \
+  --output ./bank_transactions.xlsx \
+  --also-json ./workpapers/transactions.json \
+  --fail-on-error
+```
+
+Text layer + regex + **Decimal running-balance proof** — not vision-first.  
+See [`references/bank_statement_extraction.md`](./references/bank_statement_extraction.md).
+
+---
+
+## 📒 Beancount + Fava
+
+```bash
+python3 scripts/export_to_beancount.py \
+  --client-dir path/to/client \
+  --output path/to/client/ledger/main.beancount \
+  --bean-check
+
+scripts/run_fava.sh path/to/client/ledger/main.beancount
+# → http://127.0.0.1:5000
+```
+
+---
+
+## 🧪 Verify the repo
+
+```bash
+git clone https://github.com/cynco-labs/ai-accounting-skills.git
+cd ai-accounting-skills
 pip install -r requirements.txt
 bash scripts/ci_check.sh
 ```
 
-Must pass before release or merge.
+Golden fixture: `fixtures/golden-mini-sdn-bhd` (synthetic — not a real client).
 
-## Contributing
+---
 
-We welcome PRs that improve skills, jurisdiction packs, note templates, COAs, validators, and cookbooks.
+## 🗺 Roadmap (honest)
 
-- [CONTRIBUTING.md](./CONTRIBUTING.md) — design rules and PR checklist  
-- [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)  
-- [SECURITY.md](./SECURITY.md)  
-- [CLA.md](./CLA.md) — contributor license agreement  
-- [CHANGELOG.md](./CHANGELOG.md)
+- [x] Stage plugins + umbrella  
+- [x] Smart intake + engagement state  
+- [x] Maybank Islamic PDF extractor  
+- [x] Beancount SoR + Fava  
+- [x] CI / schema / routing evals  
+- [ ] More bank PDF adapters  
+- [ ] Leaner Beancount opens (used accounts only)  
+- [ ] Additional jurisdiction packs  
 
-Run validators before opening a PR:
+---
 
-```bash
-python3 scripts/validate_marketplace.py
-```
+## ⚠️ Disclaimer
 
-## Maintainer
+**Drafts for professional accountant review only.**
 
-**Hazli Johar** — [coding@hazli.dev](mailto:coding@hazli.dev)  
-Version: **v0.0.1** — see [CHANGELOG.md](./CHANGELOG.md) and [MAINTAINERS.md](./MAINTAINERS.md).
+Not signed financial statements. Not an audit or review opinion. Not tax advice.  
+Not a substitute for a licensed professional. Not official MASB / MIA / LHDN positions.
 
-## License
+The reviewing accountant verifies figures against sources and takes responsibility for anything issued.
+
+---
+
+## 👤 Maintainers & license
+
+**Hazli Johar** — [coding@hazli.dev](mailto:coding@hazli.dev) · [cynco-labs](https://github.com/cynco-labs)
 
 Apache License 2.0 — see [LICENSE](./LICENSE).
 
-Accounting standards and tax summaries are **workflow aids**. Authoritative text remains with standard-setters and tax authorities (e.g. MASB, MIA, LHDN for the Malaysia pack).
+Contributions welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md). Run `bash scripts/ci_check.sh` before PRs.
 
-## Relationship to monolithic skills
+---
 
-A single-file “accounting workflow” skill may still be useful for tiny installs. This marketplace **splits that workflow into stage plugins** so each phase can be reviewed, versioned, and extended independently — the same idea as practice-area plugins in [claude-for-legal](https://github.com/anthropics/claude-for-legal).
+<p align="center">
+  <sub>Throw a client folder at an agent. Get books you can defend.</sub>
+</p>
