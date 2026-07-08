@@ -5,6 +5,12 @@ All notable changes to this project are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
+## [2.0.1] — 2026-07-09
+
+### Fixed
+
+- **`npx @cynco/accounting-skills <cmd>`** failed with `sh: ai-accounting: command not found` because multi-bin packages need a bin matching the unscoped package name (`accounting-skills`). Added that entry (kept `ai-accounting` / `cynco-accounting` aliases).
+
 ## [2.0.0] — 2026-07-09
 
 ### Changed
@@ -17,6 +23,7 @@ Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
 - Previous npm `1.0.x` pointed at the older skill-only package; v2 is the agent-native pipeline.
 - Claude Code marketplace id remains `claude-for-accounting` for `/plugin install`.
+- **2.0.0 is live on npm** (published 2026-07-08). Use **2.0.1+** for reliable bare `npx`.
 
 ## [0.0.1] — 2026-07-09
 

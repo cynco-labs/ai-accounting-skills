@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/v2.0.0-release-0d6efd?style=for-the-badge" alt="version" />
+  <img src="https://img.shields.io/badge/v2.0.1-release-0d6efd?style=for-the-badge" alt="version" />
   <img src="https://img.shields.io/badge/Claude%20Code-Plugins-f97316?style=for-the-badge" alt="Claude Code" />
   <img src="https://img.shields.io/badge/Beancount-SoR-111827?style=for-the-badge" alt="Beancount" />
   <img src="https://img.shields.io/badge/License-Apache%202.0-10b981?style=for-the-badge" alt="License" />

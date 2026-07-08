@@ -1,6 +1,6 @@
 {
   "name": "@cynco/accounting-skills",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Agent-native accounting CLI \u2014 extract bank PDFs, validate engagements, export Beancount, open Fava. npx @cynco/accounting-skills demo",
   "keywords": [
     "accounting",
@@ -24,6 +24,7 @@
   "author": "Hazli Johar <coding@hazli.dev>",
   "type": "module",
   "bin": {
+    "accounting-skills": "./cli/bin/ai-accounting.js",
     "ai-accounting": "./cli/bin/ai-accounting.js",
     "cynco-accounting": "./cli/bin/ai-accounting.js"
   },

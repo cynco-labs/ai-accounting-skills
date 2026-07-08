@@ -1,44 +1,39 @@
-# Publish `@cynco/accounting-skills@2.0.0`
+# Publish `@cynco/accounting-skills`
 
-You already own this package name on npm (was 1.0.2).  
-Publishing **2.0.0** replaces what `npx` / `npm i` get by default.
+## Status
 
-## Prerequisites
+| Version | npm | Notes |
+|---|---|---|
+| **2.0.0** | ✅ Live (`latest` as of 2026-07-08) | Full CLI + marketplace identity |
+| **2.0.1** | ⏳ Publish after this repo push | Fixes `npx` multi-bin (`accounting-skills` bin name) |
 
-1. Logged into npm on this machine (`npm whoami` → your user)
-2. Authenticator app ready for **OTP**
-3. Access to the **`@cynco`** org on npm (you already published 1.0.2 under it)
+```bash
+npm view @cynco/accounting-skills version
+# after 2.0.1 publish → 2.0.1
+```
 
-## Steps (on your Mac)
+## Publish next version (on your Mac)
 
 ```bash
 cd /Applications/Apps-Hazli/cynco-accounting-skills
 
-# 1. Confirm identity
 npm whoami
-# expect: hazlijohar (or your npm user)
-
-# 2. Confirm package name + version
 node -p "require('./package.json').name + '@' + require('./package.json').version"
-# expect: @cynco/accounting-skills@2.0.0
+# expect: @cynco/accounting-skills@2.0.1
 
-# 3. Dry-run (optional)
-npm publish --access public --dry-run
-
-# 4. Publish with 2FA code from your authenticator
 npm publish --access public --otp=XXXXXX
 ```
 
-Replace `XXXXXX` with the 6-digit code.
+Replace `XXXXXX` with the 6-digit authenticator / recovery-flow code.
 
 ## Verify
 
 ```bash
 npm view @cynco/accounting-skills version
-# expect: 2.0.0
+# expect: 2.0.1
 
-npx @cynco/accounting-skills@2.0.0 doctor
-npx @cynco/accounting-skills@2.0.0 demo
+npx --yes @cynco/accounting-skills@2.0.1 doctor
+npx --yes @cynco/accounting-skills doctor
 ```
 
 ## If publish fails
@@ -46,11 +41,11 @@ npx @cynco/accounting-skills@2.0.0 demo
 | Error | Fix |
 |---|---|
 | 2FA / otp required | Add `--otp=123456` |
-| 403 no permission on `@cynco` | npmjs.com → orgs → cynco → ensure you're Owner/Developer |
-| Version already exists | Bump patch in package.json and retry |
+| 403 no permission on `@cynco` | npmjs.com → orgs → cynco → Owner/Developer |
+| Version already exists | Bump patch in `package.json` and retry |
 | Need new login | `npm login` then publish again |
 
-## After publish (optional)
+## After publish
 
-- Tweet/LinkedIn: `npx @cynco/accounting-skills demo`
-- GitHub release notes already track the product; npm is the distribution channel for the CLI
+- GitHub release tag `v2.0.1` (this repo)
+- Optional: share `npx @cynco/accounting-skills demo`
