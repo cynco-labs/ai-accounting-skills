@@ -1,46 +1,52 @@
 ---
 name: engagement-setup
 description: >
-  Open or continue a client engagement: identify entity, FY, framework, COA,
-  document completeness, write README + engagement_state.json. Trigger when
-  starting year-end, compilation, bookkeeping for a named client, "new client",
-  "open engagement", or after cold-start when work begins.
+  Open or continue a client engagement after context is known: entity, FY,
+  framework, COA, completeness, README + engagement_state.json. Trigger when
+  starting year-end with known client details, "new client" with name given,
+  or after smart-intake. If the user only dumped a folder with no company
+  context, use smart-intake first — do not run a long blank questionnaire.
 ---
+
 # /engagement-setup
 
 ## Purpose
 
-Create a clean engagement context before any bookkeeping.
+Lock in engagement context **after** (or with) document-first discovery.
 
 ## Preconditions
 
-1. Read shared guardrails (`shared/guardrails.md`).
-2. Load firm profile from `~/.claude/plugins/config/claude-for-accounting/firm-profile.md` if present.
-3. Load plugin config from `~/.claude/plugins/config/claude-for-accounting/{{plugin}}/CLAUDE.md` if present.
-4. Load active client engagement README / workspace if one is open.
-5. **Never fabricate numbers.** Re-read source documents if figures are missing from context.
+1. `shared/guardrails.md`  
+2. Firm profile if present (defaults only)  
+3. **If folder dump / unknown entity** → run `smart-intake` first, then return here to formalize  
 
+## Route
 
+| Situation | Action |
+|---|---|
+| User gave legal name + period + clear docs | Setup directly (below) |
+| User: “accounting for this folder” / no name | **`smart-intake` first** |
+| `engagement_state.json` exists | `resume-engagement` |
 
 ## Workflow
 
 ### 1. Scan client folder
-Identify available files: bank statements, invoices, payslips, prior FS, SSM extract, tax files.
+Banks, invoices, payslips, prior FS, SSM, tax files. Prefer facts from files over questions.
 
 ### 2. Entity identification
-From SSM Form 9/13/49, LLP cert, or client README:
-- Legal name, registration number, entity type
-- Directors / partners / proprietor
-- Registered address
-- Principal activities
+From SSM / bank account title / prior FS / smart-intake inferences:
 
-Load `references/entity_types.md` (plugin or repo root).
+- Legal name, registration number (only if on a doc — never invent)  
+- Entity type  
+- Address / activities if present  
 
-### 3. Framework selection
+Load `references/entity_types.md` or jurisdiction pack.
+
+### 3. Framework selection (derive, don’t quiz)
 
 | Entity | Framework | Tax form |
 |---|---|---|
-| Berhad (listed/public) | MFRS | Form C |
+| Berhad (public) | MFRS | Form C |
 | Sdn Bhd | MPERS | Form C |
 | PLT | MPERS | Form PT |
 | Sole prop | Accrual S21A | Form B |
@@ -48,49 +54,47 @@ Load `references/entity_types.md` (plugin or repo root).
 | Koperasi | MCA | Form TF |
 | Trust | Varies | Form TP |
 
+Only ask if entity type is still ambiguous after docs.
+
 ### 4. Financial year
-- FY start / end
-- First year? comparative figures available?
-- Prior year signed FS path
+Prefer statement date coverage + prior FS. Soft-confirm if incomplete year.
 
-### 5. Completeness assessment
+### 5. Completeness (honest, not scary)
 
-**Blockers (must resolve or log override):**
-- Full-year bank statements (all accounts)
-- Entity registration evidence
+**Blockers for full-year final FS:**
 
-**Required when applicable:**
-- Payslips / EA forms (payroll)
-- Fixed asset invoices / register (PPE)
-- Inventory listings (trading)
-- Loan statements
-- Prior year signed accounts (comparatives / openings)
-- Sales & purchase invoices sample for classification
+- Full-year bank statements (or accepted limited period)  
+- Clear reporting entity identity  
 
-### 6. Load COA
-Copy appropriate template from `bookkeeping-accounting/references/coa_templates/` or repo `references/coa_templates/`.
+**Not first-turn questions** — note as gaps:
 
-### 7. Write client engagement README
-Use `references/client_readme_template.md`. Save under client workspace.
+- Payslips, FAR, inventory, loans, prior FS  
 
-### 8. Write engagement_state.json
+### 6. COA
+Entity template + optional industry overlay from payee patterns (trading vs services). Soft default; user rarely needs to choose.
 
-Create `clients/<slug>/engagement_state.json` per `references/engagement_state.schema.json`:
-- current_stage: `setup` then advance to `source_documents` when setup gate passes
-- status: `in_progress`
-- artifacts: readme path
-- framework, fy_end, jurisdiction_pack, engagement_type
+### 7. README + engagement_state.json
 
-See `shared/agent-runtime.md`.
+Per `references/engagement_state.schema.json` and `shared/agent-runtime.md`.
 
-### 9. Output engagement card
+Include:
+
+```markdown
+## Inferences
+| Field | Value | Confidence | Evidence |
+```
+
+### 8. Engagement card
 
 ```markdown
 # Engagement: [Legal name]
-- Entity type / framework / tax form
-- FY: ...
-- Status: Setup complete | Blocked (list)
-- Next: /engagement-accounting:source-documents
+- Entity / framework / tax form
+- FY / coverage limitations
+- Status: ready | provisional | blocked
+- Next: extract banks → classify → …
 ```
 
-If blockers → ask immediately. Do not pretend the engagement can complete.
+## Question budget
+
+After smart-intake, setup should usually ask **zero** new questions.  
+If something critical is still open, ≤2 questions total.

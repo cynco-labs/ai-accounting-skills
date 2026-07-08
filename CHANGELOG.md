@@ -27,6 +27,7 @@ Initial public scaffold of **claude-for-accounting**.
 - **SessionStart resume hook** + `resume-engagement` skill
 - **Utterance routing evals:** `evals/utterance_routing.json` + `eval_utterance_routing.py`
 - **Bank extraction:** `extract-bank-statement` skill + `normalize_bank_csv.py`
+- **Smart intake:** document-first client discovery (`smart-intake`, `shared/smart-intake.md`) — infer from banks/receipts, ≤3 high-leverage questions, no interrogation theatre
 
 ### Maintainer
 

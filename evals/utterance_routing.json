@@ -61,6 +61,16 @@
       "utterance": "MPERS technical review of revenue recognition and related party disclosures",
       "expected_skill": "mpers-technical-review",
       "notes": null
+    },
+    {
+      "utterance": "Here are some receipts and bank statements in this folder, please do the accounting, I don't know the company details",
+      "expected_skill": "smart-intake",
+      "notes": "Blind folder dump — smart-intake or full-engagement-pipeline both acceptable if top-3; prefer smart-intake"
+    },
+    {
+      "utterance": "whatever is in this folder just sort my books",
+      "expected_skill": "full-engagement-pipeline",
+      "notes": "Pipeline default; smart-intake is also a strong match"
     }
   ]
 }

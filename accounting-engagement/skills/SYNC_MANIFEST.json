@@ -8,8 +8,14 @@
     },
     {
       "plugin": "engagement-accounting",
+      "skill": "smart-intake",
+      "sha256": "5e41cd3198ed10a2b3b3b0b2f2e11485cf20e688f02c041216370fa6e256b3bc",
+      "source": "engagement-accounting/skills/smart-intake/SKILL.md"
+    },
+    {
+      "plugin": "engagement-accounting",
       "skill": "engagement-setup",
-      "sha256": "30704a19be62c4bdd216e0693e04e91d58afc32e78b53a12384b2af3594e1366",
+      "sha256": "29fc97ff4decd6a768992d088b32833cd480bfa376e9611efbd81e0033098ef7",
       "source": "engagement-accounting/skills/engagement-setup/SKILL.md"
     },
     {
@@ -27,7 +33,7 @@
     {
       "plugin": "engagement-accounting",
       "skill": "full-engagement-pipeline",
-      "sha256": "05f00fb33eb200536fefa28eb551060c7dc2fd08d00fb6fe1a282d5cb1bf6eb7",
+      "sha256": "d52592c59f5c146bc004508a8629c263d763dbcfa16e272b0822d4a7b4078375",
       "source": "engagement-accounting/skills/full-engagement-pipeline/SKILL.md"
     },
     {

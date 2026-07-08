@@ -163,6 +163,7 @@ Humans will not type slash commands. They will dump a client folder and say “d
 | **`accounting-engagement` umbrella** | One install → all stage skills (synced from modular plugins) |
 | Fat-trigger descriptions on every skill | Host agents auto-select from natural language |
 | **`full-engagement-pipeline` as DEFAULT entry** | Full jobs route here unless the ask is clearly one stage |
+| **`smart-intake` + `shared/smart-intake.md`** | Folder dump with no company context: infer from docs, ≤3 smart questions |
 | `engagement_state.json` + SessionStart hook | Resume mid-job; banner when state is nearby |
 | JSON schemas + `validate_engagement_artifacts.py` | Machine-checkable transactions / journals / TB |
 | `extract-bank-statement` + `normalize_bank_csv.py` | Explicit bank PDF/CSV → rows (no freestyle) |

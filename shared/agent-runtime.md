@@ -7,9 +7,9 @@ How an AI agent should use this marketplace when a human **throws work at it** w
 Humans will say things like:
 
 - “Here’s the bank statements for ABC Sdn Bhd, do the year end”
+- “Here are some receipts and banks in this folder, please do the accounting” ← **often zero company context**
 - “Classify these transactions”
 - “TB doesn’t balance, fix it”
-- “Draft MPERS notes”
 
 They will **not** say `/year-end-accounting:year-end-adjustments`.
 
@@ -17,12 +17,14 @@ So the default path is:
 
 ```
 User dump (files + intent)
-    → detect engagement context
+    → smart-intake (read docs first; infer; ≤3 smart questions)
     → load / update engagement state
-    → route to the right stage skill (or full pipeline)
-    → write artifacts
-    → stop on blockers with a concrete ask
+    → extract & book what is unblocked (parallel to waiting on user)
+    → full pipeline stages
+    → stop on true blockers only
 ```
+
+Client context is **our** problem to recover from documents. See `shared/smart-intake.md`.
 
 ## Install surface
 
@@ -34,10 +36,11 @@ Modular plugins remain for partial installs. Sync: `scripts/sync_umbrella.py`.
 When multiple skills could match, prefer in this order:
 
 1. **`resume-engagement`** — if `engagement_state.json` exists and the user is continuing / new session
-2. **`full-engagement-pipeline`** — full job, year-end, compilation, “do the accounts”, mixed source dump
-3. **`extract-bank-statement`** — bank PDF/CSV parse before classify
-4. **The narrowest stage skill** that fully covers a *specific* ask (e.g. only bank recon)
-5. **Never** invent a parallel ad-hoc workflow that skips gates
+2. **`full-engagement-pipeline`** — full job / folder dump / “do the accounts” (starts with **smart-intake** when context is thin)
+3. **`smart-intake`** — explicit “I don’t know the company details, just this folder”
+4. **`extract-bank-statement`** — bank PDF/CSV parse before classify
+5. **The narrowest stage skill** for a *specific* ask (e.g. only bank recon)
+6. **Never** invent an ad-hoc workflow that skips gates or interrogates the user for facts already in the PDFs
 
 If firm profile is missing → run or offer `cold-start-interview` **once**, or continue in `[PROVISIONAL]` mode only if the user opts in.
 

@@ -2,18 +2,15 @@
 name: full-engagement-pipeline
 description: >
   DEFAULT entry when a user throws accounting work at the agent without naming
-  a skill. Orchestrates Malaysian (and pack-based) engagements end-to-end:
-  source documents, bookkeeping, bank recon, trial balance, year-end
-  adjustments, MPERS/standards review, financial statements, notes, QC,
-  finalisation, and tax. Trigger on: year end, year-end, YE accounts,
-  compilation, "do the accounts", "prepare financial statements", "from bank
-  statements", client folder dump, management accounts, full bookkeeping to FS,
-  "process this client", "finish the books", mixed PDFs of banks/invoices/payslips
-  for a period. Also use when the user resumes an in-progress engagement.
-  Reads/writes clients/<slug>/engagement_state.json. Stops on blockers
-  (unbalanced TB, bank not reconciling, missing statements). Prefer this over
-  inventing an ad-hoc workflow. For a single narrow task only (e.g. only bank
-  recon), use that stage skill instead.
+  a skill — including a messy folder of bank statements and receipts with no
+  company context. Runs smart-intake first (infer from docs, ≤3 smart questions),
+  then source docs, bookkeeping, bank recon, TB, year-end, MPERS, financial
+  statements, notes, QC, finalisation, tax. Trigger on: "do the accounting",
+  "whatever is in this folder", year end, compilation, "do the accounts",
+  "prepare financial statements", bank statements + receipts dump, management
+  accounts, "process this client", "finish the books", mixed PDFs, unknown
+  company. Resumes from engagement_state.json. Does not open with a long
+  questionnaire. Prefer over ad-hoc workflows.
 ---
 
 # Full engagement pipeline (agent-native entry)
@@ -33,24 +30,27 @@ You are not a menu of slash commands. You are an engagement manager that:
 ## Always load first
 
 1. `shared/agent-runtime.md`  
-2. `shared/guardrails.md`  
-3. `references/stage_artifacts.md`  
-4. Firm profile if present: `~/.claude/plugins/config/claude-for-accounting/firm-profile.md`  
+2. `shared/smart-intake.md`  
+3. `shared/guardrails.md`  
+4. `references/stage_artifacts.md`  
+5. Firm profile if present (quiet defaults — **do not** firm-interview on a client dump)  
 
 ## Intent router (before stage 0)
 
-Classify the user message + files:
-
 | Signal | Route |
 |---|---|
-| Full year-end / compilation / “do the accounts” / client folder | **This pipeline** from setup or resume |
-| Only bank statements + “reconcile” | `bank-reconciliation` (still create/update state) |
-| Only “classify these” | `classify-transactions` |
-| Only “tax computation” with final P&L | `tax-computation` |
-| “Set up the firm” / first install | `cold-start-interview` |
-| Resume + `engagement_state.json` exists | Jump to `current_stage` |
+| Resume + `engagement_state.json` | `resume-engagement` → `current_stage` |
+| Folder dump / “do accounting” / little client context | **`smart-intake` then this pipeline** |
+| Full year-end with known entity | setup → pipeline |
+| Only bank recon | `bank-reconciliation` |
+| Only classify | `classify-transactions` |
+| Only tax with P&L | `tax-computation` |
+| “Set up the firm” / first install | `cold-start-interview` (firm, not client) |
 
-If ambiguous between full pipeline and one stage, **ask one clarifying question**, defaulting to full pipeline when a full period of banks is present.
+**Folder-dump rule:** never open with a blank entity/framework questionnaire.  
+Read files → Hypothesis Card → ≤3 questions → extract in parallel.
+
+If ambiguous between full pipeline and one stage, default to full pipeline when banks/receipts for a period are present.
 
 ## Engagement state machine
 
@@ -102,7 +102,8 @@ ELSE:
 
 | # | Stage key | Load skill | Gate |
 |---|---|---|---|
-| 0 | setup | engagement-setup | Entity + FY + framework |
+| 0a | smart_intake | smart-intake (if context thin / folder dump) | Hypothesis Card written; extraction started |
+| 0 | setup | engagement-setup | Entity + FY + framework (may be provisional) |
 | 1 | source_documents | source-documents | Bank coverage ok / override logged |
 | 2a | record_transactions | extract-bank-statement (banks) then record-transactions | Lines extracted into transactions.json |
 | 3 | classify_transactions | classify-transactions | Codes assigned or queried |
@@ -137,14 +138,15 @@ Do **not** paste all skills into context. One stage at a time.
 6. **Partial runs** — user may say “stop after TB”; set state and exit cleanly  
 7. **Interruptible** — any session can resume from state alone  
 
-## Scope flags (ask once if unknown)
+## Scope flags
 
-- Engagement type: bookkeeping_only | compilation | year_end | year_end_tax | audit_support  
-- Framework / jurisdiction pack  
-- Industry overlay (trading, services, fnb, property, construction, none)  
-- Skip tax? Skip full notes (management accounts only)?  
+**Infer first** (see smart-intake). Only ask if still unknown:
 
-Store answers in `engagement_state.json`.
+- Engagement type (default `year_end` with documented limitations)  
+- Identity of reporting entity if multiple names  
+- Period complete vs limited  
+
+Do **not** ask framework/tax form/industry as a first-turn list — derive from entity + docs.
 
 ## Output to human (language)
 
@@ -165,7 +167,7 @@ Store answers in `engagement_state.json`.
 
 | Failure | Behavior |
 |---|---|
-| User dumps files, no entity name | Infer from docs; else ask once |
+| User dumps files, no entity name | **smart-intake**: infer from banks/receipts; soft-confirm; ≤3 asks; extract in parallel |
 | Missing months of bank | Block or AMBER limitation in state |
 | Agent tempted to skip recon | Forbidden unless user override logged in state.notes |
 | Context loss mid-job | Re-read state + artifacts; never reconstruct numbers from memory |

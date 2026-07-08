@@ -25,6 +25,7 @@ MANIFEST = UMBRELLA / "skills" / "SYNC_MANIFEST.json"
 # (source plugin, skill dir name) — order is documentation only
 STAGE_SKILLS = [
     ("engagement-accounting", "cold-start-interview"),
+    ("engagement-accounting", "smart-intake"),
     ("engagement-accounting", "engagement-setup"),
     ("engagement-accounting", "source-documents"),
     ("engagement-accounting", "client-workspace"),
