@@ -1,8 +1,9 @@
 {
   "name": "finalisation-accounting",
-  "version": "1.1.0",
+  "version": "0.0.1",
   "description": "Lock accounts, management approval packs, auditor deliverables, and statutory/tax filing handoff from finalised figures.",
   "author": {
-    "name": "claude-for-accounting contributors"
+    "name": "Hazli Johar",
+    "email": "coding@hazli.dev"
   }
 }

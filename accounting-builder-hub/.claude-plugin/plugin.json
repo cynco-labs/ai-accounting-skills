@@ -1,8 +1,9 @@
 {
   "name": "accounting-builder-hub",
-  "version": "1.1.0",
+  "version": "0.0.1",
   "description": "Skill design QA, jurisdiction scaffolding, and extension guidance for the claude-for-accounting marketplace.",
   "author": {
-    "name": "claude-for-accounting contributors"
+    "name": "Hazli Johar",
+    "email": "coding@hazli.dev"
   }
 }

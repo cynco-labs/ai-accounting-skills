@@ -1,8 +1,8 @@
 claude-for-accounting
-Copyright 2026 the claude-for-accounting contributors
+Copyright 2026 Hazli Johar
 
-This product includes software developed by the claude-for-accounting
-open-source community and is licensed under the Apache License, Version 2.0.
+This product is maintained by Hazli Johar <coding@hazli.dev> and
+contributors. It is licensed under the Apache License, Version 2.0.
 
 Architectural patterns for plugin marketplaces are inspired by publicly
 documented agent skill marketplace layouts (including open-source legal

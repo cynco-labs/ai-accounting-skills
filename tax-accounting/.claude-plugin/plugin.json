@@ -1,8 +1,9 @@
 {
   "name": "tax-accounting",
-  "version": "1.1.0",
+  "version": "0.0.1",
   "description": "Malaysian tax computations (Form B/C/P/PT/TF/TP), capital allowances, and statutory deduction checks (EPF/SOCSO/EIS/PCB).",
   "author": {
-    "name": "claude-for-accounting contributors"
+    "name": "Hazli Johar",
+    "email": "coding@hazli.dev"
   }
 }

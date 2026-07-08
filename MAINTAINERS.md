@@ -2,12 +2,14 @@
 
 This file lists people who can merge to `main` and cut releases.
 
-| Name | Role | Focus |
-|---|---|---|
-| *TBD — set before public launch* | Lead maintainer | Pipeline architecture, releases |
-| *TBD* | Standards pack | MPERS/MFRS references, note templates |
-| *TBD* | Tax pack | Jurisdiction tax references |
-| *TBD* | Tooling | Validators, CI, cookbooks |
+| Name | Email | Role | Focus |
+|---|---|---|---|
+| Hazli Johar | coding@hazli.dev | Lead maintainer | Pipeline architecture, releases, Malaysia pack |
+
+## Contact
+
+- **Maintainer / security reports:** [coding@hazli.dev](mailto:coding@hazli.dev)
+- Prefer GitHub Security Advisories for vulnerabilities when the repo is public
 
 ## Duties
 

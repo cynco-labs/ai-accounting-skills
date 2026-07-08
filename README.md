@@ -211,6 +211,11 @@ Run validators before opening a PR:
 python3 scripts/validate_marketplace.py
 ```
 
+## Maintainer
+
+**Hazli Johar** — [coding@hazli.dev](mailto:coding@hazli.dev)  
+Version: **v0.0.1** — see [CHANGELOG.md](./CHANGELOG.md) and [MAINTAINERS.md](./MAINTAINERS.md).
+
 ## License
 
 Apache License 2.0 — see [LICENSE](./LICENSE).

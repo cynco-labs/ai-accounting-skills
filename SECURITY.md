@@ -4,8 +4,10 @@
 
 | Version | Supported |
 |---|---|
-| `1.x` (main branch) | ✅ |
-| Pre-1.0 experimental forks | ❌ — upgrade to main |
+| `0.0.x` (main branch) | ✅ |
+| Unofficial forks | ❌ — upgrade to main |
+
+**Security contact:** [coding@hazli.dev](mailto:coding@hazli.dev)
 
 ## What this project is
 
@@ -20,7 +22,7 @@ Please **do not** open a public issue for:
 - Secrets accidentally committed to the repo
 - Ways to bypass mathematical or finalisation gates in a way that could mislead non-experts
 
-Prefer private disclosure via GitHub Security Advisories on the repository, or email the addresses listed in `MAINTAINERS.md` once published.
+Prefer private disclosure via GitHub Security Advisories on the repository, or email **coding@hazli.dev** (see `MAINTAINERS.md`).
 
 Include:
 

@@ -1,6 +1,6 @@
 # Host-agnostic agent sketch — adapt to your orchestrator.
 name: filing-deadline-watcher
-version: "1.1.0"
+version: "0.0.1"
 security_tier: read-only
 schedule: "0 8 * * 1"  # Mondays 08:00 local — example only
 system_prompt_refs:
