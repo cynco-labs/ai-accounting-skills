@@ -1,107 +1,150 @@
 ---
 name: extract-bank-statement
 description: >
-  Extract bank statement lines from PDF or CSV into the transactions register
-  schema (workpapers/transactions.json). Trigger on bank PDF, bank CSV, Maybank
-  statement, CIMB statement, "extract bank", "parse bank statement", import
-  bank export, convert statement to transactions. Runs before classify. Never
-  invents lines for missing months.
+  Extract bank statements from PDF or CSV into a clean spreadsheet and/or
+  transactions.json with running-balance proof. Use Maybank Islamic PDF adapter
+  script for Maybank e-statements (pdfplumber + regex + Decimal proof — not
+  vision). Trigger on bank PDF, bank CSV, Maybank statement, CIMB statement,
+  "extract bank", "parse bank statement", convert statement to Excel, folder of
+  monthly statements. Prefer CSV when available. Never invent lines. Fail loud
+  on balance breaks.
 ---
 
 # /extract-bank-statement
 
 ## Purpose
 
-Turn **bank PDFs/CSVs** into machine-checkable `workpapers/transactions.json` rows with source provenance. This is the weak link most agents freestyle — do it explicitly.
+Turn bank PDFs/CSVs into **accurate, machine-checkable** transaction registers **quickly**.
+
+This skill encodes the **proven method** (used on real Maybank Islamic multi-month books):
+
+```text
+pdfplumber text  →  layout adapter  →  Decimal balance proof  →  Excel / JSON
+```
+
+**Not:** vision-first bulk reading of digital e-statements.
+
+Load: `references/bank_statement_extraction.md`
 
 ## Preconditions
 
-1. `shared/guardrails.md`
-2. Active client workspace (or create via engagement-setup)
-3. Schema: `references/schemas/transactions.schema.json`
-4. Optional helper: `scripts/normalize_bank_csv.py`
+1. `shared/guardrails.md` — no fabricated numbers  
+2. Input path: file or folder the user gave  
+3. Dependencies: `pdfplumber`, `openpyxl` (`pip install pdfplumber openpyxl`)  
+4. Optional schema: `references/schemas/transactions.schema.json`
 
-## Inputs
+## Step 0 — Detect input type (do this first)
 
-| Format | Handling |
+| Signal | Path |
 |---|---|
-| **CSV / Excel export** | Prefer `normalize_bank_csv.py` or map columns manually |
-| **PDF e-statement** | Extract text/tables; every line needs date, description, amount, direction |
-| **Scanned image PDF** | OCR if available; flag low-confidence rows for human review |
+| `.csv` / `.xlsx` export | `scripts/normalize_bank_csv.py` |
+| PDF text contains `Maybank Islamic` / `結單日期` / `戶號` / `SME FIRST INVESTMENT` | **`scripts/extract_maybank_islamic_pdf.py`** |
+| PDF has little/no extractable text | OCR/vision **last resort**; ask for CSV if possible |
+| Other bank digital PDF | Prefer CSV; else new adapter (do not freestyle 1000 lines in chat) |
 
-## Workflow
+Quick probe:
 
-### 1. Identify account & period
-
-- Bank name, account last4 if present
-- Statement period start/end
-- Opening and closing balances from statement
-
-### 2. Extract every movement line
-
-For each line produce:
-
-```json
-{
-  "id": "txn-YYYYMMDD-###",
-  "date": "YYYY-MM-DD",
-  "description": "...",
-  "amount": 123.45,
-  "direction": "inflow|outflow",
-  "bank_account_id": "...",
-  "running_balance": 0,
-  "account_code": null,
-  "classification_basis": null,
-  "source_file": "source/bank/....",
-  "source_ref": "page:3|row:12"
-}
+```bash
+python3 -c "import pdfplumber; p=pdfplumber.open('FILE.pdf'); print((p.pages[0].extract_text() or '')[:800])"
 ```
 
-**Do not classify here** unless the user asked for a combined pass — leave `account_code` null for `classify-transactions`.
+## Step 1 — Prefer bank CSV (tell the user once if PDF is painful)
 
-### 3. Continuity checks (blockers)
+If PDF is scanned or unknown layout:
 
-- Opening balance = prior statement closing (or zero / documented)
-- Each running balance follows prior ± movement (if statement provides running bal)
-- Closing balance = last statement balance
-- No month gaps for the engagement period
+> “If you can export CSV/Excel from Maybank2u, extraction will be faster and safer. Meanwhile I’ll try the PDF adapter.”
 
-### 4. Write artifacts
+## Step 2 — Run the adapter (Maybank Islamic)
 
-- Append/merge into `workpapers/transactions.json` (schema 0.0.1)
-- Update `source/register.md`
-- Update `engagement_state.json`: stage `record_transactions` in progress or complete when full period extracted
-- Run: `python3 scripts/validate_engagement_artifacts.py <client_dir>`
+From the **repo root** of claude-for-accounting (or any checkout that has `scripts/`):
 
-### 5. CSV helper
+```bash
+python3 scripts/extract_maybank_islamic_pdf.py \
+  --input "/path/to/folder-or.pdf" \
+  --output "/path/to/Client_Bank_Transactions.xlsx" \
+  --also-json "/path/to/workpapers/transactions.json" \
+  --client-slug "client-slug" \
+  --fail-on-error
+```
+
+### What the script does (agents must not re-invent unless adapting a new bank)
+
+1. Open each PDF with **pdfplumber**  
+2. Read **text lines** (ignore unusable mega-tables)  
+3. Parse `DD/MM TYPE amount± balance`  
+4. Attach continuation lines as counterparty detail (strip footers)  
+5. Prove every line: `prior_balance ± amount == statement_balance`  
+6. Prove month: `begin + inflows − outflows == end`  
+7. Write Excel: Summary, All Transactions, per-period sheets, QA_Checks  
+8. Optional `transactions.json` for the engagement pipeline  
+
+### Pass / fail (report to user)
+
+| Check | Required |
+|---|---|
+| Line balance | PASS every file |
+| Open → close | PASS every file |
+| Cross-month continuity | PASS when consecutive months present |
+| Footer TOTAL DEBIT/CREDIT vs sums | Informational (Maybank footers can differ; line chain is source of truth) |
+
+If `--fail-on-error` and any FAIL → **stop**. Show the break. Do not hand-edit amounts to “make it work.”
+
+## Step 3 — CSV path
 
 ```bash
 python3 scripts/normalize_bank_csv.py \
-  --input path/to/export.csv \
+  --input export.csv \
   --bank-id maybank-001 \
   --source-file source/bank/export.csv \
+  --client-slug client-slug \
   --output workpapers/transactions_partial.json
 ```
 
-Merge partial into the client register carefully (no duplicate ids).
+Then map into Excel or merge into the client register.
 
-## Direction convention
+## Step 4 — Engagement artifacts
 
-| Statement shows | direction |
-|---|---|
-| Credit / deposit / money in | `inflow` |
-| Debit / withdrawal / money out | `outflow` |
-| amount always **positive** | yes |
+If inside an engagement workspace:
+
+- Save xlsx under `outputs/` or client root  
+- Save JSON as `workpapers/transactions.json`  
+- Update `source/register.md`  
+- Update `engagement_state.json` (`record_transactions` progress)  
+- Next: `classify-transactions` (do not classify inside extract unless user asks)
+
+## Step 5 — Scanned PDF / vision (only if no text)
+
+1. Tell user accuracy risk is higher  
+2. Prefer: request CSV  
+3. If proceeding: process **page by page**, store `source_ref=page:N`, mark `confidence=low` rows  
+4. Still run recon to statement closing balance when known  
+5. Never invent a line to fix recon  
+
+## Efficiency rules (why this is “fast”)
+
+1. **Batch code**, not per-line LLM reading  
+2. **Same layout → same adapter** (new months are free)  
+3. **Balance proof is O(n)** and catches errors machines make  
+4. Re-run whole folder is fine for &lt;20 monthly PDFs; optional future: skip already-hashed files  
+
+Agents **must run the script** for Maybank Islamic rather than re-deriving the regex in chat when the script is available.
 
 ## Failure modes
 
-| Failure | Behavior |
+| Failure | Action |
 |---|---|
-| Unreadable PDF | Ask for CSV export; do not guess lines |
-| Missing month | Blocker or AMBER limitation in state |
-| Balance doesn't roll | Stop; list break point |
-| FX multi-currency | Separate bank_account_id per currency; note rate source |
+| No text in PDF | Ask CSV; optional vision with warnings |
+| Balance break | Print row context; fix parser or source; do not fudge |
+| Missing month in folder | Note gap; do not interpolate |
+| Unknown bank layout | Do not force Maybank parser; ask CSV or add adapter |
+
+## Outputs checklist
+
+- [ ] `.xlsx` with Summary + All Transactions + periods + QA  
+- [ ] PASS/FAIL printed per file  
+- [ ] Optional `transactions.json`  
+- [ ] Source provenance (file + page) on every row  
 
 ## Next skill
 
-`record-transactions` (if more non-bank books) → `classify-transactions`
+`classify-transactions` → `journal-entries` → `bank-reconciliation`

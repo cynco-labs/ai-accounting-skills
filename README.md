@@ -166,7 +166,8 @@ Humans will not type slash commands. They will dump a client folder and say “d
 | **`smart-intake` + `shared/smart-intake.md`** | Folder dump with no company context: infer from docs, ≤3 smart questions |
 | `engagement_state.json` + SessionStart hook | Resume mid-job; banner when state is nearby |
 | JSON schemas + `validate_engagement_artifacts.py` | Machine-checkable transactions / journals / TB |
-| `extract-bank-statement` + `normalize_bank_csv.py` | Explicit bank PDF/CSV → rows (no freestyle) |
+| `extract-bank-statement` + Maybank PDF script | Proven text/regex/balance-proof extract (fast, not vision-first) |
+| `normalize_bank_csv.py` | CSV bank exports |
 | `fixtures/golden-mini-sdn-bhd` | Golden path for regression |
 | `evals/utterance_routing.json` | Discoverability tests (top-K description match) |
 | `shared/agent-runtime.md` | Runtime contract for any agent host |

@@ -45,7 +45,7 @@
     {
       "plugin": "bookkeeping-accounting",
       "skill": "extract-bank-statement",
-      "sha256": "aa651d7842258eb5b83fda902b32165be7610e0442cc29289a90200ffe2a58f4",
+      "sha256": "e6f8087015bddcffe50ebf4bb535650ea53544c5894b3ab502cde87040a67dd0",
       "source": "bookkeeping-accounting/skills/extract-bank-statement/SKILL.md"
     },
     {
