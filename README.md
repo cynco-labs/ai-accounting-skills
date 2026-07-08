@@ -160,11 +160,25 @@ Humans will not type slash commands. They will dump a client folder and say “d
 
 | Mechanism | Why it exists |
 |---|---|
-| Fat-trigger descriptions on every skill | Host agents auto-select the right skill from natural language |
+| **`accounting-engagement` umbrella** | One install → all stage skills (synced from modular plugins) |
+| Fat-trigger descriptions on every skill | Host agents auto-select from natural language |
 | **`full-engagement-pipeline` as DEFAULT entry** | Full jobs route here unless the ask is clearly one stage |
-| `engagement_state.json` | Resume mid-job across sessions; disk is truth |
-| `references/stage_artifacts.md` | A stage is done only when files + gates exist |
+| `engagement_state.json` + SessionStart hook | Resume mid-job; banner when state is nearby |
+| JSON schemas + `validate_engagement_artifacts.py` | Machine-checkable transactions / journals / TB |
+| `extract-bank-statement` + `normalize_bank_csv.py` | Explicit bank PDF/CSV → rows (no freestyle) |
+| `fixtures/golden-mini-sdn-bhd` | Golden path for regression |
+| `evals/utterance_routing.json` | Discoverability tests (top-K description match) |
 | `shared/agent-runtime.md` | Runtime contract for any agent host |
+
+```bash
+# Recommended install surface
+/plugin install accounting-engagement@claude-for-accounting
+
+# Maintainers / CI
+python3 scripts/sync_umbrella.py --check
+python3 scripts/validate_engagement_artifacts.py fixtures/golden-mini-sdn-bhd
+python3 scripts/eval_utterance_routing.py
+```
 
 Read: [shared/agent-runtime.md](./shared/agent-runtime.md).
 

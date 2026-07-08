@@ -181,6 +181,29 @@ def main() -> int:
             if needle.lower() not in ptxt.lower():
                 warnings.append(f"full-engagement-pipeline missing agent-native cue: {needle}")
 
+    # Umbrella plugin present
+    umbrella = ROOT / "accounting-engagement"
+    if not (umbrella / ".claude-plugin/plugin.json").is_file():
+        errors.append("missing accounting-engagement umbrella plugin")
+    else:
+        umb_skills = list((umbrella / "skills").glob("*/SKILL.md"))
+        if len(umb_skills) < 20:
+            warnings.append(f"umbrella has only {len(umb_skills)} skills — run scripts/sync_umbrella.py")
+
+    # Schemas + golden fixture
+    for rel in [
+        "references/schemas/transactions.schema.json",
+        "references/schemas/journals.schema.json",
+        "references/schemas/trial_balance.schema.json",
+        "fixtures/golden-mini-sdn-bhd/engagement_state.json",
+        "evals/utterance_routing.json",
+        "scripts/validate_engagement_artifacts.py",
+        "scripts/sync_umbrella.py",
+        "scripts/eval_utterance_routing.py",
+    ]:
+        if not (ROOT / rel).is_file():
+            errors.append(f"missing required agent-native file: {rel}")
+
     # Firm lock-in scan — skills and stage templates only.
     # Maintainer attribution may appear in README/MAINTAINERS/NOTICE/marketplace.
     for path in ROOT.rglob("SKILL.md"):

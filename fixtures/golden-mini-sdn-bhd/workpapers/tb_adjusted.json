@@ -1,0 +1,56 @@
+{
+  "schema_version": "0.0.1",
+  "client_slug": "golden-mini-sdn-bhd",
+  "as_of": "2025-12-31",
+  "kind": "adjusted",
+  "currency": "MYR",
+  "lines": [
+    {
+      "account_code": "1000",
+      "account_name": "Cash & Bank",
+      "debit": 12000.0,
+      "credit": 0
+    },
+    {
+      "account_code": "2200",
+      "account_name": "Accrued Expenses",
+      "debit": 0,
+      "credit": 800.0
+    },
+    {
+      "account_code": "3000",
+      "account_name": "Share Capital",
+      "debit": 0,
+      "credit": 10000.0
+    },
+    {
+      "account_code": "4000",
+      "account_name": "Service Revenue - Primary",
+      "debit": 0,
+      "credit": 5000.0
+    },
+    {
+      "account_code": "5000",
+      "account_name": "Salary & Wages",
+      "debit": 2000.0,
+      "credit": 0
+    },
+    {
+      "account_code": "5200",
+      "account_name": "Rental Expense",
+      "debit": 1000.0,
+      "credit": 0
+    },
+    {
+      "account_code": "5520",
+      "account_name": "Legal & Audit Fees",
+      "debit": 800.0,
+      "credit": 0
+    }
+  ],
+  "totals": {
+    "debit": 15800.0,
+    "credit": 15800.0,
+    "difference": 0
+  }
+}

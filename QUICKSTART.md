@@ -14,21 +14,13 @@
    # /plugin marketplace add https://github.com/<org>/claude-for-accounting
    ```
 
-3. **Install plugins** you need. Start with engagement + the stages you run:
+3. **Install** — prefer the **umbrella** (one plugin, all stage skills):
 
    ```text
-   /plugin install engagement-accounting@claude-for-accounting
-   /plugin install bookkeeping-accounting@claude-for-accounting
-   /plugin install reconciliation-accounting@claude-for-accounting
-   /plugin install year-end-accounting@claude-for-accounting
-   /plugin install mpers-accounting@claude-for-accounting
-   /plugin install financial-statements-accounting@claude-for-accounting
-   /plugin install quality-review-accounting@claude-for-accounting
-   /plugin install finalisation-accounting@claude-for-accounting
-   /plugin install tax-accounting@claude-for-accounting
+   /plugin install accounting-engagement@claude-for-accounting
    ```
 
-   Contributors / pack authors also install:
+   Or install modular stage plugins (see `scripts/install_all.sh`). Contributors also:
 
    ```text
    /plugin install accounting-builder-hub@claude-for-accounting
@@ -39,21 +31,29 @@
 5. **Run firm setup** (required for non-generic output):
 
    ```text
-   /engagement-accounting:cold-start-interview
+   /accounting-engagement:cold-start-interview
    ```
 
-   Quick path ≈ 2 minutes (defaults + firm identity). Full path ≈ 10–15 minutes (policies, escalation, seed workpapers).
+   Quick path ≈ 2 minutes. Full path ≈ 10–15 minutes.
 
-6. **Open an engagement:**
+6. **Throw work at the agent** (agent-native path):
+
+   Drop a client folder and say e.g. *“Do the year end for this Sdn Bhd and prepare MPERS financial statements.”*  
+   DEFAULT skill: `full-engagement-pipeline`. Writes `engagement_state.json` for resume.
+
+7. **Or drive stages explicitly:**
 
    ```text
-   /engagement-accounting:engagement-setup
+   /accounting-engagement:engagement-setup
+   /accounting-engagement:extract-bank-statement
+   /accounting-engagement:full-engagement-pipeline
    ```
 
-7. **Run the pipeline** end-to-end or stage-by-stage:
+8. **Validate artifacts** (from this repo):
 
-   ```text
-   /engagement-accounting:full-engagement-pipeline
+   ```bash
+   python3 scripts/validate_engagement_artifacts.py path/to/client
+   python3 scripts/validate_engagement_artifacts.py fixtures/golden-mini-sdn-bhd
    ```
 
 ## Install user-scoped, not project-scoped
@@ -64,16 +64,12 @@ When `/plugin install` asks for scope, **prefer user scope**. Project scope cann
 
 | You need to… | Install… | First command |
 |---|---|---|
-| Configure the firm / start a client | `engagement-accounting` | `/engagement-accounting:cold-start-interview` |
-| Book from bank & invoices | `bookkeeping-accounting` | `/bookkeeping-accounting:record-transactions` |
-| Reconcile bank & ledgers | `reconciliation-accounting` | `/reconciliation-accounting:bank-reconciliation` |
-| Post year-end journals | `year-end-accounting` | `/year-end-accounting:year-end-adjustments` |
-| Review against MPERS/MFRS | `mpers-accounting` | `/mpers-accounting:mpers-technical-review` |
-| Draft FS & notes | `financial-statements-accounting` | `/financial-statements-accounting:prepare-primary-statements` |
-| QC before issue | `quality-review-accounting` | `/quality-review-accounting:quality-review` |
-| Lock / approve / auditor pack | `finalisation-accounting` | `/finalisation-accounting:finalise-accounts` |
-| Tax computation | `tax-accounting` | `/tax-accounting:tax-computation` |
-| Extend jurisdictions / QA skills | `accounting-builder-hub` | `/accounting-builder-hub:skills-qa` |
+| **Everything (recommended)** | `accounting-engagement` | dump client folder / `full-engagement-pipeline` |
+| Configure the firm | umbrella or `engagement-accounting` | `cold-start-interview` |
+| Resume mid-job | umbrella | `resume-engagement` |
+| Extract bank PDF/CSV | umbrella | `extract-bank-statement` |
+| Modular stage only | individual `*-accounting` plugins | see plugin README |
+| Extend jurisdictions / QA skills | `accounting-builder-hub` | `skills-qa` |
 
 ## What you’re installing
 

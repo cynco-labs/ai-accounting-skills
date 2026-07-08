@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.0.1",
+  "client_slug": "golden-mini-sdn-bhd",
+  "currency": "MYR",
+  "journals": [
+    {
+      "je_number": "YE-001",
+      "date": "2025-12-31",
+      "narration": "Accrue professional fees",
+      "source_ref": "ye_estimate",
+      "lines": [
+        {
+          "account_code": "5520",
+          "account_name": "Legal & Audit Fees",
+          "debit": 800.0,
+          "credit": 0
+        },
+        {
+          "account_code": "2200",
+          "account_name": "Accrued Expenses",
+          "debit": 0,
+          "credit": 800.0
+        }
+      ]
+    }
+  ]
+}

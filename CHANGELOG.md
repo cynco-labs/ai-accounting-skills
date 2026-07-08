@@ -21,6 +21,12 @@ Initial public scaffold of **claude-for-accounting**.
 - `scripts/validate_marketplace.py` + GitHub Actions validate workflow
 - Apache License 2.0, CONTRIBUTING, CODE_OF_CONDUCT, CLA, SECURITY, MAINTAINERS
 - **Agent-native runtime:** `shared/agent-runtime.md`, `engagement_state` schema, stage artifact contracts, fat-trigger skill descriptions, `full-engagement-pipeline` as DEFAULT throw-work entry
+- **Umbrella plugin** `accounting-engagement` + `scripts/sync_umbrella.py` + `scripts/install_all.sh`
+- **Schemas:** transactions / journals / trial balance + `validate_engagement_artifacts.py`
+- **Golden fixture:** `fixtures/golden-mini-sdn-bhd`
+- **SessionStart resume hook** + `resume-engagement` skill
+- **Utterance routing evals:** `evals/utterance_routing.json` + `eval_utterance_routing.py`
+- **Bank extraction:** `extract-bank-statement` skill + `normalize_bank_csv.py`
 
 ### Maintainer
 

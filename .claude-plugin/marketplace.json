@@ -1,12 +1,22 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "claude-for-accounting",
-  "description": "Reference agents, skills, and workflows for accounting engagements \u2014 bookkeeping through reconciliations, year-end adjustments, standards review (MPERS/MFRS and extensible jurisdictions), financial statements, quality review, tax, and finalisation. Open-source foundation modelled after claude-for-legal.",
+  "description": "Agent-native accounting engagement plugins \u2014 throw client documents at the agent for bookkeeping through MPERS financial statements, QC, tax, and finalisation. Umbrella install: accounting-engagement. Maintainer: Hazli Johar <coding@hazli.dev>.",
   "owner": {
     "name": "Hazli Johar",
     "email": "coding@hazli.dev"
   },
   "plugins": [
+    {
+      "name": "accounting-engagement",
+      "displayName": "Accounting Engagement (Umbrella)",
+      "source": "./accounting-engagement",
+      "description": "One-install throw-work bundle: full pipeline + all stage skills + SessionStart resume hook. Preferred default for agents.",
+      "author": {
+        "name": "Hazli Johar",
+        "email": "coding@hazli.dev"
+      }
+    },
     {
       "name": "engagement-accounting",
       "displayName": "Engagement Accounting",

@@ -24,15 +24,28 @@ User dump (files + intent)
     → stop on blockers with a concrete ask
 ```
 
+## Install surface
+
+Prefer the **umbrella** plugin `accounting-engagement` (one install, all stage skills).  
+Modular plugins remain for partial installs. Sync: `scripts/sync_umbrella.py`.
+
 ## Priority order for skill selection
 
 When multiple skills could match, prefer in this order:
 
-1. **`full-engagement-pipeline`** — if the user wants a full job, year-end, compilation, “do the accounts”, or dumps a folder of mixed source docs without a narrow ask
-2. **The narrowest stage skill** that fully covers a *specific* ask (e.g. only bank recon)
-3. **Never** invent a parallel ad-hoc workflow that skips gates
+1. **`resume-engagement`** — if `engagement_state.json` exists and the user is continuing / new session
+2. **`full-engagement-pipeline`** — full job, year-end, compilation, “do the accounts”, mixed source dump
+3. **`extract-bank-statement`** — bank PDF/CSV parse before classify
+4. **The narrowest stage skill** that fully covers a *specific* ask (e.g. only bank recon)
+5. **Never** invent a parallel ad-hoc workflow that skips gates
 
 If firm profile is missing → run or offer `cold-start-interview` **once**, or continue in `[PROVISIONAL]` mode only if the user opts in.
+
+After writing workpapers, run:
+
+```bash
+python3 scripts/validate_engagement_artifacts.py <client_dir>
+```
 
 ## Engagement state (mandatory for multi-turn work)
 

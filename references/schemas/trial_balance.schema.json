@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claude-for-accounting.local/schemas/trial_balance.schema.json",
+  "title": "TrialBalance",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "client_slug",
+    "as_of",
+    "kind",
+    "currency",
+    "lines",
+    "totals"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.0.1"
+    },
+    "client_slug": {
+      "type": "string"
+    },
+    "as_of": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "preliminary",
+        "adjusted"
+      ]
+    },
+    "currency": {
+      "type": "string"
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "account_code",
+          "account_name",
+          "debit",
+          "credit"
+        ],
+        "properties": {
+          "account_code": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "debit": {
+            "type": "number",
+            "minimum": 0
+          },
+          "credit": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "totals": {
+      "type": "object",
+      "required": [
+        "debit",
+        "credit",
+        "difference"
+      ],
+      "properties": {
+        "debit": {
+          "type": "number"
+        },
+        "credit": {
+          "type": "number"
+        },
+        "difference": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

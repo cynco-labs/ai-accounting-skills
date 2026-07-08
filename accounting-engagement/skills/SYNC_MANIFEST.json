@@ -1,0 +1,184 @@
+{
+  "skills": [
+    {
+      "plugin": "engagement-accounting",
+      "skill": "cold-start-interview",
+      "sha256": "843bd3e3f9fc8b20e1a11f32484a6878a7f058fe208d6cb628d05191357e27ef",
+      "source": "engagement-accounting/skills/cold-start-interview/SKILL.md"
+    },
+    {
+      "plugin": "engagement-accounting",
+      "skill": "engagement-setup",
+      "sha256": "30704a19be62c4bdd216e0693e04e91d58afc32e78b53a12384b2af3594e1366",
+      "source": "engagement-accounting/skills/engagement-setup/SKILL.md"
+    },
+    {
+      "plugin": "engagement-accounting",
+      "skill": "source-documents",
+      "sha256": "fddf1ff049d25fa14c4349a4c1aefcbdb73eaca4dd9dff9b18e99c583f6c9fe0",
+      "source": "engagement-accounting/skills/source-documents/SKILL.md"
+    },
+    {
+      "plugin": "engagement-accounting",
+      "skill": "client-workspace",
+      "sha256": "b74831e8639d610dd033b46ab2690bcc98f4949eeaab53578e6004cffecccfd6",
+      "source": "engagement-accounting/skills/client-workspace/SKILL.md"
+    },
+    {
+      "plugin": "engagement-accounting",
+      "skill": "full-engagement-pipeline",
+      "sha256": "05f00fb33eb200536fefa28eb551060c7dc2fd08d00fb6fe1a282d5cb1bf6eb7",
+      "source": "engagement-accounting/skills/full-engagement-pipeline/SKILL.md"
+    },
+    {
+      "plugin": "engagement-accounting",
+      "skill": "resume-engagement",
+      "sha256": "8c214eac7a5024996b879601b7f1ecd70c138e055b440acc5d605aac61168cdc",
+      "source": "engagement-accounting/skills/resume-engagement/SKILL.md"
+    },
+    {
+      "plugin": "bookkeeping-accounting",
+      "skill": "extract-bank-statement",
+      "sha256": "aa651d7842258eb5b83fda902b32165be7610e0442cc29289a90200ffe2a58f4",
+      "source": "bookkeeping-accounting/skills/extract-bank-statement/SKILL.md"
+    },
+    {
+      "plugin": "bookkeeping-accounting",
+      "skill": "record-transactions",
+      "sha256": "c86384bce9676a8fee16dd7cf341a455528abf38ebe8c58e5a7dc80d1814e06e",
+      "source": "bookkeeping-accounting/skills/record-transactions/SKILL.md"
+    },
+    {
+      "plugin": "bookkeeping-accounting",
+      "skill": "classify-transactions",
+      "sha256": "98a463dd4ac4181a7b2879828c34aa16df12955efdfe76760efa5174fea5a6eb",
+      "source": "bookkeeping-accounting/skills/classify-transactions/SKILL.md"
+    },
+    {
+      "plugin": "bookkeeping-accounting",
+      "skill": "chart-of-accounts",
+      "sha256": "eae32bd2ca352b3b39be3cc07a6d585b8ebccd7c79ad1034cb64055e698cfbe8",
+      "source": "bookkeeping-accounting/skills/chart-of-accounts/SKILL.md"
+    },
+    {
+      "plugin": "bookkeeping-accounting",
+      "skill": "journal-entries",
+      "sha256": "a1c4c9a72aaa4fd02477e6bd6bd46f391a828536bacddbcd7cca69ec61724c60",
+      "source": "bookkeeping-accounting/skills/journal-entries/SKILL.md"
+    },
+    {
+      "plugin": "reconciliation-accounting",
+      "skill": "bank-reconciliation",
+      "sha256": "406743846ef35a2a297de76defb957d303499f6caa67b98a81e7cd9eaa388b53",
+      "source": "reconciliation-accounting/skills/bank-reconciliation/SKILL.md"
+    },
+    {
+      "plugin": "reconciliation-accounting",
+      "skill": "subledger-reconciliations",
+      "sha256": "bebf6b75dd23a2791a50fb87e5df05cb0c448202829cb3c3193cebc556016764",
+      "source": "reconciliation-accounting/skills/subledger-reconciliations/SKILL.md"
+    },
+    {
+      "plugin": "reconciliation-accounting",
+      "skill": "preliminary-trial-balance",
+      "sha256": "8b08a38b0b3387c6e4fb550ce402e73810bf1d61eca2fff53dbd794a87e84580",
+      "source": "reconciliation-accounting/skills/preliminary-trial-balance/SKILL.md"
+    },
+    {
+      "plugin": "year-end-accounting",
+      "skill": "year-end-adjustments",
+      "sha256": "9dd106f66d7704513c4c39d1418fd32bb4400a861355e70a7dad7ff321b103e1",
+      "source": "year-end-accounting/skills/year-end-adjustments/SKILL.md"
+    },
+    {
+      "plugin": "year-end-accounting",
+      "skill": "adjusted-trial-balance",
+      "sha256": "74b20a572da38087534029b1c3fb647081662e6da639fdef7b086079d5cae6f5",
+      "source": "year-end-accounting/skills/adjusted-trial-balance/SKILL.md"
+    },
+    {
+      "plugin": "mpers-accounting",
+      "skill": "mpers-technical-review",
+      "sha256": "1ce542a435bffa1a457dfaf8334de8babe1c83d0e9c1bf2e0c67165ba689bdcb",
+      "source": "mpers-accounting/skills/mpers-technical-review/SKILL.md"
+    },
+    {
+      "plugin": "mpers-accounting",
+      "skill": "disclosure-checklist",
+      "sha256": "69ea485421440b49d159822830c28d2b8f2b837c12e3fe76b16fcd329d716917",
+      "source": "mpers-accounting/skills/disclosure-checklist/SKILL.md"
+    },
+    {
+      "plugin": "financial-statements-accounting",
+      "skill": "prepare-primary-statements",
+      "sha256": "d6ef15fa5f376067e8f02a3d6166a1da42b0cc8237ac77155a29f108a593eb84",
+      "source": "financial-statements-accounting/skills/prepare-primary-statements/SKILL.md"
+    },
+    {
+      "plugin": "financial-statements-accounting",
+      "skill": "prepare-notes",
+      "sha256": "3fe25b4818db99de7bb7aaaa7313ad4e30d5b44d7d3b4b25014c0c920692b216",
+      "source": "financial-statements-accounting/skills/prepare-notes/SKILL.md"
+    },
+    {
+      "plugin": "financial-statements-accounting",
+      "skill": "compilation-report",
+      "sha256": "109ad98714a0ecb730e40817c56a67d90fa17e36f6cf33ddcbcf7757b3e67596",
+      "source": "financial-statements-accounting/skills/compilation-report/SKILL.md"
+    },
+    {
+      "plugin": "financial-statements-accounting",
+      "skill": "generate-workbook",
+      "sha256": "72aa8778dd76d2f264522202b496cf4aced9e733e0596f0348e19a860c3e637e",
+      "source": "financial-statements-accounting/skills/generate-workbook/SKILL.md"
+    },
+    {
+      "plugin": "quality-review-accounting",
+      "skill": "quality-review",
+      "sha256": "a0ca9dd7dc4e1ced01dca42dcbef5834a9de51ec4b15e523159cfe63826df60d",
+      "source": "quality-review-accounting/skills/quality-review/SKILL.md"
+    },
+    {
+      "plugin": "quality-review-accounting",
+      "skill": "cross-tie-check",
+      "sha256": "12a7f8682ecd7c504d64f3a5195415c128f0ec6a138e83e5d551e6b077a9f1b7",
+      "source": "quality-review-accounting/skills/cross-tie-check/SKILL.md"
+    },
+    {
+      "plugin": "finalisation-accounting",
+      "skill": "finalise-accounts",
+      "sha256": "f5b05e57aca6edbf89038ce22052a5b0d694c284d832ca8a6445c4325d774e93",
+      "source": "finalisation-accounting/skills/finalise-accounts/SKILL.md"
+    },
+    {
+      "plugin": "finalisation-accounting",
+      "skill": "management-approval",
+      "sha256": "17de4a06de3d177214d65391e729c1616f9b099cdb4b0dbec2fd32e00683dd01",
+      "source": "finalisation-accounting/skills/management-approval/SKILL.md"
+    },
+    {
+      "plugin": "finalisation-accounting",
+      "skill": "auditor-pack",
+      "sha256": "8e3ff8702eddde6a1911ae434ea79239a1d445f603fc5dcf122acf489cb60618",
+      "source": "finalisation-accounting/skills/auditor-pack/SKILL.md"
+    },
+    {
+      "plugin": "finalisation-accounting",
+      "skill": "statutory-handoff",
+      "sha256": "86ccab94103542d4afb0480062f720d43eea1e06da736246e530f6094af99f76",
+      "source": "finalisation-accounting/skills/statutory-handoff/SKILL.md"
+    },
+    {
+      "plugin": "tax-accounting",
+      "skill": "tax-computation",
+      "sha256": "2ba8fc6b85761bf7a33002262d6f31d1ea72c27cfb7da7cffc336fd02c27f421",
+      "source": "tax-accounting/skills/tax-computation/SKILL.md"
+    },
+    {
+      "plugin": "tax-accounting",
+      "skill": "capital-allowances",
+      "sha256": "251e85d6bda08f26131c8344f0bf0ea6de2408da739669266680e7505b4579ea",
+      "source": "tax-accounting/skills/capital-allowances/SKILL.md"
+    }
+  ]
+}

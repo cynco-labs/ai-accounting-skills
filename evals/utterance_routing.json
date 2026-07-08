@@ -1,0 +1,66 @@
+{
+  "version": "0.0.1",
+  "description": "Utterance → expected skill routing evals (keyword/description scorer). Not a model call.",
+  "cases": [
+    {
+      "utterance": "Here are bank statements for ABC Sdn Bhd, please do the year end and prepare MPERS financial statements",
+      "expected_skill": "full-engagement-pipeline",
+      "notes": "Throw-work default entry"
+    },
+    {
+      "utterance": "Resume the engagement for Golden Mini where we left off",
+      "expected_skill": "resume-engagement",
+      "notes": "Explicit resume"
+    },
+    {
+      "utterance": "Extract transactions from this Maybank CSV bank statement",
+      "expected_skill": "extract-bank-statement",
+      "notes": "Bank extraction adapter"
+    },
+    {
+      "utterance": "Classify these uncategorized bank transactions to the chart of accounts",
+      "expected_skill": "classify-transactions",
+      "notes": null
+    },
+    {
+      "utterance": "The bank doesn't match the GL — need a bank reconciliation to zero",
+      "expected_skill": "bank-reconciliation",
+      "notes": null
+    },
+    {
+      "utterance": "Post year-end adjustments for depreciation, accruals and prepayments",
+      "expected_skill": "year-end-adjustments",
+      "notes": null
+    },
+    {
+      "utterance": "Prepare the balance sheet and income statement from the adjusted trial balance",
+      "expected_skill": "prepare-primary-statements",
+      "notes": null
+    },
+    {
+      "utterance": "Draft notes to the financial statements including related parties and PPE",
+      "expected_skill": "prepare-notes",
+      "notes": null
+    },
+    {
+      "utterance": "Run quality control / partner QC checklist before we finalise",
+      "expected_skill": "quality-review",
+      "notes": null
+    },
+    {
+      "utterance": "Compute Malaysian Form C tax computation and capital allowances",
+      "expected_skill": "tax-computation",
+      "notes": "tax may rank near capital-allowances; tax-computation should still top-3"
+    },
+    {
+      "utterance": "Set up the firm profile for our accounting practice first install",
+      "expected_skill": "cold-start-interview",
+      "notes": null
+    },
+    {
+      "utterance": "MPERS technical review of revenue recognition and related party disclosures",
+      "expected_skill": "mpers-technical-review",
+      "notes": null
+    }
+  ]
+}

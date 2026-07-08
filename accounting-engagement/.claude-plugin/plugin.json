@@ -1,0 +1,9 @@
+{
+  "name": "accounting-engagement",
+  "version": "0.0.1",
+  "description": "One-install umbrella for throw-work accounting agents: full engagement pipeline, all stage skills synced from modular plugins, SessionStart resume hook, and artifact schemas.",
+  "author": {
+    "name": "Hazli Johar",
+    "email": "coding@hazli.dev"
+  }
+}
