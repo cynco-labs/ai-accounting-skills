@@ -1,0 +1,9 @@
+{
+  "name": "beancount-ledger",
+  "version": "0.0.1",
+  "description": "Beancount as system-of-record ledger and Fava as the interactive UI. Export finalized journals to .beancount, validate with bean-check, open Fava for P&L/BS exploration.",
+  "author": {
+    "name": "Hazli Johar",
+    "email": "coding@hazli.dev"
+  }
+}

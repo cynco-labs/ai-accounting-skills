@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "description": "Utterance → expected skill routing evals (keyword/description scorer). Not a model call.",
+  "description": "Utterance \u2192 expected skill routing evals (keyword/description scorer). Not a model call.",
   "cases": [
     {
       "utterance": "Here are bank statements for ABC Sdn Bhd, please do the year end and prepare MPERS financial statements",
@@ -23,7 +23,7 @@
       "notes": null
     },
     {
-      "utterance": "The bank doesn't match the GL — need a bank reconciliation to zero",
+      "utterance": "The bank doesn't match the GL \u2014 need a bank reconciliation to zero",
       "expected_skill": "bank-reconciliation",
       "notes": null
     },
@@ -65,12 +65,22 @@
     {
       "utterance": "Here are some receipts and bank statements in this folder, please do the accounting, I don't know the company details",
       "expected_skill": "smart-intake",
-      "notes": "Blind folder dump — smart-intake or full-engagement-pipeline both acceptable if top-3; prefer smart-intake"
+      "notes": "Blind folder dump \u2014 smart-intake or full-engagement-pipeline both acceptable if top-3; prefer smart-intake"
     },
     {
       "utterance": "whatever is in this folder just sort my books",
       "expected_skill": "full-engagement-pipeline",
       "notes": "Pipeline default; smart-intake is also a strong match"
+    },
+    {
+      "utterance": "Export the final ledger to Beancount and open Fava so I can see the books",
+      "expected_skill": "export-beancount",
+      "notes": "or open-fava top-3"
+    },
+    {
+      "utterance": "Open Fava on the beancount ledger",
+      "expected_skill": "open-fava",
+      "notes": null
     }
   ]
 }

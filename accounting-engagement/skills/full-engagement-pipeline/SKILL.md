@@ -118,7 +118,9 @@ ELSE:
 | 12 | notes | prepare-notes | Ties to primaries |
 | 13 | quality_review | quality-review | Section A pass |
 | 14 | finalisation | finalise-accounts (+ management-approval) | Lock / approval |
+| 14b | beancount_sor | export-beancount (+ validate-beancount) | bean-check PASS; `ledger/main.beancount` |
 | 15 | tax | tax-computation | Optional; ties to lock |
+| 16 | fava_ui | open-fava (optional, user-facing) | Fava URL shown |
 
 ### How to “load skill”
 

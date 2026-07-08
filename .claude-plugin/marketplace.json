@@ -98,6 +98,16 @@
       }
     },
     {
+      "name": "beancount-ledger",
+      "displayName": "Beancount Ledger + Fava",
+      "source": "./beancount-ledger",
+      "description": "Beancount as the ledger system of record and Fava as the interactive web UI. Export finalized journals after QC; bean-check; open Fava locally.",
+      "author": {
+        "name": "Hazli Johar",
+        "email": "coding@hazli.dev"
+      }
+    },
+    {
       "name": "tax-accounting",
       "displayName": "Tax Accounting",
       "source": "./tax-accounting",

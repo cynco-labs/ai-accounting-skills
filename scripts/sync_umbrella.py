@@ -55,6 +55,9 @@ STAGE_SKILLS = [
     ("finalisation-accounting", "statutory-handoff"),
     ("tax-accounting", "tax-computation"),
     ("tax-accounting", "capital-allowances"),
+    ("beancount-ledger", "export-beancount"),
+    ("beancount-ledger", "validate-beancount"),
+    ("beancount-ledger", "open-fava"),
 ]
 
 

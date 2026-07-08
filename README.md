@@ -78,6 +78,7 @@ Canonical routing: [`references/pipeline.md`](./references/pipeline.md).
 | **[quality-review-accounting](./quality-review-accounting)** | QC blockers, cross-ties, note consistency |
 | **[finalisation-accounting](./finalisation-accounting)** | Lock, management approval, auditor pack, statutory handoff |
 | **[tax-accounting](./tax-accounting)** | Tax computation + capital allowances (Malaysia pack shipped) |
+| **[beancount-ledger](./beancount-ledger)** | Beancount system of record + Fava UI after finalisation |
 | **[accounting-builder-hub](./accounting-builder-hub)** | Skill QA, jurisdiction scaffold, contributor tooling |
 
 ## Agents (common commands)
@@ -168,6 +169,7 @@ Humans will not type slash commands. They will dump a client folder and say “d
 | JSON schemas + `validate_engagement_artifacts.py` | Machine-checkable transactions / journals / TB |
 | `extract-bank-statement` + Maybank PDF script | Proven text/regex/balance-proof extract (fast, not vision-first) |
 | `normalize_bank_csv.py` | CSV bank exports |
+| **Beancount + Fava** | Ledger SoR + interactive UI after final books |
 | `fixtures/golden-mini-sdn-bhd` | Golden path for regression |
 | `evals/utterance_routing.json` | Discoverability tests (top-K description match) |
 | `shared/agent-runtime.md` | Runtime contract for any agent host |

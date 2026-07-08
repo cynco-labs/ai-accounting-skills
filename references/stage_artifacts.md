@@ -20,6 +20,7 @@ Paths are relative to `clients/<slug>/`.
 | notes | `outputs/fs/notes.md` | Notes tie to primaries |
 | quality_review | `workpapers/qc_report.md` | Section A all pass |
 | finalisation | `outputs/fs/FINAL_STATUS.md` | Locked + approval recorded (or pending_approval) |
+| beancount_sor | `ledger/main.beancount` | `bean-check` PASS — **ledger system of record** |
 | tax | `outputs/tax/computation.md` | Ties to locked P&L if final |
 
 ## Optional but recommended
@@ -30,7 +31,9 @@ Paths are relative to `clients/<slug>/`.
 | `workpapers/far.json` | PPE present |
 | `workpapers/payee_map.json` | Returning clients / for next year |
 | `queries.md` | Always if any open item |
-| `outputs/workpapers.xlsx` | After generate-workbook |
+| `outputs/workpapers.xlsx` | After generate-workbook (human pack; not SoR) |
+| `ledger/draft.beancount` | Mid-engagement preview |
+| `ledger/main.beancount.account_map.json` | COA code → Beancount account map |
 
 ## Agent checks
 

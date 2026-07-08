@@ -17,6 +17,7 @@ PLUGINS=(
   quality-review-accounting
   finalisation-accounting
   tax-accounting
+  beancount-ledger
   accounting-builder-hub
 )
 

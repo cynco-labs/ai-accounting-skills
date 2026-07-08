@@ -33,7 +33,7 @@
     {
       "plugin": "engagement-accounting",
       "skill": "full-engagement-pipeline",
-      "sha256": "d52592c59f5c146bc004508a8629c263d763dbcfa16e272b0822d4a7b4078375",
+      "sha256": "04780231084ba37384beef8c5e4abc8a68e7637b71074f6e5179a20535197b1d",
       "source": "engagement-accounting/skills/full-engagement-pipeline/SKILL.md"
     },
     {
@@ -153,7 +153,7 @@
     {
       "plugin": "finalisation-accounting",
       "skill": "finalise-accounts",
-      "sha256": "f5b05e57aca6edbf89038ce22052a5b0d694c284d832ca8a6445c4325d774e93",
+      "sha256": "22b334b845635f0ccc8bb407cf6730874652651982d8118b14aed066e59d25cb",
       "source": "finalisation-accounting/skills/finalise-accounts/SKILL.md"
     },
     {
@@ -185,6 +185,24 @@
       "skill": "capital-allowances",
       "sha256": "251e85d6bda08f26131c8344f0bf0ea6de2408da739669266680e7505b4579ea",
       "source": "tax-accounting/skills/capital-allowances/SKILL.md"
+    },
+    {
+      "plugin": "beancount-ledger",
+      "skill": "export-beancount",
+      "sha256": "558d7fa88244cf5dbb0e40aa3c31ed4cf3c47597d4cc30748b56bb509c4b88c5",
+      "source": "beancount-ledger/skills/export-beancount/SKILL.md"
+    },
+    {
+      "plugin": "beancount-ledger",
+      "skill": "validate-beancount",
+      "sha256": "77283aca9b2fd9e294f7d3d6f3d055ccaf752da2adbb76883014048b6624e539",
+      "source": "beancount-ledger/skills/validate-beancount/SKILL.md"
+    },
+    {
+      "plugin": "beancount-ledger",
+      "skill": "open-fava",
+      "sha256": "4b490c3e93d5eacdbbaf7c81f3e1491a24328543229c3f3cf1c67171df07a8bf",
+      "source": "beancount-ledger/skills/open-fava/SKILL.md"
     }
   ]
 }

@@ -44,6 +44,21 @@ When multiple skills could match, prefer in this order:
 
 If firm profile is missing → run or offer `cold-start-interview` **once**, or continue in `[PROVISIONAL]` mode only if the user opts in.
 
+## Ledger system of record (Beancount + Fava)
+
+Excel/openpyxl = working papers for humans.
+**Beancount** (`.beancount`) = final double-entry system of record after books balance.
+**Fava** = local web UI (`scripts/run_fava.sh ledger/main.beancount`).
+
+After finalisation (or on request):
+
+```bash
+python3 scripts/export_to_beancount.py --client-dir <client> --output <client>/ledger/main.beancount --bean-check
+scripts/run_fava.sh <client>/ledger/main.beancount
+```
+
+See `references/beancount_integration.md` and skills `export-beancount` / `open-fava`.
+
 After writing workpapers, run:
 
 ```bash

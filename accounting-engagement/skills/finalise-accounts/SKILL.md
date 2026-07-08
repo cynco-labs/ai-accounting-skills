@@ -20,6 +20,16 @@ Move from draft to **locked** numbers.
 2. Stamp version: `FS_final_draft_vN` → `FS_for_management_approval`
 3. Archive workpapers hash/date
 4. Update engagement README status: `LOCKED_PENDING_APPROVAL`
+5. **Push system of record (Beancount)** — after lock:
+   ```bash
+   python3 scripts/export_to_beancount.py \
+     --client-dir <client> \
+     --output <client>/ledger/main.beancount \
+     --bean-check
+   ```
+   Excel/openpyxl workpapers stay as engagement packs. **Beancount is the ledger SoR.**  
+   Offer `open-fava` so the user can browse in the browser (`http://127.0.0.1:5000`).  
+   See `references/beancount_integration.md` and skills `export-beancount` / `open-fava`.
 
 ## Output
-Finalisation memo + file list.
+Finalisation memo + file list + path to `ledger/main.beancount` when exported.
