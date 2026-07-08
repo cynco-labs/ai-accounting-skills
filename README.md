@@ -1,35 +1,131 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/v2.0.1-release-0d6efd?style=for-the-badge" alt="version" />
-  <img src="https://img.shields.io/badge/Claude%20Code-Plugins-f97316?style=for-the-badge" alt="Claude Code" />
+  <img src="https://img.shields.io/badge/v2.0.1-0d6efd?style=for-the-badge" alt="v2.0.1" />
+  <a href="https://skills.sh/cynco-labs/ai-accounting-skills"><img src="https://skills.sh/b/cynco-labs/ai-accounting-skills" alt="skills.sh" /></a>
   <img src="https://img.shields.io/badge/Beancount-SoR-111827?style=for-the-badge" alt="Beancount" />
   <img src="https://img.shields.io/badge/License-Apache%202.0-10b981?style=for-the-badge" alt="License" />
-  <a href="https://skills.sh/cynco-labs/ai-accounting-skills"><img src="https://skills.sh/b/cynco-labs/ai-accounting-skills" alt="skills.sh" /></a>
 </p>
 
 <h1 align="center">AI Accounting Skills</h1>
 
 <p align="center">
-  <strong>Agent-native accounting engagements — from a messy folder of banks & receipts<br/>to balanced books, MPERS financials, Beancount ledger, and Fava.</strong>
+  <strong>Folder dump → balanced books → MPERS financials → Beancount + Fava.</strong><br/>
+  Agent-native accounting for the tools teams actually use.
 </p>
 
 <p align="center">
-  Drop files. Say “do the year end.” The agent runs a real pipeline — not a vibe.
+  Drop bank statements & receipts. Say <em>“do the year end.”</em><br/>
+  The agent runs a real pipeline — gates, proofs, and artifacts on disk.
+</p>
+
+---
+
+## Works with your agent
+
+Install once via [skills.sh](https://skills.sh/cynco-labs/ai-accounting-skills) — same `SKILL.md` package across the major coding agents.
+
+<p align="center">
+  <a href="https://claude.com/product/claude-code"><img src="https://www.skills.sh/agents/claude-code.svg" height="44" alt="Claude Code" /></a>&nbsp;&nbsp;
+  <a href="https://openai.com/codex"><img src="https://www.skills.sh/agents/codex.svg" height="44" alt="Codex" /></a>&nbsp;&nbsp;
+  <a href="https://cursor.com"><img src="https://www.skills.sh/agents/cursor.svg" height="44" alt="Cursor" /></a>&nbsp;&nbsp;
+  <a href="https://x.ai"><img src="https://img.shields.io/badge/Grok%20%2F%20xAI-000000?style=for-the-badge&logo=x&logoColor=white" alt="Grok / xAI" height="44" /></a>&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/GLM-1a56db?style=for-the-badge" alt="GLM" height="44" />&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/Kimi-6d28d9?style=for-the-badge" alt="Kimi" height="44" />
 </p>
 
 <p align="center">
-  <a href="#-install"><strong>Install</strong></a> ·
-  <a href="#-what-you-get"><strong>What you get</strong></a> ·
-  <a href="#-pipeline"><strong>Pipeline</strong></a> ·
-  <a href="#-for-agents"><strong>For agents</strong></a> ·
-  <a href="./QUICKSTART.md"><strong>Quickstart</strong></a> ·
-  <a href="#-disclaimer"><strong>Disclaimer</strong></a>
+  <sub>
+    <b>Claude Code</b> · <b>Codex</b> · <b>Cursor</b> · <b>Grok / xAI</b> · <b>GLM</b> · <b>Kimi</b>
+    &nbsp;·&nbsp; + OpenCode, Windsurf, Copilot, Gemini CLI, and <a href="https://github.com/vercel-labs/skills#supported-agents">40+ more</a>
+  </sub>
 </p>
+
+| Agent | How to load skills |
+|:------|:-------------------|
+| **All of the above** (recommended) | `npx skills add cynco-labs/ai-accounting-skills` |
+| **Claude Code** (full plugin marketplace) | `/plugin marketplace add` + install umbrella (below) |
+| **Any terminal** (extract / ledger / Fava) | `npx @cynco/accounting-skills …` |
+
+Malaysia (MPERS / MFRS / ITA) ships first. Other jurisdictions plug in via the builder hub.
+
+---
+
+## Install
+
+### 1 · Skills — any agent
+
+```bash
+npx skills add cynco-labs/ai-accounting-skills
+```
+
+```bash
+# List · install all · pick a few
+npx skills add cynco-labs/ai-accounting-skills --list
+npx skills add cynco-labs/ai-accounting-skills --all -g
+npx skills add cynco-labs/ai-accounting-skills \
+  --skill full-engagement-pipeline \
+  --skill extract-bank-statement \
+  --skill smart-intake -g -y
+```
+
+→ [skills.sh/cynco-labs/ai-accounting-skills](https://skills.sh/cynco-labs/ai-accounting-skills)
+
+### 2 · Claude Code plugins (optional, full umbrella)
+
+```text
+/plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
+/plugin install accounting-engagement@claude-for-accounting
+```
+
+```text
+/accounting-engagement:cold-start-interview
+```
+
+Then:
+
+> Here are bank statements and receipts in this folder. Do the accounting.
+
+---
+
+## CLI · `npx`
+
+Zero clone. Scripts that agents and humans both run.
+
+```bash
+npx @cynco/accounting-skills <command>
+```
+
+| Command | What you get |
+|:--------|:-------------|
+| `demo` | Golden mini ledger → **Fava** in the browser |
+| `extract ./statements` | Bank PDF/CSV → Excel (+ JSON) |
+| `ledger ./clients/acme --fava` | Journals → Beancount + Fava |
+| `init acme-sdn-bhd` | Client workspace scaffold |
+| `doctor` | Python / deps health check |
+| `check` | Validate engagement or full CI |
+
+```bash
+npx @cynco/accounting-skills demo
+npx @cynco/accounting-skills extract ./statements --out ./bank.xlsx
+npx @cynco/accounting-skills ledger ./clients/acme --fava
+npx @cynco/accounting-skills doctor
+```
+
+Needs **Node ≥ 18** + **Python 3**. Install deps with `pip install -r requirements.txt` (or whatever `doctor` prints).
+
+<details>
+<summary><strong>More CLI detail</strong></summary>
+
+- Package: [`@cynco/accounting-skills`](https://www.npmjs.com/package/@cynco/accounting-skills)
+- Docs: [cli/README.md](./cli/README.md) · [QUICKSTART.md](./QUICKSTART.md)
+- From a local clone: `node cli/bin/ai-accounting.js doctor`
+
+</details>
 
 ---
 
 ## Why this exists
 
-Coding agents are great at code — and lost at **where accounting numbers should live**.
+Coding agents ship code. They usually invent accounting.
 
 | Without this | With this |
 |---|---|
@@ -37,99 +133,23 @@ Coding agents are great at code — and lost at **where accounting numbers shoul
 | Invented company context | **Smart intake** — read docs, ask ≤3 questions |
 | “Looks fine” books | Bank recon **RM 0.00**, line-balance proof |
 | No system of record | **Beancount** ledger + **Fava** UI |
-| One opaque prompt | **34+ skills**, stage plugins, resume state |
-
-Built for [Claude Code](https://claude.com/product/claude-code), [skills.sh](https://skills.sh/cynco-labs/ai-accounting-skills), Cursor, Codex, and other agents. Malaysia (MPERS / MFRS / ITA) ships first; other jurisdictions plug in.
+| One opaque prompt | **36 skills**, stage plugins, resume state |
 
 ---
 
-## ⚡ Install
-
-Three channels — pick what matches your agent.
-
-| Channel | Best for | Command |
-|:--------|:---------|:--------|
-| **[skills.sh](https://skills.sh/cynco-labs/ai-accounting-skills)** | Claude Code, Cursor, Codex, OpenCode, … | `npx skills add cynco-labs/ai-accounting-skills` |
-| **Claude Code plugins** | Full marketplace + umbrella | `/plugin marketplace add …` (below) |
-| **npm CLI** | Scripts: extract, ledger, Fava, doctor | `npx @cynco/accounting-skills demo` |
-
-### A) skills.sh (multi-agent)
-
-Install agent skills from this public GitHub repo via the [skills CLI](https://github.com/vercel-labs/skills):
-
-```bash
-# List all skills in this package
-npx skills add cynco-labs/ai-accounting-skills --list
-
-# Install everything (global)
-npx skills add cynco-labs/ai-accounting-skills --all -g
-
-# Or pick skills
-npx skills add cynco-labs/ai-accounting-skills \
-  --skill full-engagement-pipeline \
-  --skill extract-bank-statement \
-  --skill smart-intake \
-  -g -y
-```
-
-Directory page: **[skills.sh/cynco-labs/ai-accounting-skills](https://skills.sh/cynco-labs/ai-accounting-skills)**
-
-### B) Claude Code plugins
-
-```text
-/plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
-/plugin install accounting-engagement@claude-for-accounting
-```
-
-Restart Claude Code, then:
-
-```text
-/accounting-engagement:cold-start-interview   # firm defaults (2–15 min)
-```
-
-**Throw work at it:**
-
-> Here are bank statements and receipts in this folder. Do the accounting.
-
-Default skill: `full-engagement-pipeline` → smart intake → extract → books → QC → **Beancount** → optional **Fava**.
-
-### C) npm CLI (zero clone)
-
-```bash
-# Instant demo — golden ledger in Fava
-npx @cynco/accounting-skills demo
-
-# Bank PDFs → Excel
-npx @cynco/accounting-skills extract ./statements --out ./bank.xlsx
-
-# Client journals → Beancount + Fava
-npx @cynco/accounting-skills ledger ./clients/acme --fava
-
-# Scaffold workspace
-npx @cynco/accounting-skills init acme-sdn-bhd
-
-# Doctor / CI
-npx @cynco/accounting-skills doctor
-npx @cynco/accounting-skills check
-```
-
-Requires **Python 3** + `pip install -r requirements.txt` (or deps the CLI prints).
-
-Full detail: **[QUICKSTART.md](./QUICKSTART.md)** · CLI: **[cli/README.md](./cli/README.md)**
-
-## 📦 What you get
+## What you get
 
 ```
 ┌────────────────────────────────────────────────────────────┐
-│  accounting-engagement          one-install umbrella       │
-│  12 stage plugins               modular if you prefer      │
-│  34 pipeline skills             fat-trigger descriptions   │
-│  Smart intake                   infer first, ask last      │
-│  Maybank PDF extractor          pdfplumber + balance proof │
-│  JSON schemas + validators      machine-checkable books    │
-│  Beancount + Fava               ledger SoR + web UI        │
-│  MPERS notes + industry COAs    disclosure & overlays      │
-│  ci_check.sh                    OSS-grade gates            │
+│  36 pipeline skills          fat-trigger, multi-agent      │
+│  skills.sh + Claude plugins  install path for every stack  │
+│  Smart intake                infer first, ask last         │
+│  Maybank PDF extractor       pdfplumber + balance proof    │
+│  JSON schemas + validators   machine-checkable books       │
+│  Beancount + Fava            ledger SoR + web UI           │
+│  MPERS notes + industry COAs disclosure & overlays         │
+│  npm CLI                     extract · ledger · doctor     │
+│  ci_check.sh                 OSS-grade gates               │
 └────────────────────────────────────────────────────────────┘
 ```
 
@@ -142,7 +162,7 @@ Full detail: **[QUICKSTART.md](./QUICKSTART.md)** · CLI: **[cli/README.md](./cl
 
 ---
 
-## 🔁 Pipeline
+## Pipeline
 
 ```text
   Folder dump
@@ -168,11 +188,11 @@ Full detail: **[QUICKSTART.md](./QUICKSTART.md)** · CLI: **[cli/README.md](./cl
        └──────────────► tax computation (locked figures)
 ```
 
-Resume anytime from `engagement_state.json` (SessionStart hook on umbrella).
+Resume anytime from `engagement_state.json`.
 
 ---
 
-## 🧠 For agents
+## For agents
 
 | Do | Don't |
 |---|---|
@@ -186,15 +206,15 @@ Doctrine: [`shared/agent-runtime.md`](./shared/agent-runtime.md) · [`shared/arc
 
 ```bash
 pip install -r requirements.txt
-bash scripts/ci_check.sh          # marketplace + golden + routing + bean-check
+bash scripts/ci_check.sh
 ```
 
 ---
 
-## 🔌 Plugins
+## Plugins (Claude marketplace)
 
 <details>
-<summary><strong>Stage plugins (click to expand)</strong></summary>
+<summary><strong>Stage plugins</strong></summary>
 
 | Plugin | Job |
 |---|---|
@@ -211,13 +231,13 @@ bash scripts/ci_check.sh          # marketplace + golden + routing + bean-check
 | [`beancount-ledger`](./beancount-ledger) | Export ledger + Fava |
 | [`accounting-builder-hub`](./accounting-builder-hub) | Skill QA + jurisdiction scaffold |
 
-</details>
+Marketplace id: **`claude-for-accounting`**
 
-Marketplace id (for `/plugin install`): **`claude-for-accounting`**
+</details>
 
 ---
 
-## 🏦 Bank extract (fast path)
+## Bank extract
 
 Maybank Islamic e-statements (proven on real multi-month books):
 
@@ -230,11 +250,11 @@ python3 scripts/extract_maybank_islamic_pdf.py \
 ```
 
 Text layer + regex + **Decimal running-balance proof** — not vision-first.  
-See [`references/bank_statement_extraction.md`](./references/bank_statement_extraction.md).
+[`references/bank_statement_extraction.md`](./references/bank_statement_extraction.md)
 
 ---
 
-## 📒 Beancount + Fava
+## Beancount + Fava
 
 ```bash
 python3 scripts/export_to_beancount.py \
@@ -248,7 +268,7 @@ scripts/run_fava.sh path/to/client/ledger/main.beancount
 
 ---
 
-## 🧪 Verify the repo
+## Verify
 
 ```bash
 git clone https://github.com/cynco-labs/ai-accounting-skills.git
@@ -261,22 +281,50 @@ Golden fixture: `fixtures/golden-mini-sdn-bhd` (synthetic — not a real client)
 
 ---
 
-## 🗺 Roadmap (honest)
+## Roadmap
 
-- [x] Stage plugins + umbrella  
-- [x] Smart intake + engagement state  
-- [x] Maybank Islamic PDF extractor  
-- [x] Beancount SoR + Fava  
-- [x] CI / schema / routing evals  
-- [x] npm CLI `@cynco/accounting-skills`  
-- [x] [skills.sh](https://skills.sh/cynco-labs/ai-accounting-skills) install path  
-- [ ] More bank PDF adapters  
-- [ ] Leaner Beancount opens (used accounts only)  
-- [ ] Additional jurisdiction packs  
+### Shipped
+
+- [x] Full engagement pipeline (intake → books → QC → lock)
+- [x] Stage plugins + umbrella (`accounting-engagement`)
+- [x] Smart intake + `engagement_state` resume
+- [x] Maybank Islamic PDF extractor (balance-proof)
+- [x] Beancount system of record + Fava UI
+- [x] JSON schemas, validators, routing evals, `ci_check.sh`
+- [x] npm CLI `@cynco/accounting-skills` (`demo` · `extract` · `ledger` · `doctor`)
+- [x] [skills.sh](https://skills.sh/cynco-labs/ai-accounting-skills) multi-agent install
+- [x] Claude Code marketplace (`claude-for-accounting`)
+- [x] MPERS notes templates + industry COA overlays
+- [x] Golden fixture + OSS docs (Apache 2.0)
+
+### Near term
+
+- [ ] More bank PDF adapters (CIMB, Public Bank, HSBC, RHB, …)
+- [ ] Leaner Beancount opens (used accounts only)
+- [ ] One-command “engagement demo” from empty folder → Fava
+- [ ] Skills telemetry / install badges per skill
+- [ ] Agent install recipes (Cursor · Codex · Grok · GLM · Kimi)
+
+### Next
+
+- [ ] Additional jurisdiction packs (SG · UK · AU · US)
+- [ ] AR/AP subledger deep skills + aging packs
+- [ ] Fixed-asset register → depreciation → CA schedule end-to-end
+- [ ] SST / GST / e-Invoice (MY) assist skills
+- [ ] Multi-entity / group consolidation skeleton
+- [ ] Diff-friendly workpaper formats for PR review
+
+### Later
+
+- [ ] Connector pack (bank CSV drop folders, cloud drive intake)
+- [ ] Managed-agent cookbooks (deadline watcher, monthly close)
+- [ ] Eval harness: extract accuracy + TB balance on golden sets
+- [ ] Signed release attestations for skill packages
+- [ ] Community skill extensions without forking the core pipeline
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 **Drafts for professional accountant review only.**
 
@@ -287,16 +335,23 @@ The reviewing accountant verifies figures against sources and takes responsibili
 
 ---
 
-## 👤 Maintainers & license
+## Maintainers & license
 
 **Hazli Johar** — [coding@hazli.dev](mailto:coding@hazli.dev) · [cynco-labs](https://github.com/cynco-labs)
 
-Apache License 2.0 — see [LICENSE](./LICENSE).
+Apache License 2.0 — [LICENSE](./LICENSE) · Contributions — [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-Contributions welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md). Run `bash scripts/ci_check.sh` before PRs.
+```bash
+bash scripts/ci_check.sh   # before PRs
+```
 
 ---
 
 <p align="center">
-  <sub>Throw a client folder at an agent. Get books you can defend.</sub>
+  <sub>
+    <a href="https://skills.sh/cynco-labs/ai-accounting-skills">skills.sh</a> ·
+    <a href="https://www.npmjs.com/package/@cynco/accounting-skills">npm</a> ·
+    <a href="https://github.com/cynco-labs/ai-accounting-skills">GitHub</a>
+  </sub><br/>
+  <sub>Throw a client folder at any agent. Get books you can defend.</sub>
 </p>

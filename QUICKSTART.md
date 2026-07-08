@@ -1,19 +1,20 @@
 # Quick Start
 
-**skills.sh · Claude plugins · npm CLI — then throw a folder at the agent.**
+**Any major agent · one install · throw a folder at it.**
 
-## 0. Install skills (pick one)
+Works with **Claude Code · Codex · Cursor · Grok/xAI · GLM · Kimi** and [40+ agents](https://github.com/vercel-labs/skills#supported-agents) via skills.sh.
 
-### A) skills.sh — any supported agent
+---
+
+## 1 · Skills (recommended)
 
 ```bash
-# See what's in the package (~36 skills)
+npx skills add cynco-labs/ai-accounting-skills
+```
+
+```bash
 npx skills add cynco-labs/ai-accounting-skills --list
-
-# Install all skills globally
 npx skills add cynco-labs/ai-accounting-skills --all -g
-
-# Or install a few high-value ones
 npx skills add cynco-labs/ai-accounting-skills \
   --skill full-engagement-pipeline \
   --skill extract-bank-statement \
@@ -22,78 +23,70 @@ npx skills add cynco-labs/ai-accounting-skills \
   -g -y
 ```
 
-Browse: [skills.sh/cynco-labs/ai-accounting-skills](https://skills.sh/cynco-labs/ai-accounting-skills)
+[skills.sh/cynco-labs/ai-accounting-skills](https://skills.sh/cynco-labs/ai-accounting-skills)
 
-### B) Claude Code plugin marketplace
+---
+
+## 2 · CLI tools
+
+```bash
+npx @cynco/accounting-skills demo
+npx @cynco/accounting-skills doctor
+npx @cynco/accounting-skills extract ./banks --out ./bank.xlsx
+npx @cynco/accounting-skills ledger ./clients/acme --fava
+```
+
+| Command | Result |
+|:--------|:-------|
+| `demo` | Golden ledger in Fava |
+| `extract` | PDF/CSV → Excel |
+| `ledger` | Journals → Beancount (+ Fava) |
+| `doctor` | Deps check |
+| `check` | Validate / CI |
+
+---
+
+## 3 · Claude Code plugins (optional)
 
 ```text
 /plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
 /plugin install accounting-engagement@claude-for-accounting
 ```
 
-Restart Claude Code. Prefer **user scope** so the plugin can read client files outside the project folder.
-
-Optional modular list: `bash scripts/install_all.sh`
-
-### C) npm CLI tools (extract / ledger / Fava)
-
-```bash
-npx @cynco/accounting-skills demo          # Fava on golden ledger
-npx @cynco/accounting-skills doctor        # check Python deps
-npx @cynco/accounting-skills extract ./banks --out ./bank.xlsx
-```
-
-## 1. Firm cold-start (once, Claude plugins)
-
 ```text
 /accounting-engagement:cold-start-interview
 ```
 
-Writes firm defaults under `~/.claude/plugins/config/claude-for-accounting/`.
+Prefer **user scope** so the agent can read client files outside the project.
 
-## 2. Throw work
+---
 
-Point at a folder of bank statements / receipts:
+## 4 · Throw work
 
 > Do the accounting for whatever is in this folder.
 
-Or (Claude plugins):
+Pipeline: **smart-intake → extract → classify → recon → TB → YE → FS → QC → Beancount → Fava**
 
-```text
-/accounting-engagement:full-engagement-pipeline
-```
+---
 
-The agent should:
-
-1. **Smart-intake** — read docs, infer MY/MYR/entity/period, ask ≤3 questions  
-2. Extract banks (Maybank PDF script or CSV)  
-3. Classify → journals → recon → TB → YE → FS → QC  
-4. Finalise → **Beancount** → optional **Fava**
-
-## 3. Scripts (local machine)
+## 5 · Local scripts
 
 ```bash
 git clone https://github.com/cynco-labs/ai-accounting-skills.git
 cd ai-accounting-skills
 pip install -r requirements.txt
 
-# Maybank Islamic PDFs → Excel + JSON
 python3 scripts/extract_maybank_islamic_pdf.py \
   --input /path/to/statements \
   --output ./bank.xlsx \
   --also-json ./transactions.json \
   --fail-on-error
 
-# Final journals → Beancount SoR + Fava
 python3 scripts/export_to_beancount.py \
   --client-dir /path/to/client \
   --output /path/to/client/ledger/main.beancount \
   --bean-check
+
 scripts/run_fava.sh /path/to/client/ledger/main.beancount
-```
-
-## 4. Verify this repo
-
-```bash
 bash scripts/ci_check.sh
 ```
