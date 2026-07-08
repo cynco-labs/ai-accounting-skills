@@ -161,7 +161,10 @@ def main() -> int:
         "shared/guardrails.md",
         "shared/skill-design-framework.md",
         "shared/jurisdiction-extension-guide.md",
+        "shared/agent-runtime.md",
         "references/pipeline.md",
+        "references/stage_artifacts.md",
+        "references/engagement_state.schema.json",
         "LICENSE",
         "README.md",
         "QUICKSTART.md",
@@ -170,10 +173,17 @@ def main() -> int:
         if not (ROOT / rel).is_file():
             errors.append(f"missing required file: {rel}")
 
-    # Firm-identity leak scan (skills + templates)
-    for path in ROOT.rglob("*"):
-        if path.suffix not in {".md", ".json", ".py"}:
-            continue
+    # Agent-native: default pipeline skill must advertise throw-work triggers
+    pipe = ROOT / "engagement-accounting/skills/full-engagement-pipeline/SKILL.md"
+    if pipe.is_file():
+        ptxt = pipe.read_text(encoding="utf-8")
+        for needle in ("engagement_state", "DEFAULT entry", "year end", "bank"):
+            if needle.lower() not in ptxt.lower():
+                warnings.append(f"full-engagement-pipeline missing agent-native cue: {needle}")
+
+    # Firm lock-in scan — skills and stage templates only.
+    # Maintainer attribution may appear in README/MAINTAINERS/NOTICE/marketplace.
+    for path in ROOT.rglob("SKILL.md"):
         if ".git" in path.parts:
             continue
         rel = str(path.relative_to(ROOT)).replace("\\", "/")
@@ -185,7 +195,15 @@ def main() -> int:
             continue
         for pat in FIRM_LEAK_PATTERNS:
             if pat.search(text):
-                errors.append(f"firm/private identity leak in {rel}")
+                errors.append(f"firm lock-in in skill (use white-label profile): {rel}")
+                break
+    # Also scan CLAUDE.md templates under plugins (should stay placeholder)
+    for path in ROOT.glob("*/CLAUDE.md"):
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        rel = str(path.relative_to(ROOT))
+        for pat in FIRM_LEAK_PATTERNS:
+            if pat.search(text):
+                errors.append(f"firm lock-in in template: {rel}")
                 break
 
     # Config path consistency

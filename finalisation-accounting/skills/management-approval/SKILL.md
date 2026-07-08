@@ -1,9 +1,9 @@
 ---
 name: management-approval
 description: >
-  Prepare management/directors approval pack and record approval for financial statements issuance. Use before signed FS are issued.
+  Management/directors approval pack and approval record before issue. Trigger
+  on directors approval, management representation, sign-off FS.
 ---
-
 # /management-approval
 
 ## Purpose

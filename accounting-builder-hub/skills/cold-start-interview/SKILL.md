@@ -1,10 +1,9 @@
 ---
 name: cold-start-interview
 description: >
-  Optional setup for contributors and maintainers of claude-for-accounting —
-  review strictness, default test jurisdiction, and contribution focus.
+  Optional contributor/maintainer profile for builder hub. Trigger on builder
+  setup, contributor onboarding for accounting skills repo.
 ---
-
 # /cold-start-interview (builder hub)
 
 ## Purpose

@@ -154,6 +154,20 @@ Each stage plugin:
 
 Everything is markdown and JSON (plus optional Python generators). No build step for skill content.
 
+## Agent-native by default
+
+Humans will not type slash commands. They will dump a client folder and say “do the year end.”
+
+| Mechanism | Why it exists |
+|---|---|
+| Fat-trigger descriptions on every skill | Host agents auto-select the right skill from natural language |
+| **`full-engagement-pipeline` as DEFAULT entry** | Full jobs route here unless the ask is clearly one stage |
+| `engagement_state.json` | Resume mid-job across sessions; disk is truth |
+| `references/stage_artifacts.md` | A stage is done only when files + gates exist |
+| `shared/agent-runtime.md` | Runtime contract for any agent host |
+
+Read: [shared/agent-runtime.md](./shared/agent-runtime.md).
+
 ## Design principles (scalability & maintainability)
 
 1. **Stage plugins, not entity plugins** — entity and industry differences live in COA + jurisdiction refs; the pipeline stays universal.
@@ -162,6 +176,7 @@ Everything is markdown and JSON (plus optional Python generators). No build step
 4. **Jurisdiction is data, not a fork** — add a pack; don’t clone the whole repo.
 5. **White-label by default** — firm name, registration, and house style come from cold-start, never hard-coded product branding in skill outputs.
 6. **Validate in CI** — `scripts/validate_marketplace.py` enforces structure before merge.
+7. **Agent-native first** — throw-work routing beats menu-driven UX.
 
 ## Getting started
 

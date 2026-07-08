@@ -1,9 +1,10 @@
 ---
 name: record-transactions
 description: >
-  Extract and record all transactions from source documents into structured books — sales, purchases, receipts, payments — with source provenance. Use when bank statements or books need capturing.
+  Extract every transaction from bank statements and books into a structured
+  register with source provenance. Trigger on bank PDF/CSV, "capture
+  transactions", "import bank", "extract statements", bookkeeping from banks.
 ---
-
 # /record-transactions
 
 ## Purpose

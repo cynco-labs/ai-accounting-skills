@@ -1,9 +1,9 @@
 ---
 name: finalise-accounts
 description: >
-  Lock the engagement books after QC: freeze ATB and journals, version final FS pack, and record finalisation checklist status.
+  Lock books after QC; freeze ATB/journals; version final pack. Trigger on lock
+  accounts, finalise, freeze numbers, final pack.
 ---
-
 # /finalise-accounts
 
 ## Purpose

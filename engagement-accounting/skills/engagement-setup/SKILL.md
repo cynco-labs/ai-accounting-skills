@@ -1,9 +1,11 @@
 ---
 name: engagement-setup
 description: >
-  Open a new or continuing Malaysian accounting engagement: identify entity, FY, framework, document completeness, COA template, and client README. Use when starting year-end, compilation, or bookkeeping for a client.
+  Open or continue a client engagement: identify entity, FY, framework, COA,
+  document completeness, write README + engagement_state.json. Trigger when
+  starting year-end, compilation, bookkeeping for a named client, "new client",
+  "open engagement", or after cold-start when work begins.
 ---
-
 # /engagement-setup
 
 ## Purpose
@@ -71,7 +73,17 @@ Copy appropriate template from `bookkeeping-accounting/references/coa_templates/
 ### 7. Write client engagement README
 Use `references/client_readme_template.md`. Save under client workspace.
 
-### 8. Output engagement card
+### 8. Write engagement_state.json
+
+Create `clients/<slug>/engagement_state.json` per `references/engagement_state.schema.json`:
+- current_stage: `setup` then advance to `source_documents` when setup gate passes
+- status: `in_progress`
+- artifacts: readme path
+- framework, fy_end, jurisdiction_pack, engagement_type
+
+See `shared/agent-runtime.md`.
+
+### 9. Output engagement card
 
 ```markdown
 # Engagement: [Legal name]

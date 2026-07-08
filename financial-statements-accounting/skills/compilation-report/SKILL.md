@@ -1,9 +1,9 @@
 ---
 name: compilation-report
 description: >
-  Prepare an accountant's compilation report under ISRS 4410 for compilation engagements (no assurance). Use when engagement type is compilation.
+  Draft ISRS 4410 compilation report (no assurance). Trigger on compilation
+  report, ISRS 4410, accountant's report for compilation.
 ---
-
 # /compilation-report
 
 ## Purpose

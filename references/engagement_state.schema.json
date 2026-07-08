@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claude-for-accounting.local/schemas/engagement_state.schema.json",
+  "title": "EngagementState",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "client_slug",
+    "legal_name",
+    "fy_end",
+    "framework",
+    "jurisdiction_pack",
+    "current_stage",
+    "status",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "0.0.1" },
+    "client_slug": { "type": "string" },
+    "legal_name": { "type": "string" },
+    "entity_type": { "type": "string" },
+    "fy_start": { "type": "string" },
+    "fy_end": { "type": "string" },
+    "framework": { "type": "string" },
+    "jurisdiction_pack": { "type": "string", "default": "malaysia" },
+    "currency": { "type": "string", "default": "MYR" },
+    "industry_overlay": { "type": ["string", "null"] },
+    "engagement_type": {
+      "type": "string",
+      "enum": ["bookkeeping_only", "compilation", "year_end", "year_end_tax", "audit_support", "unknown"]
+    },
+    "current_stage": {
+      "type": "string",
+      "enum": [
+        "setup",
+        "source_documents",
+        "record_transactions",
+        "classify_transactions",
+        "journal_entries",
+        "bank_reconciliation",
+        "subledger_reconciliations",
+        "preliminary_trial_balance",
+        "year_end_adjustments",
+        "adjusted_trial_balance",
+        "standards_review",
+        "primary_statements",
+        "notes",
+        "quality_review",
+        "finalisation",
+        "tax",
+        "complete"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["not_started", "in_progress", "blocked", "waiting_on_user", "waiting_on_client", "done"]
+    },
+    "stages_completed": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Map of artifact key → relative path under client workspace"
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "stage", "message"],
+        "properties": {
+          "id": { "type": "string" },
+          "stage": { "type": "string" },
+          "message": { "type": "string" },
+          "severity": { "type": "string", "enum": ["staff", "client", "system"] },
+          "blocking": { "type": "boolean", "default": true }
+        }
+      }
+    },
+    "open_queries": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "provisional": { "type": "boolean", "default": false },
+    "updated_at": { "type": "string", "description": "ISO-8601 timestamp" },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": true
+}

@@ -1,9 +1,9 @@
 ---
 name: statutory-handoff
 description: >
-  Hand finalised figures to tax computation and statutory filing workflows (SSM, LHDN). Use after management approval of FS.
+  Hand locked figures to tax and statutory filing workflows. Trigger on SSM,
+  statutory filing, handoff to tax, filing pack.
 ---
-
 # /statutory-handoff
 
 ## Purpose

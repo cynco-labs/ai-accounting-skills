@@ -1,9 +1,9 @@
 ---
 name: adjusted-trial-balance
 description: >
-  Generate the adjusted trial balance after all year-end adjustments. This is the single source for financial statement preparation.
+  Build adjusted trial balance (ATB) after YE journals — sole source for FS.
+  Trigger on adjusted trial balance, ATB, post-adjustment TB.
 ---
-
 # /adjusted-trial-balance
 
 ## Purpose

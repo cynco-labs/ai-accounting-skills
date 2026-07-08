@@ -1,9 +1,9 @@
 ---
 name: generate-workbook
 description: >
-  Generate the Excel working-papers workbook (journals, GL, TB, FS, tax sheet, queries) using scripts/generate_workbook.py from classified engagement data.
+  Generate Excel working-papers workbook via scripts/generate_workbook.py.
+  Trigger on working papers excel, workpapers xlsx, generate workbook.
 ---
-
 # /generate-workbook
 
 ## Purpose

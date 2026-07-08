@@ -1,9 +1,11 @@
 ---
 name: source-documents
 description: >
-  Collect, inventory, and organize all source documents for a Malaysian accounting engagement. Flags gaps, continuity breaks, and readiness for bookkeeping.
+  Inventory and organize source documents (banks, invoices, payslips, SSM,
+  prior FS). Trigger on document dumps, "what do we have", gap analysis,
+  missing statements, readiness for bookkeeping. Updates source/register.md
+  and engagement_state.
 ---
-
 # /source-documents
 
 ## Purpose

@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.0.1",
+  "client_slug": "example-sdn-bhd",
+  "legal_name": "Example Sdn. Bhd.",
+  "entity_type": "Sdn Bhd",
+  "fy_start": "2025-01-01",
+  "fy_end": "2025-12-31",
+  "framework": "MPERS",
+  "jurisdiction_pack": "malaysia",
+  "currency": "MYR",
+  "industry_overlay": "services",
+  "engagement_type": "year_end_tax",
+  "current_stage": "classify_transactions",
+  "status": "waiting_on_user",
+  "stages_completed": [
+    "setup",
+    "source_documents",
+    "record_transactions"
+  ],
+  "artifacts": {
+    "readme": "README.md",
+    "source_register": "source/register.md",
+    "transactions": "workpapers/transactions.json"
+  },
+  "blockers": [],
+  "open_queries": [
+    "4 payments to ALI BIN HASSAN RM3,000 — confirm classification"
+  ],
+  "provisional": false,
+  "updated_at": "2026-07-09T00:00:00Z",
+  "notes": "Example only — never copy as real client data"
+}

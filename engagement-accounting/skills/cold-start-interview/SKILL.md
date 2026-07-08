@@ -1,12 +1,12 @@
 ---
 name: cold-start-interview
 description: >
-  Run the firm cold-start interview to write firm-profile.md and the engagement
-  practice profile. Use on first install, when config has [PLACEHOLDER], or when
-  the user says set up the firm, configure accounting plugins, or onboard me.
+  Run firm setup for claude-for-accounting. Use on first install, empty config,
+  [PLACEHOLDER] firm profile, or when the user says set up the firm, configure
+  accounting plugins, onboard the practice, white-label the firm, or
+  --check-integrations. Writes firm-profile.md every other skill reads.
 argument-hint: "[--redo] [--check-integrations] [--full]"
 ---
-
 # /cold-start-interview
 
 Configures the firm so every accounting plugin produces **firm-specific, white-label** output.

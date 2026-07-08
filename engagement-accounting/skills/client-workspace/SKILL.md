@@ -1,9 +1,9 @@
 ---
 name: client-workspace
 description: >
-  Create or switch the active client engagement workspace for working papers, decisions log, and outputs. Use when starting a client or switching between clients.
+  Create or switch client workspace folders and active client pointer. Trigger
+  on new client folder, switch client, list clients, where are workpapers.
 ---
-
 # /client-workspace
 
 ## Purpose

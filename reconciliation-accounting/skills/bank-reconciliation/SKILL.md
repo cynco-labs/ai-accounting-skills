@@ -1,9 +1,10 @@
 ---
 name: bank-reconciliation
 description: >
-  Complete bank reconciliations to RM0.00 for each bank account: GL vs statement, outstanding deposits/cheques, and reconciling items. Use after journals are posted.
+  Reconcile each bank account GL to statement at RM0.00. Trigger on bank recon,
+  bank reconciliation, "cash doesn't match", outstanding cheques, deposits in
+  transit, GL vs bank.
 ---
-
 # /bank-reconciliation
 
 ## Purpose

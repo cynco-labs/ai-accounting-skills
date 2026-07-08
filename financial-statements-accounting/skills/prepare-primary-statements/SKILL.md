@@ -1,9 +1,10 @@
 ---
 name: prepare-primary-statements
 description: >
-  Prepare primary financial statements from the adjusted trial balance: statement of financial position, comprehensive income, changes in equity, and cash flows.
+  Map ATB to SOFP, SOCI/P&L, equity, cash flow statements. Trigger on financial
+  statements, balance sheet, income statement, P&L, cash flow statement,
+  prepare FS, primary statements.
 ---
-
 # /prepare-primary-statements
 
 ## Purpose

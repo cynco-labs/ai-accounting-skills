@@ -1,9 +1,10 @@
 ---
 name: year-end-adjustments
 description: >
-  Post year-end adjusting journals: depreciation, amortisation, accruals, prepayments, inventory, ECL/bad debts, interest, payroll, tax provision, FX, deferred tax if applicable.
+  Post year-end AJEs: depreciation, accruals, prepayments, inventory, ECL,
+  interest, payroll, tax provision, FX, deferred tax. Trigger on year-end
+  adjustments, adjusting journals, accruals, prepayments, closing entries.
 ---
-
 # /year-end-adjustments
 
 ## Purpose

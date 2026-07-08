@@ -1,9 +1,9 @@
 ---
 name: journal-entries
 description: >
-  Generate balancing journal entries for opening balances, bank transactions, payroll, and classified activity. Use after classification and before reconciliations/TB.
+  Build balancing double-entry journals from classified activity and openings.
+  Trigger on journals, postings, double entry, JE list, "post the books".
 ---
-
 # /journal-entries
 
 ## Purpose

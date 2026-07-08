@@ -1,13 +1,10 @@
 ---
 name: skills-qa
 description: >
-  Evaluate an accounting skill (or PR diff) against the Accounting Skill Design
-  Framework — purpose, gates, provenance, trust surface, failure modes, and
-  prompt-injection heuristics. Use before merging skills or accepting community
-  contributions.
+  QA a skill against the Accounting Skill Design Framework before merge.
+  Trigger on skills QA, review this skill, skill design review.
 argument-hint: "[path-to-SKILL.md or plugin/skill]"
 ---
-
 # /skills-qa
 
 ## Purpose

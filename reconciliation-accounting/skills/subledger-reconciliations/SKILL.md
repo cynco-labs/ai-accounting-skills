@@ -1,9 +1,10 @@
 ---
 name: subledger-reconciliations
 description: >
-  Reconcile AR, AP, inventory, fixed assets, loans, and tax accounts to control accounts and supporting schedules. Use before preliminary trial balance.
+  Tie AR, AP, inventory, fixed assets, loans, tax, payroll liabilities to
+  controls. Trigger on subledger recon, AR listing, AP listing, loan schedule
+  vs GL, FAR vs GL.
 ---
-
 # /subledger-reconciliations
 
 ## Purpose

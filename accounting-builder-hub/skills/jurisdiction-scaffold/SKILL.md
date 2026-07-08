@@ -1,12 +1,10 @@
 ---
 name: jurisdiction-scaffold
 description: >
-  Create a new jurisdiction pack skeleton under references/jurisdictions/<id>
-  with MANIFEST, README, and stub doctrine files. Use when adding a country or
-  reporting regime to claude-for-accounting.
+  Scaffold a new jurisdiction pack under references/jurisdictions/<id>.
+  Trigger on new country pack, jurisdiction scaffold, add UK/SG pack.
 argument-hint: "<jurisdiction-id> [--currency CODE] [--framework name]"
 ---
-
 # /jurisdiction-scaffold
 
 ## Purpose

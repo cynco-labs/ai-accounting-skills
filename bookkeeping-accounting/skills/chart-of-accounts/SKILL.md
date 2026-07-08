@@ -1,9 +1,10 @@
 ---
 name: chart-of-accounts
 description: >
-  Select, customise, and maintain the chart of accounts for the entity type (Sdn Bhd, sole prop, PLT, etc.). Use when setting up books or adding accounts.
+  Select or customise entity COA and optional industry overlay (trading,
+  services, F&B, property, construction). Trigger on chart of accounts, COA
+  setup, add account, industry accounts.
 ---
-
 # /chart-of-accounts
 
 ## Purpose

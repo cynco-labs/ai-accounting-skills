@@ -1,9 +1,9 @@
 ---
 name: disclosure-checklist
 description: >
-  Run an MPERS disclosure completeness checklist against the draft notes and primary statements. Use before quality review or finalisation.
+  MPERS disclosure completeness checklist against draft notes and primaries.
+  Trigger on disclosure checklist, notes complete?, missing disclosures.
 ---
-
 # /disclosure-checklist
 
 ## Purpose

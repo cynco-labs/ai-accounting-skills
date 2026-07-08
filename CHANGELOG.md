@@ -20,6 +20,7 @@ Initial public scaffold of **claude-for-accounting**.
 - Managed-agent cookbooks (filing deadline watcher, bank statement intake)
 - `scripts/validate_marketplace.py` + GitHub Actions validate workflow
 - Apache License 2.0, CONTRIBUTING, CODE_OF_CONDUCT, CLA, SECURITY, MAINTAINERS
+- **Agent-native runtime:** `shared/agent-runtime.md`, `engagement_state` schema, stage artifact contracts, fat-trigger skill descriptions, `full-engagement-pipeline` as DEFAULT throw-work entry
 
 ### Maintainer
 

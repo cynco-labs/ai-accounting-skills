@@ -1,9 +1,9 @@
 ---
 name: capital-allowances
 description: >
-  Compute Malaysian capital allowances (initial and annual) from the fixed asset register, including b/f and c/f residual expenditure.
+  Capital allowances schedule from FAR (IA/AA, b/f c/f). Trigger on capital
+  allowances, CA schedule, industrial building, plant allowance.
 ---
-
 # /capital-allowances
 
 ## Purpose

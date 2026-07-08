@@ -1,9 +1,10 @@
 ---
 name: classify-transactions
 description: >
-  Categorize every transaction to the chart of accounts using prior-year mapping, pattern rules, invoice matching, then employee Q&A. Use after recording transactions.
+  Categorize transactions to the chart of accounts (prior-year map, patterns,
+  invoices, then staff Q&A). Trigger on "classify", "code these", "what account",
+  uncategorized transactions, suspense clean-up, payee mapping.
 ---
-
 # /classify-transactions
 
 ## Purpose

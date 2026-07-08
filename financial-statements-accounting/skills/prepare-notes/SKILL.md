@@ -1,9 +1,10 @@
 ---
 name: prepare-notes
 description: >
-  Draft notes to the financial statements under MPERS/MFRS: policies, PPE, receivables, payables, borrowings, revenue, employee benefits, related parties, commitments, contingencies, subsequent events.
+  Draft notes to the financial statements from MPERS templates, tied to
+  primaries. Trigger on notes to accounts, notes to financial statements,
+  accounting policies note, PPE note, related party note.
 ---
-
 # /prepare-notes
 
 ## Purpose

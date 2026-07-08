@@ -1,9 +1,11 @@
 ---
 name: mpers-technical-review
 description: >
-  Review significant balances against MPERS (or MFRS) requirements: revenue, leases, instruments, IP, inventories, PPE, impairment, employee benefits, related parties, provisions, tax, subsequent events. Determine further adjustments or disclosures.
+  Standards technical review of material balances under MPERS/MFRS (revenue,
+  leases, instruments, inventory, PPE, impairment, related parties, tax,
+  subsequent events). Trigger on MPERS review, standards review, technical
+  accounting, disclosure gaps before FS.
 ---
-
 # /mpers-technical-review
 
 ## Purpose

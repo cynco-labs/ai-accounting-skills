@@ -1,0 +1,44 @@
+# Stage artifact contracts
+
+A stage is complete only when **required artifacts** exist and **gates** pass.
+Paths are relative to `clients/<slug>/`.
+
+| Stage | Required artifacts | Gate |
+|---|---|---|
+| setup | `README.md`, `engagement_state.json` | Entity, FY, framework known |
+| source_documents | `source/register.md` | Bank coverage green/amber (red = blocked unless override logged) |
+| record_transactions | `workpapers/transactions.json` (or `.csv`) | Every bank line extracted for in-scope periods |
+| classify_transactions | `workpapers/transactions.json` with `account_code` on each row | No silent suspense; unresolved → queries |
+| journal_entries | `workpapers/journals.json` | Every JE balances |
+| bank_reconciliation | `workpapers/reconciliations/bank_*.md` | Diff = 0.00 |
+| subledger_reconciliations | `workpapers/reconciliations/subledgers.md` | Material controls tied or queried |
+| preliminary_trial_balance | `workpapers/tb_preliminary.json` | DR = CR |
+| year_end_adjustments | `workpapers/journals_ye.json` | Catalogue considered; AJEs posted |
+| adjusted_trial_balance | `workpapers/tb_adjusted.json` | DR = CR; **source of truth for FS** |
+| standards_review | `workpapers/standards_review.md` | Issues → AJE or disclosure list |
+| primary_statements | `outputs/fs/primary_statements.md` (or xlsx sheet) | BS balances; mapping from ATB |
+| notes | `outputs/fs/notes.md` | Notes tie to primaries |
+| quality_review | `workpapers/qc_report.md` | Section A all pass |
+| finalisation | `outputs/fs/FINAL_STATUS.md` | Locked + approval recorded (or pending_approval) |
+| tax | `outputs/tax/computation.md` | Ties to locked P&L if final |
+
+## Optional but recommended
+
+| Artifact | When |
+|---|---|
+| `workpapers/coa.json` | After COA selected |
+| `workpapers/far.json` | PPE present |
+| `workpapers/payee_map.json` | Returning clients / for next year |
+| `queries.md` | Always if any open item |
+| `outputs/workpapers.xlsx` | After generate-workbook |
+
+## Agent checks
+
+Before claiming progress:
+
+```text
+1. Does engagement_state.json exist?
+2. Does current_stage match the work about to run?
+3. Do required artifacts for prior stages exist?
+4. Are blockers empty or explicitly waived?
+```

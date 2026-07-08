@@ -1,9 +1,9 @@
 ---
 name: preliminary-trial-balance
 description: >
-  Produce the preliminary trial balance after bookkeeping and reconciliations, before year-end adjustments. Validates DR=CR and lists open reconciling items.
+  Produce preliminary trial balance before year-end adjustments; require DR=CR.
+  Trigger on trial balance, TB, pre-adjustment TB, "does the TB balance".
 ---
-
 # /preliminary-trial-balance
 
 ## Purpose

@@ -1,9 +1,9 @@
 ---
 name: cross-tie-check
 description: >
-  Perform focused cross-tie tests: notes to primaries, cash flow to BS, profit to equity, opening balances to prior year signed FS, and internal cross-references.
+  Cross-tie notes to primaries, cash flow to BS, profit to equity, openings to
+  prior year. Trigger on cross tie, tie-out, consistency check, note agreement.
 ---
-
 # /cross-tie-check
 
 ## Purpose

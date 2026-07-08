@@ -1,9 +1,10 @@
 ---
 name: quality-review
 description: >
-  Run full quality control on draft financial statements and workpapers: mathematical integrity, data integrity, standards, completeness, and format. Section A blockers stop finalisation.
+  Full QC including Section A mathematical blockers before finalisation.
+  Trigger on quality review, QC, quality control, check the accounts, partner
+  review checklist.
 ---
-
 # /quality-review
 
 ## Purpose

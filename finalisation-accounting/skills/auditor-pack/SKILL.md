@@ -1,9 +1,9 @@
 ---
 name: auditor-pack
 description: >
-  Assemble auditor support pack from locked workpapers: ATB, ledgers, recons, schedules, minutes, and representation items. Use when accounts go for audit.
+  Assemble auditor support pack from locked workpapers. Trigger on auditor pack,
+  audit file, handoff to auditors.
 ---
-
 # /auditor-pack
 
 ## Purpose

@@ -1,9 +1,9 @@
 ---
 name: tax-computation
 description: >
-  Compute Malaysian tax from final or draft accounts: adjusted income, capital allowances, chargeable income, tax payable, for Form B/C/P/PT/TF/TP as applicable.
+  Malaysian tax computation from accounts (Forms B/C/P/PT/TF/TP path). Trigger
+  on tax computation, tax comp, Form C, chargeable income, CP204 vs actual.
 ---
-
 # /tax-computation
 
 ## Purpose
