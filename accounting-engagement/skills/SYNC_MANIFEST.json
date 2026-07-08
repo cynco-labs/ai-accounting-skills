@@ -135,7 +135,7 @@
     {
       "plugin": "financial-statements-accounting",
       "skill": "generate-workbook",
-      "sha256": "72aa8778dd76d2f264522202b496cf4aced9e733e0596f0348e19a860c3e637e",
+      "sha256": "3fa2d6096a1f9ec9cd821282a7ed1cb1e3ad37addb0d444a3c8921800903e2fd",
       "source": "financial-statements-accounting/skills/generate-workbook/SKILL.md"
     },
     {

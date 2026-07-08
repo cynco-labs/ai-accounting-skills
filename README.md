@@ -223,10 +223,20 @@ Other countries: read `shared/jurisdiction-extension-guide.md` and run `/account
 ## Core principles
 
 1. Every number traces to a source document.  
-2. Check documents before asking questions.  
+2. Check documents before asking questions (smart intake — infer first).  
 3. Standards and tax compliance — no material shortcuts.  
 4. Zero tolerance for imbalance (TB, BS, bank).  
-5. Document decisions in working papers.
+5. Document decisions in working papers.  
+6. **Excel = working papers; Beancount = ledger system of record; Fava = UI.**
+
+## Production checks (maintainers)
+
+```bash
+pip install -r requirements.txt
+bash scripts/ci_check.sh
+```
+
+Must pass before release or merge.
 
 ## Contributing
 

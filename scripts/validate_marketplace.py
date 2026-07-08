@@ -200,6 +200,15 @@ def main() -> int:
         "scripts/validate_engagement_artifacts.py",
         "scripts/sync_umbrella.py",
         "scripts/eval_utterance_routing.py",
+        "scripts/export_to_beancount.py",
+        "scripts/extract_maybank_islamic_pdf.py",
+        "scripts/ci_check.sh",
+        "requirements.txt",
+        "shared/architecture.md",
+        "shared/excel_deliverables.md",
+        "shared/smart-intake.md",
+        "references/beancount_integration.md",
+        "references/bank_statement_extraction.md",
     ]:
         if not (ROOT / rel).is_file():
             errors.append(f"missing required agent-native file: {rel}")

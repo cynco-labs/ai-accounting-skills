@@ -1,0 +1,13 @@
+# Runtime dependencies for claude-for-accounting scripts (Python 3.10+)
+# Install: pip install -r requirements.txt
+
+openpyxl>=3.1.0
+pdfplumber>=0.11.0
+reportlab>=4.0.0
+
+# Ledger system of record + UI
+beancount>=2.3.6
+fava>=1.27
+
+# Optional but recommended for artifact schema validation
+jsonschema>=4.20.0

@@ -92,7 +92,7 @@ Agents should **check files on disk**, not rely on chat memory.
 1. Load only the **active stage’s** `SKILL.md`
 2. Load `shared/guardrails.md` once per engagement (or when producing numbers)
 3. Load jurisdiction refs **on demand** (MPERS when reviewing standards, tax when computing tax)
-4. Do not load all 31 skills into context
+4. Do not load all skills into context — one stage at a time
 
 ## Question batching
 
@@ -100,12 +100,24 @@ Agents should **check files on disk**, not rely on chat memory.
 - Prefer one structured “blockers & queries” update over drip questions
 - Distinguish **staff** questions (technical) vs **client** questions (plain language)
 
+## Deliverable stack (no nonsense)
+
+| Layer | Technology | Role |
+|---|---|---|
+| Intermediate truth | JSON under `workpapers/` | Machine-checkable |
+| Human packs | **openpyxl** Excel (not Excel app at generate time) | Review / client |
+| Ledger SoR | **Beancount** `.beancount` | Final double-entry |
+| Interactive UI | **Fava** localhost | Explore balances |
+
+See `shared/excel_deliverables.md` and `shared/architecture.md`.
+
 ## What “agent-native” forbids
 
 - Fabricating numbers to “finish”
 - Skipping bank recon / TB balance because the user is in a hurry (unless they explicitly accept a documented limitation)
 - Claiming a stage is complete without artifacts
 - Using slash-command names in client-facing language
+- Treating Excel as the only place numbers live after finalisation
 
 ## Success signal
 

@@ -6,8 +6,18 @@ Notes for anyone writing or editing a plugin in this repo. Keep this practical �
 
 1. Read [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 2. Sign the [CLA](./CLA.md) when the bot asks (or affirm in the PR).
-3. Run `python3 scripts/validate_marketplace.py` and fix failures.
-4. Read `shared/skill-design-framework.md` and `shared/guardrails.md`.
+3. Read `shared/skill-design-framework.md`, `shared/guardrails.md`, `shared/architecture.md`.
+4. Run the full check suite (must pass):
+
+```bash
+pip install -r requirements.txt   # once
+bash scripts/ci_check.sh
+# if you edit modular skills:
+python3 scripts/sync_umbrella.py
+python3 scripts/sync_umbrella.py --check
+```
+
+Do not open a PR with failing `ci_check` or out-of-date umbrella skills.
 
 ## Design principle: SKILL.md encodes the right behavior; CLAUDE.md is the net
 
@@ -39,15 +49,20 @@ Every plugin ships two layers:
 | Industry overlay | `references/coa_templates/industry/*.json` |
 | Shared safety | `shared/guardrails.md` |
 | Marketplace registry | `.claude-plugin/marketplace.json` |
-| Validators | `scripts/validate_marketplace.py` |
+| Validators / CI | `scripts/validate_marketplace.py`, `scripts/ci_check.sh` |
+| Beancount / Fava | `beancount-ledger/`, `scripts/export_to_beancount.py` |
+| Bank PDF adapters | `scripts/extract_maybank_islamic_pdf.py`, `references/bank_statement_extraction.md` |
+| Excel generation | `shared/excel_deliverables.md`, `scripts/generate_workbook.py` (openpyxl) |
 
 ## Versioning
 
-- **Patch** (`1.1.x`) — wording, bugfixes, reference updates that don’t change skill contracts.
-- **Minor** (`1.x.0`) — new skills, new required inputs, new jurisdiction packs.
-- **Major** — pipeline stage renames or breaking config path changes (avoid).
+This project is at **0.0.x** (early public scaffold). Until 1.0:
 
-Bump the affected plugin’s `.claude-plugin/plugin.json` `version` on material change. Update [CHANGELOG.md](./CHANGELOG.md).
+- **Patch** (`0.0.x`) — fixes, docs, non-breaking skill wording, new optional adapters  
+- **Minor after 1.0** — new skills / required inputs  
+- **Major** — pipeline renames or config path breaks (avoid)
+
+Bump affected plugin `version` fields together with root `VERSION` and [CHANGELOG.md](./CHANGELOG.md).
 
 ## PR checklist
 

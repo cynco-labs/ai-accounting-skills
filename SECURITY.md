@@ -45,4 +45,9 @@ We aim to acknowledge within 7 days and ship fixes as soon as practical.
 - Install plugins from sources you trust  
 - Prefer user-scoped installs you control  
 - Never paste production secrets into chat logs you don’t control  
-- Review draft financial statements before any external issuance  
+- Review draft financial statements before any external issuance
+
+## Client data
+
+Skills and scripts may write `workpapers/`, Excel packs, and `ledger/*.beancount` containing client financials. Treat these as confidential. Do not commit real client folders. Use `fixtures/` only with synthetic data.
+

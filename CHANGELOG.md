@@ -29,6 +29,7 @@ Initial public scaffold of **claude-for-accounting**.
 - **Bank extraction:** `extract-bank-statement` skill + `normalize_bank_csv.py`
 - **Smart intake:** document-first client discovery (`smart-intake`, `shared/smart-intake.md`) — infer from banks/receipts, ≤3 high-leverage questions, no interrogation theatre
 - **Beancount + Fava:** `beancount-ledger` plugin, `export_to_beancount.py`, `run_fava.sh`; ledger SoR after finalisation; Fava UI
+- **Production OSS polish:** `requirements.txt`, `scripts/ci_check.sh`, `shared/architecture.md`, `shared/excel_deliverables.md`, tightened CONTRIBUTING/QUICKSTART/CI
 - **Maybank Islamic PDF extractor:** `scripts/extract_maybank_islamic_pdf.py` + `references/bank_statement_extraction.md`; `extract-bank-statement` skill encodes proven text/regex/balance-proof method (not vision-first)
 
 ### Maintainer

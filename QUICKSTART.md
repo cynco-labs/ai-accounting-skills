@@ -56,6 +56,20 @@
    python3 scripts/validate_engagement_artifacts.py fixtures/golden-mini-sdn-bhd
    ```
 
+9. **After books are final — Beancount (ledger SoR) + Fava (UI):**
+
+   ```bash
+   pip install beancount fava   # once
+   python3 scripts/export_to_beancount.py \
+     --client-dir path/to/client \
+     --output path/to/client/ledger/main.beancount \
+     --bean-check
+   scripts/run_fava.sh path/to/client/ledger/main.beancount
+   # open http://127.0.0.1:5000
+   ```
+
+   Excel workpapers remain for review; **Beancount is the system of record.**
+
 ## Install user-scoped, not project-scoped
 
 When `/plugin install` asks for scope, **prefer user scope**. Project scope cannot read client files outside the project folder (Downloads, DMS sync folders, etc.). User scope does not grant extra access to arbitrary files — you still point at paths — it only makes the plugin available from any working directory.
