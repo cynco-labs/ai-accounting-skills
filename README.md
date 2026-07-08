@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/v2.0.1-0d6efd?style=for-the-badge" alt="v2.0.1" />
+  <img src="https://img.shields.io/badge/v2.1.0-0d6efd?style=for-the-badge" alt="v2.1.0" />
   <a href="https://skills.sh/cynco-labs/ai-accounting-skills"><img src="https://skills.sh/b/cynco-labs/ai-accounting-skills" alt="skills.sh" /></a>
   <img src="https://img.shields.io/badge/Beancount-SoR-111827?style=for-the-badge" alt="Beancount" />
   <img src="https://img.shields.io/badge/License-Apache%202.0-10b981?style=for-the-badge" alt="License" />
@@ -88,7 +88,7 @@ Then:
 
 ## CLI · `npx`
 
-Zero clone. Scripts that agents and humans both run.
+Zero clone. Deterministic tools agents should shell out to — not re-implement in chat.
 
 ```bash
 npx @cynco/accounting-skills <command>
@@ -96,27 +96,33 @@ npx @cynco/accounting-skills <command>
 
 | Command | What you get |
 |:--------|:-------------|
-| `demo` | Golden mini ledger → **Fava** in the browser |
-| `extract ./statements` | Bank PDF/CSV → Excel (+ JSON) |
+| `demo` | Golden mini ledger → **Fava** |
+| `close [client]` | **E2E proof** — validate · stage gates · ledger summary |
+| `extract ./statements` | Bank PDF/CSV → Excel (+ JSON) · auto-detect adapter |
+| `classify ./txns.json` | Deterministic COA classify + review queue |
 | `ledger ./clients/acme --fava` | Journals → Beancount + Fava |
+| `firm --init "Your Firm"` | Multi-agent firm profile (`~/.config/ai-accounting/`) |
 | `init acme-sdn-bhd` | Client workspace scaffold |
 | `doctor` | Python / deps health check |
 | `check` | Validate engagement or full CI |
 
 ```bash
 npx @cynco/accounting-skills demo
-npx @cynco/accounting-skills extract ./statements --out ./bank.xlsx
+npx @cynco/accounting-skills close                          # golden fixture proof
+npx @cynco/accounting-skills extract ./statements --out ./bank.xlsx --json ./txns.json
+npx @cynco/accounting-skills classify ./txns.json
 npx @cynco/accounting-skills ledger ./clients/acme --fava
-npx @cynco/accounting-skills doctor
+npx @cynco/accounting-skills firm --init "Your Firm"
 ```
 
-Needs **Node ≥ 18** + **Python 3**. Install deps with `pip install -r requirements.txt` (or whatever `doctor` prints).
+Needs **Node ≥ 18** + **Python 3**. `pip install -r requirements.txt` (or whatever `doctor` prints).
 
 <details>
 <summary><strong>More CLI detail</strong></summary>
 
-- Package: [`@cynco/accounting-skills`](https://www.npmjs.com/package/@cynco/accounting-skills)
-- Docs: [cli/README.md](./cli/README.md) · [QUICKSTART.md](./QUICKSTART.md)
+- Package: [`@cynco/accounting-skills`](https://www.npmjs.com/package/@cynco/accounting-skills) **v2.1.0**
+- Agent recipes: [docs/agents/](./docs/agents/)
+- Firm profile: [shared/firm-profile.md](./shared/firm-profile.md)
 - From a local clone: `node cli/bin/ai-accounting.js doctor`
 
 </details>
@@ -289,9 +295,15 @@ Golden fixture: `fixtures/golden-mini-sdn-bhd` (synthetic — not a real client)
 - [x] Stage plugins + umbrella (`accounting-engagement`)
 - [x] Smart intake + `engagement_state` resume
 - [x] Maybank Islamic PDF extractor (balance-proof)
+- [x] Unified bank extract + **CIMB CSV** adapter + balance proof
+- [x] Deterministic **classify** (`classification_patterns.json` + payee map)
+- [x] **`close`** E2E proof command + stage gates
+- [x] Multi-agent firm profile (`~/.config/ai-accounting/`)
+- [x] Agent recipes (Claude · Codex · Cursor · Grok · GLM · Kimi)
+- [x] Unit tests + CI (`unittest` · gates · close · routing)
 - [x] Beancount system of record + Fava UI
 - [x] JSON schemas, validators, routing evals, `ci_check.sh`
-- [x] npm CLI `@cynco/accounting-skills` (`demo` · `extract` · `ledger` · `doctor`)
+- [x] npm CLI `@cynco/accounting-skills` v2.1
 - [x] [skills.sh](https://skills.sh/cynco-labs/ai-accounting-skills) multi-agent install
 - [x] Claude Code marketplace (`claude-for-accounting`)
 - [x] MPERS notes templates + industry COA overlays
@@ -299,11 +311,10 @@ Golden fixture: `fixtures/golden-mini-sdn-bhd` (synthetic — not a real client)
 
 ### Near term
 
-- [ ] More bank PDF adapters (CIMB, Public Bank, HSBC, RHB, …)
+- [ ] More bank PDF adapters (Public Bank, HSBC, RHB, Hong Leong, …)
 - [ ] Leaner Beancount opens (used accounts only)
-- [ ] One-command “engagement demo” from empty folder → Fava
-- [ ] Skills telemetry / install badges per skill
-- [ ] Agent install recipes (Cursor · Codex · Grok · GLM · Kimi)
+- [ ] Per-skill install badges / skills.sh telemetry polish
+- [ ] Tax computation worksheet script from locked ATB
 
 ### Next
 
@@ -318,7 +329,7 @@ Golden fixture: `fixtures/golden-mini-sdn-bhd` (synthetic — not a real client)
 
 - [ ] Connector pack (bank CSV drop folders, cloud drive intake)
 - [ ] Managed-agent cookbooks (deadline watcher, monthly close)
-- [ ] Eval harness: extract accuracy + TB balance on golden sets
+- [ ] Eval harness: extract accuracy + classify precision on golden sets
 - [ ] Signed release attestations for skill packages
 - [ ] Community skill extensions without forking the core pipeline
 

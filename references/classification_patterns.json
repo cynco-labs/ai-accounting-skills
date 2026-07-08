@@ -1,0 +1,102 @@
+{
+  "schema_version": "0.0.1",
+  "jurisdiction": "malaysia",
+  "currency": "MYR",
+  "patterns": [
+    {
+      "id": "payroll-salary",
+      "match": ["salary", "wages", "gaji", "payroll"],
+      "direction": "outflow",
+      "account_code": "5000",
+      "account_name": "Salary & Wages",
+      "confidence": 0.92
+    },
+    {
+      "id": "epf-kwsp",
+      "match": ["epf", "kwsp", "kumpulan wang simpanan"],
+      "direction": null,
+      "account_code": "2150",
+      "account_name": "EPF Payable",
+      "confidence": 0.9
+    },
+    {
+      "id": "socso-perkeso",
+      "match": ["socso", "perkeso", "eis "],
+      "direction": "outflow",
+      "account_code": "2160",
+      "account_name": "SOCSO / EIS Payable",
+      "confidence": 0.9
+    },
+    {
+      "id": "lhdn-tax",
+      "match": ["lhdn", "pcb", "cp204", "inland revenue", "hasil"],
+      "direction": "outflow",
+      "account_code": "2200",
+      "account_name": "Tax Payable",
+      "confidence": 0.88
+    },
+    {
+      "id": "utilities",
+      "match": ["tnb", "saj", "iwk", " indah water", "maxis", "celcom", "digi", "u mobile", "unifi", "tm "],
+      "direction": "outflow",
+      "account_code": "5300",
+      "account_name": "Utilities",
+      "confidence": 0.88
+    },
+    {
+      "id": "bank-charges",
+      "match": ["bank charge", "service charge", "monthly fee", "stamp duty", "debit interest"],
+      "direction": "outflow",
+      "account_code": "5400",
+      "account_name": "Bank Charges",
+      "confidence": 0.9
+    },
+    {
+      "id": "software-saas",
+      "match": ["adobe", "google", "microsoft", "canva", "zoom", "openai", "github", "aws", "azure", "notion"],
+      "direction": "outflow",
+      "account_code": "5500",
+      "account_name": "Software & Subscriptions",
+      "confidence": 0.85
+    },
+    {
+      "id": "rent",
+      "match": ["rent", "rental", "sewa"],
+      "direction": "outflow",
+      "account_code": "5200",
+      "account_name": "Rental Expense",
+      "confidence": 0.88
+    },
+    {
+      "id": "grab-logistics",
+      "match": ["grab", "lalamove", "foodpanda", "shopee express"],
+      "direction": "outflow",
+      "account_code": "5600",
+      "account_name": "Transport & Delivery",
+      "confidence": 0.8
+    },
+    {
+      "id": "revenue-inflow",
+      "match": ["invoice", "payment received", "client payment", "sales", "transfer from", "ibg credit", "duitnow credit"],
+      "direction": "inflow",
+      "account_code": "4000",
+      "account_name": "Service Revenue - Primary",
+      "confidence": 0.75
+    },
+    {
+      "id": "owner-draw",
+      "match": ["director", "drawings", "owner", "shareholder"],
+      "direction": "outflow",
+      "account_code": "3200",
+      "account_name": "Drawings / Director",
+      "confidence": 0.7
+    }
+  ],
+  "suspense": {
+    "account_code": "9999",
+    "account_name": "Suspense",
+    "confidence": 0.2
+  },
+  "auto_apply_min_confidence": 0.75,
+  "ask_below_confidence": 0.75
+}

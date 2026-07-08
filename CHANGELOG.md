@@ -5,6 +5,23 @@ All notable changes to this project are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
+## [2.1.0] — 2026-07-09
+
+### Added
+
+- **`close`** — end-to-end engagement proof (validate · stage gates · Beancount summary)
+- **`classify`** — deterministic COA classification + review queue (`scripts/classify_transactions.py`)
+- **`extract_bank.py`** — unified adapter router (Maybank PDF · CIMB CSV · generic CSV)
+- **`firm`** — multi-agent firm profile resolution (`~/.config/ai-accounting/`)
+- Stage gates validator · unit test suite · agent recipes under `docs/agents/`
+- `references/classification_patterns.json` (Malaysia pattern pack)
+
+### Changed
+
+- CLI help is multi-agent (skills.sh first; Claude plugins optional)
+- `ci_check.sh` runs unittest + stage gates + close proof
+- Classify / extract skills require scripts before chat freestyle
+
 ## [2.0.1] — 2026-07-09
 
 ### Fixed

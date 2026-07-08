@@ -64,26 +64,31 @@ function usage(code = 0) {
   npx @cynco/accounting-skills <command> [options]
 
 ${c.bold}Commands${c.reset}
-  ${c.green}demo${c.reset}              Golden mini ledger + Fava (instant wow)
+  ${c.green}demo${c.reset}              Golden mini ledger + Fava
+  ${c.green}close${c.reset} [client]    Prove engagement (validate · gates · ledger)
   ${c.green}init${c.reset} [name]       Scaffold a client engagement workspace
-  ${c.green}extract${c.reset} <path>    Bank PDF/CSV → Excel (+ optional JSON)
+  ${c.green}extract${c.reset} <path>    Bank PDF/CSV → Excel (+ JSON) · auto-detect adapter
+  ${c.green}classify${c.reset} <json>   Deterministic COA classify + review queue
   ${c.green}ledger${c.reset} <client>   Journals → Beancount system of record
   ${c.green}fava${c.reset} [path]       Open Fava UI on a ledger or client dir
+  ${c.green}firm${c.reset}              Resolve / scaffold multi-agent firm profile
   ${c.green}check${c.reset} [client]    Validate engagement artifacts or full CI
   ${c.green}doctor${c.reset}            Check Python / deps / tools
   ${c.green}version${c.reset}           Print version
 
 ${c.bold}Examples${c.reset}
   npx @cynco/accounting-skills demo
-  npx @cynco/accounting-skills extract ~/Downloads/CJT-BS-2026
+  npx @cynco/accounting-skills close
+  npx @cynco/accounting-skills extract ~/Downloads/statements --json ./txns.json
+  npx @cynco/accounting-skills classify ./txns.json
   npx @cynco/accounting-skills ledger ./clients/acme --fava
-  npx @cynco/accounting-skills init acme-sdn-bhd
 
-${c.bold}Claude Code plugins${c.reset}
-  /plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
-  /plugin install accounting-engagement@claude-for-accounting
+${c.bold}Skills (Claude · Codex · Cursor · Grok · GLM · Kimi · …)${c.reset}
+  npx skills add cynco-labs/ai-accounting-skills
 
-Docs: https://github.com/cynco-labs/ai-accounting-skills
+${c.bold}Docs${c.reset}
+  https://github.com/cynco-labs/ai-accounting-skills
+  https://skills.sh/cynco-labs/ai-accounting-skills
 `);
   process.exit(code);
 }
@@ -245,8 +250,11 @@ Scaffolded engagement workspace.
 
 1. Drop bank PDFs/CSVs into \`source/bank/\`
 2. \`npx @cynco/accounting-skills extract ${root}/source/bank --out ${root}/outputs/bank.xlsx --json ${root}/workpapers/transactions.json\`
-3. Use Claude Code + accounting-engagement skills for classify → YE → FS
-4. \`npx @cynco/accounting-skills ledger ${root} --fava\`
+3. \`npx @cynco/accounting-skills classify ${root}/workpapers/transactions.json\`
+4. Agent skills: classify → journals → recon → YE → FS → QC  
+   (\`npx skills add cynco-labs/ai-accounting-skills\`)
+5. \`npx @cynco/accounting-skills close ${root}\`
+6. \`npx @cynco/accounting-skills ledger ${root} --fava\`
 
 See https://github.com/cynco-labs/ai-accounting-skills
 `,
@@ -260,7 +268,7 @@ See https://github.com/cynco-labs/ai-accounting-skills
 function cmdExtract(inputPath, opts) {
   banner();
   if (!inputPath) {
-    fail("Usage: extract <folder-or-pdf> [--out file.xlsx] [--json file.json]");
+    fail("Usage: extract <folder-or-file> [--out file.xlsx] [--json file.json]");
     return 1;
   }
   const input = resolve(inputPath);
@@ -273,33 +281,113 @@ function cmdExtract(inputPath, opts) {
     fail("python3 required");
     return 1;
   }
-  if (!ensurePythonDeps(py, ["pdfplumber", "openpyxl"])) return 1;
+  if (!ensurePythonDeps(py, ["openpyxl"])) return 1;
 
   const outXlsx =
     opts.out ||
     resolve(process.cwd(), `bank_extract_${Date.now()}.xlsx`);
   const outJson = opts.json || null;
 
+  // Unified adapter router (Maybank PDF · CIMB CSV · generic CSV)
   const args = [
-    script("extract_maybank_islamic_pdf.py"),
+    script("extract_bank.py"),
     "--input",
     input,
     "--output",
     outXlsx,
+    "--client-slug",
+    opts.slug || "client",
     "--fail-on-error",
   ];
   if (outJson) {
     args.push("--also-json", resolve(outJson));
-    args.push("--client-slug", opts.slug || "client");
   }
 
-  info(`Extracting Maybank-style PDFs from ${input}`);
+  info(`Extracting banks from ${input} (auto-detect adapter)`);
   const code = run(py, args);
   if (code === 0) {
     ok(`Excel: ${outXlsx}`);
     if (outJson) ok(`JSON: ${resolve(outJson)}`);
   }
   return code;
+}
+
+function cmdClassify(inputPath, opts) {
+  banner();
+  if (!inputPath) {
+    fail("Usage: classify <transactions.json> [--out file.json] [--map payee_map.json]");
+    return 1;
+  }
+  const input = resolve(inputPath);
+  if (!existsSync(input)) {
+    fail(`Not found: ${input}`);
+    return 1;
+  }
+  const py = findPython();
+  if (!py) {
+    fail("python3 required");
+    return 1;
+  }
+  const out = opts.out ? resolve(opts.out) : input;
+  const report =
+    opts.report ||
+    resolve(dirname(out), "classification_review.md");
+  const args = [
+    script("classify_transactions.py"),
+    "--input",
+    input,
+    "--output",
+    out,
+    "--report",
+    report,
+  ];
+  if (opts.map) args.push("--payee-map", resolve(opts.map));
+  info(`Classifying ${input}`);
+  const code = run(py, args);
+  if (code === 0) {
+    ok(`Wrote ${out}`);
+    ok(`Review queue: ${report}`);
+  }
+  return code;
+}
+
+function cmdClose(clientOrEmpty, opts) {
+  banner();
+  const py = findPython();
+  if (!py) {
+    fail("python3 required");
+    return 1;
+  }
+  const client = clientOrEmpty
+    ? resolve(clientOrEmpty)
+    : join(PKG_ROOT, "fixtures/golden-mini-sdn-bhd");
+  if (!existsSync(client)) {
+    fail(`Not found: ${client}`);
+    return 1;
+  }
+  const args = [script("close_engagement.py"), client];
+  if (opts.classify) args.push("--classify");
+  if (opts.noLedger) args.push("--no-export-ledger");
+  info(`Close proof: ${client}`);
+  const code = run(py, args);
+  if (code === 0 && opts.fava) {
+    return cmdFava(client, opts);
+  }
+  return code;
+}
+
+function cmdFirm(opts) {
+  banner();
+  const py = findPython();
+  if (!py) {
+    fail("python3 required");
+    return 1;
+  }
+  const args = [script("resolve_firm_profile.py")];
+  if (opts.init) {
+    args.push("--init", opts.init);
+  }
+  return run(py, args);
 }
 
 function cmdLedger(clientDir, opts) {
@@ -493,6 +581,11 @@ function parseArgs(argv) {
     else if (a === "--slug") opts.slug = rest[++i];
     else if (a === "--fava") opts.fava = true;
     else if (a === "--port") opts.port = rest[++i];
+    else if (a === "--map") opts.map = rest[++i];
+    else if (a === "--report") opts.report = rest[++i];
+    else if (a === "--classify") opts.classify = true;
+    else if (a === "--no-ledger") opts.noLedger = true;
+    else if (a === "--init") opts.init = rest[++i];
     else if (a.startsWith("-")) {
       fail(`Unknown flag: ${a}`);
       usage(1);
@@ -519,6 +612,12 @@ function main() {
       return cmdInit(positional[0]);
     case "extract":
       return cmdExtract(positional[0], opts);
+    case "classify":
+      return cmdClassify(positional[0], opts);
+    case "close":
+      return cmdClose(positional[0], opts);
+    case "firm":
+      return cmdFirm(opts);
     case "ledger":
       return cmdLedger(positional[0], opts);
     case "fava":

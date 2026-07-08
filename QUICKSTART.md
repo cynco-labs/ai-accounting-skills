@@ -31,18 +31,26 @@ npx skills add cynco-labs/ai-accounting-skills \
 
 ```bash
 npx @cynco/accounting-skills demo
+npx @cynco/accounting-skills close              # E2E proof on golden fixture
 npx @cynco/accounting-skills doctor
-npx @cynco/accounting-skills extract ./banks --out ./bank.xlsx
+npx @cynco/accounting-skills extract ./banks --out ./bank.xlsx --json ./txns.json
+npx @cynco/accounting-skills classify ./txns.json
 npx @cynco/accounting-skills ledger ./clients/acme --fava
+npx @cynco/accounting-skills firm --init "Your Firm"
 ```
 
 | Command | Result |
 |:--------|:-------|
 | `demo` | Golden ledger in Fava |
-| `extract` | PDF/CSV → Excel |
+| `close` | Validate · gates · proof card |
+| `extract` | PDF/CSV → Excel (Maybank · CIMB CSV · generic) |
+| `classify` | COA codes + review queue |
 | `ledger` | Journals → Beancount (+ Fava) |
+| `firm` | Multi-agent firm profile |
 | `doctor` | Deps check |
 | `check` | Validate / CI |
+
+Agent recipes: [docs/agents/](./docs/agents/)
 
 ---
 

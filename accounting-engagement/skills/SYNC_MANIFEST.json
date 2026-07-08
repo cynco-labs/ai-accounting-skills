@@ -45,7 +45,7 @@
     {
       "plugin": "bookkeeping-accounting",
       "skill": "extract-bank-statement",
-      "sha256": "e6f8087015bddcffe50ebf4bb535650ea53544c5894b3ab502cde87040a67dd0",
+      "sha256": "25c21d52d64d1c85d8ad4dcf2c39935f0b74d4eafe58c5841340ba4d072f3820",
       "source": "bookkeeping-accounting/skills/extract-bank-statement/SKILL.md"
     },
     {
@@ -57,7 +57,7 @@
     {
       "plugin": "bookkeeping-accounting",
       "skill": "classify-transactions",
-      "sha256": "98a463dd4ac4181a7b2879828c34aa16df12955efdfe76760efa5174fea5a6eb",
+      "sha256": "c75a69213bba49197fe3780ae8995b2571e3095d902599d1d4cfa72646700ee9",
       "source": "bookkeeping-accounting/skills/classify-transactions/SKILL.md"
     },
     {
