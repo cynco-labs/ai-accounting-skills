@@ -1,6 +1,14 @@
 # Quick Start
 
-**~60 seconds to install · 2–15 minutes firm setup · then throw a folder at the agent.**
+**CLI in one line · plugins in one minute · then throw a folder at the agent.**
+
+## 0. Try the CLI first (optional)
+
+```bash
+npx @cynco/ai-accounting demo          # Fava on golden ledger
+npx @cynco/ai-accounting doctor        # check Python deps
+npx @cynco/ai-accounting extract ./banks --out ./bank.xlsx
+```
 
 ## 1. Install marketplace + umbrella
 

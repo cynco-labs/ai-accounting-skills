@@ -1,0 +1,52 @@
+{
+  "name": "@cynco/ai-accounting",
+  "version": "0.0.1",
+  "description": "CLI for AI Accounting Skills — extract bank PDFs, validate engagements, export Beancount, open Fava. npx @cynco/ai-accounting demo",
+  "keywords": [
+    "accounting",
+    "beancount",
+    "fava",
+    "claude-code",
+    "agent-skills",
+    "bookkeeping",
+    "mpers",
+    "maybank"
+  ],
+  "homepage": "https://github.com/cynco-labs/ai-accounting-skills",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cynco-labs/ai-accounting-skills.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cynco-labs/ai-accounting-skills/issues"
+  },
+  "license": "Apache-2.0",
+  "author": "Hazli Johar <coding@hazli.dev>",
+  "type": "module",
+  "bin": {
+    "ai-accounting": "./cli/bin/ai-accounting.js",
+    "cynco-accounting": "./cli/bin/ai-accounting.js"
+  },
+  "files": [
+    "cli/**/*",
+    "scripts/**/*",
+    "fixtures/golden-mini-sdn-bhd/**/*",
+    "references/coa_templates/**/*",
+    "references/schemas/**/*",
+    "requirements.txt",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "ai-accounting": "node ./cli/bin/ai-accounting.js",
+    "demo": "node ./cli/bin/ai-accounting.js demo",
+    "check": "node ./cli/bin/ai-accounting.js check"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

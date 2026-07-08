@@ -42,10 +42,33 @@ Built for [Claude Code](https://claude.com/product/claude-code) / Cowork as a **
 
 ---
 
-## ⚡ Install (60 seconds)
+## ⚡ Install
+
+### A) `npx` CLI (zero clone)
 
 ```bash
-# Claude Code
+# Instant demo — golden ledger in Fava
+npx @cynco/ai-accounting demo
+
+# Bank PDFs → Excel
+npx @cynco/ai-accounting extract ./statements --out ./bank.xlsx
+
+# Client journals → Beancount + Fava
+npx @cynco/ai-accounting ledger ./clients/acme --fava
+
+# Scaffold workspace
+npx @cynco/ai-accounting init acme-sdn-bhd
+
+# Doctor / CI
+npx @cynco/ai-accounting doctor
+npx @cynco/ai-accounting check
+```
+
+Requires **Python 3** + `pip install -r requirements.txt` (or deps the CLI prints).
+
+### B) Claude Code plugins
+
+```text
 /plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
 /plugin install accounting-engagement@claude-for-accounting
 ```
@@ -62,8 +85,7 @@ Restart Claude Code, then:
 
 Default skill: `full-engagement-pipeline` → smart intake → extract → books → QC → **Beancount** → optional **Fava**.
 
-Full detail: **[QUICKSTART.md](./QUICKSTART.md)**
-
+Full detail: **[QUICKSTART.md](./QUICKSTART.md)** · CLI: **[cli/README.md](./cli/README.md)**
 ---
 
 ## 📦 What you get
