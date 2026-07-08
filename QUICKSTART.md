@@ -1,8 +1,41 @@
 # Quick Start
 
-**CLI in one line · plugins in one minute · then throw a folder at the agent.**
+**skills.sh · Claude plugins · npm CLI — then throw a folder at the agent.**
 
-## 0. Try the CLI first (optional)
+## 0. Install skills (pick one)
+
+### A) skills.sh — any supported agent
+
+```bash
+# See what's in the package (~36 skills)
+npx skills add cynco-labs/ai-accounting-skills --list
+
+# Install all skills globally
+npx skills add cynco-labs/ai-accounting-skills --all -g
+
+# Or install a few high-value ones
+npx skills add cynco-labs/ai-accounting-skills \
+  --skill full-engagement-pipeline \
+  --skill extract-bank-statement \
+  --skill smart-intake \
+  --skill export-beancount \
+  -g -y
+```
+
+Browse: [skills.sh/cynco-labs/ai-accounting-skills](https://skills.sh/cynco-labs/ai-accounting-skills)
+
+### B) Claude Code plugin marketplace
+
+```text
+/plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
+/plugin install accounting-engagement@claude-for-accounting
+```
+
+Restart Claude Code. Prefer **user scope** so the plugin can read client files outside the project folder.
+
+Optional modular list: `bash scripts/install_all.sh`
+
+### C) npm CLI tools (extract / ledger / Fava)
 
 ```bash
 npx @cynco/accounting-skills demo          # Fava on golden ledger
@@ -10,22 +43,7 @@ npx @cynco/accounting-skills doctor        # check Python deps
 npx @cynco/accounting-skills extract ./banks --out ./bank.xlsx
 ```
 
-## 1. Install marketplace + umbrella
-
-In **Claude Code**:
-
-```text
-/plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
-/plugin install accounting-engagement@claude-for-accounting
-```
-
-Restart Claude Code.
-
-> Prefer **user scope** so the plugin can read client files outside the project folder.
-
-Optional modular install list: `bash scripts/install_all.sh`
-
-## 2. Firm cold-start (once)
+## 1. Firm cold-start (once, Claude plugins)
 
 ```text
 /accounting-engagement:cold-start-interview
@@ -33,13 +51,13 @@ Optional modular install list: `bash scripts/install_all.sh`
 
 Writes firm defaults under `~/.claude/plugins/config/claude-for-accounting/`.
 
-## 3. Throw work
+## 2. Throw work
 
 Point at a folder of bank statements / receipts:
 
 > Do the accounting for whatever is in this folder.
 
-Or:
+Or (Claude plugins):
 
 ```text
 /accounting-engagement:full-engagement-pipeline
@@ -52,7 +70,7 @@ The agent should:
 3. Classify → journals → recon → TB → YE → FS → QC  
 4. Finalise → **Beancount** → optional **Fava**
 
-## 4. Scripts (local machine)
+## 3. Scripts (local machine)
 
 ```bash
 git clone https://github.com/cynco-labs/ai-accounting-skills.git
@@ -74,19 +92,8 @@ python3 scripts/export_to_beancount.py \
 scripts/run_fava.sh /path/to/client/ledger/main.beancount
 ```
 
-## 5. Verify this repo
+## 4. Verify this repo
 
 ```bash
 bash scripts/ci_check.sh
 ```
-
-## Stuck?
-
-| Symptom | Fix |
-|---|---|
-| Command not found | Restart Claude Code after install |
-| Generic / provisional output | Run cold-start interview |
-| Balance / bank fails | Treat as blocker — fix sources, don’t invent lines |
-| No Fava | `pip install beancount fava` |
-
-Full reference: [README.md](./README.md)

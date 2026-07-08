@@ -49,3 +49,24 @@ npx --yes @cynco/accounting-skills doctor
 
 - GitHub release tag `v2.0.1` (this repo)
 - Optional: share `npx @cynco/accounting-skills demo`
+
+---
+
+## skills.sh (not npm)
+
+[skills.sh](https://skills.sh) lists **GitHub agent skills**, not npm packages.
+
+There is **no separate publish form**. Skills appear when people install:
+
+```bash
+npx skills add cynco-labs/ai-accounting-skills
+```
+
+| Item | Value |
+|---|---|
+| Directory | https://skills.sh/cynco-labs/ai-accounting-skills |
+| Source | Public repo `cynco-labs/ai-accounting-skills` with `SKILL.md` files |
+| Ranking | Anonymous install telemetry from the skills CLI |
+| Badge | `https://skills.sh/b/cynco-labs/ai-accounting-skills` |
+
+To boost ranking: share the install one-liner; installs are what surface skills on the leaderboard.

@@ -6,6 +6,14 @@ Thin Node wrapper around the Python scripts in this repo. Built for **DX** and *
 npx @cynco/accounting-skills demo
 ```
 
+> **Agent skills (SKILL.md)** install via [skills.sh](https://skills.sh/cynco-labs/ai-accounting-skills), not this package:
+>
+> ```bash
+> npx skills add cynco-labs/ai-accounting-skills
+> ```
+>
+> This npm package is the **CLI** (extract, ledger, Fava, doctor).
+
 ## Commands
 
 | Command | What it does |
@@ -37,7 +45,9 @@ fava [path] [--port 5000]
 From repo root:
 
 ```bash
-npm publish --access public
+npm publish --access public --otp=XXXXXX
 ```
 
-Package name: `@cynco/accounting-skills` · bin: `ai-accounting`
+Package name: `@cynco/accounting-skills` · bins: `accounting-skills`, `ai-accounting`, `cynco-accounting`
+
+See [PUBLISH.md](../PUBLISH.md).
