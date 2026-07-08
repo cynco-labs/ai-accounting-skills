@@ -1,0 +1,8 @@
+{
+  "name": "year-end-accounting",
+  "version": "1.0.0",
+  "description": "Year-end adjustments \u2014 depreciation, accruals, prepayments, inventory, ECL, tax provision, FX \u2014 and the adjusted trial balance.",
+  "author": {
+    "name": "Hazli Johar & Co."
+  }
+}

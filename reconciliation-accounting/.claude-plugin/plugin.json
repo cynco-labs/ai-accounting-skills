@@ -1,0 +1,8 @@
+{
+  "name": "reconciliation-accounting",
+  "version": "1.0.0",
+  "description": "Bank reconciliations and subledger ties (AR, AP, inventory, fixed assets, loans, taxes) culminating in a preliminary trial balance.",
+  "author": {
+    "name": "Hazli Johar & Co."
+  }
+}

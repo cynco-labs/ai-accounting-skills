@@ -1,0 +1,8 @@
+{
+  "name": "engagement-accounting",
+  "version": "1.0.0",
+  "description": "Firm setup, engagement intake, source-document collection, client workspaces, and the full end-to-end engagement pipeline orchestrator.",
+  "author": {
+    "name": "Hazli Johar & Co."
+  }
+}

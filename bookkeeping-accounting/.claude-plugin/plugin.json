@@ -1,0 +1,8 @@
+{
+  "name": "bookkeeping-accounting",
+  "version": "1.0.0",
+  "description": "Record sales, purchases, receipts, payments and journals; classify every transaction against the chart of accounts; produce balancing journal entries.",
+  "author": {
+    "name": "Hazli Johar & Co."
+  }
+}
