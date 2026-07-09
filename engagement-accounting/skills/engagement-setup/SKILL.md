@@ -14,8 +14,9 @@ Lock in engagement context **after** (or with) document-first discovery.
 ## Preconditions
 
 1. `shared/guardrails.md` 
-2. Firm profile if present (defaults only) 
-3. **If folder dump / unknown entity** → run `smart-intake` first, then return here to formalize 
+2. `shared/operator-lens.md` 
+3. Firm profile if present (defaults only) 
+4. **If folder dump / unknown entity** → run `smart-intake` first, then return here to formalize
 
 ## Route
 
@@ -70,7 +71,14 @@ Prefer statement date coverage + prior FS. Soft-confirm if incomplete year.
 ### 6. COA
 Entity template + optional industry overlay from payee patterns (trading vs services). Soft default; user rarely needs to choose.
 
-### 7. README + engagement_state.json
+### 7. Operator + depth on state
+
+Set **`operator`** and **`engagement_type`** (`shared/operator-lens.md`):
+
+- Infer from language + firm profile, or one soft-ask if missing  
+- Default depth for thin setup: `bookkeeping_only` unless user asked year-end / tax  
+
+### 8. README + engagement_state.json
 
 Per `references/engagement_state.schema.json` and `shared/agent-runtime.md`.
 
@@ -81,10 +89,14 @@ Include:
 | Field | Value | Confidence | Evidence |
 ```
 
-### 8. Engagement card
+Required on state: `operator`, `engagement_type` (and `classify_depth` when known).
+
+### 9. Engagement card
 
 ```markdown
 # Engagement: [Legal name]
+- Operator: owner | bookkeeper | firm
+- Depth: bookkeeping_only | year_end | …
 - Entity / framework / tax form
 - FY / coverage limitations
 - Status: ready | provisional | blocked
@@ -94,9 +106,9 @@ Include:
 ## Question budget
 
 After smart-intake, setup should usually ask **zero** new questions. 
-If something critical is still open, ≤2 questions total.
+If something critical is still open, ≤2 questions total (operator counts if still unknown).
 
 ## Completion
 
-**Done when:** workspace exists, `engagement_state.json` valid against schema, entity/period/framework recorded (may be provisional).
+**Done when:** workspace exists, `engagement_state.json` valid against schema, entity/period/framework/`operator`/depth recorded (may be provisional).
 

@@ -1,24 +1,29 @@
 # End-to-end flow
 
-**Core rules:** `shared/kernel-contract.md` · **six main jobs:** `shared/skill-collapse-map.md` · **plain English:** `CONTEXT.md`.
+**Core rules:** `shared/kernel-contract.md` · **six main jobs:** `shared/skill-collapse-map.md` · **operator lens:** `shared/operator-lens.md` · **plain English:** `CONTEXT.md`.
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
-│  USER FOLDER (banks / receipts / “do the accounts”)         │
+│  INPUTS ANYWHERE (cwd · @paths · messy dump · multi-client) │
 └────────────────────────────┬────────────────────────────────┘
                              ▼
-┌──────────────────┐   do the books (smart intake, ≤3 questions)
-│ engagement state │◄── engagement_state.json on disk
+┌──────────────────┐   SHELF FIRST (shared/shelf-first.md)
+│ clients/<slug>/  │◄── discover → cluster → place → register
+└────────┬─────────┘
+         ▼
+┌──────────────────┐   /do-books — smart intake, ≤3 questions
+│ engagement state │◄── operator + depth + stage on disk
 └────────┬─────────┘
          ▼
 ┌──────────────────────────────────────────┐
+│ SAME ENGINE (from the shelf only)        │
 │ EXTRACT   extract_bank.py                │
 │ CLASSIFY  classify_transactions.py       │
 │ POST      post_journals.py               │
 │ BUILD TB  roll_tb.py   ◄─ never hand-type│
 │ RECON     bank RM0 (must pass)           │
 │ YE        journals_ye.json → adjusted TB │
-│ PRESENT   FS / notes from adjusted TB    │
+│ PRESENT   pack shaped by depth + lens    │
 │ PROVE     close_engagement.py            │
 └────────────────────┬─────────────────────┘
                      ▼

@@ -5,15 +5,16 @@ disable-model-invocation: true
 ---
 # /do-books
 
-Short name for the full engagement pipeline.
+Throw-work entry. Prefer natural language: **“do the accounting.”**
 
 ## Do this
 
-1. Load and execute **`full-engagement-pipeline`** end-to-end for this turn’s goal  
+1. Load **`shared/runtime-brief.md`** (one screen).  
+2. Load and execute **`full-engagement-pipeline`**  
    (`engagement-accounting/skills/full-engagement-pipeline/SKILL.md` or umbrella copy).  
-2. Follow smart-intake when context is thin; resume from `engagement_state.json` when present.  
-3. One stage at a time; write disk artifacts; status board after advances.
+3. Resume from `engagement_state.json` when present — skip re-intake.  
+4. **One intake** then books; stop at depth-scoped Done (books-only ≠ year-end pack).
 
-**Done when:** the pipeline skill’s Done when is met (or clean stop with state + blockers).
+**Done when:** pipeline Done when for this job’s `engagement_type`.
 
 See `shared/slash-surface.md`.

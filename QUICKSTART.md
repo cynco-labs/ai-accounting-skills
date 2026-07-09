@@ -1,104 +1,76 @@
 # Quick Start
 
-**Any major agent · one install · throw a folder at it.**
+**Install once · throw a folder · say “do the accounting.”**
+
+Works for owners, bookkeepers, and firms. Docs can be messy — the agent shelves them, then books.
 
 Works with **Claude Code · Codex · Cursor · Grok/xAI · GLM · Kimi** and [40+ agents](https://github.com/vercel-labs/skills#supported-agents) via skills.sh.
 
 ---
 
-## 1 · Skills (recommended)
+## 1 · Install
 
 ```bash
 npx skills add cynco-labs/ai-accounting-skills
 ```
 
-```bash
-npx skills add cynco-labs/ai-accounting-skills --list
-npx skills add cynco-labs/ai-accounting-skills --all -g
-npx skills add cynco-labs/ai-accounting-skills \
-  --skill full-engagement-pipeline \
-  --skill extract-bank-statement \
-  --skill smart-intake \
-  --skill export-beancount \
-  -g -y
-```
-
-[skills.sh/cynco-labs/ai-accounting-skills](https://skills.sh/cynco-labs/ai-accounting-skills)
+That’s the front door. [skills.sh/cynco-labs/ai-accounting-skills](https://skills.sh/cynco-labs/ai-accounting-skills)
 
 ---
 
-## 2 · CLI tools
+## 2 · Throw work
+
+Point the agent at a folder (or `@` files) and say:
+
+> Do the accounting.
+
+**What happens:** one intake (organize → register → soft-confirm) → extract → classify → post → recon → trial balance.  
+**Books-only** stops there unless you ask for year-end / FS / tax. Prove with:
 
 ```bash
-npx @cynco/accounting-skills demo
-npx @cynco/accounting-skills close              # end-to-end check on golden fixture
-npx @cynco/accounting-skills doctor
-npx @cynco/accounting-skills extract ./banks --out ./bank.xlsx --json ./txns.json
-npx @cynco/accounting-skills classify ./txns.json
-npx @cynco/accounting-skills post ./clients/acme --opening-from-bank
-npx @cynco/accounting-skills tb ./clients/acme --both
-npx @cynco/accounting-skills ledger ./clients/acme --fava
-npx @cynco/accounting-skills firm --init "Your Firm"
+npx @cynco/accounting-skills score ./clients/yours   # depth scorecard
+npx @cynco/accounting-skills close ./clients/yours   # full prove for that depth
 ```
 
-| Command | Result |
-|:--------|:-------|
-| `demo` | Golden ledger in Fava |
-| `close` | Validate · must-pass checks · proof card |
-| `extract` | PDF/CSV → Excel (Maybank · CIMB CSV · generic) |
-| `classify` | COA codes + review queue |
-| `post` | Classified lines → balancing journals |
-| `tb` | Journals → TB (never type by hand) |
-| `ledger` | Journals → Beancount (+ Fava) |
-| `firm` | Multi-agent firm profile |
-| `doctor` | Deps check |
-| `check` | Validate / CI |
-
-Agent recipes: [docs/agents/](./docs/agents/)
+Optional control: `/do-books` · `/extract` · `/classify` · `/post` · `/present` · `/prove`
 
 ---
 
-## 3 · Claude Code plugins (optional)
+## 3 · CLI (agent tools — optional for you)
+
+```bash
+npx @cynco/accounting-skills demo          # golden sample + Fava
+npx @cynco/accounting-skills doctor        # deps check
+npx @cynco/accounting-skills extract ./banks --json ./txns.json
+npx @cynco/accounting-skills close ./clients/acme
+```
+
+Agents should run these **for** you. You don’t need the full command list to start.
+
+---
+
+## 4 · Claude Code plugins (optional)
 
 ```text
 /plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
 /plugin install accounting-engagement@claude-for-accounting
 ```
 
+Then: “do the accounting” or `/do-books`  
+(Plugin form: `/accounting-engagement:do-books`.)
+
+**Firm letterhead** (practices only, when needed):
+
 ```text
 /accounting-engagement:cold-start-interview
 ```
 
-Prefer **user scope** so the agent can read client files outside the project.
+Owners doing their own books can skip firm setup.
 
 ---
 
-## 4 · Throw work
+## 5 · More
 
-> Do the accounting for whatever is in this folder.
-
-Pipeline: **smart-intake → extract → classify → recon → TB → YE → FS → QC → Beancount → Fava**
-
----
-
-## 5 · Local scripts
-
-```bash
-git clone https://github.com/cynco-labs/ai-accounting-skills.git
-cd ai-accounting-skills
-pip install -r requirements.txt
-
-python3 scripts/extract_maybank_islamic_pdf.py \
-  --input /path/to/statements \
-  --output ./bank.xlsx \
-  --also-json ./transactions.json \
-  --fail-on-error
-
-python3 scripts/export_to_beancount.py \
-  --client-dir /path/to/client \
-  --output /path/to/client/ledger/main.beancount \
-  --bean-check
-
-scripts/run_fava.sh /path/to/client/ledger/main.beancount
-bash scripts/ci_check.sh
-```
+- Agent recipes: [docs/agents/](./docs/agents/)  
+- Runtime rules: [`shared/runtime-brief.md`](./shared/runtime-brief.md)  
+- Full README: [README.md](./README.md)

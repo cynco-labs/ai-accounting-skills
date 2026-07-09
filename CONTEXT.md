@@ -2,9 +2,8 @@
 
 Short glossary for humans and agents. Prefer these words in skills, tickets, and chat.
 
-Mechanics detail: `shared/kernel-contract.md` (file name is historical — content is the **core rules**).  
-Six main jobs: `shared/skill-collapse-map.md`.  
-How to write skills: `shared/skill-craft.md`.
+**Throw-work first read:** `shared/runtime-brief.md` (one screen).  
+Mechanics: `shared/kernel-contract.md` · six jobs: `shared/skill-collapse-map.md` · shelf: `shared/shelf-first.md` · craft: `shared/skill-craft.md`.
 
 ---
 
@@ -14,6 +13,16 @@ How to write skills: `shared/skill-craft.md`.
 One client + one period (or financial year) we are working on. Lives in a folder with `engagement_state.json`.  
 _Also ok:_ engagement (firms already use this).  
 _Avoid:_ “kernel run”, “pipeline invocation”
+
+**Shelf (the papers)**  
+Standard client folder layout under `clients/<slug>/` with sources sorted (`source/bank`, …) and a register.  
+Docs may arrive from cwd, Desktop, or many paths — **organize first**, then extract.  
+Doctrine: `shared/shelf-first.md`.  
+_Avoid:_ booking from a random pile with no client folder
+
+**Job map**  
+When a dump has more than one company (or year), the short table of entity · period · docs · confidence before opening a shelf.  
+_Avoid:_ mixing two companies into one set of workpapers
 
 **Six main jobs**  
 The product in six plain steps — also the **short slash commands** users type:
@@ -27,8 +36,20 @@ The product in six plain steps — also the **short slash commands** users type:
 | **Present** | `/present` | Financial statements, notes, Excel, tax schedules |
 | **Prove** | `/prove` | QC, lock, export the official ledger |
 
-Menu + router: `shared/slash-surface.md` · `/ask-accounting`  
-Long skill names still exist for the model; short ones are thin aliases.
+Front door: **“do the accounting”** or `/do-books`. Optional menu: `/ask-accounting` (if lost).  
+Menu design: `shared/slash-surface.md`. Long skill names still exist for the model.
+
+**Operator (who is driving)**  
+Same engine for everyone. Stored as `operator` on `engagement_state.json`:
+
+| Value | Meaning |
+|---|---|
+| **owner** | Doing their own books |
+| **bookkeeper** | Bookkeeper for this entity |
+| **firm** | Practice staff on a client job |
+
+**Depth** is separate: `engagement_type` + `classify_depth` (how far we go).  
+Doctrine: `shared/operator-lens.md`. **Do not** split into business vs firm slash products.
 
 **Core tools / scripts**  
 The programs that do the math the same way every time: extract → classify → post → build TB → close / export.  

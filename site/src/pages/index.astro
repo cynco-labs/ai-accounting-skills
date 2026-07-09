@@ -1,0 +1,158 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
+import InstallTabs from "../components/InstallTabs.astro"
+import FaqList from "../components/FaqList.astro"
+import Icon from "../components/Icon.astro"
+import AgentLogo from "../components/AgentLogo.astro"
+import { site, pillars, pipeline, agents } from "../data/site"
+
+const flow = ["Your files", "Organized books", "Balanced TB", "Optional year-end"]
+---
+
+<BaseLayout>
+  <main data-page="stats" data-theme="system">
+    <Header />
+
+    <div data-component="container">
+      <div data-component="content">
+        <!--
+          Hero hierarchy (document order = visual order):
+          1 meta · 2 title · 3 copy · 4 flow · 5 install · 6 secondary link
+        -->
+        <section data-section="hero" id="overview">
+          <div data-slot="hero-canvas">
+            <p data-slot="hero-meta">
+              <b>{site.version}</b>
+              <span data-slot="hero-meta-separator">·</span>
+              <span>Open source</span>
+              <span data-slot="hero-meta-separator">·</span>
+              <span>MIT</span>
+            </p>
+
+            <h1>
+              <a data-slot="heading-link" href="#overview">AI Accounting Skills</a>
+            </h1>
+
+            <p data-slot="hero-copy">
+              Drop a folder of bank statements. Your coding agent books the months you have — with every figure tied to a source. No invented numbers.
+            </p>
+
+            <div data-component="flow" aria-label="What you get">
+              {
+                flow.map((step, i) => (
+                  <>
+                    {i > 0 && (
+                      <span data-slot="flow-arrow" aria-hidden="true">
+                        <Icon name="arrow" size={16} />
+                      </span>
+                    )}
+                    <span data-slot="flow-step">{step}</span>
+                  </>
+                ))
+              }
+            </div>
+
+            <!-- Install lives on home -->
+            <div data-slot="hero-install" id="install">
+              <p data-slot="hero-install-label">Install, then say “do the accounting”</p>
+              <InstallTabs />
+              <p data-slot="install-note">
+                See a finished sample first:
+                <code>npx @cynco/accounting-skills demo</code>
+              </p>
+            </div>
+
+            <p data-slot="hero-secondary">
+              <a href={site.github} target="_blank" rel="noreferrer">
+                <img src="/brands/github.svg" alt="" width="14" height="14" />
+                View source on GitHub
+              </a>
+            </p>
+          </div>
+        </section>
+
+        <!-- Agents -->
+        <section data-section="agents" id="agents">
+          <p data-slot="section-kicker">Works with your agent</p>
+          <div data-component="logo-wall">
+            {agents.map((a) => <AgentLogo name={a.name} logo={a.logo} href={a.href} />)}
+            <span data-component="agent-logo" data-slot="more">+40</span>
+          </div>
+        </section>
+
+        <!-- How -->
+        <section id="how" data-section="how">
+          <p data-slot="section-title">
+            <strong>How it works.</strong>
+            <span>Organize, book, close only if you need it.</span>
+          </p>
+          <div data-component="pillar-grid">
+            {
+              pillars.map((p) => (
+                <article data-component="pillar">
+                  <div data-slot="pillar-icon">
+                    <Icon name={p.icon} size={22} />
+                  </div>
+                  <strong>{p.title}</strong>
+                  <p>{p.body}</p>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Six jobs -->
+        <section id="pipeline" data-section="pipeline">
+          <p data-slot="section-title">
+            <strong>Six jobs.</strong>
+            <span>What you can ask for — or just say “do the accounting.”</span>
+          </p>
+          <div data-component="pipe-strip" role="list">
+            {
+              pipeline.map((s) => (
+                <div data-component="pipe-node" role="listitem">
+                  <span data-slot="pipe-n">{s.n}</span>
+                  <strong>{s.title}</strong>
+                  <em>{s.hint}</em>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Trust -->
+        <section data-section="trust">
+          <div data-component="trust-grid">
+            <div data-component="trust-cell">
+              <Icon name="check" size={18} />
+              <div>
+                <strong>Every figure has a source</strong>
+                <p>Bank page, prior accounts, or a formula — never a guess</p>
+              </div>
+            </div>
+            <div data-component="trust-cell">
+              <Icon name="check" size={18} />
+              <div>
+                <strong>Your branding, when you want it</strong>
+                <p>Firm name and letterhead come from your profile — not hard-coded</p>
+              </div>
+            </div>
+            <div data-component="trust-cell">
+              <Icon name="check" size={18} />
+              <div>
+                <strong>Stays on your machine</strong>
+                <p>Files and books live in your folders</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <FaqList />
+      </div>
+
+      <Footer />
+    </div>
+  </main>
+</BaseLayout>

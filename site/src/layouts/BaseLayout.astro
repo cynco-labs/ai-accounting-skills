@@ -1,0 +1,53 @@
+---
+import "@fontsource/ibm-plex-mono/400.css"
+import "@fontsource/ibm-plex-mono/500.css"
+import "@fontsource/ibm-plex-mono/600.css"
+import "@fontsource/ibm-plex-mono/700.css"
+import "../styles/stats.css"
+import { site } from "../data/site"
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const { title = site.title, description = site.description } = Astro.props
+---
+
+<!doctype html>
+<html lang="en" data-stats-theme="system">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={site.name} />
+    <meta property="og:description" content={site.ogDescription} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      ;(function () {
+        var preference = "system"
+        try {
+          var stored = localStorage.getItem("opencode:stats-theme")
+          if (stored === "dark" || stored === "light" || stored === "system") preference = stored
+        } catch (_) {}
+        document.documentElement.dataset.statsTheme = preference
+        if (preference === "system") document.documentElement.style.removeProperty("color-scheme")
+        else document.documentElement.style.setProperty("color-scheme", preference)
+      })()
+    </script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      import "../scripts/landing.ts"
+    </script>
+  </body>
+</html>

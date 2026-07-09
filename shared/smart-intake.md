@@ -8,6 +8,8 @@ They say:
 
 > “Here are some bank statements and receipts in this folder. Please do the accounting.”
 
+Or they `cd` somewhere messy, or `@`-mention paths on Desktop/Downloads. Docs may be **everywhere**.
+
 They may not know (or care to type):
 
 - legal entity name  
@@ -16,13 +18,22 @@ They may not know (or care to type):
 - “MPERS vs MFRS”  
 - what a trial balance is  
 
-**That context is our problem.** The agent’s job is to **read the folder first**, form hypotheses, and only ask what cannot be inferred or verified.
+**That context is our problem.** Order of work:
+
+1. **Shelf the papers** (`shared/shelf-first.md`) — discover → cluster by entity/period → standard folders → register  
+2. **Read** shelved sources → hypotheses  
+3. **Ask** only what cannot be inferred  
+4. **Extract** only from the shelf  
+
+Never book from a random Desktop pile with no client folder.
 
 ## Seamlessness scorecard (design target)
 
 | Dimension | Target |
 |---|---|
-| Time-to-first-useful-work | Extract banks/receipts **before** any long interview |
+| Time-to-first-useful-work | **Shelf + register** first; then extract banks **before** any long interview |
+| Messy / multi-path inputs | Accept cwd + user paths; **never** require perfect folders up front |
+| Multi-company dumps | Job map → one shelf per entity; don’t mix |
 | Questions in first turn | **0–3**, never a blank questionnaire |
 | Questions that restate the docs | **Zero** (if Maybank → do not ask “which bank?”) |
 | Blocking asks | Only true blockers (ambiguous entity identity). Partial months are **not** a stop. |
@@ -95,17 +106,40 @@ Full-year MPERS pack is an **upgrade**, not the default for a partial dump.
 - Chart of accounts design  
 - Tax form letter if entity type still open — derive after entity  
 
+## Operator + depth (same engine for everyone)
+
+Load **`shared/operator-lens.md`**. Write both fields on `engagement_state.json` during intake:
+
+| Field | What it is | Default on thin folder dump |
+|---|---|---|
+| **`operator`** | Who is driving: `owner` · `bookkeeper` · `firm` | Infer; else one soft-ask |
+| **`engagement_type`** | How deep: books → year-end → tax | `bookkeeping_only` for period on disk |
+
+**Infer operator without asking when strong:**
+
+| Signal | `operator` |
+|---|---|
+| “my books / my company / my business” · personal-name account · no firm profile | `owner` |
+| “I’m the bookkeeper for …” | `bookkeeper` |
+| Real firm profile (not PLACEHOLDER) + “the client” / multi-client language | `firm` |
+| Firm profile **Default operator:** set | use that |
+
+Do **not** open with a firm cold-start when the dump looks personal. Do **not** invent separate business vs firm slash commands.
+
 ## First-turn protocol (mandatory for folder dumps)
 
 ```
-1. List files (names, types, dates if in filename)
-2. Open banks first (highest signal), then receipts/invoices
-3. Build Hypothesis Card (below)
-4. Start extraction into transactions.json for what exists
-5. Ask at most 3 Tier-C questions via **structured user-question tool** (see `shared/user-questions.md`), batched
-6. Write engagement_state with inferences + open questions; persist tool answers when returned
-7. Continue pipeline on non-blocked work while waiting
-   (e.g. extract & classify clear items; park ambiguous payees)
+1. DISCOVER — cwd + user-mentioned paths (shared/shelf-first.md); do not scan whole home
+2. CLUSTER — entity + period job map; if multi-company, soft-confirm active job
+3. SHELF — clients/<slug>/ layout; copy or pointer sources into source/<kind>/
+4. REGISTER — source/register.md + coverage matrix
+5. Peek banks first (headers), then receipts/invoices
+6. Build Hypothesis Card (below) — include operator + depth guess
+7. Resolve operator (infer → firm-profile default → one ask if needed)
+8. Start extraction **from the shelf** into workpapers/transactions.json
+9. Ask at most 3 Tier-C questions via **structured user-question tool** (see `shared/user-questions.md`), batched
+10. Write engagement_state with operator, engagement_type, inferences + open questions
+11. Continue pipeline on non-blocked work while waiting
 ```
 
 **Never** block the entire job on a non-blocking unknown (e.g. industry label).  
@@ -117,13 +151,14 @@ Full-year MPERS pack is an **upgrade**, not the default for a partial dump.
 ## What I can already see
 | Field | Best guess | Confidence | Evidence |
 |---|---|---|---|
+| Operator | owner | medium | “my books” + no firm profile |
 | Legal name | Acme Sdn. Bhd. | high | Maybank account title |
 | Country / pack | Malaysia | high | Maybank + RM |
 | Currency | MYR | high | Statement |
 | Period covered | 2025-03 → 2025-11 | medium | Statement dates (not full year) |
 | Entity type | Sdn Bhd | high | “Sdn Bhd” in account title |
 | Framework | MPERS | medium | Private company default (MY) |
-| Output wanted | Year-end pack | low | You said “do the accounting” — confirm |
+| Depth | bookkeeping_only | medium | Folder dump default |
 
 ## What I’m doing next (no need to answer)
 - Extract bank lines → classify obvious patterns
@@ -162,11 +197,11 @@ Not allowed without identity clarity:
 
 | | Firm cold-start | Client smart intake |
 |---|---|---|
-| When | First install of plugin | Every new folder dump |
-| About | Your firm defaults | This client’s books |
+| When | First install **and** operator will be `firm` (or user asks) | Every new folder dump |
+| About | Practice defaults + **Default operator** | This entity’s books + **operator** + depth |
 | Skip if | firm-profile exists | inferences cover Tier A/B |
 
-Do not run a full firm interview when the user only dropped a client folder. Use firm defaults quietly; client intake is separate.
+Do not run a full firm interview when the user only dropped a personal/client folder. Use firm defaults quietly when present; intake still sets **this job’s** `operator`.
 
 ## Failure modes to avoid
 
@@ -175,3 +210,6 @@ Do not run a full firm interview when the user only dropped a client folder. Use
 3. **Stall** — refusing to extract until every field is filled  
 4. **Silent wrong entity** — two names in folder; picked one without confirming  
 5. **Scope creep questions** — full MPERS checklist before one bank is booked  
+6. **Skip the shelf** — extract/classify from Desktop with no `clients/<slug>/`  
+7. **Mix companies** — one transactions.json for two legal names  
+8. **Home-drive crawl** — scanning directories the user never named 

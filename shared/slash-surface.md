@@ -12,8 +12,10 @@ Keep **implementation** in one canonical skill per job. Aliases never copy doctr
 3. **User vs model**  
    - **User-invoked** short names (`disable-model-invocation: true`) → what humans type  
    - **Model-invoked** long names (rich `description`) → auto-routing from natural language  
-4. **One router** — `ask-accounting` maps “what do I want?” → which slash to run  
-5. **No sprawl** — do not add a short slash unless it is a main job, the router, or a rare high-value branch already on the collapse map  
+4. **Front door** — natural language “do the accounting” or `/do-books`. `/ask-accounting` is **optional** (lost users only), not the default.  
+5. **No sprawl** — do not add a short slash unless it is a main job, the optional router, or a rare high-value branch already on the collapse map  
+6. **One product, two axes** — `operator` (owner | bookkeeper | firm) + depth (`engagement_type` / `classify_depth`). Same slashes for everyone. See `shared/operator-lens.md`. **Never** add `/accounting4business` vs `/accounting4firm`.  
+7. **Runtime brief** — agents load `shared/runtime-brief.md` first, not a pile of doctrine files.
 
 ---
 
@@ -34,10 +36,10 @@ Keep **implementation** in one canonical skill per job. Aliases never copy doctr
 
 | Slash / skill name | Meaning | Canonical body |
 |---|---|---|
-| **ask-accounting** | “Which command do I need?” | Router only |
 | **resume** | Continue from `engagement_state.json` | `resume-engagement` |
 | **revenue** | Revenue recognition branch | `revenue-recognition` → classify |
 | **capex** | Capitalise vs expense branch | `capitalise-or-expense` → classify |
+| **ask-accounting** | Optional menu if lost | Router only — **not** the default entry |
 
 ### How they appear by host
 
@@ -78,7 +80,7 @@ If the user types `/ask-accounting`, interview once and recommend **one** short 
 ## Scalability
 
 ```text
-Users remember:     6 verbs + ask-accounting + a few branches
+Users remember:     “do the accounting” + optional 6 verbs
 Model discovers:    long skill descriptions (auto)
 Maintainers edit:   one canonical body per job
 Country packs:      data under references/jurisdictions/ — not new slashes
@@ -87,4 +89,5 @@ Country packs:      data under references/jurisdictions/ — not new slashes
 New country ≠ new slash.  
 New bank adapter ≠ new slash.  
 New disclosure note template ≠ new slash.  
+New audience (owner vs firm) ≠ new slash — set `operator` on state / firm profile.  
 New **main job** = update collapse map first, then add a short alias.

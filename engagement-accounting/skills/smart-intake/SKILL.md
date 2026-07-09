@@ -16,12 +16,25 @@ The user is not responsible for knowing MPERS, FYE, or form codes.
 
 ## Load first
 
-1. `shared/smart-intake.md` (mandatory doctrine) 
-2. `shared/user-questions.md` (structured ask tool — mandatory for Tier B/C) 
-3. `shared/guardrails.md` 
-4. `shared/agent-runtime.md` 
-5. Firm profile **if present** (defaults only — do not re-interview the firm)
+1. `shared/runtime-brief.md` (one screen — default)  
+2. Firm profile **if present** (defaults only — do not re-interview the firm)  
+3. On demand: `shared/shelf-first.md` · `shared/smart-intake.md` · `shared/user-questions.md` · `shared/operator-lens.md`  
 
+When called **from** `full-engagement-pipeline`, you are the **intake half** of one pass — do not re-run setup/source as separate ceremonies after this.
+
+
+## Operator + depth (write on state)
+
+Resolve **`operator`** before or with soft-confirm (`shared/operator-lens.md`):
+
+| Signal | `operator` |
+|---|---|
+| “my books / my company” · personal account · no firm profile | `owner` |
+| “bookkeeper for …” | `bookkeeper` |
+| Firm profile real + “the client” | `firm` |
+| Unclear | one structured ask (counts toward ≤3) |
+
+Default **`engagement_type`** on folder dump: `bookkeeping_only` (period on disk).
 
 ## Classify depth (after extract)
 
@@ -57,20 +70,20 @@ If `engagement_state.json` already exists → use `resume-engagement` instead.
 Do not open with “Compilation or audit or review?” 
 Do not recommend “bring 12 months before I start.”
 
-### Step 1 — Inventory the folder (no questions)
+### Step 1 — Shelf the papers (no questionnaire)
 
-List files with type guess:
+Follow `shared/shelf-first.md` + `client-workspace`:
 
-- bank statement / export 
-- receipt / invoice 
-- payslip 
-- SSM / registration 
-- prior FS / tax 
-- unknown 
+1. **Discover** — cwd + every path the user named (not whole home)  
+2. **Inventory** — kind / period / entity guess  
+3. **Job map** — if multi-company, soft-confirm which job **now**  
+4. **Scaffold** — `clients/<slug>/` standard layout  
+5. **Place** — copy (default) or pointer into `source/bank|sales|…`  
+6. **Register** — `source/register.md` + coverage matrix  
 
-Write draft `source/register.md`.
+Do **not** extract until the active job has a shelf + register (mini-shelf OK for one clear bank PDF).
 
-### Step 2 — Read high-signal docs first
+### Step 2 — Read high-signal docs first (from the shelf)
 
 Order:
 
@@ -78,7 +91,7 @@ Order:
 2. Invoices/receipts — supplier names, SST, amounts 
 3. Any registration / prior FS if present 
 
-Start `extract-bank-statement` / CSV normalize **in the same session** once banks are identified. Do not wait for the questionnaire.
+Start `extract-bank-statement` / CSV normalize **from shelved paths** in the same session once banks are identified. Do not wait for a long questionnaire.
 
 ### Step 3 — Build Hypothesis Card
 
@@ -122,6 +135,9 @@ Create workspace + `engagement_state.json`:
  "schema_version": "0.0.1",
  "client_slug": "<from-name-or-folder>",
  "legal_name": "<best guess or UNKNOWN — CONFIRM>",
+ "operator": "<owner|bookkeeper|firm>",
+ "engagement_type": "bookkeeping_only",
+ "classify_depth": "bookkeeping",
  "current_stage": "source_documents",
  "status": "waiting_on_user",
  "provisional": true,
@@ -165,18 +181,22 @@ Do not dump the whole entity matrix.
 
 ## Anti-patterns (do not do)
 
-1. Firm cold-start interview when they only dropped client files 
-2. Asking for framework/tax form before entity type 
-3. Stopping all extraction until every field is filled 
-4. Inventing company registration numbers or directors 
-5. Ten classification questions one-by-one (batch by payee) 
-6. **Prose-only Tier C asks** when a structured question tool exists 
-7. Writing `queries.md` and treating that as “user was asked” without a tool call
+1. Firm cold-start interview when they only dropped personal/client files 
+2. Assuming `operator: firm` because the product is engagement-shaped 
+3. Asking for framework/tax form before entity type 
+4. Stopping all extraction until every field is filled 
+5. Inventing company registration numbers or directors 
+6. Ten classification questions one-by-one (batch by payee) 
+7. **Prose-only Tier C asks** when a structured question tool exists 
+8. Writing `queries.md` and treating that as “user was asked” without a tool call
+9. Splitting work into business vs firm slash products
+10. Extracting from Desktop/Downloads with no `clients/<slug>/source/` shelf
+11. Mixing two companies into one workpapers set
 
 
 ## Completion
 
-**Done when:** Hypothesis Card written, ≤3 asks issued if needed, extract started for banks on disk, engagement state provisional or confirmed.
+**Done when:** papers shelved + register written, Hypothesis Card written, ≤3 asks if needed, extract started from shelf, engagement state provisional or confirmed.
 
 ## Outputs
 

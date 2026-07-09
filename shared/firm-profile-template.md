@@ -9,6 +9,8 @@
 **Professional registration:** [PLACEHOLDER]  
 **Contact:** [PLACEHOLDER]  
 **Practice setting:** [PLACEHOLDER — sole practitioner | small firm | mid/large firm | in-house]  
+**Default operator:** [PLACEHOLDER — owner | bookkeeper | firm]  
+*(Who usually drives jobs in this install. Per-job override: `engagement_state.operator`. See `shared/operator-lens.md`.)*  
 
 **Jurisdiction pack:** [PLACEHOLDER — e.g. malaysia]  
 **Default framework:** [PLACEHOLDER — e.g. MPERS]  

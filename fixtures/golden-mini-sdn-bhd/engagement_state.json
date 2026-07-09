@@ -9,7 +9,9 @@
   "jurisdiction_pack": "malaysia",
   "currency": "MYR",
   "industry_overlay": "services",
+  "operator": "firm",
   "engagement_type": "year_end",
+  "classify_depth": "standards_aware",
   "current_stage": "quality_review",
   "status": "in_progress",
   "stages_completed": [

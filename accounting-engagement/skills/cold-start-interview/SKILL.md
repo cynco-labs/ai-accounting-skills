@@ -27,9 +27,10 @@ Scaffold: `shared/firm-profile-template.md`.
 
 ## Preamble (show first)
 
-> **claude-for-accounting** helps accountants run engagements from source documents through financial statements, QC, and tax handoff. 
-> **Every output is a draft for professional review** — not signed FS, not an audit opinion, not tax advice. 
-> **2 minutes** captures firm identity, jurisdiction pack, and role. **15 minutes** adds policies, escalation, and house style.
+> **AI Accounting Skills** helps practices (and bookkeepers) run client jobs from source documents through financial statements, QC, and tax handoff.  
+> Owners doing **their own** books usually skip this interview — they just `/do-books` on a folder (`operator: owner`).  
+> **Every output is a draft for professional review** — not signed FS, not an audit opinion, not tax advice.  
+> **2 minutes** captures firm identity, jurisdiction pack, default operator, and role. **15 minutes** adds policies, escalation, and house style.
 
 Offer **quick** or **full**.
 
@@ -39,6 +40,7 @@ Offer **quick** or **full**.
 - Firm legal name, professional registration, contact
 - Who uses this day-to-day (partner / manager / associate / bookkeeper)
 - Who signs off final FS and tax
+- **Default operator:** almost always `firm` for this install (owners skip cold-start)
 - **Jurisdiction pack** (`malaysia` shipped; others via `/accounting-builder-hub:jurisdiction-scaffold`)
 - Reporting currency
 
@@ -67,7 +69,13 @@ Ask for 1–2 sample completed working papers or signed FS. Keep seeds **local**
 
 ## Write firm-profile.md
 
-Follow `shared/firm-profile-template.md`. Include jurisdiction pack id, default framework, currency, sign-off rules, and `Updated: [date]`.
+Follow `shared/firm-profile-template.md`. Include:
+
+- jurisdiction pack id, default framework, currency, sign-off rules  
+- **`Default operator: firm`** (or `bookkeeper` if in-house practice)  
+- `Updated: [date]`  
+
+Per-job `engagement_state.operator` can still override. See `shared/operator-lens.md`.
 
 Also write engagement-accounting CLAUDE.md from `${CLAUDE_PLUGIN_ROOT}/CLAUDE.md`.
 
@@ -79,8 +87,8 @@ Probe connectors per `CONNECTORS.md`. Report ✓ only when a live tool call succ
 
 Summarise what was written. Propose:
 
-1. `/engagement-accounting:engagement-setup` for a live client 
-2. Or `/engagement-accounting:full-engagement-pipeline` when documents are ready 
+1. Point at a client folder and say **“do the accounting”** (or `/do-books`)  
+2. Do **not** send owners through firm cold-start again
 
 ## Tone
 

@@ -4,9 +4,13 @@ How an AI agent should use this marketplace when a human **throws work at it** w
 
 ## Kernel first
 
-Read **`shared/kernel-contract.md`** and **`shared/skill-collapse-map.md`**.  
+**Throw-work:** load **`shared/runtime-brief.md`** first (one screen).  
+Open kernel / shelf / operator / guardrails **only when that step needs them**.
+
 Six intents: **do-books · extract · classify · post · present · prove**.  
-Trial balances only via `scripts/roll_tb.py` / `npx @cynco/accounting-skills tb`.
+Before extract: **one intake** (shelf + register + state).  
+Two axes: **`operator`** + **depth**. Done is **depth-scoped** (books-only ≠ year-end).  
+TB only via `scripts/roll_tb.py` / `npx @cynco/accounting-skills tb`.
 
 ## Reality check
 
@@ -22,15 +26,15 @@ They will **not** say `/year-end-accounting:year-end-adjustments`.
 So the default path is:
 
 ```
-User dump (files + intent)
-    → smart-intake (read docs first; infer; ≤3 smart questions)
-    → load / update engagement state
-    → extract & book what is unblocked (parallel to waiting on user)
-    → full pipeline stages
-    → stop on true blockers only
+User dump (cwd and/or scattered paths + intent)
+    → runtime-brief
+    → ONE intake (shelf + register + state + ≤3 asks)
+    → books (extract → classify → post → recon → TB)
+    → deeper stages only if engagement_type needs them
+    → stop on true blockers; depth-scoped done
 ```
 
-Client context is **our** problem to recover from documents. See `shared/smart-intake.md`.
+Client context is **our** problem. Detail: `shared/runtime-brief.md` · `shared/shelf-first.md` · `shared/smart-intake.md`.
 
 ## Install surface
 
@@ -83,9 +87,11 @@ Schema: `references/engagement_state.schema.json`
 Rules:
 
 - Read state **before** doing work
+- Ensure **`operator`** and **`engagement_type`** are set (resolve via `shared/operator-lens.md` if missing)
 - Update `current_stage`, `status`, `artifacts`, `blockers`, `updated_at` after each stage
 - Resume from `current_stage` — do not restart the pipeline silently
 - If state says `blocked`, fix the blocker or ask the user; do not skip ahead
+- Adapt **copy and deliverables** to `operator`; never change script math
 
 ## Stage artifact contracts
 

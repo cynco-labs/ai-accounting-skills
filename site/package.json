@@ -1,0 +1,27 @@
+{
+  "name": "ai-accounting-skills-site",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Landing page for AI Accounting Skills — Astro + Vite on Cloudflare",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "cf:dev": "astro build && wrangler pages dev ./dist",
+    "deploy": "astro build && wrangler pages deploy ./dist --project-name=ai-accounting-skills",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "astro": "^5.12.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.107.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

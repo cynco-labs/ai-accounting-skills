@@ -1,0 +1,45 @@
+---
+import { installMethods } from "../data/site"
+import CopyIcon from "./CopyIcon.astro"
+
+const defaultId = installMethods[0].id
+---
+
+<div data-component="install-panel" data-component-tabs data-active={defaultId}>
+  <div data-slot="tablist" role="tablist" aria-label="Install method">
+    {
+      installMethods.map((m, i) => (
+        <button
+          type="button"
+          role="tab"
+          data-slot="tab"
+          data-tab={m.id}
+          aria-selected={i === 0 ? "true" : "false"}
+        >
+          {m.label}
+        </button>
+      ))
+    }
+  </div>
+  <div data-slot="panels">
+    {
+      installMethods.map((m, i) => (
+        <div
+          data-slot="panel"
+          data-panel={m.id}
+          {...(i === 0 ? { "data-active": true } : {})}
+          role="tabpanel"
+        >
+          <button type="button" data-slot="command" data-copy={m.command}>
+            <span data-slot="command-script">
+              {m.parts.map((p) =>
+                p.highlight ? <span data-slot="highlight">{p.text}</span> : <span>{p.text}</span>,
+              )}
+            </span>
+            <CopyIcon />
+          </button>
+        </div>
+      ))
+    }
+  </div>
+</div>

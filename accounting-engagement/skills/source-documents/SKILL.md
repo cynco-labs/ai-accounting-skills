@@ -8,15 +8,17 @@ description: >
 
 ## Purpose
 
-Build a complete source-document inventory and readiness score before recording transactions.
+Build a complete source-document inventory and readiness score before recording transactions.  
+If files are still scattered (Desktop dumps, multi-path `@` mentions), run **shelf-first** first (`shared/shelf-first.md` / `client-workspace`).
 
 ## Preconditions
 
-1. Read shared guardrails (`shared/guardrails.md`).
+1. Read shared guardrails (`shared/guardrails.md`) and `shared/shelf-first.md`.
 2. Load firm profile from `~/.claude/plugins/config/claude-for-accounting/firm-profile.md` if present.
 3. Load plugin config from `~/.claude/plugins/config/claude-for-accounting/{{plugin}}/CLAUDE.md` if present.
 4. Load active client engagement README / workspace if one is open.
-5. **Never fabricate numbers.** Re-read source documents if figures are missing from context.
+5. Active job should already have `clients/<slug>/` (or create it now).
+6. **Never fabricate numbers.** Re-read source documents if figures are missing from context.
 
 
 
@@ -37,11 +39,12 @@ Build a complete source-document inventory and readiness score before recording 
 
 ## Workflow
 
-1. List every file in the client folder (name, type, period covered).
-2. Build a **coverage matrix** (document type × month or YE).
-3. Verify bank statement continuity (opening of month N = closing of N−1).
-4. Flag duplicates and unreadable scans.
-5. Score readiness:
+1. Confirm **shelf**: files live under `source/bank|sales|…` or are listed in `source/_pointers.md`. If not → shelf first.
+2. List every in-scope file (name, type, period covered, shelf path).
+3. Build a **coverage matrix** (document type × month or YE).
+4. Verify bank statement continuity (opening of month N = closing of month N−1).
+5. Flag duplicates and unreadable scans; list “Not used / archive”.
+6. Score readiness:
  - **Green** — can bookkeep fully
  - **Amber** — can proceed with listed limitations
  - **Red** — blockers (missing banks / entity / openings)

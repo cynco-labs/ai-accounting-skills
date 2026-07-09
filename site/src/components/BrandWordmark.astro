@@ -1,0 +1,40 @@
+---
+import BrandMark from "./BrandMark.astro"
+
+interface Props {
+  /** Show the word next to the mark */
+  word?: string
+  markSize?: number
+  height?: number
+}
+const { word = "SKILLS", markSize = 20, height = 20 } = Astro.props
+---
+
+<span data-component="brand-wordmark" style={`height:${height}px`}>
+  <BrandMark size={markSize} title="Accounting Skills" />
+  <span data-slot="brand-word">{word}</span>
+</span>
+
+<style>
+  [data-component="brand-wordmark"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: inherit;
+    line-height: 1;
+  }
+
+  [data-component="brand-wordmark"] [data-slot="as-mark"] {
+    flex-shrink: 0;
+    display: block;
+  }
+
+  [data-component="brand-wordmark"] [data-slot="brand-word"] {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: inherit;
+  }
+</style>

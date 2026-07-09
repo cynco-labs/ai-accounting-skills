@@ -5,7 +5,7 @@
 This file is the **source of truth** for how amounts move through a client job.  
 Skills, plugins, and CLI commands sit on top of these rules — they don’t invent a second set of books.
 
-See also: `shared/skill-collapse-map.md` (six main jobs), `shared/guardrails.md` (number integrity), `CONTEXT.md` (plain English).
+See also: `shared/skill-collapse-map.md` (six main jobs), `shared/shelf-first.md` (organize before extract), `shared/operator-lens.md` (who drives + depth), `shared/guardrails.md` (number integrity), `CONTEXT.md` (plain English).
 
 > File name `kernel-contract.md` is historical. In prose say **core rules** / **core tools**.
 
@@ -28,8 +28,8 @@ Paths relative to `clients/<slug>/` (or any engagement root).
 
 | Kind | Path | Role | Produced by |
 |---|---|---|---|
-| **State** | `engagement_state.json` | Stage, hard stops, meta — **not** balances | Agent + scripts |
-| **Evidence** | `source/**` + `source/register.md` | Immutable inputs | User / extract |
+| **State** | `engagement_state.json` | Stage, `operator`, depth, hard stops, meta — **not** balances | Agent + scripts |
+| **Evidence** | `source/**` + `source/register.md` | Immutable inputs (after **shelf**) | User / shelf / extract |
 | **Lines** | `workpapers/transactions.json` | Bank (and other) lines + codes | `extract` → `classify` |
 | **Analysis** | `workpapers/analysis/*.md` | Substance judgments (revenue, capex, …) — **not** amounts as SoR | `classify` (standards-aware) |
 | **Journals** | `workpapers/journals.json` | Period double-entry (incl. openings) | `post` |
@@ -124,6 +124,7 @@ Unclassified material lines → fail or suspense only if explicitly allowed.
 
 | Stage | Meaning | Files that must exist |
 |---|---|---|
+| `shelf` | Docs discovered + sorted into `clients/<slug>/source/**` | Layout + register draft (`shared/shelf-first.md`) |
 | `intake` | Entity / period / framework known or provisional | `engagement_state.json`, source register started |
 | `books` | Lines coded and posted; prelim TB calculated | `transactions.json`, `journals.json`, `tb_preliminary.json` |
 | `adjust` | YE journals considered; adjusted TB calculated | `journals_ye.json` (may be empty pack), `tb_adjusted.json` |
@@ -134,17 +135,30 @@ Legacy `current_stage` enum values in `engagement_state.schema.json` remain for 
 
 ---
 
-## Prove (definition of done)
+## Prove (definition of done) — depth-scoped
 
-`prove` / `close` succeeds only if:
+**Single source of truth:** `references/depth_gates.json` · `scripts/depth_gates.py`.
 
-1. Required artifacts for claimed progress exist (see `references/stage_artifacts.md`).
-2. Every journal in scope balances.
-3. Every TB present balances (`difference == 0`).
-4. If recon claimed: bank diff documented as 0 (when recon validators land).
-5. Optional: `bean-check` on ledger when exported.
+`prove` / `close` succeeds only if **depth gates** for `engagement_type` pass:
 
-Agents must not mark `status: done` without prove.
+| Depth | Must pass |
+|---|---|
+| `bookkeeping_only` | register · transactions · journals · bank recon 0 (or limitation) · **prelim TB** balances |
+| `year_end` / `compilation` | books set + YE journals · **adjusted TB** · primaries · notes · QC Section A |
+| `year_end_tax` | year-end set + tax computation |
+
+Also:
+
+1. Every journal/TB **present** must balance (even if optional for depth).  
+2. Optional: `bean-check` on ledger when exported.  
+3. `status: done` only after **depth-scoped** prove — not after inventing a year-end pack.
+
+```bash
+python3 scripts/depth_gates.py <client> --strict
+python3 scripts/close_engagement.py <client>
+```
+
+Agents must not mark `status: done` without depth-scoped prove.
 
 ---
 

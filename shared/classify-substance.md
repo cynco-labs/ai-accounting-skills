@@ -37,6 +37,8 @@ Store on `engagement_state.json` (optional field; free text in `notes` if schema
 
 ### How to choose (agent)
 
+Depth follows **`engagement_type`**, not `operator`. Owners can still request year-end (`standards_aware`).
+
 | Signal | Depth |
 |---|---|
 | `engagement_type` is `year_end` / `year_end_tax` / `compilation` | `standards_aware` |
@@ -44,6 +46,8 @@ Store on `engagement_state.json` (optional field; free text in `notes` if schema
 | User: “just categorise / quick books / bookkeeping only” | `bookkeeping` |
 | Ambiguous folder dump aiming at year-end later | Prefer `standards_aware` once extract is done for that period |
 | Tiny period, all pattern-clear payees, no material one-offs | `bookkeeping` is OK |
+
+See also: `shared/operator-lens.md` (who drives vs how deep).
 
 ---
 

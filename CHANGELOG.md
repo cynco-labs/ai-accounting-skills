@@ -7,6 +7,32 @@ Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
 ## [Unreleased]
 
+## [2.3.0] — 2026-07-09
+
+### Added
+
+- **Operator lens** — one engine for owner / bookkeeper / firm (`shared/operator-lens.md`)
+- `operator` on `engagement_state` (`owner` | `bookkeeper` | `firm`); orthogonal to `engagement_type` depth
+- Firm profile field **Default operator**; intake / pipeline / guardrails adapt copy and packs, not math
+- **Shelf-first** — organize scattered docs like a bookkeeper before extract (`shared/shelf-first.md`)
+- Standard shelf layout under `clients/<slug>/source/{bank,sales,…}`; job map for multi-company dumps
+- **`shared/runtime-brief.md`** — one-screen throw-work load (replaces preloading 10 doctrine files)
+- **Depth-scoped Done when** — machine-enforced via `references/depth_gates.json` + `scripts/depth_gates.py`
+- **`fixtures/golden-books-only-mini/`** — default product path golden (no YE/FS/QC required)
+- **`npx @cynco/accounting-skills score`** — depth scorecard CLI
+- **One intake** — shelf + register + state + ≤3 asks as a single pass
+
+### Changed
+
+- Public UX: front door is natural language + `/do-books`; `/ask-accounting` optional only
+- QUICKSTART simplified (install → throw work; cold-start not first)
+- Status board shows **six jobs**, not 16 internal stage keys
+- Pipeline skill rewritten for light load + depth-scoped completion
+- Agents narrate progress; CLI is agent-side, not user homework
+- **Plain-English copy pass** — site hero/FAQ/trust, soft-confirm questions, draft headers, README lead (warm · helpful · confident; `.impeccable.md`)
+- **`close` / stage gates / `/prove`** honor `engagement_type` (books-only prove ≠ full QC)
+- CI runs both goldens (books-only + year-end) through depth scorecard + close
+
 ## [2.2.5] — 2026-07-09
 
 ### Added

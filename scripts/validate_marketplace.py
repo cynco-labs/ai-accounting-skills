@@ -167,6 +167,10 @@ def main() -> int:
         "shared/skill-collapse-map.md",
         "shared/classify-substance.md",
         "shared/slash-surface.md",
+        "shared/operator-lens.md",
+        "shared/shelf-first.md",
+        "shared/runtime-brief.md",
+        "references/depth_gates.json",
         "CONTEXT.md",
         "references/schemas/analysis_pack.example.md",
         "references/pipeline.md",
@@ -184,7 +188,7 @@ def main() -> int:
     pipe = ROOT / "engagement-accounting/skills/full-engagement-pipeline/SKILL.md"
     if pipe.is_file():
         ptxt = pipe.read_text(encoding="utf-8")
-        for needle in ("engagement_state", "do the books", "bank", "smart-intake"):
+        for needle in ("engagement_state", "do the accounting", "runtime-brief", "bookkeeping_only"):
             if needle.lower() not in ptxt.lower():
                 warnings.append(f"full-engagement-pipeline missing agent-native cue: {needle}")
 
@@ -235,6 +239,7 @@ def main() -> int:
         "references/schemas/journals.schema.json",
         "references/schemas/trial_balance.schema.json",
         "fixtures/golden-mini-sdn-bhd/engagement_state.json",
+        "fixtures/golden-books-only-mini/engagement_state.json",
         "evals/utterance_routing.json",
         "scripts/validate_engagement_artifacts.py",
         "scripts/sync_umbrella.py",

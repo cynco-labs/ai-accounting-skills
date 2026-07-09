@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/v2.2.5-0d6efd?style=for-the-badge" alt="v2.2.5" />
+  <img src="https://img.shields.io/badge/v2.3.0-0d6efd?style=for-the-badge" alt="v2.3.0" />
   <a href="https://skills.sh/cynco-labs/ai-accounting-skills"><img src="https://skills.sh/b/cynco-labs/ai-accounting-skills" alt="skills.sh" /></a>
   <img src="https://img.shields.io/badge/Beancount-ledger-111827?style=for-the-badge" alt="Beancount" />
   <img src="https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge" alt="MIT License" />
@@ -9,12 +9,12 @@
 
 <p align="center">
   <strong>Real bookkeeping for coding agents — not made-up numbers.</strong><br/>
-  Drop a folder of bank statements → balanced books → financials → Beancount + Fava.
+  Drop a folder of bank statements → organized books → balancing trial balance → optional year-end pack.
 </p>
 
 <p align="center">
-  Put bank statements and receipts in a folder. Say <em>“do the year end.”</em><br/>
-  The agent follows a proper process: checks, proofs, and files saved on disk.
+  Put bank statements and receipts in a folder. Say <em>“do the accounting.”</em><br/>
+  The agent organizes files, books the months you have, and saves progress on disk.
 </p>
 
 ---
@@ -92,6 +92,8 @@ They invent company names, type trial balance totals into Excel, and skip bank r
 | “Looks fine” books | Bank recon **RM 0.00**, line-by-line proof |
 | Excel as the only ledger | **Beancount** ledger + **Fava** in the browser |
 | One vague prompt | Skills + saved progress you can resume |
+| Firm-only or DIY-only product | **Same six jobs** for owners, bookkeepers, and firms (`operator` + depth) |
+| Messy Desktop dumps | **Shelf first** — standard client folders, then extract |
 
 ---
 
@@ -137,28 +139,27 @@ npx skills add cynco-labs/ai-accounting-skills --all -g
 /plugin install accounting-engagement@claude-for-accounting
 ```
 
-### Slash commands (short names)
+### How to start (front door)
 
-Learn **six verbs** + a router — not 36 stage names. Full design: [`shared/slash-surface.md`](./shared/slash-surface.md).
+Say **“do the accounting”** (or point at a folder). That’s enough.
 
-| You type (skills.sh) | Claude plugin form | What it does |
-|:---------------------|:-------------------|:-------------|
-| `/do-books` | `/accounting-engagement:do-books` | Full engagement / throw-work |
-| `/extract` | `/accounting-engagement:extract` | Bank lines with proof |
-| `/classify` | `/accounting-engagement:classify` | Substance → codes |
-| `/post` | `/accounting-engagement:post` | Journals + calculated TB |
-| `/present` | `/accounting-engagement:present` | Primary statements |
-| `/prove` | `/accounting-engagement:prove` | QC / prove path |
-| `/ask-accounting` | `/accounting-engagement:ask-accounting` | “Which command?” router |
-| `/resume` · `/revenue` · `/capex` | same prefix | Resume · revenue theme · capex theme |
+Optional short commands if you want control — not required:
 
-Natural language still works (“do the accounting”) — the model uses long skill names under the hood. Short slashes are for **you** when you want control.
+| You type | What it does |
+|:---------|:-------------|
+| `/do-books` | Full throw-work (same as “do the accounting”) |
+| `/extract` · `/classify` · `/post` | Step by step |
+| `/present` · `/prove` | FS pack · QC / lock |
+| `/resume` | Continue mid-job |
+
+Claude plugin prefix (if used): `/accounting-engagement:…` — footnote, not the main story.  
+Design: [`shared/slash-surface.md`](./shared/slash-surface.md) · runtime: [`shared/runtime-brief.md`](./shared/runtime-brief.md)
 
 ---
 
 ## Command line · `npx`
 
-No need to clone. These are the tools the agent should **run**, not re-type in chat.
+No need to clone. **Agents run these quietly** — you don’t need to learn them to start.
 
 ```bash
 npx @cynco/accounting-skills <command>

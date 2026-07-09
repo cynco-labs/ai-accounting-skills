@@ -3,13 +3,13 @@
     {
       "plugin": "engagement-accounting",
       "skill": "ask-accounting",
-      "sha256": "fcfbc13e249ffa00a4b0fbbaaa9641c68b0f4d646e63546cb9d75afcc0d70302",
+      "sha256": "b17878f08e62ab2b65502e266cac9c7d9c7b7843c91311320c5faceb23784163",
       "source": "engagement-accounting/skills/ask-accounting/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "do-books",
-      "sha256": "23b614cdd8e68b55311d5abbcfdc4567589406656fcc99bd6217afc2b2f0108a",
+      "sha256": "8b46e3dcb44b7a8cb1077b2105ad9e84e7d1d2b6eda8e172faa1ef40ade839a2",
       "source": "engagement-accounting/skills/do-books/SKILL.md"
     },
     {
@@ -39,7 +39,7 @@
     {
       "plugin": "engagement-accounting",
       "skill": "prove",
-      "sha256": "62255b9576bdcb32f5fa2240f9967b80ab1b8a65934dfbcbb78d68e91b329661",
+      "sha256": "0388702b7ab2bd69ab69c7ca2aa9f3e3c963a3e41e30f20e61305999d36caa95",
       "source": "engagement-accounting/skills/prove/SKILL.md"
     },
     {
@@ -63,43 +63,43 @@
     {
       "plugin": "engagement-accounting",
       "skill": "cold-start-interview",
-      "sha256": "a5e369993078f74394b7680fe2e96f775328fc7216a1c5da1e7544a092516b7a",
+      "sha256": "fa178266f40e5014b3fa52045ce8043b1c19248a042dc4ac26462fd69f3e4dd2",
       "source": "engagement-accounting/skills/cold-start-interview/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "smart-intake",
-      "sha256": "cbab37f3dc63cb73eb34f0a982102d34daa3badf6df2efc1a322ab391065e012",
+      "sha256": "01abbd3eb3ac8cacd99b50fba1f7eeec544d4443efbc1d21dbe1d25aba3bb798",
       "source": "engagement-accounting/skills/smart-intake/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "engagement-setup",
-      "sha256": "61082e378df164589fd8093a3f099171f2c949da397022d535cbfd1b38d1c4da",
+      "sha256": "7b8a9e01e5d6cf99b444b15b0878794aafad68b65504cbb79260d451571cf123",
       "source": "engagement-accounting/skills/engagement-setup/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "source-documents",
-      "sha256": "82da7db0cc7217a51bcf6211eecb76c18f14eabc509dc57d0e5d45cca4487c47",
+      "sha256": "f4ae85b1c92aa375969d1e158fd060541eb8d2a38c201d4e4a6ee749ccc40e95",
       "source": "engagement-accounting/skills/source-documents/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "client-workspace",
-      "sha256": "6984bb50013d4611f4a4c6be291e4cd67d288573f4cb06e5e49691c674844b53",
+      "sha256": "ed9645d4f70c93d17d79391d6ad35bfa3b76f05bcf69f23faca61209b7733289",
       "source": "engagement-accounting/skills/client-workspace/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "full-engagement-pipeline",
-      "sha256": "badfce87e2f6696ea0f06c867efe5e54e294bf320c0f7f23ffa11a8ceecd1de7",
+      "sha256": "999051040430d364530698100269e1e8d4735463b7eefb8d79565128566039ac",
       "source": "engagement-accounting/skills/full-engagement-pipeline/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "resume-engagement",
-      "sha256": "95d895e2f9e3d040fec1c1e1f266a85163880b83828dd6379044be33fb36550c",
+      "sha256": "abc41ccd9fabf27602493a4bfdbd85567425046fba635d990ff3ca32e2744e75",
       "source": "engagement-accounting/skills/resume-engagement/SKILL.md"
     },
     {

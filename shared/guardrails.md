@@ -36,14 +36,23 @@ Every skill in this marketplace MUST follow these rules. They override convenien
 
 ## Output headers
 
-Prepend every deliverable (unless the skill says otherwise):
+Prepend every deliverable (unless the skill says otherwise). Pick by `operator`:
+
+**owner / bookkeeper (default when no firm profile):**
 
 ```
-DRAFT FOR ACCOUNTANT REVIEW — NOT SIGNED FINANCIAL STATEMENTS
-Prepared under [framework] for [entity legal name]
+DRAFT — for your review (not signed accounts)
+[Entity legal name] · [framework]
+Period: [dates on disk]
+```
+
+**firm:**
+
+```
+DRAFT — for accountant review (not signed accounts)
+[Entity legal name] · [framework]
 Period: [FY start] to [FY end]
-Firm: [from practice profile]
-Jurisdiction pack: [id]
+Prepared for: [firm name from profile]
 ```
 
 Strip this header only when producing client-facing final packs **after** quality review + management approval gates have passed.
@@ -76,11 +85,23 @@ Source documents
 
 A later stage must not run on numbers that failed an earlier **blocker** check, unless the user explicitly overrides and the override is logged.
 
+## Operator lens (who is driving)
+
+Load **`shared/operator-lens.md`**. Same number rules for everyone.
+
+| `operator` | Communication | Draft header default |
+|---|---|---|
+| **owner** | Plain English only | `DRAFT — for your review` |
+| **bookkeeper** | Process-clear; codes OK | `DRAFT — for review` |
+| **firm** | Staff = technical; client lists = plain | `DRAFT FOR ACCOUNTANT REVIEW` + firm name |
+
+Do not assume `firm` because the repo is engagement-shaped. Infer or soft-ask once; store on `engagement_state.operator`.
+
 ## Communication
 
 - **Progress-gating questions** — use the host **structured user-question tool** (`shared/user-questions.md`). Do not only bury asks in prose or `queries.md`.
-- **To firm staff:** technical language — account codes, debit/credit analysis, what is wrong and what is needed.
-- **To client:** plain language — numbered questions, one item each, actionable requests for documents or confirmations.
+- **To firm staff** (`operator: firm`): technical language — account codes, debit/credit analysis, what is wrong and what is needed.
+- **To owner / end client:** plain language — numbered questions, one item each, actionable requests for documents or confirmations.
 
 ## White-label
 

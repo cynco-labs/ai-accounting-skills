@@ -33,8 +33,8 @@ See `shared/kernel-contract.md` for standard work files and scripts. Plain terms
 | `smart-intake` | Fold into do-books (section, not separate product) |
 | `resume-engagement` | Fold: “read state and continue” |
 | `engagement-setup` | Fold: write state + workspace |
-| `client-workspace` | Fold: folder layout |
-| `source-documents` | Fold: register + coverage |
+| `client-workspace` | Fold: **shelf-first** layout + organize (`shared/shelf-first.md`) |
+| `source-documents` | Fold: register + coverage (after shelf) |
 | `cold-start-interview` | **Firm** only — keep separate install path or under builder; not client dump |
 
 ### extract

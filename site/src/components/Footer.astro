@@ -1,0 +1,95 @@
+---
+import { site } from "../data/site"
+import BrandMark from "./BrandMark.astro"
+
+const cols = {
+  product: [
+    { href: "#how", label: "How it works" },
+    { href: "#pipeline", label: "Six jobs" },
+    { href: "#install", label: "Get started" },
+  ],
+  links: [
+    { href: site.github, label: "GitHub", external: true },
+    { href: site.skills, label: "skills.sh", external: true },
+    { href: site.docs, label: "Docs", external: true },
+  ],
+}
+---
+
+<footer data-component="footer">
+  <div data-slot="footer-grid">
+    <a data-slot="footer-mark" href="/" aria-label={`${site.name} home`}>
+      <BrandMark size={40} />
+    </a>
+
+    <div data-slot="footer-column">
+      <h2>Product</h2>
+      <nav aria-label="Product">
+        {cols.product.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+    </div>
+
+    <div data-slot="footer-column">
+      <h2>Links</h2>
+      <nav aria-label="Links">
+        {
+          cols.links.map((l) => (
+            <a href={l.href} target="_blank" rel="noreferrer">
+              {l.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <div data-slot="footer-column">
+      <h2>License</h2>
+      <p>MIT · open source</p>
+      <a data-slot="subscribe-button" href={site.license} target="_blank" rel="noreferrer">View license</a>
+    </div>
+  </div>
+
+  <div data-slot="footer-pattern" aria-hidden="true"></div>
+
+  <div data-slot="footer-bottom">
+    <div>
+      <span>© <span id="year">2026</span> Cynco Labs</span>
+      <span data-slot="status">All systems operational</span>
+    </div>
+    <div data-slot="footer-controls">
+      <div data-slot="theme-toggle" role="group" aria-label="Theme">
+        <button data-slot="theme-option" type="button" data-theme-value="dark" aria-label="Dark" title="Dark">
+          <svg data-slot="theme-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M9.05556 8.39711C6.37067 8.39711 4.19444 6.22089 4.19444 3.536C4.19444 2.48445 4.53122 1.51456 5.09822 0.71889C2.48178 1.20733 0.5 3.49944 0.5 6.25822C0.5 9.37244 3.02467 11.8971 6.13889 11.8971C8.76156 11.8971 10.9596 10.1036 11.5903 7.67844C10.8514 8.13189 9.98578 8.39711 9.05556 8.39711Z"
+              stroke="currentColor"
+              stroke-linecap="round"></path>
+          </svg>
+        </button>
+        <button data-slot="theme-option" type="button" data-theme-value="light" aria-label="Light" title="Light">
+          <svg data-slot="theme-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M7.38889 0.5V1.38889M12.26 2.51782L11.6315 3.14627M14.2778 7.38892H13.3889M12.26 12.26L11.6315 11.6316M7.38889 14.2778V13.3889M2.51778 12.26L3.14622 11.6316M0.5 7.38892H1.38889M2.51778 2.51782L3.14622 3.14627M7.38888 11.1666C9.47528 11.1666 11.1667 9.47526 11.1667 7.38886C11.1667 5.30245 9.47528 3.61108 7.38888 3.61108C5.30247 3.61108 3.6111 5.30245 3.6111 7.38886C3.6111 9.47526 5.30247 11.1666 7.38888 11.1666Z"
+              stroke="currentColor"
+              stroke-linecap="square"></path>
+          </svg>
+        </button>
+        <button
+          data-slot="theme-option"
+          type="button"
+          data-theme-value="system"
+          aria-label="System"
+          aria-pressed="true"
+          title="System"
+        >
+          <svg data-slot="theme-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="1.5552" y="2.4448" width="12.8896" height="8.8888" fill="currentColor" opacity="0.3"></rect>
+            <path
+              d="M4.05559 12.0555C4.72936 11.8431 5.72492 11.6111 6.94448 11.6111M6.94448 11.6111C7.65114 11.6111 8.66981 11.6893 9.83336 12.0555M6.94448 11.6111L6.94448 9.38888M13.3889 0.5H0.500102C0.500102 0.5 0.500017 1.29594 0.500017 2.27778V7.61112C0.500017 8.59298 0.500007 9.38889 0.500007 9.38889H13.3889C13.3889 9.38889 13.3889 8.59298 13.3889 7.61112V2.27778C13.3889 1.29594 13.3889 0.5 13.3889 0.5Z"
+              stroke="currentColor"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>

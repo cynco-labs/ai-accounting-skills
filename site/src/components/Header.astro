@@ -1,0 +1,73 @@
+---
+import { site } from "../data/site"
+import BrandWordmark from "./BrandWordmark.astro"
+
+const links = [
+  { href: "#how", label: "How it works" },
+  { href: "#pipeline", label: "Six jobs" },
+  { href: "#install", label: "Install" },
+  { href: "#faq", label: "Questions" },
+]
+---
+
+<header data-component="top">
+  <div data-slot="header-bar">
+    <a data-slot="brand" href="/" aria-label={`${site.name} home`}>
+      <BrandWordmark word="SKILLS" markSize={22} height={22} />
+    </a>
+
+    <nav data-component="section-nav" aria-label="Section">
+      <ul>
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href}>{l.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div data-slot="header-actions">
+      <a
+        data-slot="header-button"
+        data-variant="neutral"
+        href={site.github}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="GitHub"
+      >
+        <img src="/brands/github.svg" alt="" width="14" height="14" />
+        <strong>GitHub</strong>
+      </a>
+      <a data-slot="header-button" data-variant="contrast" href="#install">
+        <strong>Get started</strong>
+      </a>
+      <button
+        data-slot="menu-button"
+        type="button"
+        data-component="nav-mobile-toggle"
+        aria-controls="stats-mobile-nav"
+        aria-expanded="false"
+        aria-label="Open navigation"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M2 4.72H14M2 8.5H14M2 12.28H14" stroke="currentColor"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="stats-mobile-nav" data-slot="mobile-menu" data-component="nav-mobile" aria-label="Section" hidden>
+    <a data-slot="mobile-menu-item" data-variant="github" href={site.github} target="_blank" rel="noreferrer">
+      <strong>GitHub</strong>
+    </a>
+    {
+      links.map((l) => (
+        <a data-slot="mobile-menu-item" href={l.href}>
+          {l.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>

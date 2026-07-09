@@ -1,6 +1,6 @@
 {
   "name": "@cynco/accounting-skills",
-  "version": "2.2.5",
+  "version": "2.3.0",
   "description": "Accounting CLI for coding agents \u2014 extract banks, classify, post, trial balance, close, Beancount + Fava. Install skills via skills.sh. npx @cynco/accounting-skills demo",
   "keywords": [
     "accounting",

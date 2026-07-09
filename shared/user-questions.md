@@ -73,23 +73,37 @@ At skill load time: if a structured question tool appears in your available tool
 State the **actual period on disk**, not a hoped-for FY.
 
 ```text
-Question: Soft-confirm what I’m booking?
+Question: Does this look right to book?
 Options:
-  - Accept: [Legal name] · [MYR] · banks cover [Jan–May 2026] · [bank]  (Recommended)
-  - Fix entity name
-  - Fix / narrow the period (e.g. only some months)
+  - Yes — [Legal name] · [MYR] · banks cover [Jan–May 2026] · [bank]  (Recommended)
+  - Wrong company name — I’ll correct it
+  - Wrong months — I’ll narrow or fix the period
 ```
 
 No “must supply full year” option. Depth of work is implied: we book **this period**.
 
+### Operator (only if not inferable) — single-select
+
+See `shared/operator-lens.md`. Prefer inferring; ask at most once per install/job.
+
+```text
+Question: Who are these books for?
+Options:
+  - My own business (Recommended when the folder looks personal)
+  - I’m the bookkeeper for this company
+  - A client of our accounting firm
+```
+
+Write answer to `engagement_state.operator` (`owner` | `bookkeeper` | `firm`).
+
 ### Upgrade to full year-end (only if user already asked for YE / FS)
 
 ```text
-Question: Banks cover [Jan–May] only. How do you want to proceed?
+Question: Bank files only cover [Jan–May]. What should we do?
 Options:
-  - Finish deep books for Jan–May now (Recommended) — TB, recon, ledger; label limited period
-  - Pause books until I add more months (I will come back with files)
-  - I want full-year FS later — keep going on Jan–May; I’ll add months when ready
+  - Finish full books for Jan–May now (Recommended) — trial balance, bank recon, optional ledger
+  - Pause — I’ll add more months first
+  - Keep going on Jan–May; I’ll add months later for a full-year pack
 ```
 
 **Wrong option (never use as recommended):** “You must provide all 12 months before we start.”
@@ -97,12 +111,12 @@ Options:
 ### Classification batch (1–3 questions, multi-select only if host supports)
 
 ```text
-Question: PBB-PBCS AC 3 inflows (~RM 364k) — account?
+Question: Where should we put ~RM 364k in (3 similar receipts)?
 Options:
-  - 4000 Food & Beverage Sales (Recommended if customer/card settlement)
-  - Other bank / float / clearing (not revenue)
-  - Loan / financing proceeds
-  - Suspense — need more docs
+  - Sales — Food & beverage (code 4000) (Recommended if customer/card settlement)
+  - Not sales — bank float or clearing
+  - Loan or financing money in
+  - Hold in suspense — need more documents
 ```
 
 **Limits:**

@@ -1,0 +1,19 @@
+# build
+dist/
+.astro/
+
+# deps
+node_modules/
+
+# env / local
+.env
+.env.*
+.dev.vars
+.wrangler/
+
+# OS / editor
+.DS_Store
+*.log
+
+# legacy static backup (local only)
+.legacy-static/

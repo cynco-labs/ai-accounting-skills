@@ -1,0 +1,7 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "ai-accounting-skills",
+  "compatibility_date": "2026-07-01",
+  // Cloudflare Pages — static assets from Astro build
+  "pages_build_output_dir": "./dist"
+}

@@ -25,9 +25,15 @@
     "jurisdiction_pack": { "type": "string", "default": "malaysia" },
     "currency": { "type": "string", "default": "MYR" },
     "industry_overlay": { "type": ["string", "null"] },
+    "operator": {
+      "type": "string",
+      "enum": ["owner", "bookkeeper", "firm"],
+      "description": "Who is driving: owner (own books), bookkeeper, or firm (client job). Same engine; different copy/defaults. See shared/operator-lens.md"
+    },
     "engagement_type": {
       "type": "string",
-      "enum": ["bookkeeping_only", "compilation", "year_end", "year_end_tax", "audit_support", "unknown"]
+      "enum": ["bookkeeping_only", "compilation", "year_end", "year_end_tax", "audit_support", "unknown"],
+      "description": "Depth of work (books → year-end → tax). Orthogonal to operator."
     },
     "classify_depth": {
       "type": "string",

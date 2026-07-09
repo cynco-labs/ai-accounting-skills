@@ -1,44 +1,42 @@
 ---
 name: ask-accounting
-description: Router — which accounting skill or slash to use for this situation.
+description: Optional router if lost — which slash to use. Prefer saying do the accounting.
 disable-model-invocation: true
 ---
 # /ask-accounting
 
 ## Purpose
 
-One place to remember. Map the user’s situation to a **short command** from `shared/slash-surface.md`.
+**Optional.** For users who are lost and want a menu.  
 
-Do **not** run the whole engagement here. Recommend, then wait for confirmation (or run the chosen skill if they say “go”).
+Default path is **not** this skill — say **“do the accounting”** or `/do-books` and go.
+
+Do **not** run the whole engagement here. Recommend **one** short command; if they say “go”, run it.
 
 ## Load
 
-`shared/slash-surface.md` · `shared/skill-collapse-map.md` · `CONTEXT.md`
+`shared/slash-surface.md` · `shared/runtime-brief.md`
 
 ## Map (recommend one)
 
 | Situation | Recommend |
 |---|---|
-| Folder dump / “do the accounting” / unknown company | **do-books** |
-| Continue mid-job / left off yesterday | **resume** |
-| Only parse banks / Maybank PDF | **extract** |
-| Code lines / classifications / revenue recognition / capex | **classify** (or **revenue** / **capex** if only that theme) |
-| Post journals / trial balance | **post** |
-| Draft balance sheet / P&L / notes | **present** |
-| QC / partner review / lock | **prove** |
-| Firm first install (not client dump) | `cold-start-interview` (long name OK) |
-| Tax computation only | `tax-computation` |
+| Folder dump / “do the accounting” / unknown company | **do-books** (just run it) |
+| Continue mid-job | **resume** or **do-books** |
+| Only parse banks | **extract** |
+| Classifications / revenue / capex | **classify** (or **revenue** / **capex**) |
+| Post / TB | **post** |
+| FS / notes | **present** |
+| QC / lock | **prove** |
+| Firm first install only | `cold-start-interview` |
+| Tax only | `tax-computation` |
 
 ## Output format
 
 ```markdown
-**Recommended:** /do-books (or /accounting-engagement:do-books on Claude plugins)
-
+**Recommended:** /do-books
 **Why:** …
-
-**Next after that:** …
-
-**Optional branches:** …
+**Or just say:** “do the accounting” and I’ll run it.
 ```
 
-**Done when:** one clear recommendation + why; user knows what to type or can say “run it”.
+**Done when:** one clear recommendation; user can say “run it” without learning the whole menu.

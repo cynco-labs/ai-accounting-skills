@@ -1,0 +1,63 @@
+{
+  "schema_version": "0.0.1",
+  "client_slug": "golden-books-only-mini",
+  "currency": "MYR",
+  "bank_accounts": [
+    {
+      "id": "maybank-001",
+      "name": "Maybank Current",
+      "account_number_last4": "1234",
+      "opening_balance": 10000.0,
+      "closing_balance": 12000.0,
+      "statement_period_start": "2025-01-01",
+      "statement_period_end": "2025-12-31"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "txn-001",
+      "date": "2025-03-15",
+      "description": "CLIENT PAYMENT INVOICE INV-001",
+      "amount": 5000.0,
+      "direction": "inflow",
+      "bank_account_id": "maybank-001",
+      "running_balance": 15000.0,
+      "account_code": "4000",
+      "account_name": "Service Revenue - Primary",
+      "classification_basis": "pattern",
+      "counterparty": "Demo Customer Sdn Bhd",
+      "source_file": "source/bank/maybank_2025.csv",
+      "source_ref": "row:2"
+    },
+    {
+      "id": "txn-002",
+      "date": "2025-04-01",
+      "description": "OFFICE RENT APRIL",
+      "amount": 1000.0,
+      "direction": "outflow",
+      "bank_account_id": "maybank-001",
+      "running_balance": 14000.0,
+      "account_code": "5200",
+      "account_name": "Rental Expense",
+      "classification_basis": "pattern",
+      "counterparty": "Demo Landlord",
+      "source_file": "source/bank/maybank_2025.csv",
+      "source_ref": "row:3"
+    },
+    {
+      "id": "txn-003",
+      "date": "2025-04-28",
+      "description": "SALARY APRIL",
+      "amount": 2000.0,
+      "direction": "outflow",
+      "bank_account_id": "maybank-001",
+      "running_balance": 12000.0,
+      "account_code": "5000",
+      "account_name": "Salary & Wages",
+      "classification_basis": "pattern",
+      "counterparty": "Staff",
+      "source_file": "source/bank/maybank_2025.csv",
+      "source_ref": "row:4"
+    }
+  ]
+}

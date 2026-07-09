@@ -4,13 +4,16 @@ This repository is an **open-source plugin marketplace** for accounting engageme
 
 ## First principles (read these)
 
-1. **`shared/kernel-contract.md`** — **core rules**: which files hold amounts, and which scripts must build the trial balance (never type TB totals by hand).
-2. **`shared/skill-collapse-map.md`** — 36 older skill names → **six main jobs** (do the books · extract · classify · post · present · prove). Don’t invent a seventh job without updating that map.
-3. **`CONTEXT.md`** — plain English terms (client job, must stop, with limitation, work the months you have, …).
-4. **`shared/classify-substance.md`** — classify = substance → analysis packs → codes (not pattern-only).
-5. **Trial balances are calculated only** — `scripts/roll_tb.py` / `npx @cynco/accounting-skills tb`.
-6. **Progress questions use structured tools** — `shared/user-questions.md`. Never only a long prose questionnaire when a proper question UI exists.
-7. **Work the months you have** — book months on disk properly; don’t pressure for 12 months. Full-year FS is opt-in when coverage allows.
+1. **`shared/runtime-brief.md`** — **throw-work load first** (one screen). Don’t preload 10 doctrine files.
+2. **`shared/kernel-contract.md`** — **core rules**: which files hold amounts; TB only via scripts.
+3. **`shared/skill-collapse-map.md`** — six main jobs. Don’t invent a seventh without updating that map.
+4. **`shared/operator-lens.md`** — one engine: **`operator`** + **depth**. No business-vs-firm slash forks.
+5. **`shared/shelf-first.md`** — docs may be anywhere; **one intake** shelves before extract.
+6. **`CONTEXT.md`** — plain English terms.
+7. **Depth-scoped done** — machine gates in `references/depth_gates.json`; `python3 scripts/depth_gates.py <client> --strict`. Books-only ≠ year-end pack.
+8. **Trial balances are calculated only** — `scripts/roll_tb.py` / `npx @cynco/accounting-skills tb`.
+9. **Progress questions use structured tools** — `shared/user-questions.md`.
+10. **Work the months you have** — don’t pressure for 12 months.
 
 ## When working in this repo
 

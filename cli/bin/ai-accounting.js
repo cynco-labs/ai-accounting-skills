@@ -65,7 +65,8 @@ function usage(code = 0) {
 
 ${c.bold}Commands${c.reset}
   ${c.green}demo${c.reset}              Golden mini ledger + Fava
-  ${c.green}close${c.reset} [client]    Prove engagement (validate · gates · ledger)
+  ${c.green}close${c.reset} [client]    Prove engagement (depth-scoped · gates · ledger)
+  ${c.green}score${c.reset} [client]    Depth scorecard only (books vs year-end Done)
   ${c.green}init${c.reset} [name]       Scaffold a client engagement workspace
   ${c.green}extract${c.reset} <path>    Bank PDF/CSV → Excel (+ JSON) · auto-detect adapter
   ${c.green}classify${c.reset} <json>   Deterministic COA classify + review queue
@@ -416,7 +417,7 @@ function cmdClose(clientOrEmpty, opts) {
   }
   const client = clientOrEmpty
     ? resolve(clientOrEmpty)
-    : join(PKG_ROOT, "fixtures/golden-mini-sdn-bhd");
+    : join(PKG_ROOT, "fixtures/golden-books-only-mini");
   if (!existsSync(client)) {
     fail(`Not found: ${client}`);
     return 1;
@@ -425,12 +426,35 @@ function cmdClose(clientOrEmpty, opts) {
   if (opts.classify) args.push("--classify");
   if (opts.rollTb) args.push("--roll-tb");
   if (opts.noLedger) args.push("--no-export-ledger");
-  info(`Close proof: ${client}`);
+  if (opts.depth) args.push("--depth", opts.depth);
+  info(`Close proof (depth-scoped): ${client}`);
   const code = run(py, args);
   if (code === 0 && opts.fava) {
     return cmdFava(client, opts);
   }
   return code;
+}
+
+function cmdScore(clientOrEmpty, opts) {
+  banner();
+  const py = findPython();
+  if (!py) {
+    fail("python3 required");
+    return 1;
+  }
+  const client = clientOrEmpty
+    ? resolve(clientOrEmpty)
+    : join(PKG_ROOT, "fixtures/golden-books-only-mini");
+  if (!existsSync(client)) {
+    fail(`Not found: ${client}`);
+    return 1;
+  }
+  const args = [script("depth_gates.py"), client];
+  if (opts.strict !== false) args.push("--strict");
+  if (opts.depth) args.push("--depth", opts.depth);
+  if (opts.json) args.push("--json");
+  info(`Depth scorecard: ${client}`);
+  return run(py, args);
 }
 
 function cmdFirm(opts) {
@@ -652,6 +676,8 @@ function parseArgs(argv) {
     else if (a === "--adjusted") opts.adjusted = true;
     else if (a === "--both") opts.both = true;
     else if (a === "--check") opts.check = true;
+    else if (a === "--depth") opts.depth = rest[++i];
+    else if (a === "--strict") opts.strict = true;
     else if (a.startsWith("-")) {
       fail(`Unknown flag: ${a}`);
       usage(1);
@@ -686,6 +712,8 @@ function main() {
       return cmdTb(positional[0], opts);
     case "close":
       return cmdClose(positional[0], opts);
+    case "score":
+      return cmdScore(positional[0], opts);
     case "firm":
       return cmdFirm(opts);
     case "ledger":

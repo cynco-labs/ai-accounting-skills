@@ -13,14 +13,23 @@ python3 scripts/validate_marketplace.py
 echo "== umbrella sync (source-of-truth drift) =="
 python3 scripts/sync_umbrella.py --check
 
-echo "== golden engagement artifacts =="
+echo "== golden engagement artifacts (year-end) =="
 python3 scripts/validate_engagement_artifacts.py fixtures/golden-mini-sdn-bhd
 
+echo "== golden engagement artifacts (books-only) =="
+python3 scripts/validate_engagement_artifacts.py fixtures/golden-books-only-mini
+
+echo "== depth scorecard (both goldens, strict) =="
+python3 scripts/depth_gates.py fixtures/golden-books-only-mini --strict
+python3 scripts/depth_gates.py fixtures/golden-mini-sdn-bhd --strict
+
 echo "== stage gates =="
-python3 scripts/validate_stage_gates.py fixtures/golden-mini-sdn-bhd
+python3 scripts/validate_stage_gates.py fixtures/golden-mini-sdn-bhd --strict
+python3 scripts/validate_stage_gates.py fixtures/golden-books-only-mini --strict
 
 echo "== roll_tb kernel (golden must match committed TBs) =="
 python3 scripts/roll_tb.py --client-dir fixtures/golden-mini-sdn-bhd --both --check
+python3 scripts/roll_tb.py --client-dir fixtures/golden-books-only-mini --preliminary --check
 
 echo "== unit tests =="
 python3 -m unittest discover -s tests -v
@@ -28,7 +37,8 @@ python3 -m unittest discover -s tests -v
 echo "== utterance routing evals =="
 python3 scripts/eval_utterance_routing.py --top-k 3
 
-echo "== close proof (golden) =="
+echo "== close proof (both goldens) =="
+python3 scripts/close_engagement.py fixtures/golden-books-only-mini --no-export-ledger
 python3 scripts/close_engagement.py fixtures/golden-mini-sdn-bhd --no-export-ledger
 
 if [[ -f fixtures/golden-mini-sdn-bhd/ledger/main.beancount ]]; then

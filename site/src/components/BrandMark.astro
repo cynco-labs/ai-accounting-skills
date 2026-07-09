@@ -1,0 +1,61 @@
+---
+/**
+ * AS brand stamp — always ink plate + white monogram.
+ * Never the OpenCode white-window silhouette.
+ * Plate stays #161616; light border on dark surfaces for separation.
+ */
+interface Props {
+  size?: number
+  class?: string
+  title?: string
+}
+const { size = 40, class: className, title = "Accounting Skills" } = Astro.props
+---
+
+<svg
+  data-slot="as-mark"
+  class={className}
+  width={size}
+  height={size}
+  viewBox="0 0 40 40"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={title}
+>
+  <title>{title}</title>
+  <!-- Fixed ink plate — not theme white -->
+  <rect width="40" height="40" fill="#161616"></rect>
+  <!-- Hairline edge for dark-on-dark footers -->
+  <rect
+    x="0.75"
+    y="0.75"
+    width="38.5"
+    height="38.5"
+    fill="none"
+    stroke="#ffffff"
+    stroke-opacity="0.22"
+    stroke-width="1.5"></rect>
+  <!-- Large block AS — white, high contrast -->
+  <g fill="#ffffff">
+    <!-- A -->
+    <path
+      fill-rule="evenodd"
+      d="M11.4 29H13.85L14.55 25.1H18.7L19.4 29H21.9L18.35 11H14.95L11.4 29ZM15.15 23.15 16.65 15.4l1.5 7.75h-3Z"
+    ></path>
+    <!-- S: bars + joins (reads S, not 5) -->
+    <rect x="23" y="11" width="7.2" height="2.4"></rect>
+    <rect x="23" y="11" width="2.4" height="6.1"></rect>
+    <rect x="23" y="16.9" width="7.2" height="2.4"></rect>
+    <rect x="27.8" y="16.9" width="2.4" height="6.1"></rect>
+    <rect x="23" y="22.8" width="7.2" height="2.4"></rect>
+  </g>
+</svg>
+
+<style>
+  [data-slot="as-mark"] {
+    display: block;
+    flex-shrink: 0;
+    border-radius: 0;
+  }
+</style>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  name: string
+  logo: string
+  href?: string
+}
+const { name, logo, href } = Astro.props
+const Tag = href ? "a" : "div"
+const extra = href ? { href, target: "_blank", rel: "noreferrer" } : {}
+---
+
+<Tag data-component="agent-logo" title={name} aria-label={name} {...extra}>
+  <img src={logo} alt="" width="22" height="22" loading="lazy" />
+  <span>{name}</span>
+</Tag>

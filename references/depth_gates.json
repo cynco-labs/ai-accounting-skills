@@ -1,0 +1,116 @@
+{
+  "schema_version": "0.0.1",
+  "description": "Depth-scoped prove gates. engagement_type → what must exist for Done. Scripts load this; agents must not invent a second definition.",
+  "default_depth": "bookkeeping_only",
+  "aliases": {
+    "unknown": "bookkeeping_only",
+    "compilation": "year_end",
+    "audit_support": "year_end",
+    "year_end_tax": "year_end_tax"
+  },
+  "depths": {
+    "bookkeeping_only": {
+      "label": "Books only",
+      "human_done": "Books for this period are ready (trial balance balances; bank recon clear).",
+      "required": [
+        {
+          "id": "register",
+          "label": "Source register",
+          "paths": ["source/register.md"]
+        },
+        {
+          "id": "transactions",
+          "label": "Transactions",
+          "paths": ["workpapers/transactions.json"],
+          "check": "transactions"
+        },
+        {
+          "id": "journals",
+          "label": "Journals",
+          "paths": ["workpapers/journals.json"],
+          "check": "journals"
+        },
+        {
+          "id": "bank_recon",
+          "label": "Bank recon",
+          "paths": ["workpapers/reconciliations"],
+          "check": "bank_recon"
+        },
+        {
+          "id": "tb_preliminary",
+          "label": "Preliminary TB",
+          "paths": ["workpapers/tb_preliminary.json"],
+          "check": "tb"
+        }
+      ],
+      "optional": [
+        {
+          "id": "ledger",
+          "label": "Beancount ledger",
+          "paths": ["ledger/main.beancount"]
+        }
+      ],
+      "not_required": [
+        "workpapers/journals_ye.json",
+        "workpapers/tb_adjusted.json",
+        "workpapers/qc_report.md",
+        "outputs/fs/primary_statements.md"
+      ]
+    },
+    "year_end": {
+      "label": "Year-end pack",
+      "human_done": "Year-end pack ready (adjusted TB, statements, QC Section A).",
+      "extends": "bookkeeping_only",
+      "required": [
+        {
+          "id": "journals_ye",
+          "label": "YE journals",
+          "paths": ["workpapers/journals_ye.json"],
+          "check": "journals"
+        },
+        {
+          "id": "tb_adjusted",
+          "label": "Adjusted TB",
+          "paths": ["workpapers/tb_adjusted.json"],
+          "check": "tb"
+        },
+        {
+          "id": "primary_statements",
+          "label": "Primary statements",
+          "paths": ["outputs/fs/primary_statements.md"]
+        },
+        {
+          "id": "notes",
+          "label": "Notes",
+          "paths": ["outputs/fs/notes.md"]
+        },
+        {
+          "id": "qc",
+          "label": "QC report",
+          "paths": ["workpapers/qc_report.md"],
+          "check": "qc_section_a"
+        }
+      ],
+      "optional": [
+        {
+          "id": "ledger",
+          "label": "Beancount ledger",
+          "paths": ["ledger/main.beancount"]
+        }
+      ]
+    },
+    "year_end_tax": {
+      "label": "Year-end + tax",
+      "human_done": "Year-end pack + tax computation ready.",
+      "extends": "year_end",
+      "required": [
+        {
+          "id": "tax",
+          "label": "Tax computation",
+          "paths": ["outputs/tax/computation.md"]
+        }
+      ],
+      "optional": []
+    }
+  }
+}

@@ -22,3 +22,7 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+site/node_modules/
+site/dist/
+site/.astro/
+site/.wrangler/

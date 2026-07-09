@@ -5,8 +5,8 @@ Paths are relative to `clients/<slug>/`.
 
 | Stage | Required artifacts | Gate |
 |---|---|---|
-| setup | `README.md`, `engagement_state.json` | Entity, FY, framework known |
-| source_documents | `source/register.md` | Bank coverage green/amber (red = blocked unless override logged) |
+| setup | `README.md`, `engagement_state.json` | Entity, FY, framework known; **`operator`** + **`engagement_type`** set (`shared/operator-lens.md`); shelf layout exists |
+| source_documents | `source/register.md` (+ files under `source/**` or `_pointers.md`) | Bank coverage green/amber (red = blocked unless override logged); shelf-first done |
 | record_transactions | `workpapers/transactions.json` (or `.csv`) | Every bank line extracted for in-scope periods |
 | classify_transactions | `workpapers/transactions.json` with `account_code` on each row; if `classify_depth=standards_aware`, material themes under `workpapers/analysis/` | No silent suspense; unresolved → queries; standards-aware: analysis packs or with-limitation |
 | journal_entries | `workpapers/journals.json` | Every JE balances |

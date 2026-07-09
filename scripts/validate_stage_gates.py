@@ -2,10 +2,12 @@
 # SPDX-License-Identifier: MIT
 """Stage gate checks — required artifacts before claiming a stage is done.
 
+Depth-aware: uses references/depth_gates.json via depth_gates.py.
 Does not invent progress. Only verifies claims already on disk.
 
 Usage:
-  python3 scripts/validate_stage_gates.py fixtures/golden-mini-sdn-bhd
+  python3 scripts/validate_stage_gates.py fixtures/golden-books-only-mini
+  python3 scripts/validate_stage_gates.py fixtures/golden-mini-sdn-bhd --strict
   python3 scripts/validate_stage_gates.py ./clients/acme --require-atb
 """
 from __future__ import annotations
@@ -13,57 +15,38 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 
-TOL = Decimal("0.005")
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
 
-# Logical pipeline order and hard prerequisites
-GATES: list[tuple[str, list[str], str]] = [
-    # (stage_id, required relative paths, human label)
-    ("source_documents", ["source/register.md"], "source register"),
-    ("record_transactions", ["workpapers/transactions.json"], "transactions"),
-    ("journal_entries", ["workpapers/journals.json"], "journals"),
-    ("preliminary_trial_balance", ["workpapers/tb_preliminary.json"], "preliminary TB"),
-    ("year_end_adjustments", ["workpapers/journals_ye.json"], "YE journals"),
-    ("adjusted_trial_balance", ["workpapers/tb_adjusted.json"], "adjusted TB"),
-    ("quality_review", ["workpapers/qc_report.md"], "QC report"),
-    ("finalise", ["workpapers/tb_adjusted.json"], "locked ATB"),
-    ("beancount", ["ledger/main.beancount"], "Beancount ledger"),
-]
-
-
-def money(x) -> Decimal:
-    return Decimal(str(x)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
-
-
-def tb_balances(path: Path) -> tuple[bool, str]:
-    data = json.loads(path.read_text(encoding="utf-8"))
-    lines = data.get("lines") or []
-    deb = sum((money(l.get("debit", 0)) for l in lines), Decimal("0"))
-    cre = sum((money(l.get("credit", 0)) for l in lines), Decimal("0"))
-    if abs(deb - cre) > TOL:
-        return False, f"TB out of balance DR={deb} CR={cre}"
-    return True, f"TB balanced DR={deb} CR={cre}"
-
-
-def journals_balance(path: Path) -> tuple[bool, str]:
-    data = json.loads(path.read_text(encoding="utf-8"))
-    bad = []
-    for je in data.get("journals") or []:
-        deb = sum((money(l.get("debit", 0)) for l in je.get("lines") or []), Decimal("0"))
-        cre = sum((money(l.get("credit", 0)) for l in je.get("lines") or []), Decimal("0"))
-        if abs(deb - cre) > TOL:
-            bad.append(je.get("je_number", "?"))
-    if bad:
-        return False, f"unbalanced journals: {', '.join(bad)}"
-    return True, f"{len(data.get('journals') or [])} journals balanced"
+from depth_gates import (  # noqa: E402
+    check_journals,
+    check_tb,
+    print_scorecard,
+    score_engagement,
+)
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("client_dir", type=Path)
-    ap.add_argument("--require-atb", action="store_true", help="Fail if adjusted TB missing")
+    ap.add_argument(
+        "--strict",
+        action="store_true",
+        help="Require all gates for engagement_type (prove / done)",
+    )
+    ap.add_argument(
+        "--soft",
+        action="store_true",
+        help="Only fail arithmetic / overclaims; missing progress is a warning",
+    )
+    ap.add_argument("--depth", help="Override engagement_type")
+    ap.add_argument(
+        "--require-atb",
+        action="store_true",
+        help="Fail if adjusted TB missing (forces year-end-style check)",
+    )
     ap.add_argument("--require-ledger", action="store_true")
     args = ap.parse_args()
     client = args.client_dir.resolve()
@@ -71,58 +54,62 @@ def main() -> int:
         print(f"ERROR: not a directory: {client}", file=sys.stderr)
         return 1
 
-    errors: list[str] = []
-    warnings: list[str] = []
-    present: list[str] = []
+    strict = True if args.strict else (False if args.soft else None)
+    card = score_engagement(client, strict=strict, depth=args.depth)
+    print_scorecard(card)
 
+    # Legacy flags
+    extra_errors: list[str] = []
+    if args.require_atb and not (client / "workpapers/tb_adjusted.json").is_file():
+        extra_errors.append("required gate missing: adjusted TB (--require-atb)")
+    if args.require_ledger and not (client / "ledger/main.beancount").is_file():
+        extra_errors.append("required gate missing: Beancount ledger (--require-ledger)")
+
+    # Overclaim: stages_completed without files (legacy safety net)
     state = {}
     sp = client / "engagement_state.json"
     if sp.is_file():
         state = json.loads(sp.read_text(encoding="utf-8"))
     completed = set(state.get("stages_completed") or [])
+    claim_map = {
+        "source_documents": ["source/register.md"],
+        "record_transactions": ["workpapers/transactions.json"],
+        "journal_entries": ["workpapers/journals.json"],
+        "preliminary_trial_balance": ["workpapers/tb_preliminary.json"],
+        "year_end_adjustments": ["workpapers/journals_ye.json"],
+        "adjusted_trial_balance": ["workpapers/tb_adjusted.json"],
+        "quality_review": ["workpapers/qc_report.md"],
+        "primary_statements": ["outputs/fs/primary_statements.md"],
+        "notes": ["outputs/fs/notes.md"],
+    }
+    for stage, rels in claim_map.items():
+        if stage in completed and not all((client / r).is_file() for r in rels):
+            extra_errors.append(f"stages_completed has {stage} but missing {rels}")
 
-    for stage_id, rels, label in GATES:
-        paths = [client / r for r in rels]
-        if all(p.is_file() for p in paths):
-            present.append(stage_id)
-            # arithmetic gates
-            for p in paths:
-                if p.name.startswith("tb_") and p.suffix == ".json":
-                    ok, msg = tb_balances(p)
-                    if not ok:
-                        errors.append(f"{label}: {msg}")
-                    else:
-                        print(f"  ✓ {label}: {msg}")
-                elif p.name.startswith("journals") and p.suffix == ".json":
-                    ok, msg = journals_balance(p)
-                    if not ok:
-                        errors.append(f"{label}: {msg}")
-                    else:
-                        print(f"  ✓ {label}: {msg}")
-                else:
-                    print(f"  ✓ {label}: {p.relative_to(client)}")
-        else:
-            if stage_id in completed:
-                errors.append(f"stages_completed has {stage_id} but missing {rels}")
-            elif args.require_atb and stage_id == "adjusted_trial_balance":
-                errors.append(f"required gate missing: {label}")
-            elif args.require_ledger and stage_id == "beancount":
-                errors.append(f"required gate missing: {label}")
+    # Math on any present TB/journals even if optional for depth
+    for rel, checker in [
+        ("workpapers/tb_preliminary.json", check_tb),
+        ("workpapers/tb_adjusted.json", check_tb),
+        ("workpapers/journals.json", check_journals),
+        ("workpapers/journals_ye.json", check_journals),
+    ]:
+        p = client / rel
+        if p.is_file():
+            ok, msg = checker(p)
+            if not ok:
+                extra_errors.append(f"{rel}: {msg}")
 
-    # Cross-stage: if ATB present, journals should exist
-    if (client / "workpapers/tb_adjusted.json").is_file():
-        if not (client / "workpapers/journals.json").is_file():
-            warnings.append("ATB present without journals.json")
-
-    for e in errors:
+    for e in extra_errors:
         print(f"ERROR: {e}")
-    for w in warnings:
-        print(f"WARN:  {w}")
+        card.errors.append(e)
 
-    if errors:
-        print(f"FAILED: {len(errors)} gate error(s)")
+    if card.errors or extra_errors:
+        print(f"FAILED: {len(card.errors)} gate error(s)")
         return 1
-    print(f"OK: stage gates ({len(present)} artifact groups present, {len(warnings)} warning(s))")
+    print(
+        f"OK: stage gates depth={card.depth} "
+        f"({sum(1 for r in card.results if r.ok)} checks ok, {len(card.warnings)} warning(s))"
+    )
     return 0
 
 

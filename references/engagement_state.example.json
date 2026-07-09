@@ -9,6 +9,7 @@
   "jurisdiction_pack": "malaysia",
   "currency": "MYR",
   "industry_overlay": "services",
+  "operator": "firm",
   "engagement_type": "year_end_tax",
   "current_stage": "classify_transactions",
   "status": "waiting_on_user",
