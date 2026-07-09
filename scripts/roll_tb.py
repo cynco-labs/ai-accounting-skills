@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Pure reduce: journal batches → trial balance.
 
 Kernel function (see shared/kernel-contract.md). Agents must not freestyle TB totals.

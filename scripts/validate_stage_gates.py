@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Stage gate checks — required artifacts before claiming a stage is done.
 
 Does not invent progress. Only verifies claims already on disk.

@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/cynco-labs/ai-accounting-skills/issues"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "author": "Hazli Johar <coding@hazli.dev>",
   "type": "module",
   "bin": {

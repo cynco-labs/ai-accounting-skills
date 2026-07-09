@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Unified bank extract — auto-detect adapter, enforce balance proof where possible.
 
 Adapters:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Shared path resolution for multi-agent firm config and package root."""
 from __future__ import annotations
 

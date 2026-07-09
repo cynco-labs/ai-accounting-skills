@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Extract a Keep-a-Changelog section for GitHub release notes.
 
 Usage:

@@ -1,8 +1,8 @@
-claude-for-accounting
+claude-for-accounting / AI Accounting Skills
 Copyright 2026 Hazli Johar
 
 This product is maintained by Hazli Johar <coding@hazli.dev> and
-contributors. It is licensed under the Apache License, Version 2.0.
+contributors. It is licensed under the MIT License.
 
 Architectural patterns for plugin marketplaces are inspired by publicly
 documented agent skill marketplace layouts (including open-source legal

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Sync stage-plugin skills into the accounting-engagement umbrella plugin.
 
 Source of truth remains the modular stage plugins. The umbrella is a one-install

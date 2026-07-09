@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Extract Maybank Islamic (and compatible Maybank) e-statement PDFs to Excel/CSV/JSON.
 
 Proven method (CJT Bakery-style statements):

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Locate engagement_state.json near cwd and print a resume banner (plain text)."""
 from __future__ import annotations
 

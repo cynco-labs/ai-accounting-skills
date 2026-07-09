@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Keyword / description routing eval for agent skill discoverability.
 
 Does not call a model — scores each utterance against skill frontmatter

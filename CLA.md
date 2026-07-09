@@ -6,9 +6,9 @@ By submitting a contribution (including pull requests, issues with patches, or o
 
 ## 1. You grant a license
 
-You grant the project maintainers and recipients of software distributed by the project a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, and distribute your contributions and such derivative works under the project’s license (Apache License 2.0).
+You grant the project maintainers and recipients of software distributed by the project a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, and distribute your contributions and such derivative works under the project’s license (MIT License).
 
-You also grant a patent license to the same extent as in Apache License 2.0 Section 3 for your contributions.
+You also grant a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer your contributions, where such license applies only to patent claims you can license that are necessarily infringed by your contributions alone or by combination of your contributions with the project.
 
 ## 2. You are able to grant that license
 
@@ -16,7 +16,7 @@ You represent that you are legally entitled to grant the above license. If your 
 
 ## 3. Your contribution is original or properly licensed
 
-You represent that each of your contributions is your original creation, or that you have sufficient rights to submit material created by others under terms compatible with Apache License 2.0, and you include complete details of any third-party license or restriction.
+You represent that each of your contributions is your original creation, or that you have sufficient rights to submit material created by others under terms compatible with MIT License, and you include complete details of any third-party license or restriction.
 
 ## 4. No warranty
 
@@ -38,4 +38,4 @@ You only need to do this once per contributor identity unless the CLA text chang
 
 ## Why we use a CLA
 
-A CLA keeps licensing clear as the community grows — same reason many open-source foundations and projects (including large agent skill marketplaces) use one. It does not change the Apache 2.0 license of the distributed software.
+A CLA keeps licensing clear as the community grows — same reason many open-source foundations and projects (including large agent skill marketplaces) use one. It does not change the MIT license of the distributed software.

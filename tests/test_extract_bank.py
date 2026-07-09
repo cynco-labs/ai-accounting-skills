@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Unit tests — bank CSV adapters + detection."""
 from __future__ import annotations
 

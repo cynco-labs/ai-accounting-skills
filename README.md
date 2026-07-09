@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/v2.2.0-0d6efd?style=for-the-badge" alt="v2.2.0" />
   <a href="https://skills.sh/cynco-labs/ai-accounting-skills"><img src="https://skills.sh/b/cynco-labs/ai-accounting-skills" alt="skills.sh" /></a>
   <img src="https://img.shields.io/badge/Beancount-SoR-111827?style=for-the-badge" alt="Beancount" />
-  <img src="https://img.shields.io/badge/License-Apache%202.0-10b981?style=for-the-badge" alt="License" />
+  <img src="https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge" alt="MIT License" />
 </p>
 
 <h1 align="center">AI Accounting Skills</h1>
@@ -342,7 +342,7 @@ The reviewing accountant verifies figures against sources and takes responsibili
 
 **Hazli Johar** — [coding@hazli.dev](mailto:coding@hazli.dev) · [cynco-labs](https://github.com/cynco-labs)
 
-Apache License 2.0 — [LICENSE](./LICENSE) · Contributions — [CONTRIBUTING.md](./CONTRIBUTING.md)
+MIT License — [LICENSE](./LICENSE) · Contributions — [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 ```bash
 bash scripts/ci_check.sh   # before PRs

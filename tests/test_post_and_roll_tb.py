@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Kernel: post_journals + roll_tb pure functions."""
 from __future__ import annotations
 

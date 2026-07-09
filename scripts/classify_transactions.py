@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Classify bank transactions against COA patterns + optional payee map.
 
 Deterministic first pass — agents only adjudicate low-confidence rows.

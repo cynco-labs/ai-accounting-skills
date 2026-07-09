@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 """Integration — golden fixture gates + firm profile resolution."""
 from __future__ import annotations
 

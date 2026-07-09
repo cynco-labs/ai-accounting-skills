@@ -16,6 +16,7 @@ Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
 ### Changed
 
+- Project license is **MIT** (LICENSE, package.json, NOTICE, SPDX headers, CLA, README, site)
 - Builder skills (`skills-qa`, `jurisdiction-scaffold`, builder `cold-start-interview`) are **user-invoked**
 - Stage skills: leaner descriptions + **Done when** completion criteria across the pipeline
 - `skills-qa` scorecard 0–22 with craft diagnostics
@@ -125,7 +126,7 @@ Initial public scaffold of **claude-for-accounting**.
 - Industry COA overlays (trading, services, F&B, property, construction)
 - Managed-agent cookbooks (filing deadline watcher, bank statement intake)
 - `scripts/validate_marketplace.py` + GitHub Actions validate workflow
-- Apache License 2.0, CONTRIBUTING, CODE_OF_CONDUCT, CLA, SECURITY, MAINTAINERS
+- MIT License, CONTRIBUTING, CODE_OF_CONDUCT, CLA, SECURITY, MAINTAINERS
 - **Agent-native runtime:** `shared/agent-runtime.md`, `engagement_state` schema, stage artifact contracts, fat-trigger skill descriptions, `full-engagement-pipeline` as DEFAULT throw-work entry
 - **Umbrella plugin** `accounting-engagement` + `scripts/sync_umbrella.py` + `scripts/install_all.sh`
 - **Schemas:** transactions / journals / trial balance + `validate_engagement_artifacts.py`
