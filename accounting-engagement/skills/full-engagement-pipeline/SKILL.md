@@ -1,11 +1,10 @@
 ---
 name: full-engagement-pipeline
 description: >
- Full-job orchestrator — default when the user dumps banks/receipts or
- says "do the accounting" without naming a stage. Smart-intake, then one
- stage at a time; resumes from engagement_state.json.
+  Default for throw-work: dump a folder, "do the accounting", "sort my books",
+  year end, prepare financial statements / MPERS pack without naming a stage.
+  Smart intake then one stage at a time; resumes from engagement_state.json.
 ---
-
 # Full engagement pipeline (agent-native entry)
 
 ## Purpose

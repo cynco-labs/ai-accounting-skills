@@ -1,8 +1,8 @@
 ---
 name: generate-workbook
 description: >
- Build Excel workpapers pack via openpyxl. Use when working papers Excel
- or workbook.
+  Build Excel workpapers pack via openpyxl. Use when working papers Excel
+  or workbook.
 ---
 # /generate-workbook
 

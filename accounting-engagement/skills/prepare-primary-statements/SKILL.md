@@ -1,8 +1,8 @@
 ---
 name: prepare-primary-statements
 description: >
- Present primary statements from ATB map (present job). Use when draft
- FS or SOFP/SOCI.
+  Prepare primary financial statements from the adjusted trial balance — balance
+  sheet and income statement (SOFP/SOCI). Use when draft FS or present statements.
 ---
 # /prepare-primary-statements
 

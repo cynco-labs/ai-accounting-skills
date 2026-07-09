@@ -1,8 +1,8 @@
 ---
 name: source-documents
 description: >
- Register sources and bank coverage. Use when source register or document
- inventory.
+  Register sources and bank coverage. Use when source register or document
+  inventory.
 ---
 # /source-documents
 

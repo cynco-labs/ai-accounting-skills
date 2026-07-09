@@ -3,205 +3,205 @@
     {
       "plugin": "engagement-accounting",
       "skill": "cold-start-interview",
-      "sha256": "064fbb9f2fef81d77390ef5ff096cc66c2a29d8bef2879f46780848151bc1946",
+      "sha256": "a5e369993078f74394b7680fe2e96f775328fc7216a1c5da1e7544a092516b7a",
       "source": "engagement-accounting/skills/cold-start-interview/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "smart-intake",
-      "sha256": "8e0a73207f24621cff0fab4b96b32b19c09d68a7dad60bf2bb91d80ac7bd81d8",
+      "sha256": "874ff60d1f7558328e7ec48d12562d040a70dac1ec73f51838357a0136311c97",
       "source": "engagement-accounting/skills/smart-intake/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "engagement-setup",
-      "sha256": "730341f5576a65f83d74ba91c3aaa1c6f9694a194e359dc684efaa5479c5880a",
+      "sha256": "61082e378df164589fd8093a3f099171f2c949da397022d535cbfd1b38d1c4da",
       "source": "engagement-accounting/skills/engagement-setup/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "source-documents",
-      "sha256": "d72e44e424fd7b7eb0bb4a15b9df0dc130e7af09703c1f398a8349c4378d2b44",
+      "sha256": "82da7db0cc7217a51bcf6211eecb76c18f14eabc509dc57d0e5d45cca4487c47",
       "source": "engagement-accounting/skills/source-documents/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "client-workspace",
-      "sha256": "d5ddf2966f56e60bf953440a1cd30fb1fc07995334830d93adb5af58d1815c48",
+      "sha256": "6984bb50013d4611f4a4c6be291e4cd67d288573f4cb06e5e49691c674844b53",
       "source": "engagement-accounting/skills/client-workspace/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "full-engagement-pipeline",
-      "sha256": "4876cd681261e640b3481768e5c97748898546828f6c24d5fec6f80e9f43b2b5",
+      "sha256": "ab5c0782e3eff8c2eae4f9aa7b8bdb6bf621c54cb84d8f3de374eb80d9b95ced",
       "source": "engagement-accounting/skills/full-engagement-pipeline/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "resume-engagement",
-      "sha256": "a37857c8adcb1400e3fb2c40b995ccf91d1a924e78ffb7177ad2b44749e737b4",
+      "sha256": "95d895e2f9e3d040fec1c1e1f266a85163880b83828dd6379044be33fb36550c",
       "source": "engagement-accounting/skills/resume-engagement/SKILL.md"
     },
     {
       "plugin": "bookkeeping-accounting",
       "skill": "extract-bank-statement",
-      "sha256": "b8b4e3f35bab0f9e54e5639e9e3f38d35998b8e6c00c9ae2f8db17604eed6ad7",
+      "sha256": "96e1dad61dc33e0e49c17280e04b95f2f4590d578457d983dcf40cdc66ca2ba1",
       "source": "bookkeeping-accounting/skills/extract-bank-statement/SKILL.md"
     },
     {
       "plugin": "bookkeeping-accounting",
       "skill": "record-transactions",
-      "sha256": "6bf5b51cb36fd0c8660cdaec85e0b95db8635fc5debc519c1539ea4af5c05bcc",
+      "sha256": "eb2b79015957ac87554a964d10b571cb833833773f105cbbeeb80cfbf286cb23",
       "source": "bookkeeping-accounting/skills/record-transactions/SKILL.md"
     },
     {
       "plugin": "bookkeeping-accounting",
       "skill": "classify-transactions",
-      "sha256": "5c578cd0fa8de2a07a64df39a9528d9899a41cc50f8424902b097393a5d81512",
+      "sha256": "cac1722e77431b5c99d94944a5cf06ec129dca54696a30a85f6988b57afc0074",
       "source": "bookkeeping-accounting/skills/classify-transactions/SKILL.md"
     },
     {
       "plugin": "bookkeeping-accounting",
       "skill": "chart-of-accounts",
-      "sha256": "64e9bf24b1dc57a2b0bd2f049a697ae1c42a0415ebc2664f3741e11e156d5b04",
+      "sha256": "96d81cf10fe2cd7465e3cbb6b731038c7b0b6beaeb1b5a0cdab8f822ee980ad3",
       "source": "bookkeeping-accounting/skills/chart-of-accounts/SKILL.md"
     },
     {
       "plugin": "bookkeeping-accounting",
       "skill": "journal-entries",
-      "sha256": "5bad630079392b25bc47f7150ea4a85a1dce49530d32459f0d60177a14de2c8d",
+      "sha256": "b1e3b9cd6d3b97aa36c72b724702a7b31ea0d7749d4ad563cbcb288dde1e6e55",
       "source": "bookkeeping-accounting/skills/journal-entries/SKILL.md"
     },
     {
       "plugin": "reconciliation-accounting",
       "skill": "bank-reconciliation",
-      "sha256": "8726095c03d245dc2d7eba3ab21669397d6c8cbfc9d5026158be23a0c82ce56d",
+      "sha256": "8581977b443d9ee5e84876a89636dc135787cb568b7db6a44c1e5f055e8c9be8",
       "source": "reconciliation-accounting/skills/bank-reconciliation/SKILL.md"
     },
     {
       "plugin": "reconciliation-accounting",
       "skill": "subledger-reconciliations",
-      "sha256": "ddf383e5f92e8e3a19100e538e0d05892fba9dda004b3e20c5a9c277927b8de2",
+      "sha256": "5f0406f3a8111b0373a4a436082003d6288a21d0947c7decf0cd0c58e1d66bb0",
       "source": "reconciliation-accounting/skills/subledger-reconciliations/SKILL.md"
     },
     {
       "plugin": "reconciliation-accounting",
       "skill": "preliminary-trial-balance",
-      "sha256": "54628ea23fe91b6552bbc0e1750884cf9537fbab699a2d3c37cf0a73d5e30362",
+      "sha256": "c38e51b079395df8d02909b75d5988eeda7295c05487aa122b8b856f46fb8b6b",
       "source": "reconciliation-accounting/skills/preliminary-trial-balance/SKILL.md"
     },
     {
       "plugin": "year-end-accounting",
       "skill": "year-end-adjustments",
-      "sha256": "298154e142948f903c5473f6a446322825dc2e20587edfe417019ea12c4f28eb",
+      "sha256": "e774e973520e93343b533880ea2f28a660a2fb940cbd70621baa33de78facf11",
       "source": "year-end-accounting/skills/year-end-adjustments/SKILL.md"
     },
     {
       "plugin": "year-end-accounting",
       "skill": "adjusted-trial-balance",
-      "sha256": "a192aef14ed4c246bf5a2163bb0efc6497fd2e0f742dbcf2dac8049b26753623",
+      "sha256": "defa6f2b0461007029b77442dcd6c84ba0973d8a30818c62c21f3489a28293e0",
       "source": "year-end-accounting/skills/adjusted-trial-balance/SKILL.md"
     },
     {
       "plugin": "mpers-accounting",
       "skill": "mpers-technical-review",
-      "sha256": "1dcda6d07ec20df3b6d9df425900a3dee0495a74f290798d4e510d3f1c6e66a5",
+      "sha256": "d3122dd44ff0cfccb68b01a1e080e62903c3c59a2c3ba01c3c52d73e4aad5943",
       "source": "mpers-accounting/skills/mpers-technical-review/SKILL.md"
     },
     {
       "plugin": "mpers-accounting",
       "skill": "disclosure-checklist",
-      "sha256": "f642787e45dacd95e9b408649479b87f339359d85603c22409819547a639c069",
+      "sha256": "0c910edc70b32a163853faf02c08d3c33a6fb50c7e541eb02738601e2a734eff",
       "source": "mpers-accounting/skills/disclosure-checklist/SKILL.md"
     },
     {
       "plugin": "financial-statements-accounting",
       "skill": "prepare-primary-statements",
-      "sha256": "8ce29a0909f6ecbb68aee247e00952a33363d66e6ab539812cbf9628ddc1c53b",
+      "sha256": "a17e6ef1f79ca737c1d1e8072af2a3ff6b1d5af07e8155cc169fe3321eaedcc0",
       "source": "financial-statements-accounting/skills/prepare-primary-statements/SKILL.md"
     },
     {
       "plugin": "financial-statements-accounting",
       "skill": "prepare-notes",
-      "sha256": "9b66d8f671e7f537ed4e36878b44243feed21ca50d3811de6328c8cf4f5644fe",
+      "sha256": "7d4b008a893a93f830eae411287319915d901e8cb5bb6f7d326bcfe4ca7ac0c0",
       "source": "financial-statements-accounting/skills/prepare-notes/SKILL.md"
     },
     {
       "plugin": "financial-statements-accounting",
       "skill": "compilation-report",
-      "sha256": "848cf7207f65613e102ed18222166bff20bac2522ab59f6c01f9c9afb70f9ba9",
+      "sha256": "80bf2a8411c682ed7d1215f7af70003b0c10e139864db2e582ba35c242220217",
       "source": "financial-statements-accounting/skills/compilation-report/SKILL.md"
     },
     {
       "plugin": "financial-statements-accounting",
       "skill": "generate-workbook",
-      "sha256": "51489c95bd817f392f44ecf0514a39d74cf4af9150d0ee0fbf51673f203600af",
+      "sha256": "146ca1e3ab811b6efe238492e6a7484e29d2c4f1dce2d303c287b39ce2c0a80a",
       "source": "financial-statements-accounting/skills/generate-workbook/SKILL.md"
     },
     {
       "plugin": "quality-review-accounting",
       "skill": "quality-review",
-      "sha256": "b46d700b59464a060574fa551fe4e5e427251802f731e3904f188138f7ce9092",
+      "sha256": "a1065263c8e9879db788b7a4ccc3f416e623c25a6395015fa84309040b1656cc",
       "source": "quality-review-accounting/skills/quality-review/SKILL.md"
     },
     {
       "plugin": "quality-review-accounting",
       "skill": "cross-tie-check",
-      "sha256": "50a2d373429af4dc8e921f329b8f851369450d9ad4fec2d275bfc2c5ad78d89b",
+      "sha256": "0f7ab0845792f850da9e93ca446b5f6ae2aae1de8375d3a5ef115df27e5f72f0",
       "source": "quality-review-accounting/skills/cross-tie-check/SKILL.md"
     },
     {
       "plugin": "finalisation-accounting",
       "skill": "finalise-accounts",
-      "sha256": "d268f84074b612203f796d2f13b9220a5aedd1f2bc57efe720beda2570053375",
+      "sha256": "1d6c9c0c361fae8b45a568d446148b61380be2ef4593b2079963b69b6d673993",
       "source": "finalisation-accounting/skills/finalise-accounts/SKILL.md"
     },
     {
       "plugin": "finalisation-accounting",
       "skill": "management-approval",
-      "sha256": "b19a24a02ea877ce0d68fdbdb3c8a44245063cf7a0ceeae5a70771593c7d8785",
+      "sha256": "02132a0d610bba1fedb85207865894da090805b5c0abb5eb602bacc6421c3d24",
       "source": "finalisation-accounting/skills/management-approval/SKILL.md"
     },
     {
       "plugin": "finalisation-accounting",
       "skill": "auditor-pack",
-      "sha256": "ac968ec03f3f8fb731fed419dcc82e0b75a0e7878ac6e59bde621109e530348b",
+      "sha256": "d5d758dd805207b9079d996164cfd8ac6a218b6d000e68b7d767f3c07a388e14",
       "source": "finalisation-accounting/skills/auditor-pack/SKILL.md"
     },
     {
       "plugin": "finalisation-accounting",
       "skill": "statutory-handoff",
-      "sha256": "80f21a6c543a377d32c2b713c6ba2e1ddead4a646eae1da306c492c719ec68d4",
+      "sha256": "b487a5db7e9e150c8a52a9f2f39352b17e9e4bf34ed5afeb0804479ac10705a7",
       "source": "finalisation-accounting/skills/statutory-handoff/SKILL.md"
     },
     {
       "plugin": "tax-accounting",
       "skill": "tax-computation",
-      "sha256": "82c4f396199f5bd3781c7ed5555acfea3a00fd426e0deaa59c6a8702a026ecde",
+      "sha256": "a92e151a82b25142c2b2f00fcb5461b5004de5cfe1cad3a030e19b56b7271841",
       "source": "tax-accounting/skills/tax-computation/SKILL.md"
     },
     {
       "plugin": "tax-accounting",
       "skill": "capital-allowances",
-      "sha256": "02b5f6629f985f4ea4adfad1af6d65dea31d77e0da9e89fba1e8ace19d010bc2",
+      "sha256": "bf54d7102f812cd9401fefaa9ebca0024d4cf5b4eb7ba7c81279da94e52019af",
       "source": "tax-accounting/skills/capital-allowances/SKILL.md"
     },
     {
       "plugin": "beancount-ledger",
       "skill": "export-beancount",
-      "sha256": "89508dce443baa600ea304c399b7111f9b89faceb836238ee41944aa003df4b1",
+      "sha256": "5c0591a999c15b151edb391e80f7c94086dddacb231b7c917e718c4998aae35e",
       "source": "beancount-ledger/skills/export-beancount/SKILL.md"
     },
     {
       "plugin": "beancount-ledger",
       "skill": "validate-beancount",
-      "sha256": "a4ca6d273f4ee627e1a2b6e1f6cf87e404a03d12bcadadc3750a716c03dc29b6",
+      "sha256": "43b2b64619cda1624e264984dbd76de3e7b77c5ccd3c01395da6ac28c806ce4f",
       "source": "beancount-ledger/skills/validate-beancount/SKILL.md"
     },
     {
       "plugin": "beancount-ledger",
       "skill": "open-fava",
-      "sha256": "9c96f17c5e99b4ace6bbb700b517582ebd51a588b70d7151295e852d13044fbc",
+      "sha256": "cd4136616830966b31f7fb6155f180a61a0fb8544311fdbbcf898c03a5697e52",
       "source": "beancount-ledger/skills/open-fava/SKILL.md"
     }
   ]

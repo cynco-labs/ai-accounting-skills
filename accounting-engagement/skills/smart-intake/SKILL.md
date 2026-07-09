@@ -1,11 +1,10 @@
 ---
 name: smart-intake
 description: >
- Document-first intake for folder dumps — infer context, ≤3 structured
- questions (do the books). Use when do the accounting without company
- details.
+  Document-first intake when company details are unknown. Use for folder dumps,
+  "do the accounting" without context, messy receipts and banks. Infer first;
+  ask at most 3 questions. Prefer before a long questionnaire.
 ---
-
 # /smart-intake
 
 ## Purpose

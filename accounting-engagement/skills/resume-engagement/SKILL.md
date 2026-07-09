@@ -1,8 +1,8 @@
 ---
 name: resume-engagement
 description: >
- Resume from engagement_state.json. Use when continue client, pick up
- books, or where we left off.
+  Resume from engagement_state.json. Use when continue client, pick up
+  books, or where we left off.
 ---
 
 # /resume-engagement

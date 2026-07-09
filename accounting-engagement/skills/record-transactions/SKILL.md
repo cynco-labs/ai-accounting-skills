@@ -1,8 +1,8 @@
 ---
 name: record-transactions
 description: >
- Capture multi-stream registers (bank, sales, purchases, payroll) with
- source provenance. Use when import bank or capture transactions.
+  Capture multi-stream registers (bank, sales, purchases, payroll) with
+  source provenance. Use when import bank or capture transactions.
 ---
 # /record-transactions
 

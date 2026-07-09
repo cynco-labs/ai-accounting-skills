@@ -1,8 +1,8 @@
 ---
 name: preliminary-trial-balance
 description: >
- Derive preliminary TB via roll_tb only . Use when preliminary TB
- or roll TB.
+  Derive preliminary TB via roll_tb only . Use when preliminary TB
+  or roll TB.
 ---
 # /preliminary-trial-balance
 

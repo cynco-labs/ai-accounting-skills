@@ -1,8 +1,8 @@
 ---
 name: engagement-setup
 description: >
- Write engagement_state and workspace for a known client/period. Use when
- new engagement or setup books.
+  Write engagement_state and workspace for a known client/period. Use when
+  new engagement or setup books.
 ---
 
 # /engagement-setup

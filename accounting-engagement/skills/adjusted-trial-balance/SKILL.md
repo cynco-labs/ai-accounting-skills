@@ -1,8 +1,8 @@
 ---
 name: adjusted-trial-balance
 description: >
- Derive adjusted TB via roll_tb --adjusted only. Use when adjusted TB or
- ATB.
+  Derive adjusted TB via roll_tb --adjusted only. Use when adjusted TB or
+  ATB.
 ---
 # /adjusted-trial-balance
 

@@ -1,8 +1,8 @@
 ---
 name: cold-start-interview
 description: >
- Firm profile cold-start (not a client dump). Use when set up the firm or
- first install.
+  Firm profile cold-start (not a client dump). Use when set up the firm or
+  first install.
 argument-hint: "[--redo] [--check-integrations] [--full]"
 ---
 # /cold-start-interview

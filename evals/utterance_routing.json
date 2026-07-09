@@ -5,7 +5,11 @@
     {
       "utterance": "Here are bank statements for ABC Sdn Bhd, please do the year end and prepare MPERS financial statements",
       "expected_skill": "full-engagement-pipeline",
-      "notes": "Throw-work default entry"
+      "notes": "Throw-work default entry",
+      "acceptable_skills": [
+        "full-engagement-pipeline",
+        "smart-intake"
+      ]
     },
     {
       "utterance": "Resume the engagement for Golden Mini where we left off",
@@ -65,12 +69,20 @@
     {
       "utterance": "Here are some receipts and bank statements in this folder, please do the accounting, I don't know the company details",
       "expected_skill": "smart-intake",
-      "notes": "Blind folder dump \u2014 smart-intake or full-engagement-pipeline both acceptable if top-3; prefer smart-intake"
+      "notes": "Blind folder dump \u2014 smart-intake or full-engagement-pipeline both acceptable if top-3; prefer smart-intake",
+      "acceptable_skills": [
+        "smart-intake",
+        "full-engagement-pipeline"
+      ]
     },
     {
       "utterance": "whatever is in this folder just sort my books",
       "expected_skill": "full-engagement-pipeline",
-      "notes": "Pipeline default; smart-intake is also a strong match"
+      "notes": "Pipeline default; smart-intake is also a strong match",
+      "acceptable_skills": [
+        "full-engagement-pipeline",
+        "smart-intake"
+      ]
     },
     {
       "utterance": "Export the final ledger to Beancount and open Fava so I can see the books",

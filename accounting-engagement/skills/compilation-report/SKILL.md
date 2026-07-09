@@ -1,8 +1,8 @@
 ---
 name: compilation-report
 description: >
- Draft compilation report for the engagement pack. Use when compilation
- or ISRS 4410.
+  Draft compilation report for the engagement pack. Use when compilation
+  or ISRS 4410.
 ---
 # /compilation-report
 

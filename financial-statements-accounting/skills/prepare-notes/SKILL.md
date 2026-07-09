@@ -1,8 +1,8 @@
 ---
 name: prepare-notes
 description: >
- Draft notes tied to primary statements. Use when notes to FS or
- disclosure draft.
+  Draft notes tied to primary statements. Use when notes to FS or
+  disclosure draft.
 ---
 # /prepare-notes
 

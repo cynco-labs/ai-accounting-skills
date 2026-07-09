@@ -1,8 +1,8 @@
 ---
 name: disclosure-checklist
 description: >
- Run framework disclosure checklist. Use when disclosures or notes
- checklist.
+  Run framework disclosure checklist. Use when disclosures or notes
+  checklist.
 ---
 # /disclosure-checklist
 

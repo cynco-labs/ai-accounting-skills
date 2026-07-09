@@ -1,8 +1,8 @@
 ---
 name: cross-tie-check
 description: >
- Cross-tie FS lines to ATB and notes (prove job). Use when cross-tie or prove
- ties.
+  Cross-tie FS lines to ATB and notes (prove job). Use when cross-tie or prove
+  ties.
 ---
 # /cross-tie-check
 

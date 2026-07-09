@@ -1,7 +1,7 @@
 {
   "name": "@cynco/accounting-skills",
   "version": "2.2.4",
-  "description": "Accounting CLI for coding agents \u2014 extract banks, classify, post, trial balance, close, Beancount + Fava. Install skills via skills.sh. npx @cynco/accounting-skills demo",
+  "description": "Accounting CLI for coding agents — extract banks, classify, post, trial balance, close, Beancount + Fava. Install skills via skills.sh. npx @cynco/accounting-skills demo",
   "keywords": [
     "accounting",
     "beancount",
@@ -25,9 +25,9 @@
   "author": "Hazli Johar <coding@hazli.dev>",
   "type": "module",
   "bin": {
-    "accounting-skills": "./cli/bin/ai-accounting.js",
-    "ai-accounting": "./cli/bin/ai-accounting.js",
-    "cynco-accounting": "./cli/bin/ai-accounting.js"
+    "accounting-skills": "cli/bin/ai-accounting.js",
+    "ai-accounting": "cli/bin/ai-accounting.js",
+    "cynco-accounting": "cli/bin/ai-accounting.js"
   },
   "files": [
     "cli/**/*",

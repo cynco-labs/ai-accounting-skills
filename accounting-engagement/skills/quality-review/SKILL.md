@@ -1,9 +1,9 @@
 ---
 name: quality-review
 description: >
- Prove the pack before finalisation — full QC with Section A mathematical
- blockers. Use when quality review, QC, partner checklist, "check the
- accounts", or prove intent before issue.
+  Prove the pack before finalisation — full QC with Section A mathematical
+  blockers. Use when quality review, QC, partner checklist, "check the
+  accounts", or prove intent before issue.
 ---
 # /quality-review
 

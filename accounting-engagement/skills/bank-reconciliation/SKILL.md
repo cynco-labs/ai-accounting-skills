@@ -1,8 +1,8 @@
 ---
 name: bank-reconciliation
 description: >
- Reconcile bank GL to statement at RM0. Use when bank recon or cash
- doesn't match.
+  Reconcile bank GL to statement at RM0. Use when bank recon or cash
+  doesn't match.
 ---
 # /bank-reconciliation
 

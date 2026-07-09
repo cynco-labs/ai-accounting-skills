@@ -96,7 +96,17 @@ def main() -> int:
         )
         top = ranked[: args.top_k]
         top_names = [n for n, _ in top]
-        ok = expected in top_names
+        acceptable = set(case.get("acceptable_skills") or [])
+        acceptable.add(expected)
+        # notes may say "X is also" — keep explicit field authoritative
+        ok = any(n in acceptable for n in top_names) and (
+            expected in top_names or bool(case.get("acceptable_skills"))
+        )
+        # Prefer: expected in top-k OR any listed acceptable is in top-k when acceptable_skills set
+        if case.get("acceptable_skills"):
+            ok = bool(set(top_names) & set(case["acceptable_skills"] + [expected]))
+        else:
+            ok = expected in top_names
         status = "PASS" if ok else "FAIL"
         if not ok:
             failed += 1

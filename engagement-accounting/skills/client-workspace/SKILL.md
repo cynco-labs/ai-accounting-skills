@@ -1,8 +1,8 @@
 ---
 name: client-workspace
 description: >
- Scaffold clients/<slug> folder layout. Use when new client folder or
- workspace layout.
+  Scaffold clients/<slug> folder layout. Use when new client folder or
+  workspace layout.
 ---
 # /client-workspace
 
