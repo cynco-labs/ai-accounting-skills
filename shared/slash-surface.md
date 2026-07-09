@@ -29,8 +29,8 @@ Keep **implementation** in one canonical skill per job. Aliases never copy doctr
 | **extract** | Banks / sources → proved lines | `extract-bank-statement` |
 | **classify** | Substance (if needed) → COA codes | `classify-transactions` |
 | **post** | Journals + calculated TB | `journal-entries` |
-| **present** | FS / notes from adjusted TB | `prepare-primary-statements` (+ notes as needed) |
-| **prove** | QC / lock path | `quality-review` |
+| **present** | HTML pack always; FS/notes if depth needs | `generate_html_report.py` + `prepare-primary-statements` if YE |
+| **prove** | Depth scorecard (HTML required) | `depth_gates.py` / `close_engagement.py` |
 
 ### Helpers
 

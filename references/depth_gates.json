@@ -11,7 +11,7 @@
   "depths": {
     "bookkeeping_only": {
       "label": "Books only",
-      "human_done": "Books for this period are ready (trial balance balances; bank recon clear).",
+      "human_done": "Books for this period are ready. Open outputs/<slug>_pack.html.",
       "required": [
         {
           "id": "register",
@@ -41,6 +41,12 @@
           "label": "Preliminary TB",
           "paths": ["workpapers/tb_preliminary.json"],
           "check": "tb"
+        },
+        {
+          "id": "html_pack",
+          "label": "HTML human pack",
+          "paths": ["outputs"],
+          "check": "html_pack"
         }
       ],
       "optional": [

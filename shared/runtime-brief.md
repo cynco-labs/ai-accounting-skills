@@ -44,8 +44,9 @@ Users see plain progress — not command school.
 2. TB only via `roll_tb` / `npx … tb`  
 3. Bank recon **0** or clear **with limitation**  
 4. Files on disk are the books  
-5. Progress asks → structured question tool (`shared/user-questions.md`)  
+5. Progress asks → structured question tool (`shared/user-questions.md`) — **no open-query homework dumps**  
 6. Work the months on disk — don’t demand 12 months  
+7. Human pack = **HTML** (`outputs/*_pack.html`), not a pile of markdown  
 
 ---
 
@@ -87,14 +88,29 @@ Show **jobs**, not 16 internal stage keys. Warm, specific, next action clear:
 | Extract | Done | 412 bank lines |
 | Classify | Needs you | 6 payees — pick accounts |
 | Post | Next | Journals + trial balance |
-| Present | Not in this job | Ask if you want statements |
+| Present | HTML pack ready | outputs/*_pack.html |
 | Prove | Later | After books balance |
 
 **I need from you:** answers on the 6 payees (options above).
 **Next from me:** post and trial balance once those are set.
+**Read:** open the HTML pack — not a stack of .md files.
 ```
 
 Internal `current_stage` may stay fine-grained for resume; **don’t dump stage keys at owners**.
+
+### Human pack rule
+
+| Audience | Deliverable | Not the user UI |
+|---|---|---|
+| Owner / bookkeeper / firm review | **`outputs/<slug>_pack.html`** (open in browser) | Raw `README.md`, `queries.md`, TB `.md` alone |
+| Machine / resume | `workpapers/*.json` + `engagement_state.json` | — |
+| Deep staff review | Excel working papers (optional) | — |
+| Interactive books | Fava on Beancount | — |
+
+After books steps, **generate or refresh HTML** (`scripts/generate_html_report.py`).  
+**Prove fails** without a fresh `outputs/*_pack.html` (`depth_gates` · `html_pack`).  
+`.md` files stay as **staff/disk trail**, not the primary handoff.  
+**Fava** = optional explore of Beancount — not the handoff, not the truth.
 
 ---
 
@@ -129,7 +145,8 @@ npx @cynco/accounting-skills ledger <client>
 | Situation | Then load |
 |---|---|
 | Messy multi-path dump | `shared/shelf-first.md` |
-| Soft-confirm / classify ask | `shared/user-questions.md` |
+| Soft-confirm / classify / variance ask | `shared/user-questions.md` |
+| Human-readable pack | `shared/html-deliverables.md` · `scripts/generate_html_report.py` |
 | Year-end / “properly” | `shared/classify-substance.md` |
 | Producing FS numbers | `shared/guardrails.md` + kernel |
 | Firm missing + client work | firm profile / cold-start **once** |

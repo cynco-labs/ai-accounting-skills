@@ -37,7 +37,8 @@ Paths relative to `clients/<slug>/` (or any engagement root).
 | **Balances** | `workpapers/tb_preliminary.json` | From period journals | **`roll_tb` only** |
 | **Balances** | `workpapers/tb_adjusted.json` | From period + YE journals | **`roll_tb` only** |
 | **Official ledger** | `ledger/main.beancount` | Final double-entry file | `export_to_beancount` after prove |
-| **Presentation** | `outputs/fs/*`, tax, xlsx | Human packs from ATB map | present (no hand-typed totals) |
+| **Human pack** | `outputs/<slug>_pack.html` | Default readable handoff (board LTR) | `generate_html_report.py` — required to prove |
+| **Presentation** | `outputs/fs/*`, tax, xlsx | FS/notes when depth needs | present (no hand-typed totals) |
 
 Schemas: `references/schemas/{transactions,journals,trial_balance}.schema.json`.
 

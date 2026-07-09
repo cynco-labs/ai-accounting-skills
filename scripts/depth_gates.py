@@ -97,11 +97,20 @@ def _merge_depth(cfg: dict, depth_id: str) -> dict:
 
 def check_tb(path: Path) -> tuple[bool, str]:
     data = json.loads(path.read_text(encoding="utf-8"))
-    lines = data.get("lines") or []
+    lines = data.get("lines") or data.get("rows") or []
     deb = sum((money(l.get("debit", 0)) for l in lines), Decimal("0"))
     cre = sum((money(l.get("credit", 0)) for l in lines), Decimal("0"))
+    # Prefer engine totals when present
+    totals = data.get("totals") or {}
+    if totals.get("debit") is not None and totals.get("credit") is not None:
+        tdeb, tcre = money(totals["debit"]), money(totals["credit"])
+        if abs(tdeb - deb) > TOL or abs(tcre - cre) > TOL:
+            return False, f"totals mismatch lines DR={deb}/{tdeb} CR={cre}/{tcre}"
+        deb, cre = tdeb, tcre
     if abs(deb - cre) > TOL:
         return False, f"TB out of balance DR={deb} CR={cre}"
+    if not lines and deb == 0 and cre == 0:
+        return False, "TB has no lines"
     return True, f"balanced DR={deb} CR={cre}"
 
 
@@ -172,6 +181,54 @@ def check_qc_section_a(path: Path) -> tuple[bool, str]:
     return False, "QC report present but Section A pass not clear"
 
 
+def find_html_pack(client: Path) -> Path | None:
+    """Prefer outputs/<slug>_pack.html; else any outputs/*_pack.html."""
+    out = client / "outputs"
+    if not out.is_dir():
+        return None
+    preferred = out / f"{client.name}_pack.html"
+    if preferred.is_file():
+        return preferred
+    packs = sorted(out.glob("*_pack.html"))
+    return packs[0] if packs else None
+
+
+def check_html_pack(client: Path) -> tuple[bool, str, str | None]:
+    """HTML human pack must exist and not be older than the latest TB (stale = fail)."""
+    pack = find_html_pack(client)
+    if pack is None:
+        return (
+            False,
+            "missing outputs/*_pack.html — run: python3 scripts/generate_html_report.py <client>",
+            None,
+        )
+    try:
+        rel = str(pack.relative_to(client))
+    except ValueError:
+        rel = str(pack)
+
+    text = pack.read_text(encoding="utf-8", errors="replace")
+    if len(text) < 200 or "<html" not in text.lower():
+        return False, f"{rel}: empty or not HTML", rel
+
+    tb_candidates = [
+        client / "workpapers/tb_adjusted.json",
+        client / "workpapers/tb_preliminary.json",
+    ]
+    tb_mtime = None
+    for tb in tb_candidates:
+        if tb.is_file():
+            m = tb.stat().st_mtime
+            tb_mtime = m if tb_mtime is None else max(tb_mtime, m)
+    if tb_mtime is not None and pack.stat().st_mtime + 1.0 < tb_mtime:
+        return (
+            False,
+            f"{rel}: stale vs TB — re-run generate_html_report.py after rolling TB",
+            rel,
+        )
+    return True, f"{rel} present and fresh vs TB", rel
+
+
 def _eval_gate(client: Path, gate: dict) -> GateResult:
     gid = gate["id"]
     label = gate.get("label") or gid
@@ -189,6 +246,10 @@ def _eval_gate(client: Path, gate: dict) -> GateResult:
         except ValueError:
             relp = str(target)
         return GateResult(gid, label, ok, True, msg, relp)
+
+    if check == "html_pack":
+        ok, msg, rel = check_html_pack(client)
+        return GateResult(gid, label, ok, True, msg, rel)
 
     existing = [p for p in paths if p.is_file()]
     if not existing:

@@ -13,9 +13,13 @@ venv/
 !fixtures/**/*.json
 !fixtures/**/*.md
 !fixtures/**/*.csv
+!fixtures/**/*.html
 # Local client work & exports — never commit real books
 clients/
 outputs/
+# Golden fixture human packs (depth_gates requires outputs/*_pack.html)
+!fixtures/**/outputs/
+!fixtures/**/outputs/**
 .workpapers/
 .env
 .env.*

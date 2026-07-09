@@ -23,6 +23,8 @@ Paths are relative to `clients/<slug>/`.
 | beancount_sor | `ledger/main.beancount` | `bean-check` PASS — **ledger system of record** |
 | tax | `outputs/tax/computation.md` | Ties to locked P&L if final |
 
+**Human pack (all depths that claim Done):** `outputs/<slug>_pack.html` via `scripts/generate_html_report.py` — required by `depth_gates` (`check: html_pack`). Fresh vs TB. This is the user handoff; not Fava.
+
 ## Optional but recommended
 
 | Artifact | When |
@@ -31,8 +33,8 @@ Paths are relative to `clients/<slug>/`.
 | `workpapers/far.json` | PPE present |
 | `workpapers/payee_map.json` | Returning clients / for next year |
 | `workpapers/analysis/*.md` | Standards-aware classify (revenue, capital vs expense, …) |
-| `queries.md` | Always if any open item |
-| `outputs/workpapers.xlsx` | After generate-workbook (human pack; not SoR) |
+| `workpapers/queries.md` | Paper trail of asks only — not the user UI |
+| `outputs/workpapers.xlsx` | After generate-workbook (staff; not SoR) |
 | `ledger/draft.beancount` | Mid-engagement preview |
 | `ledger/main.beancount.account_map.json` | COA code → Beancount account map |
 

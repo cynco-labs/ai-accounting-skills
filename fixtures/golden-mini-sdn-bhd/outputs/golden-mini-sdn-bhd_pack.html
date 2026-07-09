@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Golden Mini Sdn. Bhd. — books pack</title>
+<style>
+:root {
+  --ink: #111;
+  --muted: #555;
+  --rule: #bbb;
+  --rule-soft: #e0e0e0;
+  --bg: #fff;
+  --shade: #f5f5f5;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  color: var(--ink);
+  background: var(--bg);
+  font: 13px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+/* Board fills viewport; primary scroll is rare */
+.board {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px 20px;
+  gap: 12px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+/* ── Header row LTR ── */
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 10px;
+  flex-shrink: 0;
+}
+.header h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.header .meta { margin: 2px 0 0; color: var(--muted); font-size: 0.88rem; }
+.header .right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.badge {
+  border: 1px solid var(--ink);
+  padding: 5px 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.draft-note {
+  color: var(--muted);
+  font-size: 0.78rem;
+  max-width: 220px;
+  text-align: right;
+  line-height: 1.35;
+}
+/* ── Progress LTR strip ── */
+.progress {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border: 1px solid var(--ink);
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+.progress .step {
+  flex: 1 1 0;
+  min-width: 88px;
+  padding: 8px 10px;
+  border-right: 1px solid var(--rule);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.progress .step:last-child { border-right: none; }
+.progress .num {
+  font-weight: 700;
+  font-size: 0.75rem;
+  width: 1.2rem;
+  flex-shrink: 0;
+}
+.progress .label { font-weight: 600; font-size: 0.88rem; }
+.progress .state {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.progress .step.done .state { color: var(--ink); }
+.progress .step.done .state::before { content: "✓ "; }
+/* ── Main 3 columns LTR ── */
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  border: 1px solid var(--ink);
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-right: 1px solid var(--ink);
+  overflow: auto;
+}
+.col:last-child { border-right: none; }
+.col-actions { flex: 1.15 1 0; }
+.col-glance  { flex: 0.95 1 0; background: var(--shade); }
+.col-books   { flex: 1.25 1 0; }
+.col-head {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.col-body { padding: 10px 12px 14px; flex: 1; }
+/* Action cards — still LTR label|content inside */
+.action {
+  border: 1px solid var(--ink);
+  margin: 0 0 10px;
+  background: var(--bg);
+}
+.action .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--rule-soft);
+  background: var(--shade);
+}
+.action .title { font-weight: 700; font-size: 0.92rem; margin: 0; }
+.action .prio {
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--ink);
+  padding: 1px 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.action .fields { padding: 8px 10px; }
+.field {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin: 0 0 6px;
+  font-size: 0.86rem;
+}
+.field .lab {
+  flex: 0 0 88px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+.field .val { flex: 1 1 auto; min-width: 0; }
+.field ul { margin: 0; padding-left: 1.1rem; }
+.field li { margin: 2px 0; }
+.empty-ok {
+  border: 1px solid var(--ink);
+  padding: 12px;
+  background: var(--bg);
+  font-size: 0.9rem;
+}
+/* Glance metrics LTR */
+.metrics {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px solid var(--ink);
+  background: var(--bg);
+  margin-bottom: 12px;
+}
+.metric {
+  flex: 1 1 46%;
+  min-width: 100px;
+  padding: 8px 10px;
+  border-right: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.metric .k {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.metric .v {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: 1rem;
+  margin-top: 2px;
+}
+.metric .v.ok::before { content: "✓ "; }
+.bank-line {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0 0 12px;
+  line-height: 1.35;
+}
+.decisions { margin: 0; padding: 0; list-style: none; }
+.decisions li {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 0.84rem;
+}
+.decisions .k {
+  flex: 0 0 100px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.decisions .v { flex: 1; font-weight: 500; }
+.subhead {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 4px 0 8px;
+  color: var(--muted);
+}
+/* Tables compact */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--ink);
+  font-size: 0.8rem;
+  background: var(--bg);
+}
+th, td {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--rule-soft);
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: var(--shade);
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 1px solid var(--ink);
+}
+tr:last-child td { border-bottom: none; }
+tr.total td {
+  border-top: 1px solid var(--ink);
+  font-weight: 700;
+  background: var(--shade);
+}
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.mono {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.92em;
+}
+.snap { margin-bottom: 10px; }
+.note { color: var(--muted); font-size: 0.78rem; margin: 6px 0 0; }
+/* ── Bottom row: matches LTR two panes ── */
+.bottom {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  border: 1px solid var(--ink);
+  flex-shrink: 0;
+  max-height: 240px;
+}
+.bottom .pane {
+  flex: 1 1 50%;
+  min-width: 0;
+  overflow: auto;
+  border-right: 1px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+}
+.bottom .pane:last-child { border-right: none; }
+.bottom .pane-head {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--shade);
+  position: sticky;
+  top: 0;
+}
+.bottom .pane-body { padding: 8px 10px; }
+footer {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 2px;
+}
+footer p { margin: 0; }
+/* Narrow screens: still LTR where possible, wrap to 1 col only if needed */
+@media (max-width: 960px) {
+  .main { flex-direction: column; max-height: none; }
+  .col { border-right: none; border-bottom: 1px solid var(--ink); max-height: 360px; }
+  .col:last-child { border-bottom: none; }
+  .bottom { flex-direction: column; max-height: none; }
+  .bottom .pane { border-right: none; border-bottom: 1px solid var(--ink); max-height: 220px; }
+  .bottom .pane:last-child { border-bottom: none; }
+}
+@media print {
+  .board { max-width: none; min-height: auto; }
+  .col, .bottom .pane { overflow: visible; max-height: none; }
+  .main, .bottom { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <header class="header">
+    <div>
+      <h1>Golden Mini Sdn. Bhd.</h1>
+      <p class="meta">2025-01-01  →  2025-12-31 · MYR · Year-end · 2026-07-09 14:06 UTC</p>
+    </div>
+    <div class="right">
+      <p class="draft-note">Management pack from source documents. Not signed statutory accounts. Figures from working files only.</p>
+      <div class="badge">Draft</div>
+    </div>
+  </header>
+
+  <div class='progress'><div class='step done'><span class='num'>1</span><span class='label'>Organize</span><span class='state'>Done</span></div><div class='step done'><span class='num'>2</span><span class='label'>Extract</span><span class='state'>Done</span></div><div class='step done'><span class='num'>3</span><span class='label'>Classify</span><span class='state'>Done</span></div><div class='step done'><span class='num'>4</span><span class='label'>Post</span><span class='state'>Done</span></div><div class='step done'><span class='num'>5</span><span class='label'>Present</span><span class='state'>Done</span></div><div class='step done'><span class='num'>6</span><span class='label'>Prove</span><span class='state'>Done</span></div></div>
+
+  <div class="main">
+    <section class="col col-actions">
+      <div class="col-head">Action checklist → what you can do</div>
+      <div class="col-body"><div class='empty-ok'><strong>Nothing open for you.</strong> Review the books columns to the right.</div></div>
+    </section>
+
+    <section class="col col-glance">
+      <div class="col-head">At a glance</div>
+      <div class="col-body">
+        <div class='metrics'><div class='metric'><span class='k'>Bank recon</span><div class='v '>—</div></div><div class='metric'><span class='k'>Trial balance</span><div class='v '>Check</div></div><div class='metric'><span class='k'>Debit</span><div class='v '>15,000.00</div></div><div class='metric'><span class='k'>Credit</span><div class='v '>15,000.00</div></div><div class='metric'><span class='k'>Status</span><div class='v '>In progress</div></div><div class='metric'><span class='k'>Depth</span><div class='v '>Year-end</div></div></div>
+        
+        <div class="subhead">Decisions made</div>
+        <p class='note'>None yet.</p>
+      </div>
+    </section>
+
+    <section class="col col-books">
+      <div class="col-head">What we booked · trial balance</div>
+      <div class="col-body">
+        <div class="subhead">Snapshot</div>
+        <p class='note' style='margin-top:0'>MYR · 4 journals</p>
+<table class='snap'><tbody>
+<tr><td>Bank</td><td class='num'>0.00</td></tr>
+</tbody></table>
+        <div class="subhead">Trial balance</div>
+        <table>
+          <thead>
+            <tr><th>Code</th><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class='mono'>1000</td><td>Cash &amp; Bank</td><td class='num'>12,000.00</td><td class='num'></td></tr>
+<tr><td class='mono'>3000</td><td>Share Capital</td><td class='num'></td><td class='num'>10,000.00</td></tr>
+<tr><td class='mono'>4000</td><td>Service Revenue - Primary</td><td class='num'></td><td class='num'>5,000.00</td></tr>
+<tr><td class='mono'>5000</td><td>Salary &amp; Wages</td><td class='num'>2,000.00</td><td class='num'></td></tr>
+<tr><td class='mono'>5200</td><td>Rental Expense</td><td class='num'>1,000.00</td><td class='num'></td></tr>
+<tr class='total'><td></td><td>Totals</td><td class='num'>15,000.00</td><td class='num'>15,000.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="bottom">
+    <div class="pane">
+      <div class="pane-head">Customer invoices vs bank →</div>
+      <div class="pane-body"><p class='note'>None in this pack.</p></div>
+    </div>
+    <div class="pane">
+      <div class="pane-head">Supplier bills vs bank →</div>
+      <div class="pane-body"><p class='note'>None in this pack.</p></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Read left → right: actions · proof · books · matches.</p>
+    <p>Agent files: workpapers JSON · ledger/main.beancount · outputs Excel if any.</p>
+  </footer>
+
+</div>
+</body>
+</html>

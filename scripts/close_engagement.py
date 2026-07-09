@@ -94,6 +94,17 @@ def main() -> int:
         print("FAIL: engagement artifacts invalid — fix before close")
         return code
 
+    # Human pack (required for prove) — always refresh before gates
+    html_script = ROOT / "scripts/generate_html_report.py"
+    has_tb = (client / "workpapers/tb_preliminary.json").is_file() or (
+        client / "workpapers/tb_adjusted.json"
+    ).is_file()
+    if html_script.is_file() and has_tb:
+        code = run([sys.executable, str(html_script), str(client)])
+        if code != 0:
+            print("FAIL: HTML pack generation")
+            return code
+
     # Depth-strict gates (prove)
     code = run(
         [
@@ -179,6 +190,19 @@ def main() -> int:
             shown = rel if p.is_file() else "(missing)"
         print(f"  {mark} {label:12} {shown}")
 
+    # HTML pack (required human handoff)
+    from depth_gates import find_html_pack  # local import ok after path setup
+
+    pack = find_html_pack(client)
+    if pack is not None:
+        try:
+            pack_rel = str(pack.relative_to(client))
+        except ValueError:
+            pack_rel = str(pack)
+        print(f"  ✓ {'html pack':12} {pack_rel}")
+    else:
+        print(f"  · {'html pack':12} (missing)")
+
     tb_path = client / "workpapers/tb_adjusted.json"
     if not tb_path.is_file():
         tb_path = client / "workpapers/tb_preliminary.json"
@@ -193,8 +217,13 @@ def main() -> int:
     print("")
     print(f"OK: close proof complete for {card.depth_label}")
     print(f"    {card.human_done}")
-    print(f"    ledger → {ledger if ledger.is_file() else '(not exported)'}")
-    print("    UI     → npx @cynco/accounting-skills fava " + str(client))
+    if pack is not None:
+        print(f"    READ  → {pack}")
+    else:
+        print("    READ  → (generate HTML pack first)")
+    print(f"    ledger → {ledger if ledger.is_file() else '(optional — not exported)'}")
+    if ledger.is_file():
+        print("    explore (optional) → npx @cynco/accounting-skills fava " + str(client))
     print("")
     return 0
 

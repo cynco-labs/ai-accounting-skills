@@ -1,5 +1,15 @@
 # Excel deliverables (openpyxl)
 
+## Place in the stack
+
+| Priority | Deliverable | Who opens it |
+|---|---|---|
+| **1 (default human UI)** | HTML pack — `shared/html-deliverables.md` | Owner / bookkeeper / reviewer in browser |
+| **2** | Excel working papers (this doc) | Staff deep dive, audit trail, formulas |
+| **3** | Markdown under `workpapers/` | Agent resume / paper trail — **not** the user handoff |
+
+Do **not** tell users “your deliverables are these two `.md` files.” Point them at **HTML** (and Excel if they want grids).
+
 ## What agents must know
 
 | Fact | Implication |

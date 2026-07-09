@@ -88,16 +88,17 @@ ELSE:
 |---|---|---|
 | Organize | Done | Folder ready |
 | Extract | Done | N bank lines |
-| Classify | Needs you | 6 payees — options above |
+| Classify | Needs you | structured options above |
 | Post | Next | Journals + trial balance |
-| Present | Not in this job | Say if you want statements |
-| Prove | Later | After books balance |
+| Present | HTML pack | outputs/<slug>_pack.html |
+| Prove | Later | depth_gates --strict |
 
-**I need from you:** …
+**I need from you:** … (question tool — not a queries.md dump)
+**Read:** open the HTML pack — not a stack of .md files
 **Next from me:** …
 ```
 
-Plain language for `operator: owner`. No internal stage keys in the table for owners.
+Plain language for `operator: owner`. No internal stage keys for owners.
 
 ## Work sequence
 
@@ -110,9 +111,11 @@ Plain language for `operator: owner`. No internal stage keys in the table for ow
 | 3 | Post | `post_journals.py` | JEs balance |
 | 4 | Bank recon | bank-reconciliation | diff 0.00 or limitation |
 | 5 | Prelim TB | `roll_tb.py --preliminary` only | DR=CR |
+| 6 | HTML pack | `generate_html_report.py` | `outputs/*_pack.html` (required) |
 
-**bookkeeping_only → STOP here** (optional: export ledger / Fava).  
-Say clearly: books for [period] ready. Offer year-end only if they want it.
+**bookkeeping_only → STOP here** after HTML pack.  
+Say: books ready · **open the HTML path**.  
+Optional only: Beancount export · Fava (explore, not handoff).
 
 ### B — Deeper (only if engagement_type says so)
 
@@ -156,14 +159,15 @@ python3 scripts/close_engagement.py <client> --no-export-ledger
 
 | Claimed depth | Required (see `references/depth_gates.json`) |
 |---|---|
-| **bookkeeping_only** | register · txns · journals · bank recon · prelim TB |
-| **year_end** / **compilation** | books + YE · ATB · primaries · notes · QC Section A |
+| **bookkeeping_only** | register · txns · journals · bank recon · prelim TB · **HTML pack** |
+| **year_end** / **compilation** | books + YE · ATB · primaries · notes · QC Section A · HTML |
 | **year_end_tax** | year-end + tax computation |
 | User early stop | State + limitation note; do not claim full YE complete |
 
-On books-only green: tell the user **books are ready** — do not chase FS/QC.  
+On books-only green: **open HTML pack** + “books ready” — do not chase FS/QC.  
 **Forbidden:** forcing YE pack on a books-only dump.  
-**Forbidden:** `status: done` when `depth_gates --strict` fails.
+**Forbidden:** `status: done` when `depth_gates --strict` fails.  
+**Forbidden:** handoff is a list of `.md` files.
 
 ## Failure modes
 

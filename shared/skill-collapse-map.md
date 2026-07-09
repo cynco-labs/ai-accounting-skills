@@ -18,7 +18,7 @@ See `shared/kernel-contract.md` for standard work files and scripts. Plain terms
 | **extract** | Source docs → proved lines | `extract_bank.py` → `transactions.json` | pick adapter / CSV vs PDF |
 | **classify** | Lines → **substance** (if standards-aware) → analysis packs → COA codes | `classify_transactions.py` + `workpapers/analysis/*` + review list | revenue/capex judgment; confirm payees |
 | **post** | Coded lines (+ openings, YE) → journals; **TB is calculated** | `post_journals.py`, `roll_tb.py` | openings, YE catalogue lines |
-| **present** | Adjusted TB → FS, notes, workbook, tax schedules | maps + templates; no hand-typed totals | disclosure wording |
+| **present** | HTML pack (always) → FS/notes if depth needs | `generate_html_report.py` + ATB maps | disclosure wording |
 | **prove** | QC, lock, export official ledger | `close_engagement.py`, `export_to_beancount.py`, Fava | approval to issue |
 
 ---

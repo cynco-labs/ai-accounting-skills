@@ -100,6 +100,8 @@ Do not assume `firm` because the repo is engagement-shaped. Infer or soft-ask on
 ## Communication
 
 - **Progress-gating questions** — use the host **structured user-question tool** (`shared/user-questions.md`). Do not only bury asks in prose or `queries.md`.
+- **No homework dumps** — never hand the user a bare “open queries” list. Every material gap is an explained choice with options that update the books.
+- **Human pack** — default readable deliverable is **HTML** (`outputs/*_pack.html`), not a stack of `.md` files.
 - **To firm staff** (`operator: firm`): technical language — account codes, debit/credit analysis, what is wrong and what is needed.
 - **To owner / end client:** plain language — numbered questions, one item each, actionable requests for documents or confirmations.
 

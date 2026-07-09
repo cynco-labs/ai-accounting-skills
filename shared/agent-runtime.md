@@ -112,6 +112,7 @@ Load **`shared/user-questions.md`**.
 
 - **Period on disk is truth** — book that period deeply; do not force 12 months to start  
 - Soft-confirm entity + period; use structured tool when available  
+- **Variances / completeness gaps** → guided structured asks (explain + options that fix books) — never a naked open-query list  
 - Ask full-year / missing-month questions **only** if user already wants YE FS with gaps  
 - Max **3** questions per call · **~5** options · recommended = work with what we have  
 - `queries.md` = paper trail, not a substitute for the tool  
@@ -123,11 +124,13 @@ Load **`shared/user-questions.md`**.
 | Layer | Technology | Role |
 |---|---|---|
 | Intermediate truth | JSON under `workpapers/` | Machine-checkable |
-| Human packs | **openpyxl** Excel (not Excel app at generate time) | Review / client |
+| **Human pack (default)** | **HTML** `outputs/*_pack.html` | What users open and read |
+| Staff deep dive | **openpyxl** Excel | Optional working papers |
+| Disk trail | Markdown under `workpapers/` / README | Resume / staff notes — **not** the user UI |
 | Ledger SoR | **Beancount** `.beancount` | Final double-entry |
 | Interactive UI | **Fava** localhost | Explore balances |
 
-See `shared/excel_deliverables.md` and `shared/architecture.md`.
+See `shared/html-deliverables.md`, `shared/excel_deliverables.md`, and `shared/architecture.md`.
 
 ## What “agent-native” forbids
 

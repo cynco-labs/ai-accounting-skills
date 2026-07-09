@@ -2,7 +2,27 @@
 
 **Problem this solves:** agents dump Tier-C asks into chat or `queries.md`, users never click through, work stalls or agents invent answers.
 
-**Rule:** any question that **gates progress** or **needs a real choice** must use the host’s **structured user-question tool** when available — not prose alone.
+**Rule:** any question that **gates progress**, **needs a real choice**, or **would otherwise become an “open query” the user must solve alone** must use the host’s **structured user-question tool** when available — not prose alone.
+
+## First principles
+
+1. **You are the guide, not the homework assigner.**  
+   Never end a run with “here are 7 open queries — please confirm.”  
+   End with **explained choices** that resolve the books when the user picks one.
+
+2. **Every open query has three parts** before it becomes a tool ask:
+   - **What we saw** (facts + £/RM amounts from source — never invented)
+   - **What we already booked** (so the user knows the default)
+   - **What the choice will change** (debtor / expense / suspense / leave as cash)
+
+3. **`queries.md` is a paper trail.**  
+   It records the same asks + answers after the tool. It is **not** the user interface.
+
+4. **Batch by theme, not by document number.**  
+   One question for “all customer short-receipts,” not four separate invoice quizzes.
+
+5. **Recommended option = safe default for this depth.**  
+   For bookkeeping_only, preferred default is usually: *keep cash as truth, leave variance off books until docs arrive* — label it Recommended when that is true.
 
 ---
 
@@ -31,23 +51,38 @@ Use the structured question tool **before** setting `status: waiting_on_user` fo
 | **Soft confirm (identity + period truth)** | “Treat as Acme · MYR · **period on disk Jan–May 2026**?” |
 | **Entity identity** | Only if multiple names / personal vs company unclear |
 | **Classification adjudication (material)** | Payee batch with 3–5 account options |
+| **Invoice / bill vs bank variance** | Customer short/over receipt; supplier over/under pay vs bill PDF |
 | **Opening / prior year** | Provisional plug vs wait — only if openings block *their* goal |
+| **Payroll / tax completeness gaps** | Employer NIC missing; pension not on summary |
 | **User asked for full year-end but months missing** | Then ask: work limited period now vs wait for more months — **not** “you must supply 12 months” |
 | **Blocker resolution** | User override of a hard gate (must be explicit) |
 | **Finalisation / approval** | Management approval recorded |
 
 **Do not** open with a deliverable quiz that implies full year is the only serious path.
 
+### Variance resolution is mandatory (not a dump)
+
+After extract + classify, if any material line has **document amount ≠ bank amount**, you **must**:
+
+1. Book a **safe interim** (cash = bank; no invented AR/AP).
+2. Write the variance table to `workpapers/queries.md` (trail).
+3. **Immediately** call the structured question tool (≤3 themes) so the user can resolve.
+4. On answer → re-post journals / roll TB / refresh HTML pack.
+5. Only then mark books `done` for that theme (or log explicit “leave cash-only” choice).
+
+**Forbidden:** list variances under “Open queries” and set `status: done` without a structured ask (unless the user already answered the same theme earlier this engagement).
+
 ## When prose / `queries.md` alone is OK
 
 | Situation | Why |
 |---|---|
 | Status board only (no ask) | Informational |
-| Long client query pack after structured asks already captured | Paper trail |
+| Long client query pack **after** structured asks already captured | Paper trail |
 | Host has **no** question tool (see fallback) | Documented exception |
-| Non-blocking FYI for staff later | Not a gate |
+| Non-blocking FYI for staff later (immaterial, no book impact) | Not a gate |
 
-**Never:** only append to `workpapers/queries.md` and continue as if the user answered.
+**Never:** only append to `workpapers/queries.md` and continue as if the user answered.  
+**Never:** present “open queries” as the main user deliverable.
 
 ---
 
@@ -119,12 +154,53 @@ Options:
   - Hold in suspense — need more documents
 ```
 
+### Variance batch — sales short/over receipts (template)
+
+Explain in the **question text** (one short paragraph), then options that **change the books**:
+
+```text
+Question: Three customer invoices total more than the bank received
+(£4,021 short across INV-1040/41/42). We booked sales at the bank amount only.
+How should we treat the gaps?
+Options:
+  - Keep cash only for now — leave gaps off the books (Recommended for books-only)
+  - Book the shortfalls as money still owed by customers (trade debtors)
+  - Treat as credit notes / write-offs against sales
+  - Hold gaps in suspense until you send statements or credit notes
+```
+
+### Variance batch — purchase bill ≠ bank payment (template)
+
+```text
+Question: Five supplier bills don’t match what left the bank
+(some over-paid vs bill, some under). We booked expenses at the bank amount.
+What should we do?
+Options:
+  - Keep bank amount as expense — ignore bill PDFs for totals (Recommended if bills look wrong)
+  - Rebook to match each bill; difference becomes creditor or prepaid
+  - Split: match where close, suspense the rest
+  - Hold all five in suspense — you’ll send corrected invoices
+```
+
+### Completeness gap — payroll (template)
+
+```text
+Question: March payroll shows employee deductions but no employer NIC.
+We booked gross salaries + employee PAYE/NIC/pension only.
+Options:
+  - Leave as is — employer NIC not in this pack (Recommended if amount unknown)
+  - I’ll type the employer NIC figure next (then we accrue)
+  - Use HMRC Month 11 employer NIC as a rough proxy (only if you confirm)
+```
+
 **Limits:**
 
 - Max **3 questions** per tool call (matches smart-intake).
 - Max **~5 options** per question.
 - First option = **recommended** when you have a best guess; label it “(Recommended)”.
-- Options must be **account codes + plain labels** for staff, or plain language for client.
+- Options must be **actions that resolve the ledger**, not “please investigate offline.”
+- Staff = codes OK in option labels; owner = plain language only.
+- Put £/RM **in the question**, not only in a markdown appendix.
 
 ---
 
@@ -132,14 +208,16 @@ Options:
 
 ```text
 1. Inventory + infer period coverage from files (truth matrix)
-2. Extract / classify / post / TB for months present — do not wait
-3. Soft-confirm via tool: entity + period-on-disk (≤1–2 asks if needed)
-4. Write Hypothesis Card + queries.md (disk trail)
-5. Persist answers; continue deeper work on that period
-6. Full-year / FS / tax only when coverage + user intent support it
+2. Soft-confirm via tool: entity + period-on-disk (≤1 ask if needed)
+3. Extract / classify / post / TB for months present — do not wait
+4. Detect variances + completeness gaps → structured tool (≤3 themes)
+5. Persist answers → re-post / roll TB / refresh human pack (HTML)
+6. Write queries.md as trail of asks + answers (not the UI)
+7. Full-year / FS / tax only when coverage + user intent support it
 ```
 
 **While waiting on soft-confirm:** keep running extract/classify/post/tb for available months.  
+**While waiting on variance answers:** keep interim cash books + HTML pack; status `waiting_on_user` for those themes only.  
 **Do not** invent entity name or claim full-year complete without evidence.
 
 ---
@@ -177,9 +255,10 @@ Reply e.g. `1A 2A`
 
 | Write | Where |
 |---|---|
-| Chosen options | `engagement_state.notes` or `workpapers/queries.md` → ## Answers |
+| Chosen options | `workpapers/user_answers.json` + `workpapers/queries.md` → ## Answers |
 | Soft-confirm accepted | `provisional` may stay true until openings fixed; log `soft_confirm: accepted` |
 | Classification choices | Update `payee_map.json` + re-run `classify` / `post` / `tb` |
+| Variance choices | Update journals (AR/AP/suspense/write-off) + re-run `tb` + refresh HTML |
 | Limited vs full year | `engagement_type` + blockers |
 
 Then re-run affected engine steps. **Never** only update chat.
@@ -193,6 +272,9 @@ Then re-run affected engine steps. **Never** only update chat.
 3. Ten single payee questions instead of one batched structured ask  
 4. Assume silence = accept (unless soft-confirm was already accepted earlier and logged)  
 5. Clear `waiting_on_user` without a tool result or explicit letter reply  
+6. **Dump an “Open queries” list as the main handoff** (homework mode)  
+7. Ask “please confirm variance” without explaining what we booked and what each option does  
+8. Mark engagement `done` while material variance themes were never put through the question tool  
 
 ---
 
@@ -202,12 +284,14 @@ When a skill says “ask the user”, verify it also says:
 
 - [ ] Load `shared/user-questions.md`  
 - [ ] Call structured question tool when available  
-- [ ] Max 3 questions · options labeled  
-- [ ] Persist answers to disk  
+- [ ] Max 3 questions · options labeled · first = Recommended when known  
+- [ ] Question text includes facts + what we booked + what choice changes  
+- [ ] Persist answers to disk + re-run post/tb  
 - [ ] Fallback ACTION REQUIRED block if no tool  
+- [ ] Human pack is **HTML** (`outputs/*_pack.html`), not a pile of `.md` as the user UI  
 
 ---
 
 ## Version
 
-`user-questions` doctrine **1.0** — 2026-07-09.
+`user-questions` doctrine **1.1** — 2026-07-09 (guided variance asks; no homework dumps).
