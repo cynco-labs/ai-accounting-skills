@@ -1,15 +1,15 @@
 ---
 name: classify-transactions
 description: >
-  Classify bank lines to COA codes (kernel: classify). Use when classify,
-  code these, uncategorized transactions, suspense clean-up, or payee
-  mapping.
+ Classify bank lines to COA codes (code lines to the chart of accounts). Use when classify,
+ code these, uncategorized transactions, suspense clean-up, or payee
+ mapping.
 ---
 # /classify-transactions
 
 ## Purpose
 
-Assign account codes correctly. Intent: **classify**. Deterministic script first; agent adjudicates the review queue only.
+Assign account codes correctly. Main job: **classify**. Deterministic script first; agent adjudicates the review queue only.
 
 ## Preconditions
 
@@ -23,17 +23,17 @@ Assign account codes correctly. Intent: **classify**. Deterministic script first
 
 ```bash
 python3 scripts/classify_transactions.py \
-  --input workpapers/transactions.json \
-  --output workpapers/transactions.json \
-  --payee-map workpapers/payee_map.json \
-  --report workpapers/classification_review.md
+ --input workpapers/transactions.json \
+ --output workpapers/transactions.json \
+ --payee-map workpapers/payee_map.json \
+ --report workpapers/classification_review.md
 
 # or
 npx @cynco/accounting-skills classify ./workpapers/transactions.json
 ```
 
-Rules: `references/classification_patterns.json`.  
-Payee map (optional): `workpapers/payee_map.json` —  
+Rules: `references/classification_patterns.json`. 
+Payee map (optional): `workpapers/payee_map.json` — 
 `{ "acme sdn bhd": { "account_code": "4000", "account_name": "Revenue" } }`.
 
 | Field | Meaning |
@@ -42,7 +42,7 @@ Payee map (optional): `workpapers/payee_map.json` —
 | `classification_confidence` | 0–1 |
 | `needs_review` | Agent must confirm |
 
-Do not re-derive pattern tables in chat when the script exists (**kernel**).
+Do not re-derive pattern tables in chat when the script exists (**scripts**).
 
 **Done when:** script exit 0 and `classification_review.md` written.
 
@@ -50,8 +50,8 @@ Do not re-derive pattern tables in chat when the script exists (**kernel**).
 
 Open `classification_review.md`. For **material** `needs_review` rows (batch by payee/pattern):
 
-- Confirm pattern suggestion, or  
-- **Structured ask** with 3–5 account options (`shared/user-questions.md`), or  
+- Confirm pattern suggestion, or 
+- **Structured ask** with 3–5 account options (`shared/user-questions.md`), or 
 - Suspense + query sheet (last resort)
 
 Mandatory for material batches (≥ ~RM500 or statutory/related-party): host question tool, ≤3 batched questions — not prose-only options.
@@ -68,7 +68,7 @@ Optional: invoice match (amount ± date → basis `invoice`); industry `classifi
 
 ## Gates
 
-- No silent suspense for material payroll / tax / related-party — escalate.  
+- No silent suspense for material payroll / tax / related-party — escalate. 
 - Never invent amounts.
 
 ## Failure modes
@@ -81,5 +81,5 @@ Optional: invoice match (amount ± date → basis `invoice`); industry `classifi
 
 ## Output
 
-`workpapers/transactions.json` + `classification_review.md` + updated `payee_map.json`.  
+`workpapers/transactions.json` + `classification_review.md` + updated `payee_map.json`. 
 Next intent: **post** (`journal-entries` → `post_journals.py`).

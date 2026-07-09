@@ -1,8 +1,8 @@
 ---
 name: engagement-setup
 description: >
-  Write engagement_state and workspace for a known client/period. Use when
-  new engagement or setup books.
+ Write engagement_state and workspace for a known client/period. Use when
+ new engagement or setup books.
 ---
 
 # /engagement-setup
@@ -13,9 +13,9 @@ Lock in engagement context **after** (or with) document-first discovery.
 
 ## Preconditions
 
-1. `shared/guardrails.md`  
-2. Firm profile if present (defaults only)  
-3. **If folder dump / unknown entity** → run `smart-intake` first, then return here to formalize  
+1. `shared/guardrails.md` 
+2. Firm profile if present (defaults only) 
+3. **If folder dump / unknown entity** → run `smart-intake` first, then return here to formalize 
 
 ## Route
 
@@ -33,9 +33,9 @@ Banks, invoices, payslips, prior FS, SSM, tax files. Prefer facts from files ove
 ### 2. Entity identification
 From SSM / bank account title / prior FS / smart-intake inferences:
 
-- Legal name, registration number (only if on a doc — never invent)  
-- Entity type  
-- Address / activities if present  
+- Legal name, registration number (only if on a doc — never invent) 
+- Entity type 
+- Address / activities if present 
 
 Load `references/entity_types.md` or jurisdiction pack.
 
@@ -60,12 +60,12 @@ Prefer statement date coverage + prior FS. Soft-confirm if incomplete year.
 
 **Blockers for full-year final FS:**
 
-- Full-year bank statements (or accepted limited period)  
-- Clear reporting entity identity  
+- Full-year bank statements (or accepted limited period) 
+- Clear reporting entity identity 
 
 **Not first-turn questions** — note as gaps:
 
-- Payslips, FAR, inventory, loans, prior FS  
+- Payslips, FAR, inventory, loans, prior FS 
 
 ### 6. COA
 Entity template + optional industry overlay from payee patterns (trading vs services). Soft default; user rarely needs to choose.
@@ -93,7 +93,7 @@ Include:
 
 ## Question budget
 
-After smart-intake, setup should usually ask **zero** new questions.  
+After smart-intake, setup should usually ask **zero** new questions. 
 If something critical is still open, ≤2 questions total.
 
 ## Completion

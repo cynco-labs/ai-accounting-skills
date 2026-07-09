@@ -1,76 +1,95 @@
-# Claude for Accounting — domain language
+# Words we use (plain English)
 
-Shared language for agents and humans. Prefer these terms in skills, tickets, commits, and chat.  
-Canonical mechanics: `shared/kernel-contract.md`. Intent map: `shared/skill-collapse-map.md`.  
-Skill writing craft: `shared/skill-craft.md`.
+Short glossary for humans and agents. Prefer these words in skills, tickets, and chat.
 
-## Language
+Mechanics detail: `shared/kernel-contract.md` (file name is historical — content is the **core rules**).  
+Six main jobs: `shared/skill-collapse-map.md`.  
+How to write skills: `shared/skill-craft.md`.
 
-**Engagement**  
-One client + one period (or FY) under work. Lives in a folder with `engagement_state.json`.  
-_Avoid_: job, matter, project (unless quoting a firm’s own term)
+---
 
-**Intent**  
-One of six product verbs: **do-books · extract · classify · post · present · prove**.  
-Legacy skill names may still ship; new work targets intents.  
-_Avoid_: stage skill name as the product identity when the intent is clearer
+## Everyday terms
 
-**Kernel**  
-The pure functions and truth shapes that carry amounts: extract → classify → post → roll_tb → prove/export.  
-_Avoid_: freestyle TB, “just total the Excel”
+**Client job / engagement**  
+One client + one period (or financial year) we are working on. Lives in a folder with `engagement_state.json`.  
+_Also ok:_ engagement (firms already use this).  
+_Avoid:_ “kernel run”, “pipeline invocation”
 
-**Truth shape**  
-A named artifact that may hold balances or lines (`transactions.json`, `journals.json`, `tb_*.json`, `ledger/main.beancount`, …).  
-_Avoid_: “the file”, “the dump” without the shape name
+**Six main jobs**  
+The product in six plain steps:
 
-**roll_tb**  
-Derive a trial balance only by reducing journals (`scripts/roll_tb.py`). Never type TB totals.  
-_Avoid_: “prepare a TB”, “build TB in Excel first”
+| Job | Meaning |
+|---|---|
+| **Do the books** | Start or continue the whole job |
+| **Extract** | Pull bank (and other) lines into a clean file |
+| **Classify** | Put each line on a COA code |
+| **Post** | Double-entry journals; **trial balance is calculated** |
+| **Present** | Financial statements, notes, Excel, tax schedules |
+| **Prove** | QC, lock, export the official ledger |
 
-**Period-first**  
-Book the months present on disk deeply. Do not stall for twelve calendar months. Full-year FS is opt-in when coverage allows.  
-_Avoid_: “incomplete year, cannot start”
+Old skill names still install; new writing targets these six jobs.
 
-**Disk is truth**  
-Artifacts on disk beat chat memory. After compaction, re-read sources and workpapers.  
-_Avoid_: reconstructing figures from conversation
+**Core tools / scripts**  
+The programs that do the math the same way every time: extract → classify → post → build TB → close / export.  
+_Avoid:_ “kernel”, “pure functions” in user-facing text  
+_In code paths:_ file names like `kernel-contract.md` may still appear — treat them as **core rules**.
 
-**Blocker**  
-Hard gate. Stop; do not call work final.  
-_Avoid_: warning, issue (when you mean hard stop)
+**Standard work files**  
+Named files that hold amounts or lines, e.g. `transactions.json`, `journals.json`, `tb_*.json`, `ledger/main.beancount`.  
+_Avoid:_ “truth shapes”, “artifacts” without the file name
 
-**AMBER**  
-Documented limitation that allows continuing a path without claiming full-year / signed completeness.  
-_Avoid_: soft fail, caveat (when the formal limitation is meant)
+**Build the TB (roll_tb)**  
+Trial balance comes only from journals via `scripts/roll_tb.py` (or `npx … tb`). **Never type TB totals by hand.**  
+_Avoid:_ “prepare a TB in Excel first as the source of truth”
 
-**Provenance**  
-Source link or formula tag on a material figure (`[source: …]`, `[model calculation — verify]`).  
-_Avoid_: “from the books” without a path
+**Work the months you have**  
+If the client only gave some months, book those months properly. Don’t stall for twelve months. Full-year FS only when coverage is enough (or the user accepts a clear limitation).  
+_Avoid:_ “period-first doctrine” in client chat
 
-**Structured ask**  
-Progress-gating question via the host question tool (≤3, options, recommended first). See `shared/user-questions.md`.  
-_Avoid_: long prose questionnaires mid-pipeline
+**Files are the books**  
+What is saved on disk beats chat memory. After a long session or a break, re-read the files.  
+_Avoid:_ “disk is truth” in client-facing notes (use plain sentence above)
+
+**Must stop (hard stop)**  
+A check that failed so badly we cannot call the work final (e.g. TB does not balance). Stop and fix or escalate.  
+_In state files you may still see:_ `blocker`  
+_Avoid:_ calling a hard stop a “warning” only
+
+**With limitation**  
+We continue the work, but we clearly note what is incomplete (e.g. missing bank months for full-year FS).  
+_In state files you may still see:_ `AMBER`  
+_Avoid:_ hiding the limitation
+
+**Source of the figure**  
+Where a material number came from: bank statement page, prior signed FS, or a formula on those. Tag it.  
+_Avoid:_ “provenance” in client emails; say “source” instead
+
+**Clear question (≤3)**  
+When we must ask the user something that blocks progress: use the agent’s question UI if available, max 3 questions, with options, recommended answer first. See `shared/user-questions.md`.
 
 **Status board**  
-Short markdown board after advancing work: stages, blockers, next action.  
-_Avoid_: wall of slash-commands for clients
+Short update after progress: what stage, what’s stuck, what’s next.  
+_Avoid:_ dumping slash-command names at clients
 
-**Jurisdiction pack**  
-Country rules as data under `references/jurisdictions/<id>/`, not forked stage skills.  
-_Avoid_: hard-coding rates into SKILL.md
+**Country pack**  
+Tax / entity / reporting rules as data under `references/jurisdictions/<id>/`, not a forked copy of every skill.  
+_Avoid:_ “jurisdiction pack” if “country pack” is clearer in chat
 
 **Firm profile**  
-White-label identity from cold-start config — not committed client branding.  
-_Avoid_: default firm seed in git
+Your firm’s name and defaults from setup — not hard-coded into the open-source repo.
 
-## Relationships
+---
 
-- An **Engagement** advances through **Intents**; each intent reads/writes **Truth shapes**.
-- **Kernel** pure functions produce derived shapes; agents author classifications and YE judgement, not TB totals.
-- **Blockers** freeze finalisation; **AMBER** documents partial scope under **period-first**.
+## How they fit together
 
-## Flagged ambiguities
+- A **client job** moves through the **six main jobs**; each job reads/writes **standard work files**.
+- **Scripts** build the trial balance and postings; people (and the agent with judgment) choose codes and year-end adjustments — they do **not** invent TB totals.
+- A **must stop** blocks finalising; a **with limitation** note lets bookkeeping continue under partial coverage.
 
-- **Stage** vs **intent** — stage keys in `engagement_state.json` are fine-grained; product surface collapses to six intents.
-- **Trial balance** — always a derived view (`roll_tb`), never an authored schedule of free totals.
-- **Skill** — install surface (`SKILL.md`); may alias a legacy name while doctrine targets an intent.
+---
+
+## Easy mix-ups
+
+- **Stage name** in `engagement_state.json` (many fine steps) vs **six main jobs** (product surface).
+- **Trial balance** — always **calculated** from journals, never a free-typed schedule that “becomes” the truth.
+- **Skill name** on disk may be an old alias; the job it serves is one of the six.

@@ -16,7 +16,8 @@ Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
 ### Changed
 
-- Project license is **MIT** (LICENSE, package.json, NOTICE, SPDX headers, CLA, README, site)
+- Project license is **MIT**
+- **Plain English** pass on README, CONTEXT.md, core rules, and skill wording (drop “kernel / intent / freestyle” jargon for MY–SG readers) (LICENSE, package.json, NOTICE, SPDX headers, CLA, README, site)
 - Builder skills (`skills-qa`, `jurisdiction-scaffold`, builder `cold-start-interview`) are **user-invoked**
 - Stage skills: leaner descriptions + **Done when** completion criteria across the pipeline
 - `skills-qa` scorecard 0–22 with craft diagnostics

@@ -1,8 +1,8 @@
 ---
 name: prepare-notes
 description: >
-  Draft notes tied to primary statements. Use when notes to FS or
-  disclosure draft.
+ Draft notes tied to primary statements. Use when notes to FS or
+ disclosure draft.
 ---
 # /prepare-notes
 
@@ -29,12 +29,12 @@ For other jurisdictions, load `references/jurisdictions/<id>/notes-templates/` i
 
 ## Structure (typical MPERS set)
 
-1. Corporate information  
-2. Basis of preparation  
-3. Significant accounting policies  
-4. Critical accounting estimates  
-5–N. Note-by-note breakdowns matching SOFP/SOCI lines  
-Final: Related parties, commitments, contingencies, events after reporting period, authorisation  
+1. Corporate information 
+2. Basis of preparation 
+3. Significant accounting policies 
+4. Critical accounting estimates 
+5–N. Note-by-note breakdowns matching SOFP/SOCI lines 
+Final: Related parties, commitments, contingencies, events after reporting period, authorisation 
 
 ## Tie rules
 - Note totals = primary statement lines

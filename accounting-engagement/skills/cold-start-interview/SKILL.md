@@ -1,8 +1,8 @@
 ---
 name: cold-start-interview
 description: >
-  Firm profile cold-start (not a client dump). Use when set up the firm or
-  first install.
+ Firm profile cold-start (not a client dump). Use when set up the firm or
+ first install.
 argument-hint: "[--redo] [--check-integrations] [--full]"
 ---
 # /cold-start-interview
@@ -13,10 +13,10 @@ Configures the firm so every accounting plugin produces **firm-specific, white-l
 
 Interview the accountant/partner and write:
 
-1. `~/.claude/plugins/config/claude-for-accounting/firm-profile.md` — firm facts shared by all plugins  
-2. `~/.claude/plugins/config/claude-for-accounting/engagement-accounting/CLAUDE.md` — engagement defaults  
+1. `~/.claude/plugins/config/claude-for-accounting/firm-profile.md` — firm facts shared by all plugins 
+2. `~/.claude/plugins/config/claude-for-accounting/engagement-accounting/CLAUDE.md` — engagement defaults 
 
-Scaffold: `shared/firm-profile-template.md`.  
+Scaffold: `shared/firm-profile-template.md`. 
 **Never invent a firm name** if the user skips — leave `[PLACEHOLDER]` and tag later outputs `[PROVISIONAL]`.
 
 ## Check current state
@@ -27,8 +27,8 @@ Scaffold: `shared/firm-profile-template.md`.
 
 ## Preamble (show first)
 
-> **claude-for-accounting** helps accountants run engagements from source documents through financial statements, QC, and tax handoff.  
-> **Every output is a draft for professional review** — not signed FS, not an audit opinion, not tax advice.  
+> **claude-for-accounting** helps accountants run engagements from source documents through financial statements, QC, and tax handoff. 
+> **Every output is a draft for professional review** — not signed FS, not an audit opinion, not tax advice. 
 > **2 minutes** captures firm identity, jurisdiction pack, and role. **15 minutes** adds policies, escalation, and house style.
 
 Offer **quick** or **full**.
@@ -79,8 +79,8 @@ Probe connectors per `CONNECTORS.md`. Report ✓ only when a live tool call succ
 
 Summarise what was written. Propose:
 
-1. `/engagement-accounting:engagement-setup` for a live client  
-2. Or `/engagement-accounting:full-engagement-pipeline` when documents are ready  
+1. `/engagement-accounting:engagement-setup` for a live client 
+2. Or `/engagement-accounting:full-engagement-pipeline` when documents are ready 
 
 ## Tone
 

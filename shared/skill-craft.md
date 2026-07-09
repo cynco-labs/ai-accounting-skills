@@ -28,7 +28,7 @@ Rules:
 1. Model-invoke only when the agent must fire it alone **or** another skill must reach it.
 2. User-invoke builder/meta work, rare ops, and anything that should never auto-start mid-engagement.
 3. A user-invoked skill may invoke model-invoked skills; it cannot fire another user-invoked skill (no description → no agent reach).
-4. When user-invoked skills pile up, ship a **router skill** (one name that maps situations → skills). Ours: `full-engagement-pipeline` (do-books) for engagements; `skills-qa` stays user-invoked.
+4. When user-invoked skills pile up, ship a **router skill** (one name that maps situations → skills). Ours: `full-engagement-pipeline` (**do the books**) for engagements; `skills-qa` stays user-invoked.
 
 ### Description craft (model-invoked)
 
@@ -36,7 +36,7 @@ Rules:
 - **One trigger per branch** — synonyms that rename the same branch are duplication; collapse them.
 - Cut identity already in the body. Triggers + optional “when another skill needs…” only.
 - Prefer **≤ 400 characters** when possible. Long descriptions tax every turn of every chat.
-- Target the **6 intents** (`do-books · extract · classify · post · present · prove`) as the long-term discoverable set; legacy names stay as aliases in body until major collapse.
+- Target the **six main jobs** (do the books · extract · classify · post · present · prove) as the long-term discoverable set; older install names stay as aliases until a major collapse.
 
 ### Default invocation map (this marketplace)
 
@@ -76,18 +76,17 @@ That is progressive disclosure of *reference*, not abdication of doctrine.
 
 Compact tokens already in model priors (or defined once in `CONTEXT.md` / kernel) that anchor behaviour:
 
-| Leading word | Behaviour it steers |
+| Prefer this word | Behaviour it steers |
 |---|---|
-| **kernel** | Use pure functions / scripts; do not freestyle math |
-| **roll_tb** | TB is derived only; never type totals |
-| **period-first** | Book months on disk deeply; do not stall for 12 months |
-| **disk is truth** | Re-read artifacts after compaction; chat is not the books |
-| **blocker** | Hard stop; do not present as final |
-| **AMBER** | Documented limitation; continue only where allowed |
-| **provenance** | Every material figure has a source tag |
-| **structured ask** | Progress questions via host question tool ≤3 |
-| **tracer bullet** | Vertical slice: one complete path, demoable alone |
-| **completion criterion** | Checkable done condition for a step |
+| **core tools / scripts** | Run the repo scripts; don’t invent math in chat |
+| **build the TB / roll_tb** | TB is calculated only; never type totals |
+| **work the months you have** | Book months on disk properly; don’t stall for 12 months |
+| **files are the books** | Re-read workpapers after a break; chat is not the books |
+| **must stop** | Hard stop; do not present as final |
+| **with limitation** | Documented limitation; continue only where allowed |
+| **source of the figure** | Every material figure has a source tag |
+| **clear question** | Progress questions via host question tool ≤3 |
+| **Done when** | Checkable finished condition for a step |
 
 Repeat the **token**, not a restated paragraph. Weak words (`be thorough`) are **no-ops** — use stronger ones (`relentless`, `every Section A item`).
 

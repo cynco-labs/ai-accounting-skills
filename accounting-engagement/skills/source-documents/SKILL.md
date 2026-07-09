@@ -1,8 +1,8 @@
 ---
 name: source-documents
 description: >
-  Register sources and bank coverage. Use when source register or document
-  inventory.
+ Register sources and bank coverage. Use when source register or document
+ inventory.
 ---
 # /source-documents
 
@@ -42,14 +42,14 @@ Build a complete source-document inventory and readiness score before recording 
 3. Verify bank statement continuity (opening of month N = closing of N−1).
 4. Flag duplicates and unreadable scans.
 5. Score readiness:
-   - **Green** — can bookkeep fully
-   - **Amber** — can proceed with listed limitations
-   - **Red** — blockers (missing banks / entity / openings)
+ - **Green** — can bookkeep fully
+ - **Amber** — can proceed with listed limitations
+ - **Red** — blockers (missing banks / entity / openings)
 
 
 ## Completion
 
-**Done when:** `source/register.md` lists files with coverage matrix; gaps are **blocker** or **AMBER**.
+**Done when:** `source/register.md` lists files with coverage matrix; gaps are **must stop** or **with limitation**.
 
 ## Output
 

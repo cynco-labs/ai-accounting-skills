@@ -1,8 +1,8 @@
 ---
 name: subledger-reconciliations
 description: >
-  Reconcile AR/AP and other subledgers to control accounts. Use when AR/AP
-  recon or subledgers.
+ Reconcile AR/AP and other subledgers to control accounts. Use when AR/AP
+ recon or subledgers.
 ---
 # /subledger-reconciliations
 

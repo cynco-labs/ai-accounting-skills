@@ -1,7 +1,7 @@
 ---
 name: finalise-accounts
 description: >
-  Lock pack after QC pass (prove). Use when finalise or lock accounts.
+ Lock pack after QC pass (prove job). Use when finalise or lock accounts.
 ---
 # /finalise-accounts
 
@@ -20,15 +20,15 @@ Move from draft to **locked** numbers.
 3. Archive workpapers hash/date
 4. Update engagement README status: `LOCKED_PENDING_APPROVAL`
 5. **Push system of record (Beancount)** — after lock:
-   ```bash
-   python3 scripts/export_to_beancount.py \
-     --client-dir <client> \
-     --output <client>/ledger/main.beancount \
-     --bean-check
-   ```
-   Excel/openpyxl workpapers stay as engagement packs. **Beancount is the ledger SoR.**  
-   Offer `open-fava` so the user can browse in the browser (`http://127.0.0.1:5000`).  
-   See `references/beancount_integration.md` and skills `export-beancount` / `open-fava`.
+ ```bash
+ python3 scripts/export_to_beancount.py \
+ --client-dir <client> \
+ --output <client>/ledger/main.beancount \
+ --bean-check
+ ```
+ Excel/openpyxl workpapers stay as engagement packs. **Beancount is the ledger SoR.** 
+ Offer `open-fava` so the user can browse in the browser (`http://127.0.0.1:5000`). 
+ See `references/beancount_integration.md` and skills `export-beancount` / `open-fava`.
 
 
 ## Completion

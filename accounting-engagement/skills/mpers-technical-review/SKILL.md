@@ -1,8 +1,8 @@
 ---
 name: mpers-technical-review
 description: >
-  Standards review before/with FS (MPERS/MFRS pack). Use when standards
-  review or MPERS issues.
+ Standards review before/with FS (MPERS/MFRS pack). Use when standards
+ review or MPERS issues.
 ---
 # /mpers-technical-review
 

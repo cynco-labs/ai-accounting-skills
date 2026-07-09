@@ -1,25 +1,25 @@
 <p align="center">
   <img src="https://img.shields.io/badge/v2.2.0-0d6efd?style=for-the-badge" alt="v2.2.0" />
   <a href="https://skills.sh/cynco-labs/ai-accounting-skills"><img src="https://skills.sh/b/cynco-labs/ai-accounting-skills" alt="skills.sh" /></a>
-  <img src="https://img.shields.io/badge/Beancount-SoR-111827?style=for-the-badge" alt="Beancount" />
+  <img src="https://img.shields.io/badge/Beancount-ledger-111827?style=for-the-badge" alt="Beancount" />
   <img src="https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge" alt="MIT License" />
 </p>
 
 <h1 align="center">AI Accounting Skills</h1>
 
 <p align="center">
-  <strong>Real accounting for coding agents — not vibe books.</strong><br/>
-  Folder dump → balanced books → financials → Beancount + Fava.
+  <strong>Real bookkeeping for coding agents — not made-up numbers.</strong><br/>
+  Drop a folder of bank statements → balanced books → financials → Beancount + Fava.
 </p>
 
 <p align="center">
-  Drop bank statements and receipts. Say <em>“do the year end.”</em><br/>
-  The agent runs a pipeline with gates, proofs, and artifacts on disk.
+  Put bank statements and receipts in a folder. Say <em>“do the year end.”</em><br/>
+  The agent follows a proper process: checks, proofs, and files saved on disk.
 </p>
 
 ---
 
-## Quickstart (30 seconds)
+## Quick start (about 30 seconds)
 
 1. Install:
 
@@ -27,11 +27,11 @@
 npx skills add cynco-labs/ai-accounting-skills
 ```
 
-2. Point your agent at a folder of banks / receipts and say:
+2. Point your agent at a folder of bank statements / receipts and say:
 
 > Do the accounting.
 
-3. Optional — deterministic CLI (no clone):
+3. Optional — command-line tools (no need to clone the repo):
 
 ```bash
 npx @cynco/accounting-skills extract ./statements --json ./txns.json
@@ -41,63 +41,63 @@ npx @cynco/accounting-skills tb ./clients/acme --both
 npx @cynco/accounting-skills close ./clients/acme
 ```
 
-That’s it. Resume anytime from `engagement_state.json`.
+That’s it. You can stop mid-way and continue later — progress is saved in `engagement_state.json`.
 
 ---
 
-## Why these skills exist
+## Why this exists
 
-Coding agents ship code fine. They usually invent accounting.
+Coding agents are good at code. They are often **bad at accounts**.
 
-These skills fix the failure modes we see when an agent “does the books” without a real engagement process.
+They invent company names, type trial balance totals into Excel, and skip bank reconciliation. This project is a set of agent skills that behave more like a junior who was trained properly.
 
 ### #1: The agent invents the company
 
-**Problem.** You dump a folder. The agent opens a 20-field questionnaire, or invents the entity name, FY, and framework.
+**What goes wrong.** You drop a folder. The agent asks twenty questions, or invents the company name, year-end, and reporting framework.
 
-**Fix — smart intake.** Read the documents first. Infer what you can. Soft-confirm entity + period. Ask at most **3** high-leverage questions (structured tool when available). Start extracting banks in the same session.
+**What we do instead.** Read the documents first. Guess what is clear. Confirm only what is unclear — at most **3** good questions. Start extracting bank statements in the same session.
 
 → `smart-intake` · `full-engagement-pipeline`
 
-### #2: The numbers don’t prove out
+### #2: The numbers don’t tie
 
-**Problem.** Pretty Excel. TB doesn’t balance. Bank GL doesn’t match the statement. Nobody can defend the pack.
+**What goes wrong.** Nice-looking Excel. Trial balance doesn’t balance. Bank GL doesn’t match the bank statement. Nobody can defend the file.
 
-**Fix — kernel + gates.** Extract, classify, post, and **roll_tb** are scripts. Trial balances are **derived only** — never freestyled. Bank recon is **RM 0.00** or an explicit AMBER limitation. QC Section A is a hard blocker before finalisation.
+**What we do instead.** Extract, classify, post, and build the trial balance with **scripts** — not chat guesses. The TB is **calculated from journals**, never typed by hand. Bank recon must be **RM 0.00** (or clearly marked as limited). QC Section A must pass before anything is called final.
 
-→ `extract` · `classify` · `post` · `roll_tb` · `quality-review`
+→ `extract` · `classify` · `post` · `tb` · `quality-review`
 
-### #3: Chat is the books
+### #3: Chat becomes the books
 
-**Problem.** Context compacts. The agent reconstructs figures from memory. Balances drift. Trust dies.
+**What goes wrong.** Long chat. Context is lost. The agent “remembers” numbers that no longer match the files.
 
-**Fix — disk is truth.** Every stage writes artifacts (`transactions.json`, journals, TB, recon, FS). State lives in `engagement_state.json`. Agents re-read sources after compaction.
+**What we do instead.** Every step writes files on disk (transactions, journals, TB, recon, FS). The **files are the books**, not the chat. After a break, re-read the files.
 
-→ [`shared/kernel-contract.md`](./shared/kernel-contract.md) · [`CONTEXT.md`](./CONTEXT.md)
+→ [Core rules](./shared/kernel-contract.md) · [Plain English terms](./CONTEXT.md)
 
-### #4: One opaque mega-prompt
+### #4: One giant vague prompt
 
-**Problem.** A single “do accounts” prompt is unmaintainable. You can’t resume, review, or replace one stage.
+**What goes wrong.** “Do the accounts” as one mess. You can’t resume, review, or fix one step.
 
-**Fix — composable skills.** Six intents (**do-books · extract · classify · post · present · prove**). Stage plugins. One stage at a time. Builder tools stay user-invoked so they never hijack an engagement.
+**What we do instead.** Six clear jobs: **do the books · extract · classify · post · present · prove**. One step at a time. Builder tools (skill QA, new country packs) only run when you ask for them.
 
-→ [`shared/skill-collapse-map.md`](./shared/skill-collapse-map.md) · [`shared/skill-craft.md`](./shared/skill-craft.md)
+→ [Six main jobs](./shared/skill-collapse-map.md) · [How we write skills](./shared/skill-craft.md)
 
-### Summary
+### In short
 
 | Without this | With this |
 |---|---|
-| Random Excel, no gates | JSON workpapers → **balanced TB** or stop |
-| Invented company context | **Smart intake** — read docs, ask ≤3 |
-| “Looks fine” books | Bank recon **RM 0.00**, line-balance proof |
-| No system of record | **Beancount** ledger + **Fava** UI |
-| One opaque prompt | Skills + state you can resume |
+| Random Excel, no checks | Workpapers in JSON → **balanced TB** or stop |
+| Invented company details | **Read first**, ask ≤3 questions |
+| “Looks fine” books | Bank recon **RM 0.00**, line-by-line proof |
+| Excel as the only ledger | **Beancount** ledger + **Fava** in the browser |
+| One vague prompt | Skills + saved progress you can resume |
 
 ---
 
 ## Works with your agent
 
-Install once via [skills.sh](https://skills.sh/cynco-labs/ai-accounting-skills) — same `SKILL.md` package across the major coding agents.
+Install once via [skills.sh](https://skills.sh/cynco-labs/ai-accounting-skills) — same package works across the major coding agents.
 
 <p align="center">
   <a href="https://claude.com/product/claude-code"><img src="https://www.skills.sh/agents/claude-code.svg" height="44" alt="Claude Code" /></a>&nbsp;&nbsp;
@@ -114,7 +114,7 @@ Install once via [skills.sh](https://skills.sh/cynco-labs/ai-accounting-skills) 
 | **Claude Code** (full marketplace) | `/plugin marketplace add` + install umbrella (below) |
 | **Any terminal** | `npx @cynco/accounting-skills …` |
 
-Malaysia (MPERS / MFRS / ITA) ships first. Other jurisdictions plug in via the builder hub.
+Malaysia (MPERS / MFRS / ITA) ships first. Other countries can be added as data packs.
 
 ---
 
@@ -130,7 +130,7 @@ npx skills add cynco-labs/ai-accounting-skills --all -g
 
 → [skills.sh/cynco-labs/ai-accounting-skills](https://skills.sh/cynco-labs/ai-accounting-skills)
 
-### Claude Code plugins (optional umbrella)
+### Claude Code plugins (optional)
 
 ```text
 /plugin marketplace add https://github.com/cynco-labs/ai-accounting-skills
@@ -139,9 +139,9 @@ npx skills add cynco-labs/ai-accounting-skills --all -g
 
 ---
 
-## CLI · `npx`
+## Command line · `npx`
 
-Zero clone. Deterministic tools agents should shell out to — not re-implement in chat.
+No need to clone. These are the tools the agent should **run**, not re-type in chat.
 
 ```bash
 npx @cynco/accounting-skills <command>
@@ -149,26 +149,26 @@ npx @cynco/accounting-skills <command>
 
 | Command | What you get |
 |:--------|:-------------|
-| `demo` | Golden mini ledger → **Fava** |
-| `close [client]` | **E2E proof** — validate · gates · ledger |
+| `demo` | Sample mini ledger → open in **Fava** |
+| `close [client]` | End-to-end check — validate, must-pass checks, ledger summary |
 | `extract ./statements` | Bank PDF/CSV → Excel (+ JSON) |
-| `classify ./txns.json` | Deterministic COA classify + review queue |
+| `classify ./txns.json` | Suggest COA codes + list what needs review |
 | `post ./clients/acme` | Classified lines → balancing journals |
-| `tb ./clients/acme` | Journals → TB (**never freestyle**) |
+| `tb ./clients/acme` | Journals → trial balance (**calculated — never typed by hand**) |
 | `ledger ./clients/acme --fava` | Journals → Beancount + Fava |
-| `firm --init "Your Firm"` | Multi-agent firm profile |
-| `init acme-sdn-bhd` | Client workspace scaffold |
-| `doctor` | Python / deps health check |
-| `check` | Validate engagement or full CI |
+| `firm --init "Your Firm"` | Firm name / defaults for the agent |
+| `init acme-sdn-bhd` | New client folder layout |
+| `doctor` | Check Python / dependencies |
+| `check` | Validate a client job or run full CI |
 
-Needs **Node ≥ 18** + **Python 3**. `pip install -r requirements.txt` (or whatever `doctor` prints).
+Needs **Node ≥ 18** + **Python 3**. `pip install -r requirements.txt` (or follow what `doctor` prints).
 
 <details>
-<summary><strong>More CLI detail</strong></summary>
+<summary><strong>More detail</strong></summary>
 
 - Package: [`@cynco/accounting-skills`](https://www.npmjs.com/package/@cynco/accounting-skills)
-- Kernel: [shared/kernel-contract.md](./shared/kernel-contract.md) · [skill collapse](./shared/skill-collapse-map.md) · [skill craft](./shared/skill-craft.md) · [CONTEXT.md](./CONTEXT.md)
-- Agent recipes: [docs/agents/](./docs/agents/)
+- Core rules: [shared/kernel-contract.md](./shared/kernel-contract.md) · [six main jobs](./shared/skill-collapse-map.md) · [plain English terms](./CONTEXT.md) · [how we write skills](./shared/skill-craft.md)
+- Agent setup notes: [docs/agents/](./docs/agents/)
 - Firm profile: [shared/firm-profile.md](./shared/firm-profile.md)
 - From a local clone: `node cli/bin/ai-accounting.js doctor`
 
@@ -176,61 +176,64 @@ Needs **Node ≥ 18** + **Python 3**. `pip install -r requirements.txt` (or what
 
 ---
 
-## Pipeline
+## How a job flows
 
 ```text
-  Folder dump
+  Folder of banks / receipts
        │
        ▼
-  smart-intake  ── infer entity, currency, period; ≤3 questions
+  Smart intake  ── read files; guess company & period; ≤3 questions
        │
        ▼
-  extract → classify → post → bank recon (RM0) → roll_tb
+  Extract banks → classify → journals → bank recon (RM0) → trial balance
        │
        ▼
-  year-end AJEs → ATB → standards review → FS + notes
+  Year-end adjustments → adjusted TB → standards review → FS + notes
        │
        ▼
-  QC (Section A blockers) → finalise → Beancount + Fava
+  QC (math checks must pass) → lock → Beancount + Fava
        │
-       └──────────────► tax (locked figures only)
+       └──────────────► tax (only from locked figures)
 ```
 
-Six intents: **do-books · extract · classify · post · present · prove**.  
-Resume from `engagement_state.json`. Period-first: book the months on disk deeply — don’t stall for twelve calendar months.
+**Six main jobs:** do the books · extract · classify · post · present · prove.
+
+**Work the months you have.** If the client only gave March–July, book those months properly. Don’t refuse to start because you don’t have 12 months yet. Full-year financials only when coverage is enough (or the user accepts a clear limitation).
+
+Resume anytime from `engagement_state.json`.
 
 ---
 
-## Reference
+## The six main jobs
 
-Skills split on one axis — **who can invoke them**.
-
-- **Model-invoked** — agent can reach them when the task fits (stage work, extract, classify, prove).
-- **User-invoked** — only when you type them (builder QA, jurisdiction scaffold). They never auto-fire mid-engagement.
-
-| Intent | Job | Engine / artifacts |
+| Job | Plain English | Main files / tools |
 |---|---|---|
-| **do-books** | Default throw-work entry; intake + orchestrate | `engagement_state.json`, status board |
-| **extract** | Source docs → proved lines | `extract_bank.py` → `transactions.json` |
-| **classify** | Lines → COA codes | `classify_transactions.py` + review queue |
-| **post** | Coded lines → journals; **TB derived** | `post_journals.py`, `roll_tb.py` |
-| **present** | ATB → FS, notes, workbook, tax schedules | maps + templates |
-| **prove** | Gates + close + ledger SoR | `close_engagement.py`, Beancount, Fava |
+| **Do the books** | Start or continue the whole engagement | `engagement_state.json`, status board |
+| **Extract** | Pull lines out of bank PDFs/CSV with balance proof | `extract_bank.py` → `transactions.json` |
+| **Classify** | Put each line on a chart-of-accounts code | `classify_transactions.py` + review list |
+| **Post** | Turn coded lines into double-entry journals; **TB is calculated** | `post_journals.py`, `roll_tb.py` |
+| **Present** | Build FS, notes, Excel pack, tax schedules from the adjusted TB | templates + maps |
+| **Prove** | QC, lock, export the official ledger | close script, Beancount, Fava |
 
-Doctrine for writing skills: [`shared/skill-craft.md`](./shared/skill-craft.md).  
-Domain language: [`CONTEXT.md`](./CONTEXT.md).  
-Architecture: [`shared/architecture.md`](./shared/architecture.md) · [`shared/guardrails.md`](./shared/guardrails.md).
+### Two kinds of skills
 
-### For agents
+- **Agent can pick them up** when the task fits (day-to-day accounting steps).
+- **You type them on purpose** (builder tools like skill QA or new country packs) — they don’t jump in mid-client job.
+
+How to write skills: [`shared/skill-craft.md`](./shared/skill-craft.md).  
+Words we use: [`CONTEXT.md`](./CONTEXT.md).  
+Safety rules: [`shared/guardrails.md`](./shared/guardrails.md).
+
+### Rules for the agent
 
 | Do | Don't |
 |---|---|
-| Read docs before interrogating | 20-field setup forms |
-| Run repo scripts when they exist | Reinvent Maybank parsers in chat |
-| Prove bank/TB balance | Invent lines to “make it work” |
-| Hit each skill’s **Done when** | Skip to FS with an open blocker |
+| Read the documents before asking a long form | Open with 20 blank questions |
+| Run the repo scripts when they exist | Re-type a Maybank statement by hand in chat |
+| Prove bank and TB balance | Invent lines so the TB “looks right” |
+| Finish each step’s **Done when** | Jump to financials with an open hard stop |
 | Export Beancount after lock | Treat Excel as the only ledger |
-| Write disk artifacts every stage | Rely on chat memory |
+| Save files after every step | Rely on chat memory |
 
 ```bash
 pip install -r requirements.txt
@@ -238,22 +241,22 @@ bash scripts/ci_check.sh
 ```
 
 <details>
-<summary><strong>Stage plugins (Claude marketplace)</strong></summary>
+<summary><strong>Plugins (Claude marketplace)</strong></summary>
 
 | Plugin | Job |
 |---|---|
-| [`accounting-engagement`](./accounting-engagement) | **Umbrella** — install this |
-| [`engagement-accounting`](./engagement-accounting) | Cold-start, smart-intake, pipeline |
+| [`accounting-engagement`](./accounting-engagement) | **All-in-one install** — use this |
+| [`engagement-accounting`](./engagement-accounting) | Firm setup, smart intake, full pipeline |
 | [`bookkeeping-accounting`](./bookkeeping-accounting) | Extract, classify, journals |
 | [`reconciliation-accounting`](./reconciliation-accounting) | Bank + subledgers + TB |
-| [`year-end-accounting`](./year-end-accounting) | YE adjustments + ATB |
+| [`year-end-accounting`](./year-end-accounting) | Year-end adjustments + adjusted TB |
 | [`mpers-accounting`](./mpers-accounting) | Standards review + disclosures |
-| [`financial-statements-accounting`](./financial-statements-accounting) | Primaries, notes, workbook |
-| [`quality-review-accounting`](./quality-review-accounting) | QC gates |
+| [`financial-statements-accounting`](./financial-statements-accounting) | Primary statements, notes, workbook |
+| [`quality-review-accounting`](./quality-review-accounting) | QC checks |
 | [`finalisation-accounting`](./finalisation-accounting) | Lock, approval, auditor pack |
-| [`tax-accounting`](./tax-accounting) | MY tax + capital allowances |
+| [`tax-accounting`](./tax-accounting) | Malaysian tax + capital allowances |
 | [`beancount-ledger`](./beancount-ledger) | Export ledger + Fava |
-| [`accounting-builder-hub`](./accounting-builder-hub) | Skill QA + jurisdiction scaffold |
+| [`accounting-builder-hub`](./accounting-builder-hub) | Skill QA + new country pack scaffold |
 
 Marketplace id: **`claude-for-accounting`**
 
@@ -263,7 +266,7 @@ Marketplace id: **`claude-for-accounting`**
 
 ## Bank extract · Beancount
 
-Maybank Islamic e-statements (pdfplumber + Decimal running-balance proof — not vision-first):
+Maybank Islamic e-statements (text layer + running-balance proof — not “look at the PDF with AI and guess”):
 
 ```bash
 python3 scripts/extract_maybank_islamic_pdf.py \
@@ -281,7 +284,7 @@ scripts/run_fava.sh path/to/client/ledger/main.beancount
 
 ---
 
-## Verify
+## Check the repo
 
 ```bash
 git clone https://github.com/cynco-labs/ai-accounting-skills.git
@@ -290,7 +293,7 @@ pip install -r requirements.txt
 bash scripts/ci_check.sh
 ```
 
-Golden fixture: `fixtures/golden-mini-sdn-bhd` (synthetic — not a real client).
+Sample data: `fixtures/golden-mini-sdn-bhd` (made-up — not a real client).
 
 ---
 
@@ -298,43 +301,44 @@ Golden fixture: `fixtures/golden-mini-sdn-bhd` (synthetic — not a real client)
 
 ### Shipped
 
-- [x] Full engagement pipeline (intake → books → QC → lock)
-- [x] Stage plugins + umbrella + skills.sh multi-agent install
-- [x] Smart intake + `engagement_state` resume + period-first doctrine
-- [x] Kernel CLI: extract · classify · post · tb · close · ledger
+- [x] Full engagement flow (intake → books → QC → lock)
+- [x] Stage plugins + all-in-one install + skills.sh
+- [x] Smart intake + resume from saved state
+- [x] Work the months you have (don’t force 12 months to start)
+- [x] CLI: extract · classify · post · tb · close · ledger
 - [x] Maybank Islamic PDF + CIMB/generic CSV extractors
-- [x] Beancount SoR + Fava · JSON schemas · `ci_check.sh`
-- [x] Skill craft + domain language (`CONTEXT.md`) · completion criteria
+- [x] Beancount ledger + Fava · JSON checks · `ci_check.sh`
+- [x] Plain English terms (`CONTEXT.md`) · **Done when** on every skill
 
 ### Near term
 
 - [ ] More bank PDF adapters (Public Bank, HSBC, RHB, Hong Leong, …)
-- [ ] Tax computation worksheet script from locked ATB
-- [ ] Intent-canonical install surface (6 names; legacy aliases)
+- [ ] Tax computation worksheet from locked adjusted TB
+- [ ] Simpler install names for the six main jobs (old names still work)
 
 ### Next
 
-- [ ] Jurisdiction packs (SG · UK · AU · US)
-- [ ] AR/AP aging packs · FAR → dep → CA end-to-end
-- [ ] SST / e-Invoice (MY) assist skills
-- [ ] Multi-entity consolidation skeleton
+- [ ] Country packs (SG · UK · AU · US)
+- [ ] AR/AP aging packs · fixed assets → depreciation → capital allowances
+- [ ] SST / e-Invoice (MY) helpers
+- [ ] Group / multi-entity skeleton
 
 ### Later
 
-- [ ] Connector pack (drop folders, cloud intake)
-- [ ] Managed-agent cookbooks (deadline watcher, monthly close)
-- [ ] Eval harness: extract accuracy + classify precision
+- [ ] Drop-folder / cloud intake helpers
+- [ ] Managed-agent recipes (deadline watcher, monthly close)
+- [ ] Accuracy tests on sample extracts and classifications
 
 ---
 
 ## Disclaimer
 
-**Drafts for professional accountant review only.**
+**Drafts for a professional accountant to review only.**
 
 Not signed financial statements. Not an audit or review opinion. Not tax advice.  
 Not a substitute for a licensed professional. Not official MASB / MIA / LHDN positions.
 
-The reviewing accountant verifies figures against sources and takes responsibility for anything issued.
+The reviewing accountant checks figures against sources and takes responsibility for anything issued.
 
 ---
 

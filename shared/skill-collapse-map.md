@@ -1,24 +1,25 @@
-# Skill collapse map — 36 → 6 (frozen renames)
+# Skill collapse map — 36 → 6 main jobs (frozen renames)
 
 **Status:** frozen design. Do not invent new stage skills without updating this map.  
-**Runtime:** legacy skill *names* may still ship for install/routing compat; new work targets the **6 intents**.
+**Runtime:** older skill *names* may still install; new work targets the **six main jobs**.
 
-Canonical product verbs: **do-books · extract · classify · post · present · prove**.
+In plain English: **do the books · extract · classify · post · present · prove**.  
+(Install/code short names: `do-books`, `extract`, `classify`, `post`, `present`, `prove`.)
 
-See `shared/kernel-contract.md` for artifacts and pure functions.
+See `shared/kernel-contract.md` for standard work files and scripts. Plain terms: `CONTEXT.md`.
 
 ---
 
-## The six intents
+## The six main jobs
 
-| Intent | Job | Engine / artifacts | Human judgment |
+| Job | Plain English | Scripts / files | Human judgment |
 |---|---|---|---|
-| **do-books** | Default throw-work entry; intake + orchestrate | state, status board | ≤3 questions; resume |
+| **do-books** | Start or continue the whole client job | state, status board | ≤3 questions; resume |
 | **extract** | Source docs → proved lines | `extract_bank.py` → `transactions.json` | pick adapter / CSV vs PDF |
-| **classify** | Lines → COA codes | `classify_transactions.py` + review queue | confirm ambiguous payees |
-| **post** | Coded lines (+ openings, YE) → journals; **TB is derived** | `post_journals.py`, `roll_tb.py` | openings, YE catalogue lines |
-| **present** | ATB → FS, notes, workbook, tax schedules | maps + templates; no freestyle totals | disclosure wording |
-| **prove** | Gates + close + ledger SoR | `close_engagement.py`, `export_to_beancount.py`, Fava | approval to issue |
+| **classify** | Lines → COA codes | `classify_transactions.py` + review list | confirm ambiguous payees |
+| **post** | Coded lines (+ openings, YE) → journals; **TB is calculated** | `post_journals.py`, `roll_tb.py` | openings, YE catalogue lines |
+| **present** | Adjusted TB → FS, notes, workbook, tax schedules | maps + templates; no hand-typed totals | disclosure wording |
+| **prove** | QC, lock, export official ledger | `close_engagement.py`, `export_to_beancount.py`, Fava | approval to issue |
 
 ---
 

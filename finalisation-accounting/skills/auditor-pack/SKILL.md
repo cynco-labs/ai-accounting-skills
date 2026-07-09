@@ -1,8 +1,8 @@
 ---
 name: auditor-pack
 description: >
-  Assemble auditor support pack from locked workpapers. Use when auditor
-  pack or audit handoff.
+ Assemble auditor support pack from locked workpapers. Use when auditor
+ pack or audit handoff.
 ---
 # /auditor-pack
 

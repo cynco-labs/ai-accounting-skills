@@ -1,8 +1,8 @@
 ---
 name: year-end-adjustments
 description: >
-  Catalogue and post YE journals to journals_ye.json. Use when accruals,
-  year-end AJEs, or adjustments.
+ Catalogue and post YE journals to journals_ye.json. Use when accruals,
+ year-end AJEs, or adjustments.
 ---
 # /year-end-adjustments
 

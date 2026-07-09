@@ -1,8 +1,8 @@
 ---
 name: prepare-primary-statements
 description: >
-  Present primary statements from ATB map (present intent). Use when draft
-  FS or SOFP/SOCI.
+ Present primary statements from ATB map (present job). Use when draft
+ FS or SOFP/SOCI.
 ---
 # /prepare-primary-statements
 

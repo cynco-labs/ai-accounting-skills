@@ -1,8 +1,8 @@
 ---
 name: chart-of-accounts
 description: >
-  Select entity COA and optional industry overlay. Use when COA setup, add
-  account, or industry accounts.
+ Select entity COA and optional industry overlay. Use when COA setup, add
+ account, or industry accounts.
 ---
 # /chart-of-accounts
 

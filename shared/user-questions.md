@@ -6,19 +6,19 @@
 
 ---
 
-## Period-first, not year-first (product truth)
+## Work the months you have, not year-first (product truth)
 
 Agents must **not** pressure users into a 12‑month year-end when the dump is partial.
 
 | Principle | Behavior |
 |---|---|
 | **Truth of period** | Coverage = months **on disk**. Write it. Soft-confirm it. |
-| **Default work** | Do **full kernel depth** on that period (extract → classify → post → recon → TB → ledger). |
+| **Default work** | Do **full bookkeeping depth** on that period (extract → classify → post → recon → TB → ledger). |
 | **Full-year FS** | Only if user **opts in** *and* bank coverage is complete (or they supply the rest). |
 | **Never** | Recommend “you must get 12 months” or make the user “promise Dec” to continue. |
 | **Never** | Stall extract/classify/TB waiting for missing months the user did not ask for. |
 
-Missing months are an **AMBER limitation** on full-year claims — not a red stop on bookkeeping for what exists.
+Missing months are an **with limitation** note on full-year claims — not a red stop on bookkeeping for what exists.
 
 ---
 

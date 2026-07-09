@@ -1,8 +1,8 @@
 ---
 name: skills-qa
 description: >
-  Independent design review of a SKILL.md against craft + accounting
-  scorecard before merge.
+ Independent design review of a SKILL.md against craft + accounting
+ scorecard before merge.
 disable-model-invocation: true
 argument-hint: "[path-to-SKILL.md or plugin/skill]"
 ---
@@ -33,16 +33,16 @@ Independent design review for skills that will touch financial data — and for 
 
 ### 2. Scorecard (0–2 each)
 
-1. Purpose / triggers / invocation choice  
-2. Preconditions  
-3. Doctrine completeness  
-4. Gates  
-5. Provenance (+ engine / `roll_tb` where math)  
-6. Outputs + completion criteria  
-7. Failure modes  
-8. Trust surface  
-9. Pipeline / intent position  
-10. No firm lock-in / no fabricated numbers  
+1. Purpose / triggers / invocation choice 
+2. Preconditions 
+3. Doctrine completeness 
+4. Gates 
+5. Provenance (+ engine / `roll_tb` where math) 
+6. Outputs + completion criteria 
+7. Failure modes 
+8. Trust surface 
+9. Pipeline / intent position 
+10. No firm lock-in / no fabricated numbers 
 11. Craft (description lean, hierarchy, pruning, positive steering, leading words)
 
 **Ship bar:** ≥ 18/22 and **no zeros** on items 4, 5, or 11 when the skill produces numbers.

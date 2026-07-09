@@ -1,8 +1,8 @@
 ---
 name: jurisdiction-scaffold
 description: >
-  Scaffold a new jurisdiction pack under references/jurisdictions/<id>
-  without forking stage plugins.
+ Scaffold a new jurisdiction pack under references/jurisdictions/<id>
+ without forking stage plugins.
 disable-model-invocation: true
 argument-hint: "<jurisdiction-id> [--currency CODE] [--framework name]"
 ---
@@ -27,13 +27,13 @@ Read `shared/jurisdiction-extension-guide.md` and `CONTEXT.md` (**jurisdiction p
 2. Write `MANIFEST.json` with `status: community`, `last_verified` today, empty files list to fill
 3. Write `README.md` with authority sources table (TODO links)
 4. Create stubs:
-   - `entity_types.md`
-   - `financial_reporting.md`
-   - `tax.md`
-   - `statutory_deductions.md` (if payroll exists)
-   - `filing_calendar.md` (all rows `[verify]`)
-   - `notes-templates/` (optional empty)
-   - `coa/` (optional empty)
+ - `entity_types.md`
+ - `financial_reporting.md`
+ - `tax.md`
+ - `statutory_deductions.md` (if payroll exists)
+ - `filing_calendar.md` (all rows `[verify]`)
+ - `notes-templates/` (optional empty)
+ - `coa/` (optional empty)
 5. Banner every stub: workflow summary; not official text
 6. Tell the user what to fill first (entity matrix → reporting → tax)
 7. Remind: paste rates from official sources with retrieval date — do not hard-code from memory

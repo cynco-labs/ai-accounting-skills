@@ -1,12 +1,12 @@
 ---
 name: preliminary-trial-balance
 description: >
-  Derive preliminary TB via roll_tb only (kernel). Use when preliminary TB
-  or roll TB.
+ Derive preliminary TB via roll_tb only . Use when preliminary TB
+ or roll TB.
 ---
 # /preliminary-trial-balance
 
-> **Doctrine deleted.** Preliminary TB is a pure reduce of `journals.json`.  
+> **Doctrine deleted.** Preliminary TB is a pure reduce of `journals.json`. 
 > See `shared/kernel-contract.md`.
 
 ## Required command
@@ -22,9 +22,9 @@ Writes `workpapers/tb_preliminary.json` with `totals.difference == 0` or fails.
 
 ## Forbidden
 
-- Typing TB lines or totals in chat  
-- “Balancing figures”  
-- Building TB without journals on disk  
+- Typing TB lines or totals in chat 
+- “Balancing figures” 
+- Building TB without journals on disk 
 
 
 ## Completion

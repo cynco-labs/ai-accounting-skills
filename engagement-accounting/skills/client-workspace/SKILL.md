@@ -1,8 +1,8 @@
 ---
 name: client-workspace
 description: >
-  Scaffold clients/<slug> folder layout. Use when new client folder or
-  workspace layout.
+ Scaffold clients/<slug> folder layout. Use when new client folder or
+ workspace layout.
 ---
 # /client-workspace
 
@@ -14,16 +14,16 @@ Keep client work isolated and path-addressable.
 
 ```
 {workspace}/clients/{client-slug}/
-  README.md                 # engagement decisions
-  source/                   # original docs (or pointers)
-  workpapers/
-    journals.csv | json
-    trial_balance.xlsx
-    reconciliations/
-  outputs/
-    financial_statements/
-    tax/
-  queries.md
+ README.md # engagement decisions
+ source/ # original docs (or pointers)
+ workpapers/
+ journals.csv | json
+ trial_balance.xlsx
+ reconciliations/
+ outputs/
+ financial_statements/
+ tax/
+ queries.md
 ```
 
 Config path alternative: `~/.claude/plugins/config/claude-for-accounting/clients/<slug>/`

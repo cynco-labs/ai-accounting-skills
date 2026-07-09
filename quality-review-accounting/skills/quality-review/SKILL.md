@@ -1,17 +1,17 @@
 ---
 name: quality-review
 description: >
-  Prove the pack before finalisation — full QC with Section A mathematical
-  blockers. Use when quality review, QC, partner checklist, "check the
-  accounts", or prove intent before issue.
+ Prove the pack before finalisation — full QC with Section A mathematical
+ blockers. Use when quality review, QC, partner checklist, "check the
+ accounts", or prove intent before issue.
 ---
 # /quality-review
 
 ## Purpose
 
-Independent checklist pass before anything is called final. Intent: **prove**.
+Independent checklist pass before anything is called final. Main job: **prove**.
 
-Load `shared/guardrails.md` and execute **every** item in  
+Load `shared/guardrails.md` and execute **every** item in 
 `references/qc_checklist.md` (plugin or repo root shim).
 
 ## Preconditions
@@ -32,22 +32,22 @@ Run every Section A check in `references/qc_checklist.md` against artifacts on d
 | BS balances | Assets = liabilities + equity |
 | P&L ↔ RE | RE movement ties to profit and distributions |
 | Each JE balances | Period + YE journals |
-| Bank GL = recon | Diff 0.00 per bank or **AMBER** logged |
+| Bank GL = recon | Diff 0.00 per bank or **with limitation** logged |
 | Cash flow ↔ cash | Net CF explains cash movement |
 
 **Done when:** every Section A item is Pass, or any Fail is written and finalisation is blocked.
 
 ### 2 — Sections B–E
 
-Execute Data integrity, Standards, Completeness, Format from the same checklist.  
+Execute Data integrity, Standards, Completeness, Format from the same checklist. 
 Material fails → queries or fix list; do not silent-pass.
 
 **Done when:** every checklist row has Pass / Fail / N/A with evidence path.
 
 ### 3 — Report + state
 
-Write QC report under the engagement (e.g. `workpapers/qc_report.md` or firm path).  
-Update `engagement_state.json`: prove stage result; **blocker** if any Section A Fail.
+Write QC report under the engagement (e.g. `workpapers/qc_report.md` or firm path). 
+Update `engagement_state.json`: prove stage result; **must stop** if any Section A Fail.
 
 **Done when:** report on disk and state reflects pass or blocker.
 

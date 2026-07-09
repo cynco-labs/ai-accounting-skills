@@ -1,8 +1,8 @@
 ---
 name: bank-reconciliation
 description: >
-  Reconcile bank GL to statement at RM0. Use when bank recon or cash
-  doesn't match.
+ Reconcile bank GL to statement at RM0. Use when bank recon or cash
+ doesn't match.
 ---
 # /bank-reconciliation
 
@@ -45,8 +45,8 @@ Repeat for every current account, savings, foreign currency (note FX).
 
 ## Completion
 
-**Done when:** per-bank recon on disk with difference 0.00 (or **AMBER**/blocker logged in state).
+**Done when:** per-bank recon on disk with difference 0.00 (or **with limitation**/blocker logged in state).
 
 ## Output
-Bank recon schedule per account + combined cash note figure.  
+Bank recon schedule per account + combined cash note figure. 
 **If not RM0.00 → BLOCKER.** Do not proceed to preliminary TB as clean.

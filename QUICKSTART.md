@@ -31,7 +31,7 @@ npx skills add cynco-labs/ai-accounting-skills \
 
 ```bash
 npx @cynco/accounting-skills demo
-npx @cynco/accounting-skills close              # E2E proof on golden fixture
+npx @cynco/accounting-skills close              # end-to-end check on golden fixture
 npx @cynco/accounting-skills doctor
 npx @cynco/accounting-skills extract ./banks --out ./bank.xlsx --json ./txns.json
 npx @cynco/accounting-skills classify ./txns.json
@@ -44,11 +44,11 @@ npx @cynco/accounting-skills firm --init "Your Firm"
 | Command | Result |
 |:--------|:-------|
 | `demo` | Golden ledger in Fava |
-| `close` | Validate · gates · proof card |
+| `close` | Validate · must-pass checks · proof card |
 | `extract` | PDF/CSV → Excel (Maybank · CIMB CSV · generic) |
 | `classify` | COA codes + review queue |
 | `post` | Classified lines → balancing journals |
-| `tb` | Journals → TB (never freestyle) |
+| `tb` | Journals → TB (never type by hand) |
 | `ledger` | Journals → Beancount (+ Fava) |
 | `firm` | Multi-agent firm profile |
 | `doctor` | Deps check |

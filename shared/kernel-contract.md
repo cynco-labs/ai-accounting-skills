@@ -1,11 +1,13 @@
-# Kernel contract — first principles
+# Core rules — what the product is
 
-**Fewer nouns. One engine. Same or better proof.**
+**Fewer nouns. One set of scripts. Same or better proof.**
 
-This document is the **source of truth** for what the product *is*.  
-Skills, plugins, and CLI commands are delivery surfaces over this kernel — not parallel systems.
+This file is the **source of truth** for how amounts move through a client job.  
+Skills, plugins, and CLI commands sit on top of these rules — they don’t invent a second set of books.
 
-See also: `shared/skill-collapse-map.md` (36 → 6 intents), `shared/guardrails.md` (number integrity).
+See also: `shared/skill-collapse-map.md` (six main jobs), `shared/guardrails.md` (number integrity), `CONTEXT.md` (plain English).
+
+> File name `kernel-contract.md` is historical. In prose say **core rules** / **core tools**.
 
 ---
 
@@ -13,28 +15,28 @@ See also: `shared/skill-collapse-map.md` (36 → 6 intents), `shared/guardrails.
 
 1. **Every figure has a source** — path to document line, prior signed figure, or formula on those.
 2. **Double entry** — each journal balances; trial balance DR = CR (minor unit).
-3. **Bank is proof** — cash GL ties to statement (diff 0) or explicit AMBER limitation.
-4. **Disk is truth** — chat is not the books; agents re-read artifacts after compaction.
+3. **Bank is proof** — cash GL ties to statement (diff 0) or clear **with limitation** note.
+4. **Files are the books** — chat is not the books; agents re-read workpapers after a break.
 5. **Present, don’t invent** — FS, tax, Excel, Beancount are *views* of locked balances.
 6. **Human signs** — agent drafts; professional issues.
 
 ---
 
-## Truth shapes (only these carry amounts)
+## Standard work files (only these carry amounts)
 
 Paths relative to `clients/<slug>/` (or any engagement root).
 
-| Shape | Path | Role | Produced by |
+| Kind | Path | Role | Produced by |
 |---|---|---|---|
-| **State** | `engagement_state.json` | Stage, blockers, provenance meta — **not** balances | Agent + engine meta |
+| **State** | `engagement_state.json` | Stage, hard stops, meta — **not** balances | Agent + scripts |
 | **Evidence** | `source/**` + `source/register.md` | Immutable inputs | User / extract |
 | **Lines** | `workpapers/transactions.json` | Bank (and other) lines + codes | `extract` → `classify` |
 | **Journals** | `workpapers/journals.json` | Period double-entry (incl. openings) | `post` |
 | **YE journals** | `workpapers/journals_ye.json` | Adjusting entries only | Agent judgment → same schema |
-| **Balances** | `workpapers/tb_preliminary.json` | Reduce(period journals) | **`roll_tb` only** |
-| **Balances** | `workpapers/tb_adjusted.json` | Reduce(period + YE journals) | **`roll_tb` only** |
-| **Ledger SoR** | `ledger/main.beancount` | Final double-entry file | `export_to_beancount` after prove |
-| **Presentation** | `outputs/fs/*`, tax, xlsx | Human packs from ATB map | `present` (no freestyle totals) |
+| **Balances** | `workpapers/tb_preliminary.json` | From period journals | **`roll_tb` only** |
+| **Balances** | `workpapers/tb_adjusted.json` | From period + YE journals | **`roll_tb` only** |
+| **Official ledger** | `ledger/main.beancount` | Final double-entry file | `export_to_beancount` after prove |
+| **Presentation** | `outputs/fs/*`, tax, xlsx | Human packs from ATB map | present (no hand-typed totals) |
 
 Schemas: `references/schemas/{transactions,journals,trial_balance}.schema.json`.
 
@@ -116,17 +118,17 @@ Unclassified material lines → fail or suspense only if explicitly allowed.
 
 ---
 
-## Kernel stages (5, not 16)
+## Big stages (5, not 16)
 
-| Kernel stage | Meaning | Artifacts that must exist |
+| Stage | Meaning | Files that must exist |
 |---|---|---|
 | `intake` | Entity / period / framework known or provisional | `engagement_state.json`, source register started |
-| `books` | Lines coded and posted; prelim TB rolls | `transactions.json`, `journals.json`, `tb_preliminary.json` |
-| `adjust` | YE journals considered; ATB rolls | `journals_ye.json` (may be empty pack), `tb_adjusted.json` |
-| `present` | FS / notes / tax / workbook from ATB | `outputs/fs/*` as required by engagement type |
-| `locked` | Prove + approval recorded; ledger SoR | proof card green, `ledger/main.beancount` if exported |
+| `books` | Lines coded and posted; prelim TB calculated | `transactions.json`, `journals.json`, `tb_preliminary.json` |
+| `adjust` | YE journals considered; adjusted TB calculated | `journals_ye.json` (may be empty pack), `tb_adjusted.json` |
+| `present` | FS / notes / tax / workbook from adjusted TB | `outputs/fs/*` as required by engagement type |
+| `locked` | Prove + approval recorded; official ledger | proof card green, `ledger/main.beancount` if exported |
 
-Legacy `current_stage` enum values in `engagement_state.schema.json` remain for compat; map them onto these five in orchestration docs. Prefer writing kernel stage in `notes` or a future `kernel_stage` field without breaking schema.
+Legacy `current_stage` enum values in `engagement_state.schema.json` remain for compatibility; map them onto these five in orchestration docs.
 
 ---
 
@@ -150,13 +152,13 @@ Agents must not mark `status: done` without prove.
 - Resolve classification review queue  
 - Choose YE adjustments (catalogue) and draft YE journal *lines* that `roll_tb` will accept  
 - Draft note prose and client queries  
-- Stop and ask on true blockers  
+- Stop and ask on true hard stops  
 
 **Not** agent work: typing TB totals, balancing figures on BS, inventing bank lines.
 
 ---
 
-## CLI surface (kernel verbs)
+## CLI commands
 
 ```bash
 npx @cynco/accounting-skills extract …
@@ -164,17 +166,17 @@ npx @cynco/accounting-skills classify …
 npx @cynco/accounting-skills post …      # → journals.json
 npx @cynco/accounting-skills tb …        # → roll_tb preliminary / adjusted / both
 npx @cynco/accounting-skills close …     # prove
-npx @cynco/accounting-skills ledger …    # Beancount SoR
+npx @cynco/accounting-skills ledger …    # official Beancount ledger
 ```
 
 ---
 
-## Explicit non-goals (kernel)
+## Explicit non-goals
 
 - More stage plugins for the same transforms  
 - Multiple COA copies as sources of truth (one pack path)  
-- Connector / e-filing automation in the kernel  
-- Vision freestyle extraction of banks  
+- Connector / e-filing automation in these core tools  
+- Guessing bank lines from scanned PDFs with vision alone  
 
 ---
 

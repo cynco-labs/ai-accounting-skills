@@ -181,7 +181,7 @@ def main() -> int:
     pipe = ROOT / "engagement-accounting/skills/full-engagement-pipeline/SKILL.md"
     if pipe.is_file():
         ptxt = pipe.read_text(encoding="utf-8")
-        for needle in ("engagement_state", "do-books", "bank", "smart-intake"):
+        for needle in ("engagement_state", "do the books", "bank", "smart-intake"):
             if needle.lower() not in ptxt.lower():
                 warnings.append(f"full-engagement-pipeline missing agent-native cue: {needle}")
 

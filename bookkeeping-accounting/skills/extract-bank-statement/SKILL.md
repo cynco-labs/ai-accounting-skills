@@ -1,8 +1,8 @@
 ---
 name: extract-bank-statement
 description: >
-  Extract bank PDF/CSV to transactions.json with running-balance proof
-  (kernel: extract). Prefer CSV; Maybank Islamic PDF adapter when needed.
+ Extract bank PDF/CSV to transactions.json with running-balance proof
+ (pull bank lines with balance proof). Prefer CSV; Maybank Islamic PDF adapter when needed.
 ---
 # /extract-bank-statement
 
@@ -11,7 +11,7 @@ description: >
 Bank lines → structured transactions with **proof**, not vibes.
 
 ```text
-pdfplumber / CSV  →  layout adapter  →  Decimal balance proof  →  Excel / JSON
+pdfplumber / CSV → layout adapter → Decimal balance proof → Excel / JSON
 ```
 
 ## Preconditions
@@ -24,11 +24,11 @@ pdfplumber / CSV  →  layout adapter  →  Decimal balance proof  →  Excel / 
 
 ```bash
 python3 scripts/extract_bank.py \
-  --input /path/to/statements \
-  --output ./outputs/bank.xlsx \
-  --also-json ./workpapers/transactions.json \
-  --client-slug <slug> \
-  --fail-on-error
+ --input /path/to/statements \
+ --output ./outputs/bank.xlsx \
+ --also-json ./workpapers/transactions.json \
+ --client-slug <slug> \
+ --fail-on-error
 
 # detect only
 python3 scripts/extract_bank.py --input /path/to/statements --detect-only
@@ -48,17 +48,17 @@ Maybank-only direct script (still valid):
 
 ```bash
 python3 scripts/extract_maybank_islamic_pdf.py \
-  --input /path/to/statements \
-  --output ./bank.xlsx \
-  --also-json ./workpapers/transactions.json \
-  --fail-on-error
+ --input /path/to/statements \
+ --output ./bank.xlsx \
+ --also-json ./workpapers/transactions.json \
+ --fail-on-error
 ```
 
 ## Step 2 — Verify
 
-- `line_balance_ok` / open–close proof in extract meta  
-- Spot-check first/last page against PDF  
-- Write source register entry  
+- `line_balance_ok` / open–close proof in extract meta 
+- Spot-check first/last page against PDF 
+- Write source register entry 
 
 ## Decision table
 
@@ -72,9 +72,9 @@ python3 scripts/extract_maybank_islamic_pdf.py \
 
 ## Completion
 
-**Done when:** `transactions.json` (and optional xlsx) written, line/open–close balance proof passes (or **blocker** recorded), source register updated.
+**Done when:** `transactions.json` (and optional xlsx) written, line/open–close balance proof passes (or **must stop** recorded), source register updated.
 
 ## Gates
 
-- `--fail-on-error` must be set for production extracts  
-- Zero fabricated transactions  
+- `--fail-on-error` must be set for production extracts 
+- Zero fabricated transactions 

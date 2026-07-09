@@ -1,8 +1,8 @@
 ---
 name: record-transactions
 description: >
-  Capture multi-stream registers (bank, sales, purchases, payroll) with
-  source provenance. Use when import bank or capture transactions.
+ Capture multi-stream registers (bank, sales, purchases, payroll) with
+ source provenance. Use when import bank or capture transactions.
 ---
 # /record-transactions
 
@@ -38,7 +38,7 @@ Verify:
 `invoice_no | date | supplier | amount | tax | expense_or_asset | source`
 
 ### D. Payroll (if payslips)
-Monthly: gross, allowances, employee deductions, employer statutory, net pay.  
+Monthly: gross, allowances, employee deductions, employer statutory, net pay. 
 Check net ↔ bank payment.
 
 ### E. Manual journals already provided by client
@@ -47,11 +47,11 @@ Record as-is; mark `source=client_journal`; do not “fix” silently.
 
 ## Completion
 
-**Done when:** every provided stream is in a structured register with source links; missing bank months are **blocker** or **AMBER** — never interpolated.
+**Done when:** every provided stream is in a structured register with source links; missing bank months are **must stop** or **with limitation** — never interpolated.
 
 ## Output
 
-Structured dataset (CSV/JSON/workpaper sheet) ready for classification.  
+Structured dataset (CSV/JSON/workpaper sheet) ready for classification. 
 **Do not classify here** unless user asked for combined pass — prefer handoff to `classify-transactions`.
 
 ## Failures

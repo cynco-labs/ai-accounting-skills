@@ -1,8 +1,8 @@
 ---
 name: validate-beancount
 description: >
-  Validate a Beancount ledger with bean-check. Use when bean-check or
-  ledger broken.
+ Validate a Beancount ledger with bean-check. Use when bean-check or
+ ledger broken.
 ---
 
 # /validate-beancount
@@ -27,10 +27,10 @@ pip install beancount
 
 ## Also check
 
-1. File non-empty; has `option "operating_currency"`  
-2. Has at least one `open` and one `*` transaction  
-3. Engagement currency matches option  
-4. Report path + PASS/FAIL clearly  
+1. File non-empty; has `option "operating_currency"` 
+2. Has at least one `open` and one `*` transaction 
+3. Engagement currency matches option 
+4. Report path + PASS/FAIL clearly 
 
 ## On FAIL
 

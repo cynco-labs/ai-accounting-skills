@@ -20,7 +20,7 @@ Before accounting criteria, the skill must clear craft:
 | Hierarchy | Long catalogues disclosed via strong context pointer; doctrine not left to memory |
 | Pruned | No no-ops, no duplicated meanings, no sprawl without disclosure |
 | Positive steering | Prefer target behaviour; hard bans paired with what to do instead |
-| Leading words | Prefer `CONTEXT.md` / kernel tokens over novel essay restatements |
+| Plain English | Prefer `CONTEXT.md` words over engineering slang in user-facing text |
 
 ---
 
@@ -31,7 +31,7 @@ Before accounting criteria, the skill must clear craft:
 - Frontmatter `description`:
   - **Model-invoked:** when to use (distinct branches), not a restatement of the whole body.
   - **User-invoked:** one-line human summary; set `disable-model-invocation: true`; no trigger spam.
-- Map the skill to an **intent** in `shared/skill-collapse-map.md`. Do not invent a seventh pipeline stage without updating that map.
+- Map the skill to a **main job** in `shared/skill-collapse-map.md`. Do not invent a seventh job without updating that map.
 
 ## 2. Preconditions
 
@@ -40,7 +40,7 @@ Every skill that produces numbers must:
 1. Point at `shared/guardrails.md`
 2. Load firm profile if present
 3. Identify the active client / period / framework (or provisional path)
-4. State what happens if sources are missing (**blocker** vs **AMBER** vs query)
+4. State what happens if sources are missing (**must stop** vs **with limitation** vs query)
 
 ## 3. Doctrine in the skill
 
@@ -55,18 +55,18 @@ Checklists, catalogues, and decision trees live **in the skill body** or a file 
 
 | Gate type | Example | Behavior |
 |---|---|---|
-| **Blocker** | TB DR ≠ CR | Stop; do not draft FS as final |
+| **Must stop** | TB DR ≠ CR | Stop; do not draft FS as final |
 | Soft | Missing immaterial invoice | Query sheet; continue |
 | Human approval | Issue signed FS | Wait for explicit confirmation |
 
 Gates are **default-on**. Exemptions are narrow and logged on disk (`engagement_state` / queries).
 
-## 5. Provenance
+## 5. Source of every figure
 
 - Every material figure cites a source document, prior signed FS, or formula on sources.
 - Calculations use tags: `[model calculation — verify]` when not a pure source extract.
 - Never present example numbers as if they were the client’s.
-- **TB only via `roll_tb`** — never freestyle totals in chat or Excel as system of record.
+- **TB only via `roll_tb`** — never type totals by hand in chat or Excel as the main ledger.
 
 ## 6. Outputs + completion
 
@@ -99,7 +99,7 @@ Document the top 3 ways the skill can go wrong and the required behavior:
 
 | Failure | Required behavior |
 |---|---|
-| Missing bank month | **Blocker** or explicit **AMBER** limitation |
+| Missing bank month | **Must stop** or explicit **with limitation** note |
 | Ambiguous payee | Structured ask (options); then suspense if still open |
 | Standards judgment | Escalate; do not silently pick aggressive treatment |
 
@@ -128,14 +128,14 @@ Score each 0–2:
 2. Preconditions  
 3. Doctrine completeness  
 4. Gates  
-5. Provenance (+ roll_tb / engine where math)  
-6. Outputs + **completion criteria**  
+5. Source of every figure (+ roll_tb / scripts where math)  
+6. Outputs + **Done when**  
 7. Failure modes  
 8. Trust surface  
-9. Pipeline / intent position  
+9. Pipeline / main-job position  
 10. No firm lock-in / no fabricated numbers  
-11. **Craft** — description lean, hierarchy, pruning, positive steering, leading words  
+11. **Craft** — lean description, hierarchy, pruning, positive steering, plain English  
 
 If the skill asks the user anything that gates progress, also require: points at `shared/user-questions.md`, structured tool when available, ≤3 options-shaped asks.
 
-**Ship bar:** ≥ 18/22 and **no zero** on gates (4), provenance (5), or craft (11) when the skill produces numbers.
+**Ship bar:** ≥ 18/22 and **no zero** on gates (4), source-of-figure (5), or craft (11) when the skill produces numbers.
