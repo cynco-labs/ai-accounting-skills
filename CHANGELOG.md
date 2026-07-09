@@ -7,6 +7,8 @@ Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
 ## [Unreleased]
 
+## [2.2.5] — 2026-07-09
+
 ### Added
 
 - **Short slash surface** — `/do-books` · `/extract` · `/classify` · `/post` · `/present` · `/prove` + `/ask-accounting` router (`shared/slash-surface.md`)
@@ -15,10 +17,12 @@ Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 - Malaysia checklists under `references/jurisdictions/malaysia/standards/`
 - Analysis pack template + thin skills `revenue-recognition`, `capitalise-or-expense`
 - `classify_depth` on engagement state; QC C6b/C6c; pipeline wiring
+- User journey visual: `docs/user-journey.html`
 
 ### Changed
 
 - Classify two paths (bookkeeping vs standards_aware); MPERS review is second pass
+- README + Claude agent docs document short slash commands
 
 ## [2.2.4] — 2026-07-09
 
