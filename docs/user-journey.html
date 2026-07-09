@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How AI Accounting Skills work — user journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --paper: #fffbf5;
+      --card: #ffffff;
+      --coral: #ff6b4a;
+      --coral-soft: #ffe8e2;
+      --sun: #fbbf24;
+      --sun-soft: #fef3c7;
+      --mint: #14b8a6;
+      --mint-soft: #ccfbf1;
+      --violet: #8b5cf6;
+      --violet-soft: #ede9fe;
+      --sky: #0ea5e9;
+      --sky-soft: #e0f2fe;
+      --rose: #f43f5e;
+      --rose-soft: #ffe4e6;
+      --lime: #84cc16;
+      --lime-soft: #ecfccb;
+      --navy: #1e3a5f;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #ffd6c9 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #c4b5fd 0%, transparent 50%),
+        radial-gradient(800px 400px at 50% 100%, #99f6e4 0%, transparent 45%),
+        var(--paper);
+      line-height: 1.55;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2.5rem 0 5rem;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      border-radius: 32px;
+      padding: 2.75rem 2.5rem 2.5rem;
+      background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 42%, #db2777 100%);
+      color: #fff;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 2.5rem;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto 50%;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(251,191,36,.45), transparent 65%);
+      filter: blur(4px);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px; bottom: -80px;
+      width: 280px; height: 280px;
+      border-radius: 40% 60% 70% 30%;
+      background: rgba(45, 212, 191, 0.25);
+      transform: rotate(18deg);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 720px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .4rem .85rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      margin-bottom: 1.1rem;
+      backdrop-filter: blur(8px);
+    }
+    .pill span { width: .55rem; height: .55rem; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 4px rgba(74,222,128,.25); }
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(2.1rem, 5vw, 3.35rem);
+      line-height: 1.08;
+      margin: 0 0 1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      margin: 0 0 1.5rem;
+      font-size: 1.12rem;
+      color: rgba(255,255,255,.9);
+      max-width: 36em;
+    }
+    .hero-quote {
+      display: inline-block;
+      padding: .85rem 1.15rem;
+      border-radius: 16px;
+      background: rgba(0,0,0,.22);
+      border: 1px dashed rgba(255,255,255,.35);
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .hero-quote em { color: #fde68a; font-style: normal; }
+
+    /* Section headers */
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 2.75rem 0 1.25rem;
+      flex-wrap: wrap;
+    }
+    .section-head h2 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(1.55rem, 3vw, 2rem);
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .section-head p { margin: .25rem 0 0; color: var(--muted); max-width: 40em; }
+    .badge {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: .35rem .7rem;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+    }
+
+    /* Pipeline strip */
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: .65rem;
+      margin-bottom: .5rem;
+    }
+    @media (max-width: 900px) {
+      .pipeline { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .pipeline { grid-template-columns: repeat(2, 1fr); }
+    }
+    .pipe-step {
+      position: relative;
+      border-radius: 18px;
+      padding: 1rem .85rem 1.1rem;
+      color: #fff;
+      min-height: 118px;
+      box-shadow: 0 10px 28px rgba(15,23,42,.12);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .pipe-step:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 16px 36px rgba(15,23,42,.18);
+    }
+    .pipe-step .num {
+      font-size: .72rem;
+      font-weight: 800;
+      opacity: .85;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .pipe-step h3 {
+      font-size: 1.02rem;
+      margin: .35rem 0 .3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .pipe-step p {
+      margin: 0;
+      font-size: .8rem;
+      line-height: 1.35;
+      opacity: .95;
+    }
+    .c1 { background: linear-gradient(160deg, #f97316, #ef4444); }
+    .c2 { background: linear-gradient(160deg, #06b6d4, #2563eb); }
+    .c3 { background: linear-gradient(160deg, #a855f7, #7c3aed); }
+    .c4 { background: linear-gradient(160deg, #10b981, #059669); }
+    .c5 { background: linear-gradient(160deg, #eab308, #ea580c); }
+    .c6 { background: linear-gradient(160deg, #ec4899, #be123c); }
+
+    .arrow-row {
+      display: flex;
+      justify-content: center;
+      gap: .4rem;
+      margin: .35rem 0 1.5rem;
+      color: var(--muted);
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    /* Story cards */
+    .story {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 800px) {
+      .story { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.45rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,23,42,.06);
+    }
+    .card h3 {
+      margin: 0 0 .75rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+    .chat {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .bubble {
+      max-width: 92%;
+      padding: .85rem 1rem;
+      border-radius: 18px;
+      font-size: .95rem;
+      font-weight: 500;
+    }
+    .bubble.you {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: #fff;
+      border-bottom-right-radius: 6px;
+    }
+    .bubble.agent {
+      align-self: flex-start;
+      background: var(--sky-soft);
+      color: var(--ink);
+      border-bottom-left-radius: 6px;
+      border: 1px solid #bae6fd;
+    }
+    .bubble .who {
+      display: block;
+      font-size: .7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      opacity: .7;
+      margin-bottom: .25rem;
+    }
+    .bubble.you .who { color: #e9d5ff; opacity: 1; }
+
+    .folder {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .82rem;
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 16px;
+      padding: 1rem 1.1rem;
+      line-height: 1.65;
+      overflow-x: auto;
+    }
+    .folder .dir { color: #fbbf24; font-weight: 700; }
+    .folder .hot { color: #34d399; }
+    .folder .dim { color: #94a3b8; }
+    .folder .tag {
+      display: inline-block;
+      margin-left: .35rem;
+      padding: .05rem .4rem;
+      border-radius: 6px;
+      font-size: .68rem;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+    .tag.proof { background: #064e3b; color: #6ee7b7; }
+    .tag.think { background: #4c1d95; color: #ddd6fe; }
+    .tag.math { background: #9a3412; color: #fdba74; }
+
+    /* Two paths */
+    .paths {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+    }
+    @media (max-width: 720px) {
+      .paths { grid-template-columns: 1fr; }
+    }
+    .path {
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+    }
+    .path.fast {
+      background: linear-gradient(165deg, #ecfccb, #fef9c3 55%, #fff);
+      border: 2px solid #a3e635;
+    }
+    .path.deep {
+      background: linear-gradient(165deg, #ede9fe, #fce7f3 50%, #fff);
+      border: 2px solid #a78bfa;
+    }
+    .path .label {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      padding: .3rem .65rem;
+      border-radius: 999px;
+      margin-bottom: .75rem;
+    }
+    .path.fast .label { background: #65a30d; color: #fff; }
+    .path.deep .label { background: #7c3aed; color: #fff; }
+    .path h3 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 1.45rem;
+      margin: 0 0 .5rem;
+    }
+    .path ul {
+      margin: .75rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .path li {
+      display: flex;
+      gap: .55rem;
+      align-items: flex-start;
+      margin: .45rem 0;
+      font-weight: 550;
+      font-size: .95rem;
+    }
+    .path li::before {
+      content: "→";
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .path.fast li::before { color: #65a30d; }
+    .path.deep li::before { color: #7c3aed; }
+
+    /* Substance zoom */
+    .zoom {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 800px) {
+      .zoom { grid-template-columns: 1fr; }
+    }
+    .zoom-card {
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+    .zoom-card.z1 { background: linear-gradient(145deg, #0891b2, #0369a1); }
+    .zoom-card.z2 { background: linear-gradient(145deg, #7c3aed, #db2777); }
+    .zoom-card.z3 { background: linear-gradient(145deg, #059669, #0f766e); }
+    .zoom-card h3 { margin: 0 0 .5rem; font-size: 1.1rem; }
+    .zoom-card p { margin: 0; opacity: .95; font-size: .92rem; }
+    .zoom-card .ico {
+      font-size: 1.75rem;
+      margin-bottom: .5rem;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.2));
+    }
+
+    /* Flow diagram */
+    .flow {
+      background: var(--card);
+      border-radius: 28px;
+      padding: 1.5rem 1.25rem 1.75rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,23,42,.06);
+      overflow-x: auto;
+    }
+    .flow-track {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      min-width: 720px;
+      justify-content: space-between;
+    }
+    .flow-node {
+      flex: 1;
+      text-align: center;
+      padding: 0 .35rem;
+      position: relative;
+    }
+    .flow-node .orb {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto .65rem;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      font-size: 1.65rem;
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(15,23,42,.15);
+      position: relative;
+      z-index: 1;
+    }
+    .flow-node:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 34px;
+      left: calc(50% + 40px);
+      right: calc(-50% + 40px);
+      height: 4px;
+      background: linear-gradient(90deg, #c4b5fd, #f9a8d4, #fcd34d, #6ee7b7);
+      border-radius: 4px;
+      z-index: 0;
+    }
+    .flow-node h4 {
+      margin: 0 0 .25rem;
+      font-size: .95rem;
+      font-weight: 800;
+    }
+    .flow-node p {
+      margin: 0;
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .o1 { background: linear-gradient(145deg, #f97316, #ea580c); }
+    .o2 { background: linear-gradient(145deg, #3b82f6, #1d4ed8); }
+    .o3 { background: linear-gradient(145deg, #a855f7, #7e22ce); }
+    .o4 { background: linear-gradient(145deg, #10b981, #047857); }
+    .o5 { background: linear-gradient(145deg, #f59e0b, #d97706); }
+    .o6 { background: linear-gradient(145deg, #f43f5e, #be123c); }
+
+    /* Compare */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 700px) {
+      .compare { grid-template-columns: 1fr; }
+    }
+    .cmp {
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      border: 2px solid transparent;
+    }
+    .cmp.bad {
+      background: #fff1f2;
+      border-color: #fda4af;
+    }
+    .cmp.good {
+      background: #ecfdf5;
+      border-color: #6ee7b7;
+    }
+    .cmp h3 {
+      margin: 0 0 .75rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: 1.05rem;
+    }
+    .cmp ul { margin: 0; padding-left: 1.1rem; }
+    .cmp li { margin: .4rem 0; font-weight: 500; }
+
+    /* Status board mock */
+    .status-board {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,23,42,.08);
+    }
+    .status-board header {
+      background: linear-gradient(90deg, #312e81, #6d28d9, #db2777);
+      color: #fff;
+      padding: 1rem 1.25rem;
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+    .status-board table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: .92rem;
+    }
+    .status-board th, .status-board td {
+      text-align: left;
+      padding: .75rem 1rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .status-board th {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--muted);
+      background: #f8fafc;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 700;
+    }
+    .chip.ok { background: #d1fae5; color: #065f46; }
+    .chip.run { background: #fef3c7; color: #92400e; }
+    .chip.wait { background: #ede9fe; color: #5b21b6; }
+    .chip.todo { background: #f1f5f9; color: #64748b; }
+
+    /* Footer CTA */
+    .cta {
+      margin-top: 2.75rem;
+      border-radius: 28px;
+      padding: 2rem 1.75rem;
+      background: linear-gradient(120deg, #0f172a, #1e3a5f 50%, #0f766e);
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 700px) {
+      .cta { grid-template-columns: 1fr; }
+    }
+    .cta h2 {
+      font-family: Fraunces, Georgia, serif;
+      margin: 0 0 .5rem;
+      font-size: 1.65rem;
+    }
+    .cta p { margin: 0; opacity: .9; }
+    .cta code {
+      display: block;
+      margin-top: .85rem;
+      padding: .85rem 1rem;
+      border-radius: 12px;
+      background: rgba(0,0,0,.35);
+      font-size: .88rem;
+      color: #fde68a;
+      overflow-x: auto;
+    }
+    .cta-side {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+      padding: 1.1rem 1.2rem;
+    }
+    .cta-side strong { display: block; margin-bottom: .4rem; font-size: 1.05rem; }
+    .cta-side span { font-size: .9rem; opacity: .9; }
+
+    .footnote {
+      margin-top: 1.75rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    .footnote a { color: #6d28d9; font-weight: 700; text-decoration: none; }
+
+    .pulse {
+      animation: floaty 4s ease-in-out infinite;
+    }
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="pill"><span></span> User journey · AI Accounting Skills</div>
+        <h1>You drop a folder.<br/>You get books you can defend.</h1>
+        <p>
+          Not a vague chatbot. A real engagement flow: extract banks, understand the money
+          under MPERS/MFRS, post balanced journals, prove the TB — with files on disk every step.
+        </p>
+        <div class="hero-quote">
+          You say: <em>“Here are the banks and receipts. Do the accounting.”</em>
+        </div>
+      </div>
+    </header>
+
+    <!-- SIX JOBS -->
+    <div class="section-head">
+      <div>
+        <h2>The six jobs (in plain English)</h2>
+        <p>One pipeline. Six clear jobs. You can run the whole thing — or stop at any step.</p>
+      </div>
+      <span class="badge">Core map</span>
+    </div>
+
+    <div class="pipeline">
+      <div class="pipe-step c1">
+        <div class="num">01</div>
+        <h3>Do the books</h3>
+        <p>Open or resume the job. Status board. ≤3 smart questions.</p>
+      </div>
+      <div class="pipe-step c2">
+        <div class="num">02</div>
+        <h3>Extract</h3>
+        <p>Bank PDF/CSV → lines with balance proof. No invented rows.</p>
+      </div>
+      <div class="pipe-step c3">
+        <div class="num">03</div>
+        <h3>Classify</h3>
+        <p>Understand substance, write analysis, then COA codes.</p>
+      </div>
+      <div class="pipe-step c4">
+        <div class="num">04</div>
+        <h3>Post</h3>
+        <p>Double-entry journals. Trial balance is calculated — never typed.</p>
+      </div>
+      <div class="pipe-step c5">
+        <div class="num">05</div>
+        <h3>Present</h3>
+        <p>FS, notes, Excel pack, tax schedules from the adjusted TB.</p>
+      </div>
+      <div class="pipe-step c6">
+        <div class="num">06</div>
+        <h3>Prove</h3>
+        <p>QC gates, lock, Beancount ledger + Fava in the browser.</p>
+      </div>
+    </div>
+    <div class="arrow-row">drop folder → files on disk every step → resume anytime</div>
+
+    <!-- YOU SAY / AGENT DOES -->
+    <div class="section-head">
+      <div>
+        <h2>What it feels like</h2>
+        <p>Your words on the left. What the agent actually does on the right.</p>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="card chat">
+        <div class="bubble you">
+          <span class="who">You</span>
+          Here’s a folder of Maybank PDFs and some receipts. I don’t know the company details. Just do the books.
+        </div>
+        <div class="bubble agent">
+          <span class="who">Agent</span>
+          Reading the files first… looks like <strong>ABC Sdn Bhd</strong>, MYR, banks Mar–Jul.
+          Soft-confirm that? Then I’ll extract all months in parallel — not a 20-field form.
+        </div>
+        <div class="bubble you">
+          <span class="who">You</span>
+          Yes. And classify properly — revenue recognition, not just “Sales”.
+        </div>
+        <div class="bubble agent">
+          <span class="who">Agent</span>
+          Got it — <strong>standards-aware</strong> classify. I’ll map money-in, walk MPERS S23,
+          write <code>workpapers/analysis/revenue_recognition.md</code>, ask only the hard bits, then code &amp; post.
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📁 What grows in your folder</h3>
+        <div class="folder">
+          <div><span class="dir">clients/abc-sdn-bhd/</span></div>
+          <div>├── engagement_state.json <span class="dim"># resume here</span></div>
+          <div>├── <span class="dir">source/</span> banks + register</div>
+          <div>├── <span class="dir">workpapers/</span></div>
+          <div>│   ├── transactions.json <span class="tag proof">proved</span></div>
+          <div>│   ├── classification_review.md</div>
+          <div>│   ├── <span class="dir hot">analysis/</span></div>
+          <div>│   │   ├── revenue_recognition.md <span class="tag think">substance</span></div>
+          <div>│   │   └── capital_vs_expense.md <span class="tag think">substance</span></div>
+          <div>│   ├── journals.json</div>
+          <div>│   └── tb_*.json <span class="tag math">calculated</span></div>
+          <div>├── <span class="dir">outputs/fs/</span> statements + notes</div>
+          <div>└── <span class="dir">ledger/</span> main.beancount → Fava</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TWO PATHS -->
+    <div class="section-head">
+      <div>
+        <h2>Classify: two speeds</h2>
+        <p>Same skill. Depth depends on what you asked for.</p>
+      </div>
+      <span class="badge">The big upgrade</span>
+    </div>
+
+    <div class="paths">
+      <div class="path fast">
+        <span class="label">Bookkeeping</span>
+        <h3>Just code it</h3>
+        <p style="margin:0;color:var(--muted);font-weight:500;">“Quick books / bookkeeping only”</p>
+        <ul>
+          <li>Run the classify script</li>
+          <li>Clear the review queue</li>
+          <li>Update payee map</li>
+          <li>Post journals &amp; build TB</li>
+        </ul>
+      </div>
+      <div class="path deep pulse">
+        <span class="label">Standards-aware</span>
+        <h3>Understand it</h3>
+        <p style="margin:0;color:var(--muted);font-weight:500;">Year-end · “classify properly” · revenue / capex</p>
+        <ul>
+          <li>Script baseline first</li>
+          <li>Money map: material in vs out</li>
+          <li>MPERS/MFRS checklists per theme</li>
+          <li>Analysis packs on disk</li>
+          <li>Then COA codes → post</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SUBSTANCE ZOOM -->
+    <div class="section-head">
+      <div>
+        <h2>Inside standards-aware classify</h2>
+        <p>Credits on the bank are not auto-“Sales”. Outflows are not auto-“expense”.</p>
+      </div>
+    </div>
+
+    <div class="zoom">
+      <div class="zoom-card z1">
+        <div class="ico">💰</div>
+        <h3>Money in → revenue?</h3>
+        <p>
+          Walk MPERS S23 / MFRS 15: goods vs services, principal vs agent,
+          deposits vs earned. Write <strong>revenue_recognition.md</strong>.
+        </p>
+      </div>
+      <div class="zoom-card z2">
+        <div class="ico">🏗️</div>
+        <h3>Money out → asset?</h3>
+        <p>
+          Capitalise vs expense, repairs, software, owner personal.
+          Write <strong>capital_vs_expense.md</strong> (FAR hooks if PPE).
+        </p>
+      </div>
+      <div class="zoom-card z3">
+        <div class="ico">❓</div>
+        <h3>Only hard questions</h3>
+        <p>
+          ≤3 structured questions per theme — not 40 line-by-line chats.
+          Answers saved; codes follow the conclusion.
+        </p>
+      </div>
+    </div>
+
+    <!-- VISUAL FLOW -->
+    <div class="section-head">
+      <div>
+        <h2>End-to-end on one line</h2>
+        <p>From messy dump to ledger you can open in Fava.</p>
+      </div>
+    </div>
+
+    <div class="flow">
+      <div class="flow-track">
+        <div class="flow-node">
+          <div class="orb o1">📂</div>
+          <h4>Dump</h4>
+          <p>Banks, receipts, mess</p>
+        </div>
+        <div class="flow-node">
+          <div class="orb o2">🔎</div>
+          <h4>Intake</h4>
+          <p>Infer · ≤3 asks</p>
+        </div>
+        <div class="flow-node">
+          <div class="orb o3">📥</div>
+          <h4>Extract</h4>
+          <p>Lines + proof</p>
+        </div>
+        <div class="flow-node">
+          <div class="orb o4">🧠</div>
+          <h4>Classify</h4>
+          <p>Substance → codes</p>
+        </div>
+        <div class="flow-node">
+          <div class="orb o5">⚖️</div>
+          <h4>Post + TB</h4>
+          <p>Scripts only</p>
+        </div>
+        <div class="flow-node">
+          <div class="orb o6">✅</div>
+          <h4>Prove</h4>
+          <p>QC · lock · Fava</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEFORE / AFTER -->
+    <div class="section-head">
+      <div>
+        <h2>Why this feels different</h2>
+        <p>Same “AI does accounting” pitch — very different process.</p>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="cmp bad">
+        <h3>❌ Vibe books</h3>
+        <ul>
+          <li>Invent company name &amp; year-end</li>
+          <li>Guess every line as “Sales / Misc”</li>
+          <li>Type a trial balance in Excel</li>
+          <li>No paper trail for judgments</li>
+          <li>Chat is the only memory</li>
+        </ul>
+      </div>
+      <div class="cmp good">
+        <h3>✅ This pipeline</h3>
+        <ul>
+          <li>Read docs first · soft-confirm</li>
+          <li>Analysis packs under the standard</li>
+          <li>TB calculated from journals</li>
+          <li>Partner can open the folder and review</li>
+          <li>Resume from engagement_state.json</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STATUS BOARD -->
+    <div class="section-head">
+      <div>
+        <h2>You always see where you are</h2>
+        <p>Short status board after each advance — not a wall of slash-commands.</p>
+      </div>
+    </div>
+
+    <div class="status-board">
+      <header>Engagement status — ABC Sdn Bhd · FYE 31 Dec 2026</header>
+      <table>
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Status</th>
+            <th>Artifact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Source documents</td>
+            <td><span class="chip ok">● done</span></td>
+            <td>source/register.md</td>
+          </tr>
+          <tr>
+            <td>Extract</td>
+            <td><span class="chip ok">● done</span></td>
+            <td>workpapers/transactions.json</td>
+          </tr>
+          <tr>
+            <td>Classify (standards-aware)</td>
+            <td><span class="chip wait">● waiting on you</span></td>
+            <td>analysis/revenue_recognition.md · 2 questions</td>
+          </tr>
+          <tr>
+            <td>Post · recon · TB</td>
+            <td><span class="chip todo">○ next</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>FS · QC · lock</td>
+            <td><span class="chip todo">○ later</span></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <div>
+        <h2>Try it in 30 seconds</h2>
+        <p>Install skills, point at a folder, say the sentence. Optional CLI for the math tools.</p>
+        <code>npx skills add cynco-labs/ai-accounting-skills</code>
+        <code>npx @cynco/accounting-skills extract ./banks --json ./txns.json</code>
+      </div>
+      <div class="cta-side">
+        <strong>Or say in chat:</strong>
+        <span>“Do the classifications properly — revenue recognition under MPERS.”</span>
+        <br/><br/>
+        <strong>Thin commands (optional):</strong>
+        <span>revenue-recognition · capitalise-or-expense</span>
+      </div>
+    </div>
+
+    <p class="footnote">
+      Drafts for professional accountant review only ·
+      <a href="../shared/classify-substance.md">classify-substance doctrine</a> ·
+      <a href="../CONTEXT.md">plain English terms</a> ·
+      <a href="https://github.com/cynco-labs/ai-accounting-skills">GitHub</a>
+    </p>
+  </div>
+</body>
+</html>

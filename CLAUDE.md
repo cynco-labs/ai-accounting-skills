@@ -21,6 +21,7 @@ This repository is an **open-source plugin marketplace** for accounting engageme
 5. Run `python3 scripts/validate_marketplace.py` after structural edits.
 6. After skill edits: `python3 scripts/sync_umbrella.py`.
 7. Builder skills (`skills-qa`, jurisdiction scaffold, builder cold-start) only run when the user asks — they must not auto-start mid-client job.
+8. **Short slash surface** — prefer `/do-books` · `/extract` · `/classify` · `/post` · `/present` · `/prove` (see `shared/slash-surface.md`). Aliases load canonical long skills; don’t duplicate doctrine.
 
 ## Plugin map → engagement flow
 

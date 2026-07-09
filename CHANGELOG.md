@@ -9,6 +9,8 @@ Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
 ### Added
 
+- **Short slash surface** — `/do-books` · `/extract` · `/classify` · `/post` · `/present` · `/prove` + `/ask-accounting` router (`shared/slash-surface.md`)
+- Thin user-invoked aliases load canonical long skills (no duplicated doctrine)
 - **Standards-aware classify** — substance → analysis packs → codes (`shared/classify-substance.md`)
 - Malaysia checklists under `references/jurisdictions/malaysia/standards/`
 - Analysis pack template + thin skills `revenue-recognition`, `capitalise-or-expense`

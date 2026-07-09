@@ -16,18 +16,19 @@ _Also ok:_ engagement (firms already use this).
 _Avoid:_ “kernel run”, “pipeline invocation”
 
 **Six main jobs**  
-The product in six plain steps:
+The product in six plain steps — also the **short slash commands** users type:
 
-| Job | Meaning |
-|---|---|
-| **Do the books** | Start or continue the whole job |
-| **Extract** | Pull bank (and other) lines into a clean file |
-| **Classify** | Understand the money (standards-aware) then put lines on COA codes |
-| **Post** | Double-entry journals; **trial balance is calculated** |
-| **Present** | Financial statements, notes, Excel, tax schedules |
-| **Prove** | QC, lock, export the official ledger |
+| Job | Slash | Meaning |
+|---|---|---|
+| **Do the books** | `/do-books` | Start or continue the whole job |
+| **Extract** | `/extract` | Pull bank (and other) lines into a clean file |
+| **Classify** | `/classify` | Understand the money (standards-aware) then put lines on COA codes |
+| **Post** | `/post` | Double-entry journals; **trial balance is calculated** |
+| **Present** | `/present` | Financial statements, notes, Excel, tax schedules |
+| **Prove** | `/prove` | QC, lock, export the official ledger |
 
-Old skill names still install; new writing targets these six jobs.
+Menu + router: `shared/slash-surface.md` · `/ask-accounting`  
+Long skill names still exist for the model; short ones are thin aliases.
 
 **Core tools / scripts**  
 The programs that do the math the same way every time: extract → classify → post → build TB → close / export.  

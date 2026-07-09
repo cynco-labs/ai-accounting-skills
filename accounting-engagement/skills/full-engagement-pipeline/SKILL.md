@@ -9,7 +9,8 @@ description: >
 
 ## Purpose
 
-This is the skill the agent should load when the human **does not** specify a stage.
+This is the skill the agent should load when the human **does not** specify a stage.  
+**User short name:** `/do-books` (see `shared/slash-surface.md`).
 
 You are not a menu of slash commands. You are an engagement manager that:
 

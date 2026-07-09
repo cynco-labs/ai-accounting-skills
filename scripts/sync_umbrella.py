@@ -24,6 +24,18 @@ MANIFEST = UMBRELLA / "skills" / "SYNC_MANIFEST.json"
 
 # (source plugin, skill dir name) — order is documentation only
 STAGE_SKILLS = [
+    # Short slash surface (user-facing) — thin aliases; see shared/slash-surface.md
+    ("engagement-accounting", "ask-accounting"),
+    ("engagement-accounting", "do-books"),
+    ("engagement-accounting", "extract"),
+    ("engagement-accounting", "classify"),
+    ("engagement-accounting", "post"),
+    ("engagement-accounting", "present"),
+    ("engagement-accounting", "prove"),
+    ("engagement-accounting", "resume"),
+    ("engagement-accounting", "revenue"),
+    ("engagement-accounting", "capex"),
+    # Canonical long skills
     ("engagement-accounting", "cold-start-interview"),
     ("engagement-accounting", "smart-intake"),
     ("engagement-accounting", "engagement-setup"),

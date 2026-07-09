@@ -17,11 +17,30 @@ Skills land under `~/.claude/skills/`.
 /plugin install accounting-engagement@claude-for-accounting
 ```
 
-Then:
+Then use the **short slash surface** (recommended):
+
+```text
+/accounting-engagement:ask-accounting
+/accounting-engagement:do-books
+/accounting-engagement:extract
+/accounting-engagement:classify
+/accounting-engagement:post
+/accounting-engagement:present
+/accounting-engagement:prove
+/accounting-engagement:resume
+/accounting-engagement:revenue
+/accounting-engagement:capex
+```
+
+Firm setup (first install only):
 
 ```text
 /accounting-engagement:cold-start-interview
 ```
+
+With **skills.sh** flat install, the same names are often bare: `/do-books`, `/classify`, …
+
+Design: [`shared/slash-surface.md`](../../shared/slash-surface.md).
 
 ## Firm profile
 
@@ -41,7 +60,8 @@ Legacy (still read):
 
 > Here are bank statements in this folder. Do the accounting.
 
-Entry skills: `full-engagement-pipeline` · `smart-intake`.
+Entry: type `/do-books` (or say “do the accounting”).  
+Canonical body: `full-engagement-pipeline` · intake: `smart-intake`.
 
 ## Structured questions (mandatory when asking)
 

@@ -137,6 +137,23 @@ npx skills add cynco-labs/ai-accounting-skills --all -g
 /plugin install accounting-engagement@claude-for-accounting
 ```
 
+### Slash commands (short names)
+
+Learn **six verbs** + a router — not 36 stage names. Full design: [`shared/slash-surface.md`](./shared/slash-surface.md).
+
+| You type (skills.sh) | Claude plugin form | What it does |
+|:---------------------|:-------------------|:-------------|
+| `/do-books` | `/accounting-engagement:do-books` | Full engagement / throw-work |
+| `/extract` | `/accounting-engagement:extract` | Bank lines with proof |
+| `/classify` | `/accounting-engagement:classify` | Substance → codes |
+| `/post` | `/accounting-engagement:post` | Journals + calculated TB |
+| `/present` | `/accounting-engagement:present` | Primary statements |
+| `/prove` | `/accounting-engagement:prove` | QC / prove path |
+| `/ask-accounting` | `/accounting-engagement:ask-accounting` | “Which command?” router |
+| `/resume` · `/revenue` · `/capex` | same prefix | Resume · revenue theme · capex theme |
+
+Natural language still works (“do the accounting”) — the model uses long skill names under the hood. Short slashes are for **you** when you want control.
+
 ---
 
 ## Command line · `npx`

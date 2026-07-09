@@ -103,27 +103,17 @@ See `shared/kernel-contract.md` for standard work files and scripts. Plain terms
 
 ## Rename freeze (target package names)
 
-When a breaking major version collapses install surfaces, use these **only**:
+**Shipped as thin user-invoked slashes** (see `shared/slash-surface.md`):
 
 ```text
-do-books
-extract
-classify
-post
-present
-prove
+do-books · extract · classify · post · present · prove
+ask-accounting · resume · revenue · capex
 ```
 
-Legacy names remain redirects in skill frontmatter `description` until major:
+Each short name **loads** a long canonical skill (e.g. `do-books` → `full-engagement-pipeline`).  
+Long names stay model-invoked for natural-language auto-routing.
 
-```yaml
-# example future frontmatter
-name: prove
-alias_of: null
-legacy_names: [quality-review, cross-tie-check, finalise-accounts, close]
-```
-
-Until then: **do not** add skills outside this map. Prefer engine scripts + kernel stages.
+Legacy long names remain until a major collapse. **Do not** add public slashes outside this map + slash-surface table.
 
 ---
 

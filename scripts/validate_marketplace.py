@@ -166,6 +166,7 @@ def main() -> int:
         "shared/kernel-contract.md",
         "shared/skill-collapse-map.md",
         "shared/classify-substance.md",
+        "shared/slash-surface.md",
         "CONTEXT.md",
         "references/schemas/analysis_pack.example.md",
         "references/pipeline.md",
@@ -187,13 +188,23 @@ def main() -> int:
             if needle.lower() not in ptxt.lower():
                 warnings.append(f"full-engagement-pipeline missing agent-native cue: {needle}")
 
-    # User-invoked only (builder + thin classify aliases)
+    # User-invoked only (builder + short slash surface + thin branches)
     for rel in [
         "accounting-builder-hub/skills/skills-qa/SKILL.md",
         "accounting-builder-hub/skills/jurisdiction-scaffold/SKILL.md",
         "accounting-builder-hub/skills/cold-start-interview/SKILL.md",
         "bookkeeping-accounting/skills/revenue-recognition/SKILL.md",
         "bookkeeping-accounting/skills/capitalise-or-expense/SKILL.md",
+        "engagement-accounting/skills/ask-accounting/SKILL.md",
+        "engagement-accounting/skills/do-books/SKILL.md",
+        "engagement-accounting/skills/extract/SKILL.md",
+        "engagement-accounting/skills/classify/SKILL.md",
+        "engagement-accounting/skills/post/SKILL.md",
+        "engagement-accounting/skills/present/SKILL.md",
+        "engagement-accounting/skills/prove/SKILL.md",
+        "engagement-accounting/skills/resume/SKILL.md",
+        "engagement-accounting/skills/revenue/SKILL.md",
+        "engagement-accounting/skills/capex/SKILL.md",
     ]:
         path = ROOT / rel
         if path.is_file():
