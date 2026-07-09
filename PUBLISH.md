@@ -61,15 +61,36 @@ npm view @cynco/accounting-skills version   # if NPM_TOKEN set
 
 ## Local npm publish (preferred handoff after push)
 
-**Agent rule (Hazli):** After a successful `git push origin main` for a release, **always** run:
+**Agent rule (Hazli):** After a successful `git push origin main` for a release, **always** run in a way he can interact:
+
+Short (preferred):
+
+```bash
+npm run pub
+# or: bash scripts/pub.sh
+```
+
+Same as:
 
 ```bash
 npm publish --access public
 ```
 
-- Press Enter if the CLI waits; a **browser auth** popup may open — Hazli authenticates there.
-- Do **not** skip this and only rely on CI `NPM_TOKEN` unless he says so.
-- Confirm: `npm view @cynco/accounting-skills version`
+Expected CLI (npm web login):
+
+```text
+Authenticate your account at:
+https://www.npmjs.com/auth/cli/...
+Press ENTER to open in the browser...
+```
+
+1. Agent runs the command and **stops** at that prompt (do not background / kill it).  
+2. Hazli presses **Enter** → browser opens → he signs in.  
+3. Publish finishes in the terminal.  
+4. Confirm: `npm view @cynco/accounting-skills version`
+
+Do **not** only rely on CI `NPM_TOKEN` unless he says so.  
+If the session is non-interactive and only returns `EOTP` / no Enter prompt, tell him to run the same command in **his** terminal.
 
 ### Manual OTP fallback
 

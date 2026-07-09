@@ -54,7 +54,8 @@
     "demo": "node ./cli/bin/ai-accounting.js demo",
     "close": "node ./cli/bin/ai-accounting.js close",
     "check": "node ./cli/bin/ai-accounting.js check",
-    "test": "python3 -m unittest discover -s tests -v"
+    "test": "python3 -m unittest discover -s tests -v",
+    "pub": "npm publish --access public"
   },
   "publishConfig": {
     "access": "public"
