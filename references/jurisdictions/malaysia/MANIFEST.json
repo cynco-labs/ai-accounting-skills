@@ -13,7 +13,10 @@
     "tax_malaysia.md",
     "statutory_deductions.md",
     "compilation_report.md",
-    "qc_checklist.md"
+    "qc_checklist.md",
+    "standards/README.md",
+    "standards/revenue_recognition.md",
+    "standards/capital_vs_expense.md"
   ],
   "status": "reference_summary",
   "notes": "Workflow summaries only. Verify rates, thresholds, and due dates against current official sources."

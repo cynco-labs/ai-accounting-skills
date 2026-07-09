@@ -34,6 +34,8 @@ STAGE_SKILLS = [
     ("bookkeeping-accounting", "extract-bank-statement"),
     ("bookkeeping-accounting", "record-transactions"),
     ("bookkeeping-accounting", "classify-transactions"),
+    ("bookkeeping-accounting", "revenue-recognition"),
+    ("bookkeeping-accounting", "capitalise-or-expense"),
     ("bookkeeping-accounting", "chart-of-accounts"),
     ("bookkeeping-accounting", "journal-entries"),
     ("reconciliation-accounting", "bank-reconciliation"),

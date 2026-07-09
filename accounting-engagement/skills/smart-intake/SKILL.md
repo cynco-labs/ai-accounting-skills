@@ -22,6 +22,16 @@ The user is not responsible for knowing MPERS, FYE, or form codes.
 4. `shared/agent-runtime.md` 
 5. Firm profile **if present** (defaults only — do not re-interview the firm)
 
+
+## Classify depth (after extract)
+
+Do not decide deep standards work during the first three questions.
+
+After banks are extracted, set `classify_depth` when starting classify:
+
+- **year end / compilation / proper classifications** → `standards_aware` (`shared/classify-substance.md`)
+- **just code / bookkeeping only** → `bookkeeping`
+
 ## When to use
 
 - User points at a folder / drops files and says do accounting / year end / books 

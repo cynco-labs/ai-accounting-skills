@@ -22,7 +22,7 @@ The product in six plain steps:
 |---|---|
 | **Do the books** | Start or continue the whole job |
 | **Extract** | Pull bank (and other) lines into a clean file |
-| **Classify** | Put each line on a COA code |
+| **Classify** | Understand the money (standards-aware) then put lines on COA codes |
 | **Post** | Double-entry journals; **trial balance is calculated** |
 | **Present** | Financial statements, notes, Excel, tax schedules |
 | **Prove** | QC, lock, export the official ledger |
@@ -36,7 +36,13 @@ _In code paths:_ file names like `kernel-contract.md` may still appear — treat
 
 **Standard work files**  
 Named files that hold amounts or lines, e.g. `transactions.json`, `journals.json`, `tb_*.json`, `ledger/main.beancount`.  
+Judgment memos live under `workpapers/analysis/` (not TB totals).  
 _Avoid:_ “truth shapes”, “artifacts” without the file name
+
+**Classify depth**  
+- **bookkeeping** — script + review queue; fast  
+- **standards_aware** — substance under the framework for material themes, write analysis packs, then codes  
+Doctrine: `shared/classify-substance.md`.
 
 **Build the TB (roll_tb)**  
 Trial balance comes only from journals via `scripts/roll_tb.py` (or `npx … tb`). **Never type TB totals by hand.**  

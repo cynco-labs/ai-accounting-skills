@@ -23,13 +23,14 @@ You are not a menu of slash commands. You are an engagement manager that:
 
 1. `shared/kernel-contract.md` — standard work files + scripts (first principles) 
 2. `shared/skill-collapse-map.md` — six main jobs (do the books · extract · classify · post · present · prove) 
-3. `CONTEXT.md` — domain language (leading words) 
-4. `shared/user-questions.md` — **progress asks must use structured question tools** 
-5. `shared/agent-runtime.md` 
-6. `shared/smart-intake.md` 
-7. `shared/guardrails.md` 
-8. `references/stage_artifacts.md` 
-9. Firm profile if present (quiet defaults — **do not** firm-interview on a client dump) 
+3. `CONTEXT.md` — plain English terms 
+4. `shared/classify-substance.md` — classify = substance → analysis → code 
+5. `shared/user-questions.md` — **progress asks must use structured question tools** 
+6. `shared/agent-runtime.md` 
+7. `shared/smart-intake.md` 
+8. `shared/guardrails.md` 
+9. `references/stage_artifacts.md` 
+10. Firm profile if present (quiet defaults — **do not** firm-interview on a client dump) 
 
 ## Intent router (before stage 0)
 
@@ -39,7 +40,9 @@ You are not a menu of slash commands. You are an engagement manager that:
 | Folder dump / “do accounting” / little client context | **`smart-intake` then this pipeline** |
 | Full year-end with known entity | setup → pipeline |
 | Only bank recon | `bank-reconciliation` |
-| Only classify | `classify-transactions` |
+| Only classify / “do the classifications” | `classify-transactions` (set `classify_depth`) |
+| Revenue recognition only | `revenue-recognition` (thin → classify revenue theme) |
+| Capitalise or expense only | `capitalise-or-expense` (thin → classify capex theme) |
 | Only tax with P&L | `tax-computation` |
 | “Set up the firm” / first install | `cold-start-interview` (firm, not client) |
 
@@ -102,7 +105,7 @@ ELSE:
 | 0 | setup | engagement-setup | Entity + FY + framework (may be provisional) |
 | 1 | source_documents | source-documents | Bank coverage ok / override logged |
 | 2a | record_transactions | extract-bank-statement (banks) then record-transactions | Lines extracted into transactions.json |
-| 3 | classify_transactions | classify-transactions | Codes assigned or queried |
+| 3 | classify_transactions | classify-transactions | Codes assigned or queried; **standards_aware** when year_end/compilation — analysis packs for material themes |
 | 4 | journal_entries | journal-entries → **`post_journals.py`** | JE balance (engine) |
 | 5 | bank_reconciliation | bank-reconciliation | Diff 0.00 |
 | 6 | subledger_reconciliations | subledger-reconciliations | Material ties |
@@ -157,6 +160,16 @@ npx @cynco/accounting-skills ledger <client>
 2. Default `engagement_type`: `bookkeeping_only` for that period — run the books **fully** for those months. 
 3. Soft-confirm entity + period-on-disk. 
 4. Upgrade to `year_end` / FS only when user wants it **and** coverage supports it (or they add months later). 
+
+### Classify depth
+
+| Engagement | `classify_depth` |
+|---|---|
+| `bookkeeping_only` (default dump) | `bookkeeping` unless user asks for proper classifications / revenue / capex |
+| `year_end` / `compilation` / `year_end_tax` | **`standards_aware`** — substance packs before post |
+| User: “do the classifications properly” | **`standards_aware`** |
+
+Doctrine: `shared/classify-substance.md`. Analysis lives in `workpapers/analysis/`.
 
 Do **not** ask framework/tax form/industry first. 
 Do **not** treat incomplete calendar year as a reason to stop booking.

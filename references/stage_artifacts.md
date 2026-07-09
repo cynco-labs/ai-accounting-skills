@@ -8,7 +8,7 @@ Paths are relative to `clients/<slug>/`.
 | setup | `README.md`, `engagement_state.json` | Entity, FY, framework known |
 | source_documents | `source/register.md` | Bank coverage green/amber (red = blocked unless override logged) |
 | record_transactions | `workpapers/transactions.json` (or `.csv`) | Every bank line extracted for in-scope periods |
-| classify_transactions | `workpapers/transactions.json` with `account_code` on each row | No silent suspense; unresolved → queries |
+| classify_transactions | `workpapers/transactions.json` with `account_code` on each row; if `classify_depth=standards_aware`, material themes under `workpapers/analysis/` | No silent suspense; unresolved → queries; standards-aware: analysis packs or with-limitation |
 | journal_entries | `workpapers/journals.json` | Every JE balances |
 | bank_reconciliation | `workpapers/reconciliations/bank_*.md` | Diff = 0.00 |
 | subledger_reconciliations | `workpapers/reconciliations/subledgers.md` | Material controls tied or queried |
@@ -30,6 +30,7 @@ Paths are relative to `clients/<slug>/`.
 | `workpapers/coa.json` | After COA selected |
 | `workpapers/far.json` | PPE present |
 | `workpapers/payee_map.json` | Returning clients / for next year |
+| `workpapers/analysis/*.md` | Standards-aware classify (revenue, capital vs expense, …) |
 | `queries.md` | Always if any open item |
 | `outputs/workpapers.xlsx` | After generate-workbook (human pack; not SoR) |
 | `ledger/draft.beancount` | Mid-engagement preview |

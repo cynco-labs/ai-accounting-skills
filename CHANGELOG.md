@@ -7,6 +7,17 @@ Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
 ## [Unreleased]
 
+### Added
+
+- **Standards-aware classify** — substance → analysis packs → codes (`shared/classify-substance.md`)
+- Malaysia checklists under `references/jurisdictions/malaysia/standards/`
+- Analysis pack template + thin skills `revenue-recognition`, `capitalise-or-expense`
+- `classify_depth` on engagement state; QC C6b/C6c; pipeline wiring
+
+### Changed
+
+- Classify two paths (bookkeeping vs standards_aware); MPERS review is second pass
+
 ## [2.2.4] — 2026-07-09
 
 ### Added

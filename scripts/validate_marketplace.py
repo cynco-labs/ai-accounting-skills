@@ -165,7 +165,9 @@ def main() -> int:
         "shared/agent-runtime.md",
         "shared/kernel-contract.md",
         "shared/skill-collapse-map.md",
+        "shared/classify-substance.md",
         "CONTEXT.md",
+        "references/schemas/analysis_pack.example.md",
         "references/pipeline.md",
         "references/stage_artifacts.md",
         "references/engagement_state.schema.json",
@@ -185,17 +187,27 @@ def main() -> int:
             if needle.lower() not in ptxt.lower():
                 warnings.append(f"full-engagement-pipeline missing agent-native cue: {needle}")
 
-    # Builder skills should not auto-fire mid-engagement (context load + wrong job)
+    # User-invoked only (builder + thin classify aliases)
     for rel in [
         "accounting-builder-hub/skills/skills-qa/SKILL.md",
         "accounting-builder-hub/skills/jurisdiction-scaffold/SKILL.md",
         "accounting-builder-hub/skills/cold-start-interview/SKILL.md",
+        "bookkeeping-accounting/skills/revenue-recognition/SKILL.md",
+        "bookkeeping-accounting/skills/capitalise-or-expense/SKILL.md",
     ]:
         path = ROOT / rel
         if path.is_file():
             txt = path.read_text(encoding="utf-8")
             if "disable-model-invocation: true" not in txt:
-                warnings.append(f"{rel}: builder skill should set disable-model-invocation: true")
+                warnings.append(f"{rel}: should set disable-model-invocation: true")
+
+    # Classify substance doctrine must stay reachable
+    classify = ROOT / "bookkeeping-accounting/skills/classify-transactions/SKILL.md"
+    if classify.is_file():
+        ctxt = classify.read_text(encoding="utf-8")
+        for needle in ("classify-substance", "standards_aware", "analysis"):
+            if needle not in ctxt:
+                warnings.append(f"classify-transactions missing substance cue: {needle}")
 
     # Umbrella plugin present
     umbrella = ROOT / "accounting-engagement"

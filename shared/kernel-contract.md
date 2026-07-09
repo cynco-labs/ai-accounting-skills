@@ -31,6 +31,7 @@ Paths relative to `clients/<slug>/` (or any engagement root).
 | **State** | `engagement_state.json` | Stage, hard stops, meta — **not** balances | Agent + scripts |
 | **Evidence** | `source/**` + `source/register.md` | Immutable inputs | User / extract |
 | **Lines** | `workpapers/transactions.json` | Bank (and other) lines + codes | `extract` → `classify` |
+| **Analysis** | `workpapers/analysis/*.md` | Substance judgments (revenue, capex, …) — **not** amounts as SoR | `classify` (standards-aware) |
 | **Journals** | `workpapers/journals.json` | Period double-entry (incl. openings) | `post` |
 | **YE journals** | `workpapers/journals_ye.json` | Adjusting entries only | Agent judgment → same schema |
 | **Balances** | `workpapers/tb_preliminary.json` | From period journals | **`roll_tb` only** |
@@ -44,7 +45,8 @@ Schemas: `references/schemas/{transactions,journals,trial_balance}.schema.json`.
 
 | May be authored by agent/human | Must be derived by engine (never typed as free totals) |
 |---|---|
-| Transaction classifications (after script + review) | Trial balance lines and totals |
+| Transaction classifications (after script + review + analysis packs) | Trial balance lines and totals |
+| Analysis pack conclusions (substance under the standard) | Trial balance lines and totals |
 | Journal lines (via `post` script or YE with balance check) | TB DR/CR columns from journals |
 | YE journal catalogue decisions | Net account balances on TB |
 | Note *wording* | FS line totals (must map from ATB) |

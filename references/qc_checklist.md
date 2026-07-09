@@ -43,6 +43,8 @@ Run this checklist at Phase 6 before generating final outputs. Items marked [BLO
 | C4 | Related party transactions disclosed | Identified all related parties, disclosed material transactions |
 | C5 | Director remuneration properly classified | Separate from employee salary, correctly categorised (5035 vs 5000) |
 | C6 | Revenue recognition criteria met | Goods: risks/rewards transferred. Services: over time or point in time per framework. |
+| C6b | Revenue analysis pack (standards-aware) | If material sales/money-in: `workpapers/analysis/revenue_recognition.md` exists with sources + conclusion, or **with limitation** logged |
+| C6c | Capital vs expense pack (standards-aware) | If material one-off outflows/PPE candidates: `workpapers/analysis/capital_vs_expense.md` exists, or **with limitation** logged |
 | C7 | Tax computation links to accounts | Adjusted income starts from P&L net profit. Add-backs tie to GL. |
 | C8 | Capital allowances link to asset register | QE per asset = cost per fixed asset register. Rates match asset class. |
 | C9 | Lease classification correct | Finance vs operating per S20 criteria (MPERS) or all on BS per MFRS 16 |

@@ -20,3 +20,9 @@ Runtime config: `~/.claude/plugins/config/claude-for-accounting/bookkeeping-acco
 ## Guardrails
 
 See `../shared/guardrails.md`.
+
+## Classify (substance)
+
+- `classify-transactions` — main path (`shared/classify-substance.md`)
+- `revenue-recognition` / `capitalise-or-expense` — user-invoked thin branches
+- Analysis packs: `workpapers/analysis/`

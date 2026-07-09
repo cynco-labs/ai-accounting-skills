@@ -24,9 +24,10 @@
   },
   "blockers": [],
   "open_queries": [
-    "4 payments to ALI BIN HASSAN RM3,000 — confirm classification"
+    "4 payments to ALI BIN HASSAN RM3,000 \u2014 confirm classification"
   ],
   "provisional": false,
   "updated_at": "2026-07-09T00:00:00Z",
-  "notes": "Example only — never copy as real client data"
+  "notes": "Example only \u2014 never copy as real client data",
+  "classify_depth": "standards_aware"
 }

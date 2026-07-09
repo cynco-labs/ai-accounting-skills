@@ -210,7 +210,7 @@ Resume anytime from `engagement_state.json`.
 |---|---|---|
 | **Do the books** | Start or continue the whole engagement | `engagement_state.json`, status board |
 | **Extract** | Pull lines out of bank PDFs/CSV with balance proof | `extract_bank.py` → `transactions.json` |
-| **Classify** | Put each line on a chart-of-accounts code | `classify_transactions.py` + review list |
+| **Classify** | Understand the money (when needed), then COA codes |  +  |
 | **Post** | Turn coded lines into double-entry journals; **TB is calculated** | `post_journals.py`, `roll_tb.py` |
 | **Present** | Build FS, notes, Excel pack, tax schedules from the adjusted TB | templates + maps |
 | **Prove** | QC, lock, export the official ledger | close script, Beancount, Fava |

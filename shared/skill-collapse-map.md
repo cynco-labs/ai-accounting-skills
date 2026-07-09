@@ -16,7 +16,7 @@ See `shared/kernel-contract.md` for standard work files and scripts. Plain terms
 |---|---|---|---|
 | **do-books** | Start or continue the whole client job | state, status board | ≤3 questions; resume |
 | **extract** | Source docs → proved lines | `extract_bank.py` → `transactions.json` | pick adapter / CSV vs PDF |
-| **classify** | Lines → COA codes | `classify_transactions.py` + review list | confirm ambiguous payees |
+| **classify** | Lines → **substance** (if standards-aware) → analysis packs → COA codes | `classify_transactions.py` + `workpapers/analysis/*` + review list | revenue/capex judgment; confirm payees |
 | **post** | Coded lines (+ openings, YE) → journals; **TB is calculated** | `post_journals.py`, `roll_tb.py` | openings, YE catalogue lines |
 | **present** | Adjusted TB → FS, notes, workbook, tax schedules | maps + templates; no hand-typed totals | disclosure wording |
 | **prove** | QC, lock, export official ledger | `close_engagement.py`, `export_to_beancount.py`, Fava | approval to issue |
@@ -48,7 +48,9 @@ See `shared/kernel-contract.md` for standard work files and scripts. Plain terms
 
 | Legacy skill | Action |
 |---|---|
-| `classify-transactions` | **Canonical** classify |
+| `classify-transactions` | **Canonical** classify (bookkeeping **or** standards-aware path) |
+| `revenue-recognition` | Thin branch → revenue analysis pack (same job) |
+| `capitalise-or-expense` | Thin branch → capital vs expense pack (same job) |
 | `chart-of-accounts` | Precondition / data load for classify + post — not a pipeline stage |
 
 ### post

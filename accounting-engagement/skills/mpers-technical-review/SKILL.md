@@ -8,7 +8,9 @@ description: >
 
 ## Purpose
 
-Standards filter between ATB and FS drafting.
+Standards filter between ATB and FS drafting — a **second pass**, not the first time we think about revenue or capex.
+
+Prefer that **classify (standards-aware)** already wrote `workpapers/analysis/*` packs. This skill re-checks material ATB balances and catches what classify missed.
 
 ## Preconditions
 

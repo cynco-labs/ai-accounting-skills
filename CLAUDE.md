@@ -7,9 +7,10 @@ This repository is an **open-source plugin marketplace** for accounting engageme
 1. **`shared/kernel-contract.md`** — **core rules**: which files hold amounts, and which scripts must build the trial balance (never type TB totals by hand).
 2. **`shared/skill-collapse-map.md`** — 36 older skill names → **six main jobs** (do the books · extract · classify · post · present · prove). Don’t invent a seventh job without updating that map.
 3. **`CONTEXT.md`** — plain English terms (client job, must stop, with limitation, work the months you have, …).
-4. **Trial balances are calculated only** — `scripts/roll_tb.py` / `npx @cynco/accounting-skills tb`.
-5. **Progress questions use structured tools** — `shared/user-questions.md`. Never only a long prose questionnaire when a proper question UI exists.
-6. **Work the months you have** — book months on disk properly; don’t pressure for 12 months. Full-year FS is opt-in when coverage allows.
+4. **`shared/classify-substance.md`** — classify = substance → analysis packs → codes (not pattern-only).
+5. **Trial balances are calculated only** — `scripts/roll_tb.py` / `npx @cynco/accounting-skills tb`.
+6. **Progress questions use structured tools** — `shared/user-questions.md`. Never only a long prose questionnaire when a proper question UI exists.
+7. **Work the months you have** — book months on disk properly; don’t pressure for 12 months. Full-year FS is opt-in when coverage allows.
 
 ## When working in this repo
 

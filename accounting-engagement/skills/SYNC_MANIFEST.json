@@ -9,7 +9,7 @@
     {
       "plugin": "engagement-accounting",
       "skill": "smart-intake",
-      "sha256": "874ff60d1f7558328e7ec48d12562d040a70dac1ec73f51838357a0136311c97",
+      "sha256": "cbab37f3dc63cb73eb34f0a982102d34daa3badf6df2efc1a322ab391065e012",
       "source": "engagement-accounting/skills/smart-intake/SKILL.md"
     },
     {
@@ -33,7 +33,7 @@
     {
       "plugin": "engagement-accounting",
       "skill": "full-engagement-pipeline",
-      "sha256": "ab5c0782e3eff8c2eae4f9aa7b8bdb6bf621c54cb84d8f3de374eb80d9b95ced",
+      "sha256": "34a262e0b3574ad5e9612466cd49f0f726b9a6fedafbb69197db9b983c560972",
       "source": "engagement-accounting/skills/full-engagement-pipeline/SKILL.md"
     },
     {
@@ -57,8 +57,20 @@
     {
       "plugin": "bookkeeping-accounting",
       "skill": "classify-transactions",
-      "sha256": "cac1722e77431b5c99d94944a5cf06ec129dca54696a30a85f6988b57afc0074",
+      "sha256": "f45bd3ea871c2a3ee23fbf5a8de8c6eb157845f608bc997c5a5f7464797ab897",
       "source": "bookkeeping-accounting/skills/classify-transactions/SKILL.md"
+    },
+    {
+      "plugin": "bookkeeping-accounting",
+      "skill": "revenue-recognition",
+      "sha256": "5a7789d663bec56be34639521302b95380ecd32595c15a0346ee0550c223be4c",
+      "source": "bookkeeping-accounting/skills/revenue-recognition/SKILL.md"
+    },
+    {
+      "plugin": "bookkeeping-accounting",
+      "skill": "capitalise-or-expense",
+      "sha256": "f891b4199632f23f1a408f2aaba4003a055424477da7b6cf284c4da4981e3d2a",
+      "source": "bookkeeping-accounting/skills/capitalise-or-expense/SKILL.md"
     },
     {
       "plugin": "bookkeeping-accounting",
@@ -105,7 +117,7 @@
     {
       "plugin": "mpers-accounting",
       "skill": "mpers-technical-review",
-      "sha256": "d3122dd44ff0cfccb68b01a1e080e62903c3c59a2c3ba01c3c52d73e4aad5943",
+      "sha256": "2142dd5cc5647931c5d5e41030fd4064539207a8c4f4588e534f555fe7882b23",
       "source": "mpers-accounting/skills/mpers-technical-review/SKILL.md"
     },
     {
@@ -141,7 +153,7 @@
     {
       "plugin": "quality-review-accounting",
       "skill": "quality-review",
-      "sha256": "a1065263c8e9879db788b7a4ccc3f416e623c25a6395015fa84309040b1656cc",
+      "sha256": "2f9e1411c3f30565f5e9281493953d99df52d0734ff1ddedaaa63e2461200a51",
       "source": "quality-review-accounting/skills/quality-review/SKILL.md"
     },
     {

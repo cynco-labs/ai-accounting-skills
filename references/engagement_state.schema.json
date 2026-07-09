@@ -29,6 +29,11 @@
       "type": "string",
       "enum": ["bookkeeping_only", "compilation", "year_end", "year_end_tax", "audit_support", "unknown"]
     },
+    "classify_depth": {
+      "type": "string",
+      "enum": ["bookkeeping", "standards_aware"],
+      "description": "bookkeeping = script + review queue; standards_aware = substance analysis packs before codes final"
+    },
     "current_stage": {
       "type": "string",
       "enum": [

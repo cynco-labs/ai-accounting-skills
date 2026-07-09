@@ -42,6 +42,14 @@ Run every Section A check in `references/qc_checklist.md` against artifacts on d
 Execute Data integrity, Standards, Completeness, Format from the same checklist. 
 Material fails → queries or fix list; do not silent-pass.
 
+**Standards-aware classify (prove):**
+
+If `classify_depth` is `standards_aware` or `engagement_type` is year_end / compilation:
+
+- Material money-in without `workpapers/analysis/revenue_recognition.md` → **Fail C6b** or documented **with limitation**
+- Material capex candidates without `workpapers/analysis/capital_vs_expense.md` → **Fail C6c** or **with limitation**
+- Analysis conclusions must not contradict coded `transactions.json` without an open query
+
 **Done when:** every checklist row has Pass / Fail / N/A with evidence path.
 
 ### 3 — Report + state
