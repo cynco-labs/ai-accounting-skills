@@ -198,6 +198,8 @@ Needs **Node ≥ 18** + **Python 3**. `pip install -r requirements.txt` (or foll
 
 **Six main jobs:** do the books · extract · classify · post · present · prove.
 
+**Classify** can stay fast (bookkeeping) or go **standards-aware**: revenue / capitalise-vs-expense analysis packs in `workpapers/analysis/` before codes are final. See `shared/classify-substance.md`.
+
 **Work the months you have.** If the client only gave March–July, book those months properly. Don’t refuse to start because you don’t have 12 months yet. Full-year financials only when coverage is enough (or the user accepts a clear limitation).
 
 Resume anytime from `engagement_state.json`.
@@ -210,7 +212,7 @@ Resume anytime from `engagement_state.json`.
 |---|---|---|
 | **Do the books** | Start or continue the whole engagement | `engagement_state.json`, status board |
 | **Extract** | Pull lines out of bank PDFs/CSV with balance proof | `extract_bank.py` → `transactions.json` |
-| **Classify** | Understand the money (when needed), then COA codes |  +  |
+| **Classify** | Understand the money (when needed), then COA codes | Script + analysis packs under workpapers/analysis |
 | **Post** | Turn coded lines into double-entry journals; **TB is calculated** | `post_journals.py`, `roll_tb.py` |
 | **Present** | Build FS, notes, Excel pack, tax schedules from the adjusted TB | templates + maps |
 | **Prove** | QC, lock, export the official ledger | close script, Beancount, Fava |
