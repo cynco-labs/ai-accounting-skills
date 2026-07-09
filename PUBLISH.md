@@ -59,16 +59,28 @@ gh release view v2.2.5
 npm view @cynco/accounting-skills version   # if NPM_TOKEN set
 ```
 
-## Manual fallback (if CI cannot publish npm)
+## Local npm publish (preferred handoff after push)
 
-Automation token preferred. If you must use a 2FA user token locally:
+**Agent rule (Hazli):** After a successful `git push origin main` for a release, **always** run:
+
+```bash
+npm publish --access public
+```
+
+- Press Enter if the CLI waits; a **browser auth** popup may open — Hazli authenticates there.
+- Do **not** skip this and only rely on CI `NPM_TOKEN` unless he says so.
+- Confirm: `npm view @cynco/accounting-skills version`
+
+### Manual OTP fallback
+
+If browser auth is unavailable:
 
 ```bash
 npm whoami
 npm publish --access public --otp=XXXXXX
 ```
 
-GitHub release should still have been created by CI when the tag was cut.
+GitHub Release / tag may still be created by CI when the version bump hits `main`.
 
 ## Force re-run notes
 

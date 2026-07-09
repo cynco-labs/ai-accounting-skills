@@ -25,6 +25,7 @@ This repository is an **open-source plugin marketplace** for accounting engageme
 6. After skill edits: `python3 scripts/sync_umbrella.py`.
 7. Builder skills (`skills-qa`, jurisdiction scaffold, builder cold-start) only run when the user asks — they must not auto-start mid-client job.
 8. **Short slash surface** — prefer `/do-books` · `/extract` · `/classify` · `/post` · `/present` · `/prove` (see `shared/slash-surface.md`). Aliases load canonical long skills; don’t duplicate doctrine.
+9. **After release push to `main`:** run `npm publish --access public` locally so browser auth can open (Hazli authenticates). See `PUBLISH.md`. Don’t only rely on CI npm unless he says so.
 
 ## Plugin map → engagement flow
 

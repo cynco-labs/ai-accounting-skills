@@ -7,6 +7,19 @@ Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
 ## [Unreleased]
 
+## [2.3.1] — 2026-07-09
+
+### Fixed
+
+- npm package includes `references/depth_gates.json` and `fixtures/golden-books-only-mini/**` (score/close work after `npx` install)
+- SECURITY supported-versions table matches SemVer releases
+- CLA project name aligned with AI Accounting Skills
+
+### Changed
+
+- Local release handoff: after push to `main`, run `npm publish --access public` (browser auth) — see `PUBLISH.md` / `CLAUDE.md`
+- `.gitignore` harder on client data, DS_Store, site build junk; keep `.impeccable.md` local
+
 ## [2.3.0] — 2026-07-09
 
 ### Added

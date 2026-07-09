@@ -5,7 +5,7 @@ export const site = {
     "Open-source skills for your coding agent. Drop bank statements and receipts; get organized books, a balancing trial balance, and an optional full year-end pack — with every figure tied to a source.",
   ogDescription:
     "Drop a folder. Get balanced books. Optional year-end pack. Beancount + Fava. No invented numbers.",
-  version: "v2.3.0",
+  version: "v2.3.1",
   github: "https://github.com/cynco-labs/ai-accounting-skills",
   skills: "https://skills.sh/cynco-labs/ai-accounting-skills",
   license: "https://github.com/cynco-labs/ai-accounting-skills/blob/master/LICENSE",

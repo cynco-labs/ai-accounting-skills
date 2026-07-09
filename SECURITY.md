@@ -4,7 +4,8 @@
 
 | Version | Supported |
 |---|---|
-| `0.0.x` (main branch) | ✅ |
+| Latest release on `main` (SemVer, e.g. 2.x) | ✅ |
+| Older tags | Best-effort — upgrade to latest |
 | Unofficial forks | ❌ — upgrade to main |
 
 **Security contact:** [coding@hazli.dev](mailto:coding@hazli.dev)

@@ -1,6 +1,6 @@
 # Contributor License Agreement (CLA)
 
-Thank you for your interest in contributing to **claude-for-accounting**.
+Thank you for your interest in contributing to **AI Accounting Skills** (`@cynco/accounting-skills`).
 
 By submitting a contribution (including pull requests, issues with patches, or other submissions of material), you agree to the following terms:
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/v2.3.0-0d6efd?style=for-the-badge" alt="v2.3.0" />
+  <img src="https://img.shields.io/badge/v2.3.1-0d6efd?style=for-the-badge" alt="v2.3.1" />
   <a href="https://skills.sh/cynco-labs/ai-accounting-skills"><img src="https://skills.sh/b/cynco-labs/ai-accounting-skills" alt="skills.sh" /></a>
   <img src="https://img.shields.io/badge/Beancount-ledger-111827?style=for-the-badge" alt="Beancount" />
   <img src="https://img.shields.io/badge/License-MIT-10b981?style=for-the-badge" alt="MIT License" />

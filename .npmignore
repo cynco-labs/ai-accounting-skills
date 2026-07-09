@@ -41,3 +41,6 @@ references/*.md
 !references/schemas/**
 !references/coa_templates/**
 !references/classification_patterns.json
+!references/depth_gates.json
+# books-only golden for score/close demo
+!fixtures/golden-books-only-mini/**
