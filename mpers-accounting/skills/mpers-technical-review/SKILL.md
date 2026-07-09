@@ -1,10 +1,8 @@
 ---
 name: mpers-technical-review
 description: >
-  Standards technical review of material balances under MPERS/MFRS (revenue,
-  leases, instruments, inventory, PPE, impairment, related parties, tax,
-  subsequent events). Trigger on MPERS review, standards review, technical
-  accounting, disclosure gaps before FS.
+  Standards review before/with FS (MPERS/MFRS pack). Use when standards
+  review or MPERS issues.
 ---
 # /mpers-technical-review
 
@@ -46,6 +44,11 @@ For each area: **facts → standard section → conclusion → adj/disclosure/no
 
 ## Materiality
 Use engagement materiality; trivial items → disclosure only if specifically required.
+
+
+## Completion
+
+**Done when:** issues list on disk with severity; material items escalated or accepted with documentation.
 
 ## Output
 

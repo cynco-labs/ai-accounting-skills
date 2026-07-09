@@ -1,16 +1,9 @@
 ---
 name: full-engagement-pipeline
 description: >
-  DEFAULT entry when a user throws accounting work at the agent without naming
-  a skill — including a messy folder of bank statements and receipts with no
-  company context. Runs smart-intake first (infer from docs, ≤3 smart questions),
-  then source docs, bookkeeping, bank recon, TB, year-end, MPERS, financial
-  statements, notes, QC, finalisation, tax. Trigger on: "do the accounting",
-  "whatever is in this folder", year end, compilation, "do the accounts",
-  "prepare financial statements", bank statements + receipts dump, management
-  accounts, "process this client", "finish the books", mixed PDFs, unknown
-  company. Resumes from engagement_state.json. Does not open with a long
-  questionnaire. Prefer over ad-hoc workflows.
+  Do-books orchestrator — default when the user dumps banks/receipts or
+  says "do the accounting" without naming a stage. Smart-intake, then one
+  stage at a time; resumes from engagement_state.json.
 ---
 
 # Full engagement pipeline (agent-native entry)
@@ -31,12 +24,13 @@ You are not a menu of slash commands. You are an engagement manager that:
 
 1. `shared/kernel-contract.md` — truth shapes + pure functions (first principles)  
 2. `shared/skill-collapse-map.md` — 6 intents (do-books · extract · classify · post · present · prove)  
-3. `shared/user-questions.md` — **progress asks must use structured question tools**  
-4. `shared/agent-runtime.md`  
-5. `shared/smart-intake.md`  
-6. `shared/guardrails.md`  
-7. `references/stage_artifacts.md`  
-8. Firm profile if present (quiet defaults — **do not** firm-interview on a client dump)  
+3. `CONTEXT.md` — domain language (leading words)  
+4. `shared/user-questions.md` — **progress asks must use structured question tools**  
+5. `shared/agent-runtime.md`  
+6. `shared/smart-intake.md`  
+7. `shared/guardrails.md`  
+8. `references/stage_artifacts.md`  
+9. Firm profile if present (quiet defaults — **do not** firm-interview on a client dump)  
 
 ## Intent router (before stage 0)
 
@@ -128,10 +122,10 @@ ELSE:
 ### How to “load skill”
 
 1. Read that skill’s `SKILL.md` from its plugin path  
-2. Execute it fully for this stage  
+2. Execute it fully until its **completion criterion** (or blocker)  
 3. If plugin missing, use this file’s stage table + repo `references/` and still write the same artifacts  
 
-Do **not** paste all skills into context. One stage at a time.
+Do **not** paste all skills into context. One stage at a time — defence against **premature completion** (see `shared/skill-craft.md`).
 
 ## Orchestration rules
 
@@ -167,6 +161,11 @@ npx @cynco/accounting-skills ledger <client>
 
 Do **not** ask framework/tax form/industry first.  
 Do **not** treat incomplete calendar year as a reason to stop booking.
+
+
+## Completion
+
+**Done when:** target stages for this run complete (or clean stop with state + blockers); never claim final without prove gates.
 
 ## Output to human (language)
 

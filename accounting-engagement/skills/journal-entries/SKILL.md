@@ -1,16 +1,16 @@
 ---
 name: journal-entries
 description: >
-  Post classified transactions to balancing double-entry journals via
-  scripts/post_journals.py (kernel: post). Trigger on journals, postings,
-  double entry, JE list, "post the books". Then roll TB with roll_tb.py —
-  do not freestyle trial balances.
+  Post classified lines to balancing journals (kernel: post), then
+  roll_tb. Use when journals, postings, double entry, JE list, or "post
+  the books".
 ---
 # /journal-entries
 
 ## Purpose
 
-Convert classified activity into double-entry journals. **Engine posts; agent judges openings/exceptions.**
+Convert classified activity into double-entry journals. Intent: **post**.  
+**Engine posts; agent judges openings/exceptions.**
 
 Load `shared/kernel-contract.md` and `shared/guardrails.md`.
 
@@ -39,7 +39,9 @@ npx @cynco/accounting-skills post <client> --opening-from-bank
 | Outflow | DR code · CR bank |
 | Openings | `--openings` file or `--opening-from-bank` (equity offset) |
 
-**Do not** re-derive bank JEs line-by-line in chat when the script exists.
+Prefer the script over line-by-line chat postings (**kernel**).
+
+**Done when:** `journals.json` written and every JE balances (script exit 0).
 
 ## Step 2 — Roll preliminary TB (required)
 
@@ -48,7 +50,9 @@ python3 scripts/roll_tb.py --client-dir <client> --preliminary
 npx @cynco/accounting-skills tb <client> --preliminary
 ```
 
-TB totals are **never** typed by the agent.
+TB totals only via **roll_tb** — never typed by the agent.
+
+**Done when:** `tb_preliminary.json` exists and `difference == 0` (or **blocker** recorded).
 
 ## Manual / non-bank journals
 
@@ -63,4 +67,4 @@ Client-supplied or payroll/sales books: append balancing JEs to `journals.json` 
 ## Output
 
 `workpapers/journals.json` + `workpapers/tb_preliminary.json`.  
-Next: bank recon → YE adjustments → `roll_tb --adjusted`.
+Next: bank recon → YE → `roll_tb --adjusted`.

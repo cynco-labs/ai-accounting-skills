@@ -1,10 +1,8 @@
 ---
 name: source-documents
 description: >
-  Inventory and organize source documents (banks, invoices, payslips, SSM,
-  prior FS). Trigger on document dumps, "what do we have", gap analysis,
-  missing statements, readiness for bookkeeping. Updates source/register.md
-  and engagement_state.
+  Register sources and bank coverage. Use when source register or document
+  inventory.
 ---
 # /source-documents
 
@@ -47,6 +45,11 @@ Build a complete source-document inventory and readiness score before recording 
    - **Green** — can bookkeep fully
    - **Amber** — can proceed with listed limitations
    - **Red** — blockers (missing banks / entity / openings)
+
+
+## Completion
+
+**Done when:** `source/register.md` lists files with coverage matrix; gaps are **blocker** or **AMBER**.
 
 ## Output
 

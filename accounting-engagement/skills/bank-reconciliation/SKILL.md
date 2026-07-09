@@ -1,9 +1,8 @@
 ---
 name: bank-reconciliation
 description: >
-  Reconcile each bank account GL to statement at RM0.00. Trigger on bank recon,
-  bank reconciliation, "cash doesn't match", outstanding cheques, deposits in
-  transit, GL vs bank.
+  Reconcile bank GL to statement at RM0. Use when bank recon or cash
+  doesn't match.
 ---
 # /bank-reconciliation
 
@@ -42,6 +41,11 @@ Statement balance
 
 ## Multi-account
 Repeat for every current account, savings, foreign currency (note FX).
+
+
+## Completion
+
+**Done when:** per-bank recon on disk with difference 0.00 (or **AMBER**/blocker logged in state).
 
 ## Output
 Bank recon schedule per account + combined cash note figure.  

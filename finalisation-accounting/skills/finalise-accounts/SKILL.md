@@ -1,8 +1,7 @@
 ---
 name: finalise-accounts
 description: >
-  Lock books after QC; freeze ATB/journals; version final pack. Trigger on lock
-  accounts, finalise, freeze numbers, final pack.
+  Lock pack after QC pass (prove). Use when finalise or lock accounts.
 ---
 # /finalise-accounts
 
@@ -30,6 +29,11 @@ Move from draft to **locked** numbers.
    Excel/openpyxl workpapers stay as engagement packs. **Beancount is the ledger SoR.**  
    Offer `open-fava` so the user can browse in the browser (`http://127.0.0.1:5000`).  
    See `references/beancount_integration.md` and skills `export-beancount` / `open-fava`.
+
+
+## Completion
+
+**Done when:** QC Section A clear (or user-stopped with limitation), lock recorded in state, journals frozen for issue path.
 
 ## Output
 Finalisation memo + file list + path to `ledger/main.beancount` when exported.

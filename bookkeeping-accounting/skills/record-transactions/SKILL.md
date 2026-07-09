@@ -1,9 +1,8 @@
 ---
 name: record-transactions
 description: >
-  Extract every transaction from bank statements and books into a structured
-  register with source provenance. Trigger on bank PDF/CSV, "capture
-  transactions", "import bank", "extract statements", bookkeeping from banks.
+  Capture multi-stream registers (bank, sales, purchases, payroll) with
+  source provenance. Use when import bank or capture transactions.
 ---
 # /record-transactions
 
@@ -44,6 +43,11 @@ Check net ↔ bank payment.
 
 ### E. Manual journals already provided by client
 Record as-is; mark `source=client_journal`; do not “fix” silently.
+
+
+## Completion
+
+**Done when:** every provided stream is in a structured register with source links; missing bank months are **blocker** or **AMBER** — never interpolated.
 
 ## Output
 

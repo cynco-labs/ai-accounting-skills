@@ -1,8 +1,8 @@
 ---
 name: management-approval
 description: >
-  Management/directors approval pack and approval record before issue. Trigger
-  on directors approval, management representation, sign-off FS.
+  Record directors/management sign-off before issue. Use when approval or
+  FS sign-off.
 ---
 # /management-approval
 
@@ -23,3 +23,8 @@ Directors/management own the FS.
 - Method (signed letter / email / board minutes)
 
 Until recorded → do not mark **ISSUED**.
+
+## Completion
+
+**Done when:** approver, date, and method recorded on disk — no ISSUED without this.
+

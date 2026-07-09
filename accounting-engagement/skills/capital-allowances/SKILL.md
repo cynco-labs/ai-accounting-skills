@@ -1,8 +1,8 @@
 ---
 name: capital-allowances
 description: >
-  Capital allowances schedule from FAR (IA/AA, b/f c/f). Trigger on capital
-  allowances, CA schedule, industrial building, plant allowance.
+  Capital allowances schedule from FAR (IA/AA). Use when capital
+  allowances or plant allowance.
 ---
 # /capital-allowances
 
@@ -18,6 +18,11 @@ FAR: date, cost, class, residual expenditure b/f, disposals.
 - Small value assets per current rules / firm policy
 - Hire purchase: qualifying expenditure rules
 - Disposals: balancing charge/allowance
+
+
+## Completion
+
+**Done when:** CA schedule by pool/class on disk; rates from tax reference (not invented).
 
 ## Output
 CA schedule by asset pool/class + total IA/AA for the year.

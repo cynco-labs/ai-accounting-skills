@@ -1,11 +1,8 @@
 ---
 name: engagement-setup
 description: >
-  Open or continue a client engagement after context is known: entity, FY,
-  framework, COA, completeness, README + engagement_state.json. Trigger when
-  starting year-end with known client details, "new client" with name given,
-  or after smart-intake. If the user only dumped a folder with no company
-  context, use smart-intake first — do not run a long blank questionnaire.
+  Write engagement_state and workspace for a known client/period. Use when
+  new engagement or setup books.
 ---
 
 # /engagement-setup
@@ -98,3 +95,8 @@ Include:
 
 After smart-intake, setup should usually ask **zero** new questions.  
 If something critical is still open, ≤2 questions total.
+
+## Completion
+
+**Done when:** workspace exists, `engagement_state.json` valid against schema, entity/period/framework recorded (may be provisional).
+

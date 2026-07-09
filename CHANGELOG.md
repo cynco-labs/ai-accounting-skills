@@ -5,6 +5,23 @@ All notable changes to this project are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
+## [Unreleased]
+
+### Added
+
+- **`shared/skill-craft.md`** — skill writing doctrine (predictability, invocation, hierarchy, completion criteria, pruning)
+- **`CONTEXT.md`** — domain language / leading words for agents and humans
+- Craft gates + 11th scorecard item in `shared/skill-design-framework.md`
+- Validator requires craft files; warns if builder skills lack `disable-model-invocation`
+
+### Changed
+
+- Builder skills (`skills-qa`, `jurisdiction-scaffold`, builder `cold-start-interview`) are **user-invoked**
+- Stage skills: leaner descriptions + **Done when** completion criteria across the pipeline
+- `skills-qa` scorecard 0–22 with craft diagnostics
+- README rewritten around agent failure modes and a 30-second quickstart
+- CONTRIBUTING / CLAUDE.md point at skill-craft + CONTEXT
+
 ## [2.2.3] — 2026-07-09
 
 ### Added

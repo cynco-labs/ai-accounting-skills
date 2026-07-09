@@ -1,9 +1,8 @@
 ---
 name: prepare-notes
 description: >
-  Draft notes to the financial statements from MPERS templates, tied to
-  primaries. Trigger on notes to accounts, notes to financial statements,
-  accounting policies note, PPE note, related party note.
+  Draft notes tied to primary statements. Use when notes to FS or
+  disclosure draft.
 ---
 # /prepare-notes
 
@@ -49,6 +48,11 @@ ATB, FAR, loan schedules, MPERS technical review findings, prior year notes (upd
 
 ## Completeness
 After drafting, run or mirror `/mpers-accounting:disclosure-checklist`.
+
+
+## Completion
+
+**Done when:** notes pack ties to primaries; material disclosure gaps listed or filled.
 
 ## Output
 Full notes draft + cross-ref index (Note # ↔ FS line) + list of notes still `[PENDING source]`.

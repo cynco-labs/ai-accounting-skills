@@ -1,10 +1,8 @@
 ---
 name: generate-workbook
 description: >
-  Generate Excel working-papers workbook via scripts/generate_workbook.py
-  (openpyxl). Trigger on working papers excel, workpapers xlsx, generate
-  workbook. Working papers for humans — not the ledger system of record
-  (use export-beancount after finalise).
+  Build Excel workpapers pack via openpyxl. Use when working papers Excel
+  or workbook.
 ---
 # /generate-workbook
 
@@ -50,3 +48,8 @@ python3 scripts/generate_workbook.py <input.json> <output.xlsx>
 ## PDF
 
 Optional: `scripts/generate_pdf_report.py` (reads xlsx via openpyxl, needs `reportlab`).
+
+## Completion
+
+**Done when:** workbook opens without corruption and key sheets tie to JSON workpapers/TB.
+

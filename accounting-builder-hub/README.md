@@ -24,9 +24,13 @@ This is the maintenance surface — analogous in spirit to a “builder hub” f
 2. **Show raw SKILL.md** when reviewing — not only a summary.
 3. **No install-from-chat of untrusted skills** without human `yes`.
 4. **Gates and provenance are non-negotiable** (see `shared/skill-design-framework.md`).
+5. **Predictability of process** — write skills per `shared/skill-craft.md` (lean descriptions, completion criteria, progressive disclosure).
+6. **Builder skills are user-invoked** — they set `disable-model-invocation: true` so they never auto-fire mid-engagement.
 
 ## Related docs
 
+- `../shared/skill-craft.md`
 - `../shared/skill-design-framework.md`
+- `../CONTEXT.md`
 - `../shared/jurisdiction-extension-guide.md`
 - `../CONTRIBUTING.md`

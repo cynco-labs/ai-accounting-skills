@@ -1,8 +1,8 @@
 ---
 name: compilation-report
 description: >
-  Draft ISRS 4410 compilation report (no assurance). Trigger on compilation
-  report, ISRS 4410, accountant's report for compilation.
+  Draft compilation report for the engagement pack. Use when compilation
+  or ISRS 4410.
 ---
 # /compilation-report
 
@@ -23,3 +23,8 @@ Load `references/compilation_report.md`.
 ## Do not
 - Imply audit/review
 - Omit scope limitations that were agreed
+
+## Completion
+
+**Done when:** report draft on disk with firm placeholders and correct engagement details.
+

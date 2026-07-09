@@ -1,9 +1,8 @@
 ---
 name: subledger-reconciliations
 description: >
-  Tie AR, AP, inventory, fixed assets, loans, tax, payroll liabilities to
-  controls. Trigger on subledger recon, AR listing, AP listing, loan schedule
-  vs GL, FAR vs GL.
+  Reconcile AR/AP and other subledgers to control accounts. Use when AR/AP
+  recon or subledgers.
 ---
 # /subledger-reconciliations
 
@@ -44,6 +43,11 @@ Tie subsidiary records to GL control accounts.
 
 ### Payroll liabilities
 - EPF/SOCSO/EIS/PCB payables vs payment evidence
+
+
+## Completion
+
+**Done when:** material subledgers tied or queried; recon notes on disk.
 
 ## Output
 Recon pack with differences. Material unreconciled items → queries or adjusting JEs (do not hide).

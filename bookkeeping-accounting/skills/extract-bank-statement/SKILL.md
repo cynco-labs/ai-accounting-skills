@@ -1,13 +1,8 @@
 ---
 name: extract-bank-statement
 description: >
-  Extract bank statements from PDF or CSV into a clean spreadsheet and/or
-  transactions.json with running-balance proof. Use Maybank Islamic PDF adapter
-  script for Maybank e-statements (pdfplumber + regex + Decimal proof — not
-  vision). Trigger on bank PDF, bank CSV, Maybank statement, CIMB statement,
-  "extract bank", "parse bank statement", convert statement to Excel, folder of
-  monthly statements. Prefer CSV when available. Never invent lines. Fail loud
-  on balance breaks.
+  Extract bank PDF/CSV to transactions.json with running-balance proof
+  (kernel: extract). Prefer CSV; Maybank Islamic PDF adapter when needed.
 ---
 # /extract-bank-statement
 
@@ -73,6 +68,11 @@ python3 scripts/extract_maybank_islamic_pdf.py \
 | CIMB / generic CSV | `extract_bank` CSV adapters |
 | Other bank digital PDF | Prefer CSV; else new adapter (copy Maybank pattern) |
 | Scanned image PDF | Ask for CSV or OCR pipeline — not vision freestyle |
+
+
+## Completion
+
+**Done when:** `transactions.json` (and optional xlsx) written, line/open–close balance proof passes (or **blocker** recorded), source register updated.
 
 ## Gates
 

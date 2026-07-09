@@ -1,10 +1,8 @@
 ---
 name: cold-start-interview
 description: >
-  Run firm setup for claude-for-accounting. Use on first install, empty config,
-  [PLACEHOLDER] firm profile, or when the user says set up the firm, configure
-  accounting plugins, onboard the practice, white-label the firm, or
-  --check-integrations. Writes firm-profile.md every other skill reads.
+  Firm profile cold-start (not a client dump). Use when set up the firm or
+  first install.
 argument-hint: "[--redo] [--check-integrations] [--full]"
 ---
 # /cold-start-interview
@@ -87,3 +85,8 @@ Summarise what was written. Propose:
 ## Tone
 
 Professional colleague onboarding a senior associate — precise, firm-neutral, not salesy.
+
+## Completion
+
+**Done when:** firm-profile written under config path (or user declined) and next engagement path clear.
+

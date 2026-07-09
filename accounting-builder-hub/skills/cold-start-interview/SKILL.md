@@ -1,8 +1,9 @@
 ---
 name: cold-start-interview
 description: >
-  Optional contributor/maintainer profile for builder hub. Trigger on builder
-  setup, contributor onboarding for accounting skills repo.
+  Optional contributor/maintainer profile for the builder hub (not client
+  engagements).
+disable-model-invocation: true
 ---
 # /cold-start-interview (builder hub)
 
@@ -11,6 +12,8 @@ description: >
 Lightweight profile for people **building** skills/packs, not running client engagements.
 
 ## Questions
+
+Use a structured question tool when available (`shared/user-questions.md`); otherwise short numbered asks:
 
 1. Maintainer, contributor, or firm-internal tooling owner?
 2. Default jurisdiction when testing?
@@ -24,5 +27,8 @@ Lightweight profile for people **building** skills/packs, not running client eng
 Then point them to:
 
 - `CONTRIBUTING.md`
+- `shared/skill-craft.md`
 - `/accounting-builder-hub:skills-qa`
 - `/accounting-builder-hub:jurisdiction-scaffold`
+
+**Done when:** builder CLAUDE.md written (or user declined) and next actions listed.

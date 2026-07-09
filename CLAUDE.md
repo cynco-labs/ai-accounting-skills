@@ -6,18 +6,20 @@ This repository is an **open-source Claude Code / Cowork plugin marketplace** fo
 
 1. **`shared/kernel-contract.md`** — truth shapes + pure functions (engine over freestyle).
 2. **`shared/skill-collapse-map.md`** — 36 legacy skills → **6 intents** (do-books · extract · classify · post · present · prove). Do not add stage skills outside that map.
-3. **Trial balances are derived only** — `scripts/roll_tb.py` / `npx @cynco/accounting-skills tb`. Never type TB totals.
-4. **Progress questions use structured tools** — `shared/user-questions.md` (`ask_user_question` / `AskUserQuestion`). Never prose-only Tier C.
-5. **Period-first** — book months on disk deeply; do not pressure for 12 months. Full-year FS is opt-in when coverage allows.
+3. **`CONTEXT.md`** — domain language / leading words (engagement, kernel, roll_tb, period-first, blocker, AMBER).
+4. **Trial balances are derived only** — `scripts/roll_tb.py` / `npx @cynco/accounting-skills tb`. Never type TB totals.
+5. **Progress questions use structured tools** — `shared/user-questions.md` (`ask_user_question` / `AskUserQuestion`). Never prose-only Tier C.
+6. **Period-first** — book months on disk deeply; do not pressure for 12 months. Full-year FS is opt-in when coverage allows.
 
 ## When working in this repo
 
 1. Read `shared/guardrails.md` before changing skills that produce numbers.
-2. Read `CONTRIBUTING.md` and `shared/skill-design-framework.md` before new skills.
+2. Read `CONTRIBUTING.md`, `shared/skill-craft.md`, and `shared/skill-design-framework.md` before new skills.
 3. Prefer jurisdiction packs over hard-coding country rules into stage skills.
 4. Never commit client data, secrets, or hard-coded firm branding.
 5. Run `python3 scripts/validate_marketplace.py` after structural edits.
 6. After skill edits: `python3 scripts/sync_umbrella.py`.
+7. Builder skills (`skills-qa`, jurisdiction scaffold, builder cold-start) are **user-invoked** — do not auto-fire them mid-engagement.
 
 ## Plugin map → engagement pipeline
 
@@ -65,7 +67,8 @@ claude-for-accounting/
 3. **White-label** — firm identity from cold-start only.  
 4. **Jurisdiction as data** — packs under `references/jurisdictions/`.  
 5. **SKILL.md carries doctrine** — CLAUDE.md is the safety net.  
-6. **Validate in CI** — structural invariants before merge.
+6. **Validate in CI** — structural invariants before merge.  
+7. **Predictability of process** — craft skills per `shared/skill-craft.md` (lean descriptions, completion criteria, progressive disclosure).
 
 ## Default firm seed
 

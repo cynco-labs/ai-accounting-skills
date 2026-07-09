@@ -1,8 +1,9 @@
 ---
 name: jurisdiction-scaffold
 description: >
-  Scaffold a new jurisdiction pack under references/jurisdictions/<id>.
-  Trigger on new country pack, jurisdiction scaffold, add UK/SG pack.
+  Scaffold a new jurisdiction pack under references/jurisdictions/<id>
+  without forking stage plugins.
+disable-model-invocation: true
 argument-hint: "<jurisdiction-id> [--currency CODE] [--framework name]"
 ---
 # /jurisdiction-scaffold
@@ -13,7 +14,7 @@ Bootstrap a jurisdiction pack without forking stage plugins.
 
 ## Preconditions
 
-Read `shared/jurisdiction-extension-guide.md`.
+Read `shared/jurisdiction-extension-guide.md` and `CONTEXT.md` (**jurisdiction pack** term).
 
 ## Inputs
 
@@ -35,7 +36,9 @@ Read `shared/jurisdiction-extension-guide.md`.
    - `coa/` (optional empty)
 5. Banner every stub: workflow summary; not official text
 6. Tell the user what to fill first (entity matrix → reporting → tax)
-7. Remind: do not hard-code rates from memory; paste from official sources with retrieval date
+7. Remind: paste rates from official sources with retrieval date — do not hard-code from memory
+
+**Done when:** tree exists, every stub has the verify banner, and the contributor has an ordered fill list.
 
 ## Output
 

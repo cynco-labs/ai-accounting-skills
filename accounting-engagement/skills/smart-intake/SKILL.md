@@ -1,14 +1,9 @@
 ---
 name: smart-intake
 description: >
-  Document-first client intake when the user dumps a folder of bank statements,
-  receipts, or invoices with little or no company context. Infer jurisdiction,
-  currency, entity name, period, and entity type from the files; confirm only
-  what is ambiguous; ask at most 3 high-leverage questions. Trigger on: "do the
-  accounting", "whatever is in this folder", "here are my banks and receipts",
-  "please sort my books", messy client dump, no company name given, unknown
-  entity, "I don't know the details just do it". Prefer this before a long
-  engagement questionnaire. Does not fabricate registration numbers or balances.
+  Document-first intake for folder dumps — infer context, ≤3 structured
+  questions (do-books). Use when do the accounting without company
+  details.
 ---
 
 # /smart-intake
@@ -168,6 +163,11 @@ Do not dump the whole entity matrix.
 5. Ten classification questions one-by-one (batch by payee)  
 6. **Prose-only Tier C asks** when a structured question tool exists  
 7. Writing `queries.md` and treating that as “user was asked” without a tool call
+
+
+## Completion
+
+**Done when:** Hypothesis Card written, ≤3 asks issued if needed, extract started for banks on disk, engagement state provisional or confirmed.
 
 ## Outputs
 

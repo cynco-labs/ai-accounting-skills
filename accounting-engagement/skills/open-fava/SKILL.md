@@ -1,10 +1,8 @@
 ---
 name: open-fava
 description: >
-  Open Fava web UI on a Beancount ledger so the user can explore balances,
-  journals, income statement and balance sheet interactively. Trigger on fava,
-  open fava, show me the books, beancount UI, web ledger, browse accounts,
-  interactive P&L. Requires a valid .beancount file first.
+  Open Fava UI on a valid Beancount ledger. Use when fava, browse books,
+  or interactive P&L.
 ---
 
 # /open-fava
@@ -50,6 +48,11 @@ fava --host 127.0.0.1 --port 5000 path/to/main.beancount
 - Income Statement / Balance Sheet in Fava  
 - Account tree  
 - Journal entries from export  
+
+
+## Completion
+
+**Done when:** bean-check PASS, Fava started (or install instructions), user given localhost URL.
 
 ## Security
 

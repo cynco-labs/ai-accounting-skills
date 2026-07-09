@@ -1,11 +1,8 @@
 ---
 name: export-beancount
 description: >
-  Export balanced journals and chart of accounts to a Beancount ledger file —
-  the system of record after working papers. Trigger on beancount, export
-  ledger, push to beancount, plain text ledger, system of record, finalize
-  ledger, .beancount, after QC, after finalise accounts. Produces ledger for
-  Fava. Do not export unbalanced journals.
+  Export balanced journals to Beancount ledger SoR (prove). Use when
+  beancount or export ledger.
 ---
 
 # /export-beancount
@@ -66,6 +63,11 @@ python3 scripts/export_to_beancount.py \
 3. Emit one Beancount transaction per journal entry (DR +, CR −)  
 4. Write `*.account_map.json` sidecar  
 5. Optional `bean-check`  
+
+
+## Completion
+
+**Done when:** `ledger/main.beancount` written from balanced journals; refuse if any JE unbalanced.
 
 ## Outputs
 

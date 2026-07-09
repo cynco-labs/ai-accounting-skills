@@ -1,8 +1,8 @@
 ---
 name: client-workspace
 description: >
-  Create or switch client workspace folders and active client pointer. Trigger
-  on new client folder, switch client, list clients, where are workpapers.
+  Scaffold clients/<slug> folder layout. Use when new client folder or
+  workspace layout.
 ---
 # /client-workspace
 
@@ -40,3 +40,8 @@ Config path alternative: `~/.claude/plugins/config/claude-for-accounting/clients
 - Never mix two clients' numbers in one workbook without explicit multi-entity consolidation engagement.
 - Cross-client context is **off** by default.
 - Record the active path so later skills write to the right place.
+
+## Completion
+
+**Done when:** standard dirs exist (source, workpapers, outputs, ledger) and README stub present.
+

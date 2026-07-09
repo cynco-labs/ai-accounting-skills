@@ -1,47 +1,73 @@
 ---
 name: quality-review
 description: >
-  Full QC including Section A mathematical blockers before finalisation.
-  Trigger on quality review, QC, quality control, check the accounts, partner
-  review checklist.
+  Prove the pack before finalisation — full QC with Section A mathematical
+  blockers. Use when quality review, QC, partner checklist, "check the
+  accounts", or prove intent before issue.
 ---
 # /quality-review
 
 ## Purpose
 
-Independent checklist pass before anything is called final.
+Independent checklist pass before anything is called final. Intent: **prove**.
 
-Load `references/qc_checklist.md` and execute **every** section.
+Load `shared/guardrails.md` and execute **every** item in  
+`references/qc_checklist.md` (plugin or repo root shim).
 
 ## Preconditions
 
-1. Read shared guardrails (`shared/guardrails.md`).
-2. Load firm profile from `~/.claude/plugins/config/claude-for-accounting/firm-profile.md` if present.
-3. Load plugin config from `~/.claude/plugins/config/claude-for-accounting/{{plugin}}/CLAUDE.md` if present.
-4. Load active client engagement README / workspace if one is open.
-5. **Never fabricate numbers.** Re-read source documents if figures are missing from context.
+1. Active engagement on disk (`engagement_state.json`).
+2. Adjusted TB present when FS claimed — **`roll_tb` derived**, not freestyle.
+3. Re-read workpapers/FS if context was compacted (**disk is truth**).
 
+## Steps
 
+### 1 — Section A mathematical integrity [BLOCKERS]
 
-## Section A — Mathematical integrity [BLOCKERS]
-- TB DR=CR
-- BS balances
-- P&L ↔ RE movement
-- Each JE balances
-- Bank GL = bank recon
-- Cash flow ↔ cash movement
+Run every Section A check in `references/qc_checklist.md` against artifacts on disk.
 
-## Section B — Data integrity
-Source traceability, openings, dep, payroll, statutory rates.
+| Check | Pass when |
+|---|---|
+| TB DR = CR | `tb_adjusted.json` (or claimed TB) difference 0 |
+| BS balances | Assets = liabilities + equity |
+| P&L ↔ RE | RE movement ties to profit and distributions |
+| Each JE balances | Period + YE journals |
+| Bank GL = recon | Diff 0.00 per bank or **AMBER** logged |
+| Cash flow ↔ cash | Net CF explains cash movement |
 
-## Section C — Standards
-Framework, accruals, related parties, revenue, leases, impairment, tax link.
+**Done when:** every Section A item is Pass, or any Fail is written and finalisation is blocked.
 
-## Section D — Completeness
-Suspense, accruals, prepayments, bad debts, deliverables, queries, FAR, inventory.
+### 2 — Sections B–E
 
-## Section E — Format
-House style, name, period, page numbers, comparatives.
+Execute Data integrity, Standards, Completeness, Format from the same checklist.  
+Material fails → queries or fix list; do not silent-pass.
+
+**Done when:** every checklist row has Pass / Fail / N/A with evidence path.
+
+### 3 — Report + state
+
+Write QC report under the engagement (e.g. `workpapers/qc_report.md` or firm path).  
+Update `engagement_state.json`: prove stage result; **blocker** if any Section A Fail.
+
+**Done when:** report on disk and state reflects pass or blocker.
+
+## Gates
+
+- Any Section A Fail → **cannot finalise** (blocker).
+- Provenance gaps on material figures → Fail Section B, not a soft skip.
+
+## Failure modes
+
+| Failure | Behavior |
+|---|---|
+| Agent scores from memory | Re-open TB / BS / recon files; re-run checks |
+| TB freestyled in chat | Reject; require `roll_tb` artifact |
+| Premature “QC passed” | Exhaustive bar: every checklist row statused |
 
 ## Output
-QC report with Pass/Fail per item. Any Section A Fail → **cannot finalise**.
+
+QC report Pass/Fail per item. Next: `finalise-accounts` only if Section A clean (and firm policy).
+
+## Trust surface
+
+Engagement folder + firm config. No external send.

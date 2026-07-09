@@ -1,9 +1,8 @@
 ---
 name: validate-beancount
 description: >
-  Validate a Beancount ledger with bean-check and report account/balance
-  health before opening Fava. Trigger on bean-check, validate ledger,
-  beancount errors, ledger broken.
+  Validate a Beancount ledger with bean-check. Use when bean-check or
+  ledger broken.
 ---
 
 # /validate-beancount
@@ -36,3 +35,8 @@ pip install beancount
 ## On FAIL
 
 Do not open Fava as “ready.” Fix export or journals and re-export.
+
+## Completion
+
+**Done when:** bean-check PASS/FAIL reported clearly; on FAIL do not treat ledger as ready.
+

@@ -1,9 +1,8 @@
 ---
 name: preliminary-trial-balance
 description: >
-  DERIVED ONLY — roll preliminary TB from journals via scripts/roll_tb.py.
-  Do not freestyle TB totals. Kernel intent: post (see shared/skill-collapse-map.md).
-  Trigger on trial balance, TB, pre-adjustment TB, "does the TB balance", roll TB.
+  Derive preliminary TB via roll_tb only (kernel). Use when preliminary TB
+  or roll TB.
 ---
 # /preliminary-trial-balance
 
@@ -26,6 +25,11 @@ Writes `workpapers/tb_preliminary.json` with `totals.difference == 0` or fails.
 - Typing TB lines or totals in chat  
 - “Balancing figures”  
 - Building TB without journals on disk  
+
+
+## Completion
+
+**Done when:** `tb_preliminary.json` exists with `difference == 0` via `roll_tb.py` — never freestyle totals.
 
 ## Next
 

@@ -1,9 +1,8 @@
 ---
 name: chart-of-accounts
 description: >
-  Select or customise entity COA and optional industry overlay (trading,
-  services, F&B, property, construction). Trigger on chart of accounts, COA
-  setup, add account, industry accounts.
+  Select entity COA and optional industry overlay. Use when COA setup, add
+  account, or industry accounts.
 ---
 # /chart-of-accounts
 
@@ -39,6 +38,11 @@ Overlay `overlay_accounts` win on intentional renames; document merges in client
 4. Map every FS line item to one or more codes (maintain mapping table for statements skill).
 5. Suspense account required (e.g. 2900).
 6. White-label: no firm-specific account names in shared templates.
+
+
+## Completion
+
+**Done when:** active COA list on disk (entity base ± overlay) with suspense code and FS mapping skeleton.
 
 ## Output
 Active COA list + industry overlay applied (if any) + FS mapping skeleton (code → SOFP/SOCI line).

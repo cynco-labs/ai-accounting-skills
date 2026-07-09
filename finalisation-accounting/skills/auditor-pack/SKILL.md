@@ -1,8 +1,8 @@
 ---
 name: auditor-pack
 description: >
-  Assemble auditor support pack from locked workpapers. Trigger on auditor pack,
-  audit file, handoff to auditors.
+  Assemble auditor support pack from locked workpapers. Use when auditor
+  pack or audit handoff.
 ---
 # /auditor-pack
 
@@ -24,3 +24,8 @@ Handoff to external auditors.
 
 ## Label
 `FOR AUDIT — prepared by [firm] — not the auditor's working papers`
+
+## Completion
+
+**Done when:** pack index + files listed; labelled FOR AUDIT — not auditor working papers.
+

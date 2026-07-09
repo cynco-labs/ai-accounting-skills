@@ -1,8 +1,8 @@
 ---
 name: disclosure-checklist
 description: >
-  MPERS disclosure completeness checklist against draft notes and primaries.
-  Trigger on disclosure checklist, notes complete?, missing disclosures.
+  Run framework disclosure checklist. Use when disclosures or notes
+  checklist.
 ---
 # /disclosure-checklist
 
@@ -36,6 +36,11 @@ Completeness of notes under MPERS S3–S8 and topic sections.
 - [ ] Events after reporting period
 - [ ] Authorisation date of FS
 - Comparative figures throughout
+
+
+## Completion
+
+**Done when:** every checklist item Pass/Fail/N/A with evidence; gaps queued for notes skill.
 
 ## Output
 Checklist with Pass / Fail / N/A + pointer to note number. Failures block finalisation unless waived with reason.

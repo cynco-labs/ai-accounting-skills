@@ -1,24 +1,25 @@
 ---
 name: classify-transactions
 description: >
-  Categorize transactions to the chart of accounts (prior-year map, patterns,
-  invoices, then staff Q&A). Trigger on "classify", "code these", "what account",
-  uncategorized transactions, suspense clean-up, payee mapping.
+  Classify bank lines to COA codes (kernel: classify). Use when classify,
+  code these, uncategorized transactions, suspense clean-up, or payee
+  mapping.
 ---
 # /classify-transactions
 
 ## Purpose
 
-Assign account codes correctly. **Accuracy over speed.** Deterministic first pass, then agent adjudication.
+Assign account codes correctly. Intent: **classify**. Deterministic script first; agent adjudicates the review queue only.
 
 ## Preconditions
 
-1. Read shared guardrails (`shared/guardrails.md`).
-2. Resolve firm profile (`shared/firm-profile.md` / `python3 scripts/resolve_firm_profile.py`).
-3. Load active client engagement workspace.
-4. **Never fabricate numbers.** Re-read source documents if figures are missing from context.
+1. `shared/guardrails.md` + firm profile if present.
+2. Active engagement; `workpapers/transactions.json` exists (from **extract**).
+3. Re-read sources if figures missing from context (**disk is truth**).
 
-## Step 0 — Run the classifier (required)
+## Steps
+
+### 1 — Run the classifier (required)
 
 ```bash
 python3 scripts/classify_transactions.py \
@@ -31,8 +32,9 @@ python3 scripts/classify_transactions.py \
 npx @cynco/accounting-skills classify ./workpapers/transactions.json
 ```
 
-Rules live in `references/classification_patterns.json` (Malaysia defaults).  
-Payee map (optional): `workpapers/payee_map.json` — `{ "acme sdn bhd": { "account_code": "4000", "account_name": "Revenue" } }`.
+Rules: `references/classification_patterns.json`.  
+Payee map (optional): `workpapers/payee_map.json` —  
+`{ "acme sdn bhd": { "account_code": "4000", "account_name": "Revenue" } }`.
 
 | Field | Meaning |
 |---|---|
@@ -40,36 +42,44 @@ Payee map (optional): `workpapers/payee_map.json` — `{ "acme sdn bhd": { "acco
 | `classification_confidence` | 0–1 |
 | `needs_review` | Agent must confirm |
 
-**Do not re-derive pattern tables in chat** when the script exists.
+Do not re-derive pattern tables in chat when the script exists (**kernel**).
 
-## Priority order (after script)
+**Done when:** script exit 0 and `classification_review.md` written.
 
-### 1. Review queue only
-Open `classification_review.md`. For **material** `needs_review` rows (batch by payee / pattern, not one-by-one):
+### 2 — Adjudicate the review queue
+
+Open `classification_review.md`. For **material** `needs_review` rows (batch by payee/pattern):
 
 - Confirm pattern suggestion, or  
-- **Ask staff with 3–5 account options via structured user-question tool**  
-  (load `shared/user-questions.md` — `ask_user_question` / `AskUserQuestion` when available), or  
+- **Structured ask** with 3–5 account options (`shared/user-questions.md`), or  
 - Suspense + query sheet (last resort)
 
-**Mandatory for material batches (≥ ~RM500 or statutory/related-party):**  
-call the host question tool with ≤3 batched questions. Do not only list options in chat.  
-After answers: update `workpapers/payee_map.json`, re-run classify → `post` → `tb`.
+Mandatory for material batches (≥ ~RM500 or statutory/related-party): host question tool, ≤3 batched questions — not prose-only options.
 
-### 2. Invoice matching
-Match amount ± date window to purchase/sales invoices → basis `invoice`.
+After answers: update `workpapers/payee_map.json`, re-run classify.
 
-### 3. Industry overlay
-If engagement has an industry overlay, apply `classification_hints` from `references/coa_templates/industry/*.json`.
+Optional: invoice match (amount ± date → basis `invoice`); industry `classification_hints` from `references/coa_templates/industry/*.json`.
 
-### 4. Update payee map
-Write confirmed payees back to `workpapers/payee_map.json` for next year.
+**Done when:** every material `needs_review` row is confirmed, queried, or suspense+query; payee_map updated for confirmed payees.
 
-## Output
+### 3 — Hand off to post
 
-`workpapers/transactions.json` with `account_code`, `account_name`, `classification_basis`, `classification_confidence`, `needs_review`.
+**Done when:** `transactions.json` has `account_code` / `account_name` / basis / confidence / `needs_review` coherent with the review file.
 
 ## Gates
 
-- No silent suspense for material payroll / tax / related-party lines — escalate.  
-- Never invent amounts.  
+- No silent suspense for material payroll / tax / related-party — escalate.  
+- Never invent amounts.
+
+## Failure modes
+
+| Failure | Behavior |
+|---|---|
+| Ambiguous payee | Structured ask; then suspense if still open |
+| Agent codes without script | Re-run classifier; discard freestyle bulk codes |
+| Premature “all classified” | Exhaustive bar on material review rows |
+
+## Output
+
+`workpapers/transactions.json` + `classification_review.md` + updated `payee_map.json`.  
+Next intent: **post** (`journal-entries` → `post_journals.py`).

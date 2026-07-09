@@ -1,8 +1,8 @@
 ---
 name: cross-tie-check
 description: >
-  Cross-tie notes to primaries, cash flow to BS, profit to equity, openings to
-  prior year. Trigger on cross tie, tie-out, consistency check, note agreement.
+  Cross-tie FS lines to ATB and notes (prove). Use when cross-tie or prove
+  ties.
 ---
 # /cross-tie-check
 
@@ -19,6 +19,11 @@ Deep consistency after statements + notes exist.
 6. Cross-reference numbers (Note X on face) correct  
 7. Related party balances ⊆ AR/AP/loan notes  
 8. Tax expense note ↔ tax computation ↔ tax payable  
+
+
+## Completion
+
+**Done when:** every material FS line tied to ATB/source or listed as fail; report on disk.
 
 ## Output
 Tie schedule with differences (must be zero or explained).

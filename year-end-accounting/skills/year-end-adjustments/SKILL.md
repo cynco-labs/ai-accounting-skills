@@ -1,9 +1,8 @@
 ---
 name: year-end-adjustments
 description: >
-  Post year-end AJEs: depreciation, accruals, prepayments, inventory, ECL,
-  interest, payroll, tax provision, FX, deferred tax. Trigger on year-end
-  adjustments, adjusting journals, accruals, prepayments, closing entries.
+  Catalogue and post YE journals to journals_ye.json. Use when accruals,
+  year-end AJEs, or adjustments.
 ---
 # /year-end-adjustments
 
@@ -46,6 +45,11 @@ Load and tick `references/year_end_adjustments_checklist.md` (plugin or repo roo
 2. Do not double-count items already correctly accrued in monthly books.
 3. Tax provision may be **iterative** with `/tax-accounting:tax-computation` — document version.
 4. Material estimates: document assumption; escalate if judgment-heavy.
+
+
+## Completion
+
+**Done when:** YE catalogue complete, each YE JE balances in `journals_ye.json`, queries logged for open items.
 
 ## Output
 

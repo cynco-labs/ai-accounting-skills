@@ -1,8 +1,8 @@
 ---
 name: tax-computation
 description: >
-  Malaysian tax computation from accounts (Forms B/C/P/PT/TF/TP path). Trigger
-  on tax computation, tax comp, Form C, chargeable income, CP204 vs actual.
+  Malaysian tax computation from accounts (present). Use when Form C, tax
+  comp, or chargeable income.
 ---
 # /tax-computation
 
@@ -35,6 +35,11 @@ If FS not locked, tag computation `[DRAFT — subject to final accounts]`.
 7. Apply correct rate schedule for entity  
 8. Tax charged vs CP204/CP500 instalments → payable/(repayable)  
 9. Deferred tax bridge if FS recognises deferred tax  
+
+
+## Completion
+
+**Done when:** tax schedule on disk from locked (or [DRAFT]) figures; rates from reference with [verify] where needed.
 
 ## Output
 Tax computation schedule + journal for tax provision if YE skill needs update.  

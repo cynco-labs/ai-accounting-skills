@@ -1,10 +1,8 @@
 ---
 name: resume-engagement
 description: >
-  Resume an in-progress accounting engagement from engagement_state.json and
-  artifacts on disk. Trigger on resume, continue client, "where were we", pick
-  up year end, session start with existing client folder, engagement_state
-  present. Reads disk only — never reconstructs numbers from chat memory.
+  Resume from engagement_state.json. Use when continue client, pick up
+  books, or where we left off.
 ---
 
 # /resume-engagement
@@ -46,4 +44,9 @@ Make multi-session work safe. **Disk is truth.**
 Say so clearly. Offer:
 
 - `engagement-setup` for a new client  
-- `full-engagement-pipeline` if they dumped files  
+- `full-engagement-pipeline` if they dumped files
+
+## Completion
+
+**Done when:** state loaded, one-line status shown, next stage skill identified (or blockers listed).
+

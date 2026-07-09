@@ -1,9 +1,8 @@
 ---
 name: prepare-primary-statements
 description: >
-  Map ATB to SOFP, SOCI/P&L, equity, cash flow statements. Trigger on financial
-  statements, balance sheet, income statement, P&L, cash flow statement,
-  prepare FS, primary statements.
+  Present primary statements from ATB map (present intent). Use when draft
+  FS or SOFP/SOCI.
 ---
 # /prepare-primary-statements
 
@@ -40,6 +39,11 @@ Net change in cash = SOFP cash movement. Reconcile profit to operating cash.
 - Assets = Liabilities + Equity
 - SOCI result feeds equity (RE / current year result)
 - No unexplained “balancing figures”
+
+
+## Completion
+
+**Done when:** primaries on disk map to ATB lines, BS balances, and figures carry provenance tags.
 
 ## Output
 Primary statements draft + mapping schedule. Next: `prepare-notes`.
