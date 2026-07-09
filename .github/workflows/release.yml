@@ -1,0 +1,165 @@
+# Auto-release when package.json version has no matching GitHub tag.
+# Runs on every push to main (default branch). Creates:
+#   - git tag vX.Y.Z
+#   - GitHub Release (from CHANGELOG.md section)
+#   - npm publish (only if NPM_TOKEN secret is set)
+#
+# Bump VERSION + package.json + CHANGELOG, merge to main → release ships.
+
+name: release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Re-create release notes if tag already exists (no retag)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Version lockstep
+        run: python3 scripts/version_check.py
+      - name: Full CI check
+        run: bash scripts/ci_check.sh
+
+  release:
+    needs: validate
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      released: ${{ steps.meta.outputs.released }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # Need full history/tags to detect existing release tags
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Resolve version
+        id: meta
+        run: |
+          set -euo pipefail
+          git fetch --tags origin 2>/dev/null || true
+
+          VERSION=$(python3 scripts/version_check.py --print)
+          TAG="v${VERSION}"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+
+          if git ls-remote --tags origin "refs/tags/${TAG}" | grep -q "refs/tags/${TAG}$"; then
+            echo "Tag ${TAG} already exists on origin — skip create."
+            echo "released=false" >> "$GITHUB_OUTPUT"
+            echo "skip_reason=tag_exists" >> "$GITHUB_OUTPUT"
+          elif git rev-parse -q --verify "refs/tags/${TAG}" >/dev/null 2>&1; then
+            echo "Tag ${TAG} exists locally — skip create."
+            echo "released=false" >> "$GITHUB_OUTPUT"
+            echo "skip_reason=tag_exists_local" >> "$GITHUB_OUTPUT"
+          else
+            echo "New version ${TAG} — will create GitHub release."
+            echo "released=true" >> "$GITHUB_OUTPUT"
+            echo "skip_reason=" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "VERSION=${VERSION} TAG=${TAG} released=$(grep released "$GITHUB_OUTPUT")"
+
+      - name: Build release notes from CHANGELOG
+        if: steps.meta.outputs.released == 'true'
+        run: |
+          python3 scripts/changelog_section.py "${{ steps.meta.outputs.version }}" > /tmp/release-notes.md
+          echo "----- release notes -----"
+          cat /tmp/release-notes.md
+
+      - name: Create tag + GitHub Release
+        if: steps.meta.outputs.released == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          VERSION="${{ steps.meta.outputs.version }}"
+          TAG="${{ steps.meta.outputs.tag }}"
+          TITLE="v${VERSION}"
+
+          # Prefer a nicer title from first CHANGELOG heading line if present
+          HEAD=$(grep -E "^## \[${VERSION}\]" CHANGELOG.md | head -1 || true)
+          if [ -n "$HEAD" ]; then
+            # ## [2.2.2] — 2026-07-09  →  v2.2.2
+            TITLE="v${VERSION}"
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "${TAG}" -m "Release ${TAG}"
+          git push origin "${TAG}"
+
+          gh release create "${TAG}" \
+            --title "${TITLE}" \
+            --notes-file /tmp/release-notes.md \
+            --latest
+
+          echo "Created GitHub release ${TAG}"
+          echo "URL: https://github.com/${{ github.repository }}/releases/tag/${TAG}"
+
+      - name: Skip notice
+        if: steps.meta.outputs.released != 'true'
+        run: |
+          echo "No new GitHub release."
+          echo "version=${{ steps.meta.outputs.version }}"
+          echo "reason=${{ steps.meta.outputs.skip_reason }}"
+          echo "Bump VERSION + package.json + CHANGELOG and push to main to cut a release."
+
+  npm:
+    needs: [validate, release]
+    runs-on: ubuntu-latest
+    # Only publish when we cut a new GitHub release AND NPM_TOKEN is configured
+    if: needs.release.outputs.released == 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+          scope: "@cynco"
+
+      - name: Check NPM_TOKEN
+        id: npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "${NODE_AUTH_TOKEN}" ]; then
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+            echo "NPM_TOKEN secret not set — skip npm publish (GitHub release still created)."
+          else
+            echo "has_token=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to npm
+        if: steps.npm.outputs.has_token == 'true'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          VERSION=$(python3 scripts/version_check.py --print)
+          echo "Publishing @cynco/accounting-skills@${VERSION}"
+          # Automation tokens do not need OTP
+          npm publish --access public
+          npm view @cynco/accounting-skills version

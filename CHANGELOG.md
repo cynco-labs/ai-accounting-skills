@@ -5,6 +5,21 @@ All notable changes to this project are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
+## [2.2.3] — 2026-07-09
+
+### Added
+
+- **CI release pipeline** — `.github/workflows/release.yml` creates `vX.Y.Z` tag + GitHub Release from CHANGELOG on every new version pushed to `main`
+- Optional **npm publish from CI** when `NPM_TOKEN` secret is set (automation token, no OTP)
+- `scripts/version_check.py` — VERSION and package.json must match
+- `scripts/changelog_section.py` — release notes from Keep a Changelog
+- `.npmignore` — exclude `__pycache__` and non-CLI trees from the npm tarball
+
+### Changed
+
+- `ci_check.sh` runs version lockstep
+- `PUBLISH.md` documents automated release flow (push to **main**, not only master)
+
 ## [2.2.2] — 2026-07-09
 
 ### Changed

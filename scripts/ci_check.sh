@@ -4,6 +4,9 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
+echo "== version lockstep (VERSION == package.json) =="
+python3 scripts/version_check.py
+
 echo "== validate_marketplace =="
 python3 scripts/validate_marketplace.py
 

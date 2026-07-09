@@ -1,72 +1,91 @@
-# Publish `@cynco/accounting-skills`
+# Publish & release (CI/CD)
 
-## Status
+## How a release ships (automatic)
 
-| Version | npm | Notes |
-|---|---|---|
-| **2.0.0** | ✅ Live | Full CLI + marketplace identity |
-| **2.0.1** | ✅ Live (`latest`) | Fixes `npx` multi-bin (`accounting-skills` bin name) |
-
-```bash
-npm view @cynco/accounting-skills version
-# expect: 2.0.1
+```text
+1. Bump VERSION + package.json version (same number)
+2. Add a ## [X.Y.Z] section to CHANGELOG.md
+3. Merge / push to main
+4. GitHub Actions workflow "release":
+     - runs full CI (ci_check.sh)
+     - if tag vX.Y.Z does not exist → create tag + GitHub Release
+     - if NPM_TOKEN secret is set → npm publish @cynco/accounting-skills@X.Y.Z
 ```
 
-## Publish next version (on your Mac)
+| Artifact | Automatic? | Where |
+|---|---|---|
+| CI validate | Yes | `.github/workflows/validate.yml` + release job |
+| Git tag `vX.Y.Z` | **Yes** | `.github/workflows/release.yml` |
+| GitHub Release | **Yes** | same (notes from CHANGELOG) |
+| npm `@cynco/accounting-skills` | Yes **if** `NPM_TOKEN` repo secret | same |
+
+Default branch: **`main`**. Always push release bumps there (not only `master`).
+
+## One-time GitHub setup
+
+### 1. Repo secrets
+
+Settings → Secrets and variables → Actions:
+
+| Secret | Required for | Value |
+|---|---|---|
+| `NPM_TOKEN` | npm publish from CI | npm classic **Automation** token with publish on `@cynco` (no OTP) |
+
+`GITHUB_TOKEN` is provided by Actions (contents: write) — no setup for tags/releases.
+
+### 2. Branch protection (recommended)
+
+Protect `main`: require `validate` / `release / validate` green before merge.
+
+## Manual version bump checklist
 
 ```bash
-cd /Applications/Apps-Hazli/cynco-accounting-skills
+# 1) versions in lockstep
+echo 2.2.3 > VERSION
+# edit package.json "version": "2.2.3"
+# 2) CHANGELOG.md — add ## [2.2.3] — YYYY-MM-DD with notes
+# 3) commit + push to main
+git checkout main
+git add VERSION package.json CHANGELOG.md
+git commit -m "chore: release v2.2.3"
+git push origin main
+# 4) Watch Actions → "release" workflow
+```
 
+Verify:
+
+```bash
+gh release view v2.2.3
+npm view @cynco/accounting-skills version   # if NPM_TOKEN set
+```
+
+## Manual fallback (if CI cannot publish npm)
+
+Automation token preferred. If you must use a 2FA user token locally:
+
+```bash
 npm whoami
-node -p "require('./package.json').name + '@' + require('./package.json').version"
-# expect: @cynco/accounting-skills@2.0.1
-
 npm publish --access public --otp=XXXXXX
 ```
 
-Replace `XXXXXX` with the 6-digit authenticator / recovery-flow code.
+GitHub release should still have been created by CI when the tag was cut.
 
-## Verify
+## Force re-run notes
+
+Actions → **release** → Run workflow → optional force flag (notes only; does not move tags).
+
+## Local checks before push
 
 ```bash
-npm view @cynco/accounting-skills version
-# expect: 2.0.1
-
-npx --yes @cynco/accounting-skills@2.0.1 doctor
-npx --yes @cynco/accounting-skills doctor
+python3 scripts/version_check.py
+python3 scripts/changelog_section.py $(cat VERSION)   # preview release body
+bash scripts/ci_check.sh
 ```
 
-## If publish fails
+## skills.sh
 
-| Error | Fix |
-|---|---|
-| 2FA / otp required | Add `--otp=123456` |
-| 403 no permission on `@cynco` | npmjs.com → orgs → cynco → Owner/Developer |
-| Version already exists | Bump patch in `package.json` and retry |
-| Need new login | `npm login` then publish again |
-
-## After publish
-
-- GitHub release tag `v2.0.1` (this repo)
-- Optional: share `npx @cynco/accounting-skills demo`
-
----
-
-## skills.sh (not npm)
-
-[skills.sh](https://skills.sh) lists **GitHub agent skills**, not npm packages.
-
-There is **no separate publish form**. Skills appear when people install:
+Not npm. Public GitHub skills install:
 
 ```bash
 npx skills add cynco-labs/ai-accounting-skills
 ```
-
-| Item | Value |
-|---|---|
-| Directory | https://skills.sh/cynco-labs/ai-accounting-skills |
-| Source | Public repo `cynco-labs/ai-accounting-skills` with `SKILL.md` files |
-| Ranking | Anonymous install telemetry from the skills CLI |
-| Badge | `https://skills.sh/b/cynco-labs/ai-accounting-skills` |
-
-To boost ranking: share the install one-liner; installs are what surface skills on the leaderboard.

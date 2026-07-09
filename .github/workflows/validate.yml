@@ -15,5 +15,7 @@ jobs:
           python-version: "3.12"
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - name: Version lockstep
+        run: python3 scripts/version_check.py
       - name: Full CI check
         run: bash scripts/ci_check.sh

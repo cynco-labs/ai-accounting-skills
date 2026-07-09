@@ -1,6 +1,6 @@
 {
   "name": "@cynco/accounting-skills",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Agent-native accounting CLI \u2014 extract, classify, post, tb, close, Beancount, Fava. Multi-agent via skills.sh. npx @cynco/accounting-skills demo",
   "keywords": [
     "accounting",
@@ -31,7 +31,8 @@
   },
   "files": [
     "cli/**/*",
-    "scripts/**/*",
+    "scripts/**/*.py",
+    "scripts/**/*.sh",
     "fixtures/golden-mini-sdn-bhd/**/*",
     "fixtures/bank/**/*",
     "references/coa_templates/**/*",
@@ -40,7 +41,8 @@
     "requirements.txt",
     "README.md",
     "LICENSE",
-    "NOTICE"
+    "NOTICE",
+    "VERSION"
   ],
   "engines": {
     "node": ">=18"
