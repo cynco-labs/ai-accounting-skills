@@ -41,13 +41,13 @@ Protect `main`: require `validate` / `release / validate` green before merge.
 
 ```bash
 # 1) versions in lockstep
-echo 2.2.3 > VERSION
-# edit package.json "version": "2.2.3"
-# 2) CHANGELOG.md — add ## [2.2.3] — YYYY-MM-DD with notes
+echo 2.2.4 > VERSION
+# edit package.json "version": "2.2.4"
+# 2) CHANGELOG.md — add ## [2.2.4] — YYYY-MM-DD with notes
 # 3) commit + push to main
 git checkout main
 git add VERSION package.json CHANGELOG.md
-git commit -m "chore: release v2.2.3"
+git commit -m "chore: release v2.2.4"
 git push origin main
 # 4) Watch Actions → "release" workflow
 ```
@@ -55,7 +55,7 @@ git push origin main
 Verify:
 
 ```bash
-gh release view v2.2.3
+gh release view v2.2.4
 npm view @cynco/accounting-skills version   # if NPM_TOKEN set
 ```
 

@@ -7,22 +7,21 @@ Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
 ## [Unreleased]
 
+## [2.2.4] — 2026-07-09
+
 ### Added
 
-- **`shared/skill-craft.md`** — skill writing doctrine (predictability, invocation, hierarchy, completion criteria, pruning)
-- **`CONTEXT.md`** — domain language / leading words for agents and humans
-- Craft gates + 11th scorecard item in `shared/skill-design-framework.md`
-- Validator requires craft files; warns if builder skills lack `disable-model-invocation`
+- **`shared/skill-craft.md`** — how we write skills (predictable process, lean descriptions, Done when)
+- **`CONTEXT.md`** — plain English terms for agents and humans
+- Craft gates + expanded skills-qa scorecard
+- Validator requires craft files; builder skills must be user-invoked
 
 ### Changed
 
-- Project license is **MIT**
-- **Plain English** pass on README, CONTEXT.md, core rules, and skill wording (drop “kernel / intent / freestyle” jargon for MY–SG readers) (LICENSE, package.json, NOTICE, SPDX headers, CLA, README, site)
-- Builder skills (`skills-qa`, `jurisdiction-scaffold`, builder `cold-start-interview`) are **user-invoked**
-- Stage skills: leaner descriptions + **Done when** completion criteria across the pipeline
-- `skills-qa` scorecard 0–22 with craft diagnostics
-- README rewritten around agent failure modes and a 30-second quickstart
-- CONTRIBUTING / CLAUDE.md point at skill-craft + CONTEXT
+- Project license is **MIT** (was misstated as Apache-2.0)
+- **Plain English** pass — README, CONTEXT, core rules, skill wording (less engineering jargon)
+- Builder skills are user-invoked; stage skills have leaner descriptions + **Done when**
+- README rewritten for failure modes + 30-second quickstart
 
 ## [2.2.3] — 2026-07-09
 
