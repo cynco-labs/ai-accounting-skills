@@ -1,9 +1,9 @@
 ---
 name: journal-entries
 description: >
- Post classified lines to balancing journals (balancing double-entry journals), then
- roll_tb. Use when journals, postings, double entry, JE list, or "post
- the books".
+  Post classified lines to balancing journals (balancing double-entry journals), then
+  roll_tb. Use when journals, postings, double entry, JE list, or "post
+  the books".
 ---
 # /journal-entries
 

@@ -1,8 +1,8 @@
 ---
 name: statutory-handoff
 description: >
- Hand locked figures to tax/statutory filing workflows. Use when SSM,
- filing pack, or tax handoff.
+  Hand locked figures to tax/statutory filing workflows. Use when SSM,
+  filing pack, or tax handoff.
 ---
 # /statutory-handoff
 

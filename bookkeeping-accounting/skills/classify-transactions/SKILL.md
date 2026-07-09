@@ -1,9 +1,9 @@
 ---
 name: classify-transactions
 description: >
- Classify bank lines to COA codes (code lines to the chart of accounts). Use when classify,
- code these, uncategorized transactions, suspense clean-up, or payee
- mapping.
+  Classify bank lines to COA codes (code lines to the chart of accounts). Use when classify,
+  code these, uncategorized transactions, suspense clean-up, or payee
+  mapping.
 ---
 # /classify-transactions
 

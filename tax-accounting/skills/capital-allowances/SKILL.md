@@ -1,8 +1,8 @@
 ---
 name: capital-allowances
 description: >
- Capital allowances schedule from FAR (IA/AA). Use when capital
- allowances or plant allowance.
+  Capital allowances schedule from FAR (IA/AA). Use when capital
+  allowances or plant allowance.
 ---
 # /capital-allowances
 

@@ -1,7 +1,7 @@
 ---
 name: finalise-accounts
 description: >
- Lock pack after QC pass (prove job). Use when finalise or lock accounts.
+  Lock pack after QC pass (prove job). Use when finalise or lock accounts.
 ---
 # /finalise-accounts
 

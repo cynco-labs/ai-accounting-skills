@@ -1,8 +1,8 @@
 ---
 name: jurisdiction-scaffold
 description: >
- Scaffold a new jurisdiction pack under references/jurisdictions/<id>
- without forking stage plugins.
+  Scaffold a new jurisdiction pack under references/jurisdictions/<id>
+  without forking stage plugins.
 disable-model-invocation: true
 argument-hint: "<jurisdiction-id> [--currency CODE] [--framework name]"
 ---

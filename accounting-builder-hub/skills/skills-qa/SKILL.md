@@ -1,8 +1,8 @@
 ---
 name: skills-qa
 description: >
- Independent design review of a SKILL.md against craft + accounting
- scorecard before merge.
+  Independent design review of a SKILL.md against craft + accounting
+  scorecard before merge.
 disable-model-invocation: true
 argument-hint: "[path-to-SKILL.md or plugin/skill]"
 ---

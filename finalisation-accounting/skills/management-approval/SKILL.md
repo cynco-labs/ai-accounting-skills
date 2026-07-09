@@ -1,8 +1,8 @@
 ---
 name: management-approval
 description: >
- Record directors/management sign-off before issue. Use when approval or
- FS sign-off.
+  Record directors/management sign-off before issue. Use when approval or
+  FS sign-off.
 ---
 # /management-approval
 

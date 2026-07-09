@@ -1,8 +1,8 @@
 ---
 name: extract-bank-statement
 description: >
- Extract bank PDF/CSV to transactions.json with running-balance proof
- (pull bank lines with balance proof). Prefer CSV; Maybank Islamic PDF adapter when needed.
+  Extract bank PDF/CSV to transactions.json with running-balance proof
+  (pull bank lines with balance proof). Prefer CSV; Maybank Islamic PDF adapter when needed.
 ---
 # /extract-bank-statement
 

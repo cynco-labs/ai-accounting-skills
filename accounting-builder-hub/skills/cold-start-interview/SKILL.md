@@ -1,8 +1,8 @@
 ---
 name: cold-start-interview
 description: >
- Optional contributor/maintainer profile for the builder hub (not client
- engagements).
+  Optional contributor/maintainer profile for the builder hub (not client
+  engagements).
 disable-model-invocation: true
 ---
 # /cold-start-interview (builder hub)

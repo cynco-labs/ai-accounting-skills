@@ -1,8 +1,8 @@
 ---
 name: open-fava
 description: >
- Open Fava UI on a valid Beancount ledger. Use when fava, browse books,
- or interactive P&L.
+  Open Fava UI on a valid Beancount ledger. Use when fava, browse books,
+  or interactive P&L.
 ---
 
 # /open-fava

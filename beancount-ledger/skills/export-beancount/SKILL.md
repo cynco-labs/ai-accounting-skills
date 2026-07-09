@@ -1,8 +1,8 @@
 ---
 name: export-beancount
 description: >
- Export balanced journals to Beancount ledger SoR (prove job). Use when
- beancount or export ledger.
+  Export balanced journals to Beancount ledger SoR (prove job). Use when
+  beancount or export ledger.
 ---
 
 # /export-beancount

@@ -1,8 +1,8 @@
 ---
 name: validate-beancount
 description: >
- Validate a Beancount ledger with bean-check. Use when bean-check or
- ledger broken.
+  Validate a Beancount ledger with bean-check. Use when bean-check or
+  ledger broken.
 ---
 
 # /validate-beancount
