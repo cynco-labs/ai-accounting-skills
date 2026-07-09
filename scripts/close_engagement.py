@@ -26,6 +26,11 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Close / prove engagement artifacts")
     ap.add_argument("client_dir", type=Path)
     ap.add_argument("--classify", action="store_true", help="Run deterministic classifier first")
+    ap.add_argument(
+        "--roll-tb",
+        action="store_true",
+        help="Re-roll TB from journals before validate (kernel: never freestyle TB)",
+    )
     ap.add_argument("--bean-check", action="store_true", default=True)
     ap.add_argument("--no-bean-check", action="store_true")
     ap.add_argument("--export-ledger", action="store_true", default=True)
@@ -56,6 +61,20 @@ def main() -> int:
                 str(tx_path),
                 "--report",
                 str(client / "workpapers/classification_review.md"),
+            ]
+        )
+        if code != 0:
+            return code
+
+    # 1b) Roll TB from journals (optional re-derive)
+    if args.roll_tb and (client / "workpapers/journals.json").is_file():
+        code = run(
+            [
+                sys.executable,
+                str(ROOT / "scripts/roll_tb.py"),
+                "--client-dir",
+                str(client),
+                "--both",
             ]
         )
         if code != 0:

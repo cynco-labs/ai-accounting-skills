@@ -1,36 +1,39 @@
 # End-to-end architecture
 
+**First principles:** `shared/kernel-contract.md` · skill collapse: `shared/skill-collapse-map.md`.
+
 ```text
 ┌─────────────────────────────────────────────────────────────┐
 │  USER DUMP (folder of banks / receipts / “do the accounts”) │
 └────────────────────────────┬────────────────────────────────┘
                              ▼
-┌──────────────────┐   smart-intake (infer, ≤3 questions)
+┌──────────────────┐   do-books (smart-intake, ≤3 questions)
 │ engagement state │◄── engagement_state.json on disk
 └────────┬─────────┘
          ▼
 ┌──────────────────────────────────────────┐
-│ EXTRACT  pdfplumber / CSV                │
-│   → transactions.json                    │
-│   → optional bank xlsx (openpyxl)        │
+│ EXTRACT   extract_bank.py                │
+│ CLASSIFY  classify_transactions.py       │
+│ POST      post_journals.py               │
+│ ROLL TB   roll_tb.py   ◄─ never freestyle│
+│ RECON     bank RM0 (gate)                │
+│ YE        journals_ye.json → roll ATB     │
+│ PRESENT   FS / notes from ATB map         │
+│ PROVE     close_engagement.py            │
 └────────────────────┬─────────────────────┘
                      ▼
 ┌──────────────────────────────────────────┐
-│ BOOKKEEP  classify → journals.json       │
-│ RECON     bank RM0 · subledgers          │
-│ TB        preliminary                    │
-│ YE        adjustments → ATB              │
-│ MPERS     technical review               │
-│ FS        primaries + notes              │
-│ QC        Section A blockers             │
-└────────────────────┬─────────────────────┘
-                     ▼
-┌──────────────────────────────────────────┐
-│ FINALISE  lock numbers                   │
+│ LOCKED    approval recorded              │
 │ BEANCOUNT ledger/main.beancount  ◄─ SoR  │
 │ FAVA      http://127.0.0.1:5000   ◄─ UI  │
 │ TAX       from locked figures            │
 └──────────────────────────────────────────┘
+```
+
+## Kernel verbs (CLI)
+
+```bash
+extract → classify → post → tb → close → ledger
 ```
 
 ## Systems of record vs deliverables
@@ -48,4 +51,5 @@
 - No fabricated numbers  
 - Bank recon and TB must balance (or documented limitation)  
 - Disk artifacts over chat memory  
+- **TB only via `roll_tb.py`**  
 - Beancount only after journals balance (`bean-check`)  

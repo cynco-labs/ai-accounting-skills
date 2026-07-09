@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/v2.1.0-0d6efd?style=for-the-badge" alt="v2.1.0" />
+  <img src="https://img.shields.io/badge/v2.2.0-0d6efd?style=for-the-badge" alt="v2.2.0" />
   <a href="https://skills.sh/cynco-labs/ai-accounting-skills"><img src="https://skills.sh/b/cynco-labs/ai-accounting-skills" alt="skills.sh" /></a>
   <img src="https://img.shields.io/badge/Beancount-SoR-111827?style=for-the-badge" alt="Beancount" />
   <img src="https://img.shields.io/badge/License-Apache%202.0-10b981?style=for-the-badge" alt="License" />
@@ -100,6 +100,8 @@ npx @cynco/accounting-skills <command>
 | `close [client]` | **E2E proof** — validate · stage gates · ledger summary |
 | `extract ./statements` | Bank PDF/CSV → Excel (+ JSON) · auto-detect adapter |
 | `classify ./txns.json` | Deterministic COA classify + review queue |
+| `post ./clients/acme` | Classified lines → balancing journals |
+| `tb ./clients/acme` | Journals → TB (**never freestyle**) |
 | `ledger ./clients/acme --fava` | Journals → Beancount + Fava |
 | `firm --init "Your Firm"` | Multi-agent firm profile (`~/.config/ai-accounting/`) |
 | `init acme-sdn-bhd` | Client workspace scaffold |
@@ -111,6 +113,8 @@ npx @cynco/accounting-skills demo
 npx @cynco/accounting-skills close                          # golden fixture proof
 npx @cynco/accounting-skills extract ./statements --out ./bank.xlsx --json ./txns.json
 npx @cynco/accounting-skills classify ./txns.json
+npx @cynco/accounting-skills post ./clients/acme --opening-from-bank
+npx @cynco/accounting-skills tb ./clients/acme --both
 npx @cynco/accounting-skills ledger ./clients/acme --fava
 npx @cynco/accounting-skills firm --init "Your Firm"
 ```
@@ -120,7 +124,8 @@ Needs **Node ≥ 18** + **Python 3**. `pip install -r requirements.txt` (or what
 <details>
 <summary><strong>More CLI detail</strong></summary>
 
-- Package: [`@cynco/accounting-skills`](https://www.npmjs.com/package/@cynco/accounting-skills) **v2.1.0**
+- Package: [`@cynco/accounting-skills`](https://www.npmjs.com/package/@cynco/accounting-skills) **v2.2.0**
+- Kernel: [shared/kernel-contract.md](./shared/kernel-contract.md) · [skill collapse](./shared/skill-collapse-map.md)
 - Agent recipes: [docs/agents/](./docs/agents/)
 - Firm profile: [shared/firm-profile.md](./shared/firm-profile.md)
 - From a local clone: `node cli/bin/ai-accounting.js doctor`
@@ -147,7 +152,7 @@ Coding agents ship code. They usually invent accounting.
 
 ```
 ┌────────────────────────────────────────────────────────────┐
-│  36 pipeline skills          fat-trigger, multi-agent      │
+│  6 kernel intents            do-books→prove (36 legacy)    │
 │  skills.sh + Claude plugins  install path for every stack  │
 │  Smart intake                infer first, ask last         │
 │  Maybank PDF extractor       pdfplumber + balance proof    │

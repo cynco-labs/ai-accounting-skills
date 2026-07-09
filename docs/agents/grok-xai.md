@@ -36,5 +36,8 @@ export AI_ACCOUNTING_CONFIG="$HOME/.config/ai-accounting"
 | Run extract/classify scripts | Vision-parse 1000 PDF lines in chat |
 | Prove bank RM0 and TB balance | Invent missing months |
 | Write `workpapers/*.json` | Keep the only copy of numbers in chat |
+| **`ask_user_question` for Tier C / material classify** | Prose-only “need you on…” lists users never answer |
 
-Repo doctrine: [`shared/guardrails.md`](../../shared/guardrails.md) · [`shared/agent-runtime.md`](../../shared/agent-runtime.md)
+When `smart-intake` or classify needs a real choice, call **`ask_user_question`** (see [`shared/user-questions.md`](../../shared/user-questions.md)). Mirror into `workpapers/queries.md` after.
+
+Repo doctrine: [`shared/guardrails.md`](../../shared/guardrails.md) · [`shared/agent-runtime.md`](../../shared/agent-runtime.md) · [`shared/user-questions.md`](../../shared/user-questions.md)

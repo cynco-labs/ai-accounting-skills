@@ -25,7 +25,8 @@ They may not know (or care to type):
 | Time-to-first-useful-work | Extract banks/receipts **before** any long interview |
 | Questions in first turn | **0–3**, never a blank questionnaire |
 | Questions that restate the docs | **Zero** (if Maybank → do not ask “which bank?”) |
-| Blocking asks | Only true blockers (identity of books owner if ambiguous; missing months if full-year promised) |
+| Blocking asks | Only true blockers (ambiguous entity identity). Partial months are **not** a stop. |
+| Period truth | Coverage = months on disk. Soft-confirm that. Do **not** demand 12 months to start. |
 | Assumptions | Written to `engagement_state.json` / README with confidence |
 
 ## Infer → Confirm → Ask
@@ -67,13 +68,24 @@ Do **not** ask five separate questions for those four facts.
 
 ### Tier C — Must ask (cannot invent)
 
-Ask only if still unknown **after** reading available files:
+Ask only if still unknown **after** reading available files.
+
+**Mandatory delivery:** use the host **structured user-question tool** per `shared/user-questions.md`.  
+Do **not** only list questions in chat or `queries.md`.
 
 1. **Who is the reporting entity?** — only if multiple names appear (personal + company) or account title is blank/ambiguous  
-2. **What should we produce?** — only if unclear: full year-end FS vs “just sort the books” vs tax only  
-   - Default if silent: **management accounts / compilation path from available docs**, with limitations logged  
-3. **Opening balances / prior year** — only if user wants comparative FS or equity continuity and no prior FS is in the folder  
-4. **Missing bank months** — if they asked for “full year” but only 3 months exist: show coverage matrix, ask to supply rest **or** accept limited period  
+2. **Period on disk (truth)** — always compute coverage (e.g. Jan–May 2026). Soft-confirm that period.  
+   - Default work: **deep books for that period** (not “wait for 12 months”).  
+3. **What to produce** — only if user explicitly wants year-end FS / tax and coverage is incomplete:  
+   - Recommended: finish limited-period books now  
+   - Optional: they will add months later  
+   - **Never** make “supply all months first” the recommended path  
+4. **Opening balances / prior year** — only if they need equity continuity / comparative FS and no prior FS is in the folder  
+
+**Default if silent:** bookkeeping for **available months** → TB + recon + ledger, labeled limited period.  
+Full-year MPERS pack is an **upgrade**, not the default for a partial dump.
+
+**Tier B soft-confirm** via tool when provisional: one “Accept entity + period-on-disk / Fix …” question.
 
 **Do not ask** in the first batch:
 
@@ -90,13 +102,14 @@ Ask only if still unknown **after** reading available files:
 2. Open banks first (highest signal), then receipts/invoices
 3. Build Hypothesis Card (below)
 4. Start extraction into transactions.json for what exists
-5. Ask at most 3 Tier-C questions, batched
-6. Write engagement_state with inferences + open questions
+5. Ask at most 3 Tier-C questions via **structured user-question tool** (see `shared/user-questions.md`), batched
+6. Write engagement_state with inferences + open questions; persist tool answers when returned
 7. Continue pipeline on non-blocked work while waiting
    (e.g. extract & classify clear items; park ambiguous payees)
 ```
 
-**Never** block the entire job on a non-blocking unknown (e.g. industry label).
+**Never** block the entire job on a non-blocking unknown (e.g. industry label).  
+**Never** refuse to book available months because a full financial year is incomplete.
 
 ## Hypothesis Card (show the user)
 

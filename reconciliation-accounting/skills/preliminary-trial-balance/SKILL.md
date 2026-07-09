@@ -1,26 +1,32 @@
 ---
 name: preliminary-trial-balance
 description: >
-  Produce preliminary trial balance before year-end adjustments; require DR=CR.
-  Trigger on trial balance, TB, pre-adjustment TB, "does the TB balance".
+  DERIVED ONLY — roll preliminary TB from journals via scripts/roll_tb.py.
+  Do not freestyle TB totals. Kernel intent: post (see shared/skill-collapse-map.md).
+  Trigger on trial balance, TB, pre-adjustment TB, "does the TB balance", roll TB.
 ---
 # /preliminary-trial-balance
 
-## Purpose
+> **Doctrine deleted.** Preliminary TB is a pure reduce of `journals.json`.  
+> See `shared/kernel-contract.md`.
 
-Snapshot of books **before** YE adjustments.
+## Required command
 
-## Columns
-`code | name | opening_dr | opening_cr | movement_dr | movement_cr | closing_dr | closing_cr`
+```bash
+python3 scripts/roll_tb.py --client-dir <client> --preliminary
 
-Or firm standard: opening / period / closing with natural balance.
+# or
+npx @cynco/accounting-skills tb <client> --preliminary
+```
 
-## Checks (blockers)
-- Total DR = Total CR
-- Bank GL = recon result
-- No orphan codes
-- Suspense listed if any
+Writes `workpapers/tb_preliminary.json` with `totals.difference == 0` or fails.
 
-## Output
-Preliminary TB artifact + “ready for year-end adjustments” flag.  
-Next: `/year-end-accounting:year-end-adjustments`
+## Forbidden
+
+- Typing TB lines or totals in chat  
+- “Balancing figures”  
+- Building TB without journals on disk  
+
+## Next
+
+Year-end adjustments → `journals_ye.json` → `roll_tb --adjusted` (ATB for FS).

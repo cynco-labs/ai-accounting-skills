@@ -49,6 +49,16 @@ Gates are **default-on**. Exemptions are narrow and logged.
 - Define the next skill in the pipeline.
 - Draft header unless the skill is post-approval issuance.
 
+## 6b. User questions (when the skill asks)
+
+If the skill tells the agent to ask the human anything that gates progress:
+
+1. Point at `shared/user-questions.md`
+2. Require the host **structured user-question tool** when available
+3. Cap at ≤3 questions · labeled options · recommended first
+4. Persist answers to `engagement_state` / `queries.md` / `payee_map`
+5. Document fallback if the host has no tool
+
 ## 7. Failure modes
 
 Document the top 3 ways the skill can go wrong and the required behavior:
@@ -56,7 +66,7 @@ Document the top 3 ways the skill can go wrong and the required behavior:
 | Failure | Required behavior |
 |---|---|
 | Missing bank month | Blocker or explicit AMBER limitation |
-| Ambiguous payee | Ask employee; then suspense |
+| Ambiguous payee | Structured user-question tool (options); then suspense if still open |
 | Standards judgment | Escalate; do not silently pick aggressive treatment |
 
 ## 8. Trust surface
@@ -88,5 +98,7 @@ Score each 0–2:
 8. Trust surface  
 9. Pipeline position  
 10. No firm lock-in / no fabricated numbers  
+
+If the skill asks the user anything that gates progress, also require: points at `shared/user-questions.md`, structured tool when available, ≤3 options-shaped asks.
 
 **Ship bar:** ≥ 16/20 and no zero on gates or provenance.

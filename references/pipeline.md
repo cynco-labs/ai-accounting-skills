@@ -3,6 +3,9 @@
 Use this as the canonical stage map. The orchestrator skill
 `/engagement-accounting:full-engagement-pipeline` follows the same order.
 
+**Kernel (first principles):** `shared/kernel-contract.md` · collapse map: `shared/skill-collapse-map.md`.  
+**TB:** always `scripts/roll_tb.py` (never freestyle).
+
 ```
 ┌──────────────────────┐
 │ 1. Source Documents  │  engagement-accounting:source-documents

@@ -43,6 +43,12 @@ Legacy (still read):
 
 Entry skills: `full-engagement-pipeline` · `smart-intake`.
 
+## Structured questions (mandatory when asking)
+
+Progress-gating asks (entity, period, deliverable, material classification) must use Claude’s **AskUserQuestion** (or equivalent) tool — not chat-only bullets.
+
+Doctrine: [`shared/user-questions.md`](../../shared/user-questions.md).
+
 ## Claude-only extras
 
 | Feature | Notes |

@@ -2,6 +2,12 @@
 
 How an AI agent should use this marketplace when a human **throws work at it** without naming a skill or slash command.
 
+## Kernel first
+
+Read **`shared/kernel-contract.md`** and **`shared/skill-collapse-map.md`**.  
+Six intents: **do-books · extract · classify · post · present · prove**.  
+Trial balances only via `scripts/roll_tb.py` / `npx @cynco/accounting-skills tb`.
+
 ## Reality check
 
 Humans will say things like:
@@ -94,11 +100,17 @@ Agents should **check files on disk**, not rely on chat memory.
 3. Load jurisdiction refs **on demand** (MPERS when reviewing standards, tax when computing tax)
 4. Do not load all skills into context — one stage at a time
 
-## Question batching
+## Question batching + structured tools (mandatory)
 
-- Batch classification / document asks (max ~4 options per question group)
-- Prefer one structured “blockers & queries” update over drip questions
-- Distinguish **staff** questions (technical) vs **client** questions (plain language)
+Load **`shared/user-questions.md`**.
+
+- **Period on disk is truth** — book that period deeply; do not force 12 months to start  
+- Soft-confirm entity + period; use structured tool when available  
+- Ask full-year / missing-month questions **only** if user already wants YE FS with gaps  
+- Max **3** questions per call · **~5** options · recommended = work with what we have  
+- `queries.md` = paper trail, not a substitute for the tool  
+- Never treat silence as acceptance unless soft-confirm was already logged  
+- Batch material classify; staff = codes, client = plain language
 
 ## Deliverable stack (no nonsense)
 

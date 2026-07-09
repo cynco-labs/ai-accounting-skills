@@ -23,9 +23,10 @@ The user is not responsible for knowing MPERS, FYE, or form codes.
 ## Load first
 
 1. `shared/smart-intake.md` (mandatory doctrine)  
-2. `shared/guardrails.md`  
-3. `shared/agent-runtime.md`  
-4. Firm profile **if present** (defaults only — do not re-interview the firm)
+2. `shared/user-questions.md` (structured ask tool — mandatory for Tier B/C)  
+3. `shared/guardrails.md`  
+4. `shared/agent-runtime.md`  
+5. Firm profile **if present** (defaults only — do not re-interview the firm)
 
 ## When to use
 
@@ -39,15 +40,18 @@ If `engagement_state.json` already exists → use `resume-engagement` instead.
 
 ### Step 0 — Scope the ask (silent default)
 
-If user did not specify deliverable:
+**Period truth first:** whatever bank months exist → that is the books period. Work it deeply.
 
 | User vibe | Default engagement_type | Say once |
 |---|---|---|
-| “Do the accounting / sort my books” | `year_end` with **limitations** if docs incomplete | “I’ll book what we have and flag gaps; full signed FS needs complete banks + your confirmation of the company name.” |
+| “Do the accounting / sort my books” / folder dump | `bookkeeping_only` for **period on disk** | “I’ll fully book the months you gave (extract→TB→ledger). Full-year FS only if you want it and coverage is complete.” |
+| Explicit “year end / prepare FS” + **complete** months | `year_end` | Proceed toward FS after books |
+| Explicit “year end” + **partial** months | `bookkeeping_only` + AMBER | Finish available months; offer upgrade when more banks arrive — **do not stall** |
 | “Tax only” | tax path later | — |
 | “Just categorise” | bookkeeping_only | — |
 
-Do not open with “Compilation or audit or review?”
+Do not open with “Compilation or audit or review?”  
+Do not recommend “bring 12 months before I start.”
 
 ### Step 1 — Inventory the folder (no questions)
 
@@ -77,22 +81,33 @@ Start `extract-bank-statement` / CSV normalize **in the same session** once bank
 Produce the card from `shared/smart-intake.md`.  
 Fill `inferences[]` with field, value, confidence, evidence.
 
-### Step 4 — Ask ≤ 3 questions (Tier C only)
+### Step 4 — Ask ≤ 3 questions — **structured tool required** (but don’t over-ask)
 
 Rules:
 
 - Never ask Tier A facts  
-- Bundle Tier B into **one** soft-confirm sentence  
-- Max **3** explicit questions this turn  
-- Prefer multiple-choice when helpful  
+- Soft-confirm **entity + period-on-disk** (one question is enough for most dumps)  
+- Max **3** questions · multiple-choice (3–5 options)  
+- **MUST** use structured tool when asking (`shared/user-questions.md`)  
+- Mirror into `workpapers/queries.md` — **not instead of** the tool  
+- **Do not** ask “will you supply the other 7 months?” unless they already demanded full-year FS  
+- Keep extracting/booking the months you have while soft-confirm is open  
 
-Example first-turn ask:
+Example (good):
 
-> **Soft confirm:** Maybank + RM → Malaysia/MYR; account title **Acme Sdn. Bhd.**; statements **Mar–Nov 2025**.  
-> **Need you on:**  
-> 1. Is **Acme Sdn. Bhd.** the entity for these books (not personal)?  
-> 2. Target year-end **31 Dec 2025** with Dec statement still missing — supply Dec or close a shorter period?  
-> 3. Deliverable: full year-end pack vs bookkeeping + TB only for now?
+```text
+Q1 Soft-confirm? → Accept Acme · MYR · banks cover Mar–Nov 2025 (Recommended) | Fix entity | Fix period
+```
+
+Example (only if they asked for year-end FS with gaps):
+
+```text
+Q2 Coverage gap: Finish Mar–Nov books now (Recommended) | Pause until more months | Keep going; I’ll add months later
+```
+
+**Bad:** Recommended option = “Provide all 12 months before we continue.”  
+
+**Do not** only paste a “Need you on:” bullet list in chat and continue.
 
 ### Step 5 — Write state & continue
 
@@ -120,12 +135,14 @@ Then **continue non-blocked work**:
 
 ### Step 6 — Gate for “final” work
 
-| Work | Allowed while provisional? |
+| Work | Allowed on partial months? |
 |---|---|
-| Extract, classify, draft TB for available months | Yes |
-| Draft management P&L/BS clearly labeled DRAFT / LIMITED | Yes |
-| Final signed FS, tax filing advice under a name | **No** — need identity confirm |
-| Claiming full-year complete with missing months | **No** |
+| Extract, classify, post, recon, TB, Beancount for **available** months | **Yes — default path** |
+| Draft management P&L/BS labeled DRAFT / LIMITED PERIOD | Yes |
+| Deep classify adjudication + payee map for that period | Yes |
+| Final **signed full-year** FS | **No** — need complete coverage + identity + QC |
+| Claiming “full year complete” with missing months | **No** |
+| Refusing to book because months < 12 | **Forbidden** |
 
 ## Entity-type heuristics (Malaysia pack default when bank is MY)
 
@@ -149,6 +166,8 @@ Do not dump the whole entity matrix.
 3. Stopping all extraction until every field is filled  
 4. Inventing company registration numbers or directors  
 5. Ten classification questions one-by-one (batch by payee)  
+6. **Prose-only Tier C asks** when a structured question tool exists  
+7. Writing `queries.md` and treating that as “user was asked” without a tool call
 
 ## Outputs
 

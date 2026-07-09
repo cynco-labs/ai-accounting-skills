@@ -35,8 +35,11 @@ Make multi-session work safe. **Disk is truth.**
 ```
 
 6. If `status == blocked` → work the blocker first  
-7. Else continue from `current_stage` by loading that stage’s SKILL.md  
-8. Do **not** restart the pipeline from setup unless user says so  
+7. If `status == waiting_on_user` and `open_queries` non-empty →  
+   re-issue unanswered asks via **structured user-question tool**  
+   (`shared/user-questions.md`) — do not only re-print `queries.md`  
+8. Else continue from `current_stage` by loading that stage’s SKILL.md  
+9. Do **not** restart the pipeline from setup unless user says so  
 
 ## If no state file
 

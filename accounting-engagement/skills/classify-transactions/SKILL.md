@@ -45,11 +45,16 @@ Payee map (optional): `workpapers/payee_map.json` — `{ "acme sdn bhd": { "acco
 ## Priority order (after script)
 
 ### 1. Review queue only
-Open `classification_review.md`. For each `needs_review` row:
+Open `classification_review.md`. For **material** `needs_review` rows (batch by payee / pattern, not one-by-one):
 
 - Confirm pattern suggestion, or  
-- Ask staff with 3–5 account options, or  
+- **Ask staff with 3–5 account options via structured user-question tool**  
+  (load `shared/user-questions.md` — `ask_user_question` / `AskUserQuestion` when available), or  
 - Suspense + query sheet (last resort)
+
+**Mandatory for material batches (≥ ~RM500 or statutory/related-party):**  
+call the host question tool with ≤3 batched questions. Do not only list options in chat.  
+After answers: update `workpapers/payee_map.json`, re-run classify → `post` → `tb`.
 
 ### 2. Invoice matching
 Match amount ± date window to purchase/sales invoices → basis `invoice`.

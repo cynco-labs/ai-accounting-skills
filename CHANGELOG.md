@@ -5,6 +5,43 @@ All notable changes to this project are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Project versioning follows [SemVer](https://semver.org/) for plugin contracts.
 
+## [2.2.2] — 2026-07-09
+
+### Changed
+
+- **Period-first doctrine** — agents book whatever months are on disk deeply; do not pressure users for 12 months to start
+- Full-year FS is an opt-in upgrade when coverage supports it; partial coverage = AMBER on YE claims only
+- Soft-confirm examples and smart-intake defaults → `bookkeeping_only` for period-on-disk
+
+## [2.2.1] — 2026-07-09
+
+### Added
+
+- **`shared/user-questions.md`** — progress-gating asks must use host structured question tools (`ask_user_question` / `AskUserQuestion`); fallback letter protocol when no tool
+
+### Changed
+
+- `smart-intake`, `full-engagement-pipeline`, `classify-transactions`, `resume-engagement` require structured asks
+- `agent-runtime`, `guardrails`, `skill-design-framework`, agent recipes (Grok / Claude) document the rule
+
+## [2.2.0] — 2026-07-09
+
+### Added
+
+- **Kernel contract** — `shared/kernel-contract.md` (truth shapes + pure functions)
+- **Skill collapse map** — `shared/skill-collapse-map.md` (36 → 6 intents, frozen renames)
+- **`post_journals.py` / CLI `post`** — classified transactions → balancing journals
+- **`roll_tb.py` / CLI `tb`** — journals → trial balance (preliminary / adjusted); agents must not freestyle TB
+- CI: golden TB must match `roll_tb --check`
+- Unit tests for post + roll_tb
+
+### Changed
+
+- `preliminary-trial-balance` / `adjusted-trial-balance` skills are **engine-only** (doctrine deleted)
+- `journal-entries` requires `post_journals.py` then `roll_tb`
+- `full-engagement-pipeline` loads kernel contract; TB stages call `roll_tb.py`
+- `close --roll-tb` re-derives TB before prove
+
 ## [2.1.0] — 2026-07-09
 
 ### Added

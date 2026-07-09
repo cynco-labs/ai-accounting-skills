@@ -18,10 +18,11 @@ Every skill in this marketplace MUST follow these rules. They override convenien
 ## Workflow discipline
 
 1. Check documents **before** asking the user. Only ask when genuinely missing or contradictory.
-2. **Suspense is last resort.** Auto-classify → ask staff → then suspense + query sheet.
-3. Standards and tax compliance are non-negotiable for material items. No silent aggressive positions.
-4. Document every classification decision, assumption, and query in working papers / client README.
-5. Jurisdiction content is a **workflow summary** — tag `[verify — authoritative source]` for rates, thresholds, and due dates that may change.
+2. **Work the period you have.** Partial months → complete books for that span; do not demand a full year to begin. Label limited period honestly; never invent missing months.
+3. **Suspense is last resort.** Auto-classify → ask staff → then suspense + query sheet.
+4. Standards and tax compliance are non-negotiable for material items. No silent aggressive positions.
+5. Document every classification decision, assumption, and query in working papers / client README.
+6. Jurisdiction content is a **workflow summary** — tag `[verify — authoritative source]` for rates, thresholds, and due dates that may change.
 
 ## Precision defaults (override in firm profile)
 
@@ -77,6 +78,7 @@ A later stage must not run on numbers that failed an earlier **blocker** check, 
 
 ## Communication
 
+- **Progress-gating questions** — use the host **structured user-question tool** (`shared/user-questions.md`). Do not only bury asks in prose or `queries.md`.
 - **To firm staff:** technical language — account codes, debit/credit analysis, what is wrong and what is needed.
 - **To client:** plain language — numbered questions, one item each, actionable requests for documents or confirmations.
 

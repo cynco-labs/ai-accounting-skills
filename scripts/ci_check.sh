@@ -16,6 +16,9 @@ python3 scripts/validate_engagement_artifacts.py fixtures/golden-mini-sdn-bhd
 echo "== stage gates =="
 python3 scripts/validate_stage_gates.py fixtures/golden-mini-sdn-bhd
 
+echo "== roll_tb kernel (golden must match committed TBs) =="
+python3 scripts/roll_tb.py --client-dir fixtures/golden-mini-sdn-bhd --both --check
+
 echo "== unit tests =="
 python3 -m unittest discover -s tests -v
 

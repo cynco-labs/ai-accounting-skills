@@ -2,6 +2,14 @@
 
 This repository is an **open-source Claude Code / Cowork plugin marketplace** for accounting engagements, structured like [claude-for-legal](https://github.com/anthropics/claude-for-legal): stage plugins, granular skills, firm practice profiles, jurisdiction packs, and shared guardrails.
 
+## First principles (read these)
+
+1. **`shared/kernel-contract.md`** — truth shapes + pure functions (engine over freestyle).
+2. **`shared/skill-collapse-map.md`** — 36 legacy skills → **6 intents** (do-books · extract · classify · post · present · prove). Do not add stage skills outside that map.
+3. **Trial balances are derived only** — `scripts/roll_tb.py` / `npx @cynco/accounting-skills tb`. Never type TB totals.
+4. **Progress questions use structured tools** — `shared/user-questions.md` (`ask_user_question` / `AskUserQuestion`). Never prose-only Tier C.
+5. **Period-first** — book months on disk deeply; do not pressure for 12 months. Full-year FS is opt-in when coverage allows.
+
 ## When working in this repo
 
 1. Read `shared/guardrails.md` before changing skills that produce numbers.
@@ -9,6 +17,7 @@ This repository is an **open-source Claude Code / Cowork plugin marketplace** fo
 3. Prefer jurisdiction packs over hard-coding country rules into stage skills.
 4. Never commit client data, secrets, or hard-coded firm branding.
 5. Run `python3 scripts/validate_marketplace.py` after structural edits.
+6. After skill edits: `python3 scripts/sync_umbrella.py`.
 
 ## Plugin map → engagement pipeline
 

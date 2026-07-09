@@ -48,4 +48,14 @@ Load and tick `references/year_end_adjustments_checklist.md` (plugin or repo roo
 4. Material estimates: document assumption; escalate if judgment-heavy.
 
 ## Output
-YE adjustment journal pack + impact on profit.
+
+Write `workpapers/journals_ye.json` (same schema as `journals.json`). Each YE JE must balance.
+
+Then **derive ATB — do not freestyle:**
+
+```bash
+python3 scripts/roll_tb.py --client-dir <client> --adjusted
+npx @cynco/accounting-skills tb <client> --adjusted
+```
+
+Impact on profit is read from the rolled ATB vs preliminary TB, not invented.

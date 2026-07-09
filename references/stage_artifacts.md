@@ -12,9 +12,9 @@ Paths are relative to `clients/<slug>/`.
 | journal_entries | `workpapers/journals.json` | Every JE balances |
 | bank_reconciliation | `workpapers/reconciliations/bank_*.md` | Diff = 0.00 |
 | subledger_reconciliations | `workpapers/reconciliations/subledgers.md` | Material controls tied or queried |
-| preliminary_trial_balance | `workpapers/tb_preliminary.json` | DR = CR |
-| year_end_adjustments | `workpapers/journals_ye.json` | Catalogue considered; AJEs posted |
-| adjusted_trial_balance | `workpapers/tb_adjusted.json` | DR = CR; **source of truth for FS** |
+| preliminary_trial_balance | `workpapers/tb_preliminary.json` | DR = CR — **only via `scripts/roll_tb.py`** |
+| year_end_adjustments | `workpapers/journals_ye.json` | Catalogue considered; AJEs posted & balanced |
+| adjusted_trial_balance | `workpapers/tb_adjusted.json` | DR = CR via **`roll_tb.py`**; **source of truth for FS** |
 | standards_review | `workpapers/standards_review.md` | Issues → AJE or disclosure list |
 | primary_statements | `outputs/fs/primary_statements.md` (or xlsx sheet) | BS balances; mapping from ATB |
 | notes | `outputs/fs/notes.md` | Notes tie to primaries |

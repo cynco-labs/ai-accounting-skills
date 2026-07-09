@@ -9,7 +9,7 @@
     {
       "plugin": "engagement-accounting",
       "skill": "smart-intake",
-      "sha256": "5e41cd3198ed10a2b3b3b0b2f2e11485cf20e688f02c041216370fa6e256b3bc",
+      "sha256": "4bae8ac0c7d5474799c647f7decf678500f220c0d92cb0b16f78ef540d614d32",
       "source": "engagement-accounting/skills/smart-intake/SKILL.md"
     },
     {
@@ -33,13 +33,13 @@
     {
       "plugin": "engagement-accounting",
       "skill": "full-engagement-pipeline",
-      "sha256": "04780231084ba37384beef8c5e4abc8a68e7637b71074f6e5179a20535197b1d",
+      "sha256": "45015a48c2df5de8cc708fea7b823a49d80ec42636e7c3aa02ea9f5cfa591615",
       "source": "engagement-accounting/skills/full-engagement-pipeline/SKILL.md"
     },
     {
       "plugin": "engagement-accounting",
       "skill": "resume-engagement",
-      "sha256": "8c214eac7a5024996b879601b7f1ecd70c138e055b440acc5d605aac61168cdc",
+      "sha256": "2a20a6e06e04e7df806f976c3757599e61854b961596a88ed916df9c72d3de2d",
       "source": "engagement-accounting/skills/resume-engagement/SKILL.md"
     },
     {
@@ -57,7 +57,7 @@
     {
       "plugin": "bookkeeping-accounting",
       "skill": "classify-transactions",
-      "sha256": "c75a69213bba49197fe3780ae8995b2571e3095d902599d1d4cfa72646700ee9",
+      "sha256": "54132dcbd9af70c030f2b4f8462fc69e35409a36ef92b7c2592e69e30c354fd3",
       "source": "bookkeeping-accounting/skills/classify-transactions/SKILL.md"
     },
     {
@@ -69,7 +69,7 @@
     {
       "plugin": "bookkeeping-accounting",
       "skill": "journal-entries",
-      "sha256": "a1c4c9a72aaa4fd02477e6bd6bd46f391a828536bacddbcd7cca69ec61724c60",
+      "sha256": "e4ff7deaed44610c5ecb3a72a64266d59d12d3200701704647ea4c226aebcf3d",
       "source": "bookkeeping-accounting/skills/journal-entries/SKILL.md"
     },
     {
@@ -87,19 +87,19 @@
     {
       "plugin": "reconciliation-accounting",
       "skill": "preliminary-trial-balance",
-      "sha256": "8b08a38b0b3387c6e4fb550ce402e73810bf1d61eca2fff53dbd794a87e84580",
+      "sha256": "f552b8fb21373d1d19b7cf4921ec5724b6a3e7414392c98051bf6cd350d58b0a",
       "source": "reconciliation-accounting/skills/preliminary-trial-balance/SKILL.md"
     },
     {
       "plugin": "year-end-accounting",
       "skill": "year-end-adjustments",
-      "sha256": "9dd106f66d7704513c4c39d1418fd32bb4400a861355e70a7dad7ff321b103e1",
+      "sha256": "e02c285ae6b5598010672334be88f77dfbb980b88ec56120051464a0bb480185",
       "source": "year-end-accounting/skills/year-end-adjustments/SKILL.md"
     },
     {
       "plugin": "year-end-accounting",
       "skill": "adjusted-trial-balance",
-      "sha256": "74b20a572da38087534029b1c3fb647081662e6da639fdef7b086079d5cae6f5",
+      "sha256": "2bf3b645a5f95bc23825a48433b9ce9fbb009040b8e2cbe75de9f0947d173317",
       "source": "year-end-accounting/skills/adjusted-trial-balance/SKILL.md"
     },
     {

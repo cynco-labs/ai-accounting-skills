@@ -69,6 +69,8 @@ ${c.bold}Commands${c.reset}
   ${c.green}init${c.reset} [name]       Scaffold a client engagement workspace
   ${c.green}extract${c.reset} <path>    Bank PDF/CSV → Excel (+ JSON) · auto-detect adapter
   ${c.green}classify${c.reset} <json>   Deterministic COA classify + review queue
+  ${c.green}post${c.reset} <client>     Classified txns → balancing journals
+  ${c.green}tb${c.reset} <client>       Roll journals → trial balance (never freestyle)
   ${c.green}ledger${c.reset} <client>   Journals → Beancount system of record
   ${c.green}fava${c.reset} [path]       Open Fava UI on a ledger or client dir
   ${c.green}firm${c.reset}              Resolve / scaffold multi-agent firm profile
@@ -81,6 +83,8 @@ ${c.bold}Examples${c.reset}
   npx @cynco/accounting-skills close
   npx @cynco/accounting-skills extract ~/Downloads/statements --json ./txns.json
   npx @cynco/accounting-skills classify ./txns.json
+  npx @cynco/accounting-skills post ./clients/acme --opening-from-bank
+  npx @cynco/accounting-skills tb ./clients/acme --both
   npx @cynco/accounting-skills ledger ./clients/acme --fava
 
 ${c.bold}Skills (Claude · Codex · Cursor · Grok · GLM · Kimi · …)${c.reset}
@@ -251,10 +255,10 @@ Scaffolded engagement workspace.
 1. Drop bank PDFs/CSVs into \`source/bank/\`
 2. \`npx @cynco/accounting-skills extract ${root}/source/bank --out ${root}/outputs/bank.xlsx --json ${root}/workpapers/transactions.json\`
 3. \`npx @cynco/accounting-skills classify ${root}/workpapers/transactions.json\`
-4. Agent skills: classify → journals → recon → YE → FS → QC  
-   (\`npx skills add cynco-labs/ai-accounting-skills\`)
-5. \`npx @cynco/accounting-skills close ${root}\`
-6. \`npx @cynco/accounting-skills ledger ${root} --fava\`
+4. \`npx @cynco/accounting-skills post ${root} --opening-from-bank\`
+5. \`npx @cynco/accounting-skills tb ${root} --both\`
+6. \`npx @cynco/accounting-skills close ${root}\`
+7. \`npx @cynco/accounting-skills ledger ${root} --fava\`
 
 See https://github.com/cynco-labs/ai-accounting-skills
 `,
@@ -351,6 +355,58 @@ function cmdClassify(inputPath, opts) {
   return code;
 }
 
+function cmdPost(clientOrEmpty, opts) {
+  banner();
+  const client = clientOrEmpty ? resolve(clientOrEmpty) : null;
+  if (!client || !existsSync(client)) {
+    fail("Usage: post <client-dir> [--opening-from-bank] [--bank-code 1000]");
+    return 1;
+  }
+  const py = findPython();
+  if (!py) {
+    fail("python3 required");
+    return 1;
+  }
+  const args = [
+    script("post_journals.py"),
+    "--client-dir",
+    client,
+    "--bank-code",
+    opts.bankCode || "1000",
+  ];
+  if (opts.openingFromBank) args.push("--opening-from-bank");
+  if (opts.openings) args.push("--openings", resolve(opts.openings));
+  if (opts.bankName) args.push("--bank-name", opts.bankName);
+  info(`Post journals: ${client}`);
+  const code = run(py, args);
+  if (code === 0) {
+    ok("journals written — next: tb --preliminary");
+  }
+  return code;
+}
+
+function cmdTb(clientOrEmpty, opts) {
+  banner();
+  const client = clientOrEmpty ? resolve(clientOrEmpty) : null;
+  if (!client || !existsSync(client)) {
+    fail("Usage: tb <client-dir> [--preliminary|--adjusted|--both] [--check]");
+    return 1;
+  }
+  const py = findPython();
+  if (!py) {
+    fail("python3 required");
+    return 1;
+  }
+  const args = [script("roll_tb.py"), "--client-dir", client];
+  if (opts.both) args.push("--both");
+  else if (opts.adjusted) args.push("--adjusted");
+  else if (opts.preliminary) args.push("--preliminary");
+  else args.push("--both");
+  if (opts.check) args.push("--check");
+  info(`Roll trial balance: ${client}`);
+  return run(py, args);
+}
+
 function cmdClose(clientOrEmpty, opts) {
   banner();
   const py = findPython();
@@ -367,6 +423,7 @@ function cmdClose(clientOrEmpty, opts) {
   }
   const args = [script("close_engagement.py"), client];
   if (opts.classify) args.push("--classify");
+  if (opts.rollTb) args.push("--roll-tb");
   if (opts.noLedger) args.push("--no-export-ledger");
   info(`Close proof: ${client}`);
   const code = run(py, args);
@@ -584,8 +641,17 @@ function parseArgs(argv) {
     else if (a === "--map") opts.map = rest[++i];
     else if (a === "--report") opts.report = rest[++i];
     else if (a === "--classify") opts.classify = true;
+    else if (a === "--roll-tb") opts.rollTb = true;
     else if (a === "--no-ledger") opts.noLedger = true;
     else if (a === "--init") opts.init = rest[++i];
+    else if (a === "--opening-from-bank") opts.openingFromBank = true;
+    else if (a === "--openings") opts.openings = rest[++i];
+    else if (a === "--bank-code") opts.bankCode = rest[++i];
+    else if (a === "--bank-name") opts.bankName = rest[++i];
+    else if (a === "--preliminary") opts.preliminary = true;
+    else if (a === "--adjusted") opts.adjusted = true;
+    else if (a === "--both") opts.both = true;
+    else if (a === "--check") opts.check = true;
     else if (a.startsWith("-")) {
       fail(`Unknown flag: ${a}`);
       usage(1);
@@ -614,6 +680,10 @@ function main() {
       return cmdExtract(positional[0], opts);
     case "classify":
       return cmdClassify(positional[0], opts);
+    case "post":
+      return cmdPost(positional[0], opts);
+    case "tb":
+      return cmdTb(positional[0], opts);
     case "close":
       return cmdClose(positional[0], opts);
     case "firm":

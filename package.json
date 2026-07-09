@@ -1,7 +1,7 @@
 {
   "name": "@cynco/accounting-skills",
-  "version": "2.1.0",
-  "description": "Agent-native accounting CLI \u2014 extract, classify, close, Beancount, Fava. Multi-agent via skills.sh. npx @cynco/accounting-skills demo",
+  "version": "2.2.2",
+  "description": "Agent-native accounting CLI \u2014 extract, classify, post, tb, close, Beancount, Fava. Multi-agent via skills.sh. npx @cynco/accounting-skills demo",
   "keywords": [
     "accounting",
     "beancount",

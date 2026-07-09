@@ -35,6 +35,8 @@ npx @cynco/accounting-skills close              # E2E proof on golden fixture
 npx @cynco/accounting-skills doctor
 npx @cynco/accounting-skills extract ./banks --out ./bank.xlsx --json ./txns.json
 npx @cynco/accounting-skills classify ./txns.json
+npx @cynco/accounting-skills post ./clients/acme --opening-from-bank
+npx @cynco/accounting-skills tb ./clients/acme --both
 npx @cynco/accounting-skills ledger ./clients/acme --fava
 npx @cynco/accounting-skills firm --init "Your Firm"
 ```
@@ -45,6 +47,8 @@ npx @cynco/accounting-skills firm --init "Your Firm"
 | `close` | Validate · gates · proof card |
 | `extract` | PDF/CSV → Excel (Maybank · CIMB CSV · generic) |
 | `classify` | COA codes + review queue |
+| `post` | Classified lines → balancing journals |
+| `tb` | Journals → TB (never freestyle) |
 | `ledger` | Journals → Beancount (+ Fava) |
 | `firm` | Multi-agent firm profile |
 | `doctor` | Deps check |

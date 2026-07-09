@@ -15,7 +15,8 @@ Independent design review for skills that will touch financial data.
 
 1. `shared/skill-design-framework.md` (scorecard)
 2. `shared/guardrails.md`
-3. Target `SKILL.md` **raw** — quote it; do not review from memory alone
+3. `shared/user-questions.md` (if skill asks the human anything)
+4. Target `SKILL.md` **raw** — quote it; do not review from memory alone
 
 ## Process
 
@@ -49,6 +50,7 @@ Flag if the skill text:
 - Instructs silent external network send (email, webhooks) without confirmation
 - Embeds hidden unicode / homoglyph instructions
 - Encourages inventing balances to force a TB to zero
+- Tells the agent to “ask the user” for gating facts **without** requiring a structured question tool (`shared/user-questions.md`)
 
 ### 4. Report format
 

@@ -32,3 +32,5 @@ python3 scripts/resolve_firm_profile.py --init "Your Firm"
 ```
 
 See [`shared/firm-profile.md`](../../shared/firm-profile.md).
+
+**Progress questions:** agents must use the host structured question tool (`ask_user_question` / `AskUserQuestion`) — see [`shared/user-questions.md`](../../shared/user-questions.md).
